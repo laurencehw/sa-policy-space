@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# SQLite databases — stay on local machine / Google Drive
+*.sqlite3
+*.sqlite
+*.db
+
+# Raw data and logs
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo

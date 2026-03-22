@@ -1,0 +1,320 @@
+{
+  "1": {
+    "package_id": 1,
+    "name": "Infrastructure Unblock",
+    "tagline": "Remove physical bottlenecks that constrain all economic activity",
+    "theory_of_change": "South Africa's growth ceiling is set by infrastructure failure. Load-shedding cuts industrial output by an estimated 5\u20137% of potential GDP; dysfunctional ports and rail add 15\u201330% to logistics costs for exporters; deteriorating roads raise transport poverty in rural areas. These bottlenecks interact: an SMME that survives power cuts still cannot compete internationally if Transnet cannot move its goods reliably. Infrastructure reform therefore carries the highest cross-sector growth multiplier of any package.\n\nThe package is sequenced around the energy anchor: Eskom restructuring and the Electricity Regulation Amendment Act create the competitive platform; grid expansion and renewables integration deliver the supply; and parallel Transnet and port reforms unblock the logistics corridor. Water and digital infrastructure close the gap. Most reforms here require institutional change and capital, placing the majority in the medium-term \u2014 but quick regulatory wins (NERSA independence, self-generation licensing, IRP update) can deliver measurable relief within a year.",
+    "idea_count": 29,
+    "avg_feasibility": 3.15,
+    "avg_growth_impact": 3.97,
+    "stalled_or_proposed_count": 11,
+    "implemented_or_partial_count": 11,
+    "top_priority_ideas": [
+      {
+        "id": 35,
+        "title": "Integrated Resource Plan (IRP) 2024 Update \u2014 Revised Electricity Mix",
+        "source_committee": "Energy",
+        "current_status": "under_review",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 4
+      },
+      {
+        "id": 42,
+        "title": "Electricity Regulation Amendment Act \u2014 Competitive Electricity Market",
+        "source_committee": "Mineral Resources and Energy",
+        "current_status": "implemented",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 4
+      },
+      {
+        "id": 49,
+        "title": "Renewable Energy Grid Integration and Transmission Expansion",
+        "source_committee": "Mineral Resources and Energy",
+        "current_status": "under_review",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 3
+      }
+    ],
+    "idea_ids": [
+      6,
+      20,
+      32,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      46,
+      48,
+      49,
+      58,
+      59,
+      62,
+      70,
+      76,
+      77,
+      79,
+      80,
+      81,
+      82,
+      84,
+      99,
+      102
+    ]
+  },
+  "2": {
+    "package_id": 2,
+    "name": "SMME & Employment Acceleration",
+    "tagline": "Remove friction from SA's best short-term jobs engine",
+    "theory_of_change": "With formal employment growing at under 1% per year and the unemployment rate structurally above 30%, the only credible near-term jobs engine is small and medium enterprise growth. SMMEs account for roughly 60% of employment but face a regulatory environment ranked among the most burdensome in sub-Saharan Africa: multi-step compliance, slow dispute resolution, constrained access to finance, and procurement markets effectively closed to new entrants. Each layer of friction is a lost job.\n\nThis package attacks friction directly. Red-tape reduction and BizPortal integration can be achieved by regulatory amendment alone \u2014 they are quick wins. SEFA mandate reform and SMME procurement enforcement require institutional alignment but no new spending. The informal economy integration reforms have the longest political economy, but even partial progress \u2014 simplified tax registration, dignified trading infrastructure \u2014 expands the base. Taken together, the package targets the regulatory and financial bottlenecks identified by the Presidential SMME Summit as the binding constraints on small-business job creation.",
+    "idea_count": 16,
+    "avg_feasibility": 2.93,
+    "avg_growth_impact": 3.31,
+    "stalled_or_proposed_count": 11,
+    "implemented_or_partial_count": 4,
+    "top_priority_ideas": [
+      {
+        "id": 114,
+        "title": "National Small Enterprise Amendment Act: Ombud Service Operationalisation",
+        "source_committee": "Small Business Development",
+        "current_status": "partially_implemented",
+        "growth_impact_rating": 4,
+        "feasibility_rating": 4
+      },
+      {
+        "id": 117,
+        "title": "SMME Red Tape Reduction: BizPortal and Compliance Integration",
+        "source_committee": "Small Business Development",
+        "current_status": "partially_implemented",
+        "growth_impact_rating": 4,
+        "feasibility_rating": 4
+      },
+      {
+        "id": 103,
+        "title": "Urban Land Release for Affordable Housing and Infrastructure",
+        "source_committee": "Public Works and Infrastructure",
+        "current_status": "proposed",
+        "growth_impact_rating": 4,
+        "feasibility_rating": 3
+      }
+    ],
+    "idea_ids": [
+      11,
+      27,
+      31,
+      83,
+      98,
+      103,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123
+    ]
+  },
+  "3": {
+    "package_id": 3,
+    "name": "Human Capital Pipeline",
+    "tagline": "Invest now because the lags are a decade long",
+    "theory_of_change": "South Africa's medium-term growth potential is capped by human capital failure. Only 19% of Grade 4 learners can read for meaning (PIRLS 2021) \u2014 the worst outcome among middle-income comparators. The TVET system produces artisans at roughly 20% of the economy's estimated need. Healthcare worker unemployment coexists with healthcare worker shortages in public facilities. These are not primarily fiscal problems; they are institutional, pedagogical, and governance failures that can be addressed now, but whose full returns arrive in 8\u201315 years. Starting late means locking in the human capital deficit for a generation.\n\nThe package is anchored in the reading crisis: foundation literacy is the prerequisite for every other human capital outcome. ECD reform feeds into primary literacy; primary literacy feeds TVET take-up and university readiness; TVET quality feeds the manufacturing and energy transition skills pipelines. Health system strengthening runs in parallel as a labour productivity intervention \u2014 TB, mental health, and the primary healthcare platform directly affect workforce capacity. NHI implementation is included because a credible roadmap is necessary to prevent further talent flight from the public health system.",
+    "idea_count": 29,
+    "avg_feasibility": 3.11,
+    "avg_growth_impact": 3.48,
+    "stalled_or_proposed_count": 14,
+    "implemented_or_partial_count": 6,
+    "top_priority_ideas": [
+      {
+        "id": 88,
+        "title": "National Reading and Literacy Crisis Response Programme",
+        "source_committee": "Basic Education",
+        "current_status": "proposed",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 4
+      },
+      {
+        "id": 51,
+        "title": "TVET College Quality and Industry Relevance \u2014 Artisan Pipeline",
+        "source_committee": "Higher Education and Training",
+        "current_status": "under_review",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 3
+      },
+      {
+        "id": 57,
+        "title": "Advanced Manufacturing Skills for the Energy Transition (EV, Solar, Green Hydrogen)",
+        "source_committee": "Higher Education and Training",
+        "current_status": "proposed",
+        "growth_impact_rating": 4,
+        "feasibility_rating": 4
+      }
+    ],
+    "idea_ids": [
+      16,
+      50,
+      51,
+      52,
+      53,
+      54,
+      56,
+      57,
+      69,
+      72,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      112,
+      113
+    ]
+  },
+  "4": {
+    "package_id": 4,
+    "name": "Trade & Industrial Competitiveness",
+    "tagline": "Align incentives with comparative advantage and compete globally",
+    "theory_of_change": "South Africa's economy is too small to grow on domestic demand alone. With a GDP of roughly $380 billion and structural unemployment above 30%, sustainable growth requires deeper participation in global value chains. AfCFTA creates a $3 trillion continental market; AGOA provides preferential US access; the energy transition creates demand for South African critical minerals and green hydrogen. But capturing these opportunities requires competitive logistics, credible industrial policy, and a regulatory environment that rewards investment.\n\nThe package combines trade facilitation (AfCFTA, AGOA, BRICS+ payment systems) with sector-specific master plans (auto, textiles, steel, minerals beneficiation) and the horizontal enablers that make them credible: competition policy, IP reform, and digital markets. Science, technology, and innovation reforms connect commercial R&D to industrial strategy. The theory of change is comparative advantage: South Africa has structural strengths in minerals, automotive assembly, agri-processing, and potentially green hydrogen \u2014 industrial policy should reinforce these positions rather than try to create winners from scratch.",
+    "idea_count": 23,
+    "avg_feasibility": 2.89,
+    "avg_growth_impact": 3.26,
+    "stalled_or_proposed_count": 8,
+    "implemented_or_partial_count": 1,
+    "top_priority_ideas": [
+      {
+        "id": 45,
+        "title": "Critical Minerals Beneficiation Strategy",
+        "source_committee": "Mineral Resources and Energy",
+        "current_status": "under_review",
+        "growth_impact_rating": 4,
+        "feasibility_rating": 3
+      },
+      {
+        "id": 5,
+        "title": "EV White Paper \u2014 Managed Automotive Transition",
+        "source_committee": "Trade, Industry and Competition",
+        "current_status": "proposed",
+        "growth_impact_rating": 5,
+        "feasibility_rating": null
+      },
+      {
+        "id": 18,
+        "title": "Automotive Production and Development Programme (APDP Phase 2) Enhancement",
+        "source_committee": "Trade, Industry and Competition",
+        "current_status": "debated",
+        "growth_impact_rating": 5,
+        "feasibility_rating": null
+      }
+    ],
+    "idea_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      12,
+      15,
+      17,
+      18,
+      19,
+      45,
+      66,
+      67,
+      68,
+      71,
+      73,
+      74,
+      75,
+      85
+    ]
+  },
+  "5": {
+    "package_id": 5,
+    "name": "State Capacity & Governance",
+    "tagline": "None of the above works without a capable state",
+    "theory_of_change": "Every other reform package is mediated by state institutions: regulators, procurement systems, tax authorities, SOE boards, provincial departments. Where those institutions are captured, underfunded, or dysfunctional, reform legislation sits unimplemented and fiscal resources leak. South Africa's structural fiscal deficit \u2014 debt service now absorbs over 20 cents of every revenue rand \u2014 is itself a governance failure compounded by Eskom bailouts, SOE losses, and revenue shortfalls that a fully capacitated SARS could partially recover.\n\nThis package addresses the enabling conditions for all other packages. FATF greylisting exit is the most urgent: it raises borrowing costs, impairs correspondent banking, and signals institutional fragility to investors. Fiscal consolidation and SARS capacity expansion create the headroom for infrastructure investment. SOE reform \u2014 not just Eskom but the full portfolio \u2014 reduces contingent liabilities. Anti-corruption and consequence management reforms close the governance loop. Without meaningful progress here, the other four packages will be partially implemented, poorly resourced, and chronically stalled.",
+    "idea_count": 26,
+    "avg_feasibility": 3.0,
+    "avg_growth_impact": 3.12,
+    "stalled_or_proposed_count": 9,
+    "implemented_or_partial_count": 7,
+    "top_priority_ideas": [
+      {
+        "id": 23,
+        "title": "Fiscal Consolidation and Debt Stabilisation",
+        "source_committee": "Finance Standing Committee",
+        "current_status": "partially_implemented",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 3
+      },
+      {
+        "id": 25,
+        "title": "National Treasury PPP Unit and Infrastructure Financing Reform",
+        "source_committee": "Finance Standing Committee",
+        "current_status": "under_review",
+        "growth_impact_rating": 5,
+        "feasibility_rating": 3
+      },
+      {
+        "id": 21,
+        "title": "FATF Greylisting Exit \u2014 AML/CFT Legislative Package",
+        "source_committee": "Finance Standing Committee",
+        "current_status": "implemented",
+        "growth_impact_rating": 4,
+        "feasibility_rating": 4
+      }
+    ],
+    "idea_ids": [
+      13,
+      14,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      33,
+      34,
+      47,
+      55,
+      60,
+      61,
+      63,
+      64,
+      65,
+      78,
+      96,
+      97,
+      100,
+      101,
+      111
+    ]
+  }
+}
