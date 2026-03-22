@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { getPackageSummaries, getPackageTimeHorizonCounts } from "@/lib/local-api";
 import type { PackageSummary, TimeHorizonCounts } from "@/lib/local-api";
 
 // Per-package colour scheme
@@ -42,6 +41,7 @@ export default async function PackagesPage() {
     );
   }
 
+  const { getPackageSummaries, getPackageTimeHorizonCounts } = await import("@/lib/local-api");
   const summaries = getPackageSummaries();
   const horizonCounts = getPackageTimeHorizonCounts();
 

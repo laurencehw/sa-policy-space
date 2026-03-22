@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPackageDetail } from "@/lib/local-api";
 import type { IdeaRow } from "@/lib/local-api";
 import { STATUS_COLORS } from "@/lib/supabase";
 import DiagramViewer from "@/components/DiagramViewer";
@@ -136,6 +135,7 @@ export default async function PackageDetailPage({
   const packageId = Number(params.id);
   if (isNaN(packageId)) notFound();
 
+  const { getPackageDetail } = await import("@/lib/local-api");
   const pkg = getPackageDetail(packageId);
   if (!pkg) notFound();
 
