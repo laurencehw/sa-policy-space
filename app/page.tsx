@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { CONSTRAINT_LABELS, type BindingConstraint } from "@/lib/supabase";
 
