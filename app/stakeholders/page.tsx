@@ -58,7 +58,7 @@ const ALL_CATEGORIES: Category[] = [
 
 const PACKAGE_NAMES: Record<number, string> = {
   1: "Infrastructure Unblock",
-  2: "SMME & Employment",
+  2: "SMME & Employment Acceleration",
   3: "Human Capital Pipeline",
   4: "Trade & Industrial Competitiveness",
   5: "State Capacity & Governance",

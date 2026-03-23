@@ -5,7 +5,7 @@
     "category": "Government",
     "influence_score": 10,
     "support_level": 5,
-    "key_interests": "Structural reform delivery, investor confidence, economic recovery",
+    "key_interests": "Cross-cutting structural reform coordination. Champions energy, logistics, water, digital, and visa reform. Directly accountable to the Presidency — the most reform-committed node in government.",
     "related_packages": [1, 2, 3, 4, 5],
     "position": "supporter"
   },
@@ -14,10 +14,10 @@
     "name": "National Treasury",
     "category": "Government",
     "influence_score": 9,
-    "support_level": 4,
-    "key_interests": "Fiscal consolidation, macro-stability, private sector participation",
-    "related_packages": [1, 2, 4, 5],
-    "position": "supporter"
+    "support_level": 3,
+    "key_interests": "Fiscal consolidation, debt sustainability, structural reforms that improve revenue without expanding contingent liabilities. Cautious on SOE bailouts; supportive of private-sector led reforms.",
+    "related_packages": [1, 2, 3, 4, 5],
+    "position": "mixed"
   },
   {
     "id": "cosatu",
@@ -25,9 +25,9 @@
     "category": "Labour",
     "influence_score": 9,
     "support_level": -2,
-    "key_interests": "Job protection, wage floors, SOE preservation, worker rights",
+    "key_interests": "ANC alliance partner. Protects public-sector jobs, opposes privatisation, supports state-led energy transition. Internally divided on Eskom unbundling — NUMSA breakaway weakened its leverage.",
     "related_packages": [1, 2, 3, 5],
-    "position": "mixed"
+    "position": "opponent"
   },
   {
     "id": "sarb",
@@ -35,7 +35,7 @@
     "category": "Regulator",
     "influence_score": 8,
     "support_level": 3,
-    "key_interests": "Macro-stability, financial system integrity, prudential oversight",
+    "key_interests": "Monetary stability, financial system integrity, prudential oversight. Supportive of fintech entry insofar as it doesn't destabilise the payment system. Watches fiscal reform closely for inflation implications.",
     "related_packages": [2, 4, 5],
     "position": "supporter"
   },
@@ -45,8 +45,8 @@
     "category": "Private Sector",
     "influence_score": 8,
     "support_level": 4,
-    "key_interests": "Regulatory reform, investment climate, energy reliability, logistics",
-    "related_packages": [1, 2, 4, 5],
+    "key_interests": "Cross-cutting reform — energy security, logistics efficiency, regulatory certainty, labour market flexibility. Key NEDLAC interlocutor. Consistently advocates structural reform across all five packages.",
+    "related_packages": [1, 2, 3, 4, 5],
     "position": "supporter"
   },
   {
@@ -55,19 +55,19 @@
     "category": "SOE",
     "influence_score": 8,
     "support_level": -1,
-    "key_interests": "Monopoly preservation, debt relief, capital investment, tariff increases",
+    "key_interests": "Maintaining integrated utility structure, managing R400bn+ debt, labour relations with NUM/NUMSA. Unbundling of distribution arm contested internally. Reform champions exist but face institutional inertia.",
     "related_packages": [1, 5],
     "position": "mixed"
   },
   {
     "id": "dtic",
-    "name": "DTIC",
+    "name": "DTIC (Dept. of Trade, Industry & Competition)",
     "category": "Government",
     "influence_score": 7,
     "support_level": 2,
-    "key_interests": "Industrial policy, local content, SMME development, export promotion",
+    "key_interests": "Industrial policy, localisation requirements, SEZs, BBBEE compliance. Supportive of logistics reform insofar as it reduces input costs for manufacturers; ambivalent about full liberalisation.",
     "related_packages": [2, 3, 4],
-    "position": "supporter"
+    "position": "mixed"
   },
   {
     "id": "nersa",
@@ -75,7 +75,7 @@
     "category": "Regulator",
     "influence_score": 7,
     "support_level": -2,
-    "key_interests": "Regulatory control, tariff-setting authority, licensing oversight",
+    "key_interests": "Maintaining regulatory jurisdiction over electricity tariffs and licensing. Historically under-resourced; slow to approve IPP licences. Reform proposals reducing NERSA's gatekeeping role meet institutional resistance.",
     "related_packages": [1],
     "position": "opponent"
   },
@@ -85,8 +85,8 @@
     "category": "SOE",
     "influence_score": 7,
     "support_level": -2,
-    "key_interests": "Logistics monopoly, infrastructure control, operational autonomy",
-    "related_packages": [1, 4, 5],
+    "key_interests": "Port and rail monopoly protection, capital investment backlog, labour costs. State capture fallout still being addressed. Concessioning of Durban port and freight rail corridors contested internally.",
+    "related_packages": [2],
     "position": "opponent"
   },
   {
@@ -95,8 +95,8 @@
     "category": "Private Sector",
     "influence_score": 7,
     "support_level": 4,
-    "key_interests": "Energy reform, logistics privatisation, rule of law, investment facilitation",
-    "related_packages": [1, 4, 5],
+    "key_interests": "CEO-level advocacy body for large corporates. Runs the CEO Initiative on inclusive growth. Publicly committed to Operation Vulindlela reform agenda across energy, logistics, and digital.",
+    "related_packages": [1, 2, 4, 5],
     "position": "supporter"
   },
   {
@@ -104,10 +104,20 @@
     "name": "Minerals Council South Africa",
     "category": "Private Sector",
     "influence_score": 7,
-    "support_level": 1,
-    "key_interests": "Energy reliability, rail and port access, regulatory certainty, royalty regime",
-    "related_packages": [1, 4],
+    "support_level": 2,
+    "key_interests": "Energy costs and reliability, rail and port access for export corridors, regulatory certainty, royalty regime. Own-generation licences vital — strongly supportive of energy liberalisation.",
+    "related_packages": [1, 2, 3],
     "position": "mixed"
+  },
+  {
+    "id": "competition-commission",
+    "name": "Competition Commission",
+    "category": "Regulator",
+    "influence_score": 7,
+    "support_level": 3,
+    "key_interests": "Market concentration across freight, telecoms, financial services, food. Strong institutional capacity; has taken on major cases in banking, grocery, and telecoms. Actively supportive of opening concentrated markets.",
+    "related_packages": [2, 4, 5],
+    "position": "supporter"
   },
   {
     "id": "num",
@@ -115,8 +125,8 @@
     "category": "Labour",
     "influence_score": 7,
     "support_level": -3,
-    "key_interests": "Mining employment, labour protections, nationalisation, living wage",
-    "related_packages": [1, 4],
+    "key_interests": "Mining employment, labour protections, just transition pace, energy sector jobs. Supportive of renewable energy in principle but demands job guarantees in coal regions before reform accelerates.",
+    "related_packages": [1, 3, 4],
     "position": "opponent"
   },
   {
@@ -125,18 +135,18 @@
     "category": "Labour",
     "influence_score": 7,
     "support_level": -4,
-    "key_interests": "Industrial employment, SOE control, anti-privatisation, energy sector jobs",
+    "key_interests": "Metalworkers with large Eskom and manufacturing membership. Strongly opposes energy unbundling, IPP model, and concessioning. Major disruptor of Eskom operations; broke from COSATU in 2014.",
     "related_packages": [1, 2, 5],
     "position": "opponent"
   },
   {
     "id": "dmre",
-    "name": "DMRE",
+    "name": "DMRE (Dept. of Mineral Resources & Energy)",
     "category": "Government",
     "influence_score": 6,
     "support_level": -1,
-    "key_interests": "Energy sovereignty, mineral beneficiation, state control of resources",
-    "related_packages": [1, 4],
+    "key_interests": "Regulatory gatekeeping over generation and mining. Historically resistant to unbundling Eskom and liberalising IPP procurement. Under pressure from Operation Vulindlela to accelerate REIPPP.",
+    "related_packages": [1, 3, 4],
     "position": "mixed"
   },
   {
@@ -145,17 +155,17 @@
     "category": "Regulator",
     "influence_score": 6,
     "support_level": 1,
-    "key_interests": "Spectrum regulation, telecom competition, digital infrastructure",
+    "key_interests": "Spectrum licensing, competition in telecoms, consumer protection. Long-delayed spectrum auction completed 2022. Open to further liberalisation but resource-constrained and slow-moving.",
     "related_packages": [2, 3, 4],
     "position": "neutral"
   },
   {
     "id": "renewable-ipps",
-    "name": "Renewable Energy IPPs",
+    "name": "Renewable Energy IPP Developers",
     "category": "Private Sector",
     "influence_score": 6,
     "support_level": 5,
-    "key_interests": "Grid access, wheeling rights, REIPPPP continuity, power purchase agreements",
+    "key_interests": "REIPPP Bid Window pipeline, wheeling tariffs, grid access, offtake certainty from Eskom and municipalities. Strongest private-sector champions of energy reform. Backed by international capital.",
     "related_packages": [1, 4],
     "position": "supporter"
   },
@@ -165,7 +175,7 @@
     "category": "Labour",
     "influence_score": 6,
     "support_level": -4,
-    "key_interests": "Anti-austerity, nationalisation, worker ownership, universal basic income",
+    "key_interests": "Anti-austerity, nationalisation, worker ownership. Most vocal opponent of the reform agenda; mobilises street-level and legal pressure against privatisation and structural adjustment.",
     "related_packages": [1, 2, 5],
     "position": "opponent"
   },
@@ -175,8 +185,8 @@
     "category": "International",
     "influence_score": 6,
     "support_level": 2,
-    "key_interests": "Trade access, preferential market terms, geopolitical alignment",
-    "related_packages": [4],
+    "key_interests": "Preferential trade access under AGOA, investment climate, IP protection, digital trade rules. AGOA renewal uncertainty creates pressure on SA reform trajectory and geopolitical alignment.",
+    "related_packages": [4, 5],
     "position": "mixed"
   },
   {
@@ -185,19 +195,29 @@
     "category": "International",
     "influence_score": 6,
     "support_level": 4,
-    "key_interests": "Structural reform, private sector development, fiscal sustainability, poverty reduction",
+    "key_interests": "Structural reform technical assistance and financing. Active in energy transition (JETP), logistics diagnostics, and water sector. Provides Development Policy Loans conditional on reform milestones.",
     "related_packages": [1, 2, 3, 5],
     "position": "supporter"
   },
   {
     "id": "dpe",
-    "name": "Department of Public Enterprises (DPE)",
+    "name": "Dept. of Public Enterprises (DPE)",
     "category": "Government",
     "influence_score": 5,
     "support_level": 1,
-    "key_interests": "SOE oversight, restructuring mandates, public asset management",
-    "related_packages": [1, 5],
+    "key_interests": "SOE oversight — Transnet, Eskom unbundling. Mandate includes restructuring SOEs while protecting jobs. Caught between National Treasury's reform pressure and labour's resistance.",
+    "related_packages": [1, 2, 5],
     "position": "neutral"
+  },
+  {
+    "id": "dcdt",
+    "name": "DCDT (Dept. of Communications & Digital Tech)",
+    "category": "Government",
+    "influence_score": 5,
+    "support_level": 3,
+    "key_interests": "Spectrum allocation, broadband rollout, digital economy ambitions, SA Connect broadband plan. Generally supportive of competition in telecoms and digital infrastructure expansion.",
+    "related_packages": [4, 5],
+    "position": "supporter"
   },
   {
     "id": "prasa",
@@ -205,8 +225,8 @@
     "category": "SOE",
     "influence_score": 5,
     "support_level": 0,
-    "key_interests": "Passenger rail funding, infrastructure recapitalisation, operational continuity",
-    "related_packages": [1, 3],
+    "key_interests": "Commuter rail rehabilitation, rolling stock procurement, urban mobility. Governance crises have impeded reform. Urban mobility reform depends critically on PRASA turnaround.",
+    "related_packages": [1, 2, 3],
     "position": "neutral"
   },
   {
@@ -214,10 +234,10 @@
     "name": "OUTA",
     "category": "Civil Society",
     "influence_score": 5,
-    "support_level": 4,
-    "key_interests": "Accountability, anti-corruption, public infrastructure delivery",
-    "related_packages": [1, 5],
-    "position": "supporter"
+    "support_level": 2,
+    "key_interests": "Fiscal accountability, SOE governance, infrastructure pricing. Campaigns against toll roads, Eskom tariff increases, and wasteful public spending. Litigation-focused and media-savvy.",
+    "related_packages": [1, 2, 5],
+    "position": "mixed"
   },
   {
     "id": "imf",
@@ -225,49 +245,109 @@
     "category": "International",
     "influence_score": 5,
     "support_level": 3,
-    "key_interests": "Fiscal consolidation, SOE reform, debt sustainability, structural adjustment",
-    "related_packages": [1, 5],
+    "key_interests": "Fiscal sustainability, SOE contingent liabilities, labour market flexibility, current account dynamics. Article IV consultations consistently highlight structural reform gaps. No programme engagement but strong reputational influence.",
+    "related_packages": [1, 2, 5],
     "position": "supporter"
   },
   {
     "id": "eu",
-    "name": "European Union",
+    "name": "European Union / JETP Partners",
     "category": "International",
     "influence_score": 5,
     "support_level": 3,
-    "key_interests": "Green energy transition, trade access, rule of law, Just Energy Transition",
-    "related_packages": [1, 4],
+    "key_interests": "Just Energy Transition Partnership (JETP) — €8.5bn committed for coal transition. Conditions include accelerating renewable rollout and coal community support. CBAM creates export pressure.",
+    "related_packages": [1, 3, 4],
     "position": "supporter"
+  },
+  {
+    "id": "fsca",
+    "name": "Financial Sector Conduct Authority (FSCA)",
+    "category": "Regulator",
+    "influence_score": 5,
+    "support_level": 2,
+    "key_interests": "Consumer protection in financial markets, retirement fund reform, financial inclusion. Twin Peaks regulation framework. Broadly supportive of fintech entry and inclusion reforms.",
+    "related_packages": [5],
+    "position": "supporter"
+  },
+  {
+    "id": "telkom",
+    "name": "Telkom",
+    "category": "SOE",
+    "influence_score": 5,
+    "support_level": 0,
+    "key_interests": "Fibre network monetisation, spectrum position, competitive response to MTN/Vodacom. Partial privatisation underway. Ambivalent about further telecoms liberalisation that reduces its incumbent advantage.",
+    "related_packages": [4],
+    "position": "neutral"
+  },
+  {
+    "id": "fintech-sector",
+    "name": "Fintech & Payments Sector",
+    "category": "Private Sector",
+    "influence_score": 5,
+    "support_level": 5,
+    "key_interests": "Open banking, Payment Systems Act reform, lower interchange fees, financial inclusion products. Growing ecosystem backed by international capital. Strongest champions of financial sector reform.",
+    "related_packages": [5],
+    "position": "supporter"
+  },
+  {
+    "id": "agrisa",
+    "name": "AgriSA / Commercial Agriculture",
+    "category": "Private Sector",
+    "influence_score": 5,
+    "support_level": 2,
+    "key_interests": "Water allocation reform, irrigation infrastructure, logistics for export corridors, land tenure security. Water reform is double-edged — supports efficiency gains but fears redistribution implications.",
+    "related_packages": [2, 3],
+    "position": "mixed"
   },
   {
     "id": "section27",
     "name": "Section27",
     "category": "Civil Society",
     "influence_score": 4,
-    "support_level": 3,
-    "key_interests": "Healthcare access, education rights, social determinants of health",
-    "related_packages": [3],
-    "position": "supporter"
+    "support_level": 2,
+    "key_interests": "Right to health, water, and social services. Supportive of water infrastructure investment but watchful over privatisation risks. Litigates against state failure to deliver basic services.",
+    "related_packages": [3, 5],
+    "position": "neutral"
   },
   {
     "id": "equal-education",
     "name": "Equal Education",
     "category": "Civil Society",
     "influence_score": 4,
-    "support_level": 3,
-    "key_interests": "Basic education quality, school infrastructure, teacher accountability",
-    "related_packages": [3],
+    "support_level": 2,
+    "key_interests": "School infrastructure, electrification, broadband in education. Supportive of energy and digital connectivity reforms insofar as they benefit public schools and underserved communities.",
+    "related_packages": [1, 3, 4],
+    "position": "neutral"
+  },
+  {
+    "id": "afdb",
+    "name": "African Development Bank",
+    "category": "International",
+    "influence_score": 4,
+    "support_level": 4,
+    "key_interests": "Infrastructure financing — energy, transport, water. Committed capital to REIPPP and logistics corridor upgrades. Regional integration lens; supports intra-African connectivity reforms.",
+    "related_packages": [1, 2, 3],
     "position": "supporter"
   },
   {
-    "id": "competition-commission",
-    "name": "Competition Commission",
-    "category": "Regulator",
-    "influence_score": 7,
-    "support_level": 3,
-    "key_interests": "Market concentration, anti-competitive behaviour, SMME access, pricing",
-    "related_packages": [2, 4],
-    "position": "supporter"
+    "id": "parliament-pcoe",
+    "name": "Portfolio Committee on Energy (Parliament)",
+    "category": "Government",
+    "influence_score": 4,
+    "support_level": 0,
+    "key_interests": "Legislative oversight of NERSA and DMRE. Members span ANC, DA, EFF with divergent views. Energy regulation bills and REIPPP changes require committee scrutiny and approval.",
+    "related_packages": [1],
+    "position": "neutral"
+  },
+  {
+    "id": "parliament-pct",
+    "name": "Portfolio Committee on Transport (Parliament)",
+    "category": "Government",
+    "influence_score": 4,
+    "support_level": 0,
+    "key_interests": "Transnet reform, PRASA accountability, concessioning oversight. Mixed constituency interests — labour and business both lobby intensely. Concessioning bills and port reforms must pass here.",
+    "related_packages": [2],
+    "position": "neutral"
   },
   {
     "id": "pari",
@@ -275,8 +355,28 @@
     "category": "Civil Society",
     "influence_score": 3,
     "support_level": 4,
-    "key_interests": "State capacity, public administration reform, policy implementation quality",
-    "related_packages": [5],
+    "key_interests": "State capacity, institutional reform, governance quality. Provides analytical firepower for evidence-based reform. No direct political constituency but influential in policy circles.",
+    "related_packages": [2, 3, 5],
     "position": "supporter"
+  },
+  {
+    "id": "seri",
+    "name": "SERI (Socio-Economic Rights Institute)",
+    "category": "Civil Society",
+    "influence_score": 3,
+    "support_level": -1,
+    "key_interests": "Land rights, housing, informal settlement services, water access. Sceptical of market-led reform; monitors distributional impacts of structural adjustment on poor households.",
+    "related_packages": [3, 5],
+    "position": "neutral"
+  },
+  {
+    "id": "saa",
+    "name": "SAA",
+    "category": "SOE",
+    "influence_score": 3,
+    "support_level": 0,
+    "key_interests": "Airline revival post-business rescue, Takatso consortium deal, route profitability. Peripheral to the five core reform packages; serves as cautionary tale on SOE restructuring.",
+    "related_packages": [],
+    "position": "neutral"
   }
 ]
