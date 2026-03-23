@@ -65,6 +65,7 @@ export default function MobileNav() {
             <Link href="/budget" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Budget Alignment</Link>
             <Link href="/simulator" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Feasibility Simulator</Link>
             <Link href="/brrr" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">BRRR Recommendations</Link>
+            <Link href="/sequencing" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Sequencing</Link>
 
             <p className="px-3 pt-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Policy Tools</p>
             <Link href="/accountability" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Accountability Dashboard</Link>
