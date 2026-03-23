@@ -1,0 +1,1034 @@
+{
+  "1": {
+    "package_id": 1,
+    "quick_wins": [
+      {
+        "id": "pkg1-qw-1",
+        "title": "Electricity Regulation Amendment Act — secondary legislation",
+        "description": "Complete regulations establishing NERSA's operational independence and the governance framework for the competitive electricity market. ERA Amendment Act signed August 2024; implementing regulations required within 6 months.",
+        "status": "completed",
+        "owner": "DMRE / NERSA",
+        "legislative_reference": "Electricity Regulation Amendment Act 2024"
+      },
+      {
+        "id": "pkg1-qw-2",
+        "title": "IRP 2024 gazette and approval",
+        "description": "Finalise and gazette the Integrated Resource Plan 2024, establishing the electricity capacity mix to 2030. Replaces the stalled IRP 2019 update and provides investor certainty for REIPPP procurement rounds.",
+        "status": "in_progress",
+        "owner": "DMRE",
+        "legislative_reference": "Electricity Regulation Act Section 34"
+      },
+      {
+        "id": "pkg1-qw-3",
+        "title": "REIPPP Round 7 preferred bidder announcement",
+        "description": "Close Round 7 bid window and announce preferred bidders for 2,500MW of new renewable capacity. Operation Vulindlela priority deliverable for H1 2025.",
+        "status": "in_progress",
+        "owner": "DMRE / IPP Office"
+      },
+      {
+        "id": "pkg1-qw-4",
+        "title": "Durban port concession framework — Phase 1",
+        "description": "Publish TNPA guidelines for private terminal operator concessions at Durban Container Terminal. First step in Transnet Port Terminals reform under Operation Vulindlela. Critical for reducing port dwell time from current 8 days.",
+        "status": "in_progress",
+        "owner": "DTIC / TNPA / Transnet",
+        "legislative_reference": "National Ports Act Amendment"
+      },
+      {
+        "id": "pkg1-qw-5",
+        "title": "Single Window customs system rollout",
+        "description": "Deploy SARS/ITAC integrated Single Window portal at all major ports of entry, eliminating parallel documentation processes. Operation Vulindlela customs reform milestone.",
+        "status": "in_progress",
+        "owner": "SARS / ITAC"
+      },
+      {
+        "id": "pkg1-qw-6",
+        "title": "ICASA spectrum licensing — 3.5GHz band",
+        "description": "Complete assignment of high-demand spectrum licences (2.6GHz and 3.5GHz) to mobile network operators following the 2023 auction. Enables 5G rollout and broadband densification.",
+        "status": "completed",
+        "owner": "ICASA / DCDT",
+        "legislative_reference": "Electronic Communications Act"
+      }
+    ],
+    "medium_term": [
+      {
+        "id": "pkg1-mt-1",
+        "title": "National Transmission Company formation (NTC-SA)",
+        "description": "Complete the legal and operational unbundling of Eskom's transmission function into an independent National Transmission Company. Central to Operation Vulindlela's energy reform programme — enables open-access grid and third-party wheeling.",
+        "status": "in_progress",
+        "owner": "DMRE / Eskom / DPE",
+        "legislative_reference": "Electricity Regulation Amendment Act 2024"
+      },
+      {
+        "id": "pkg1-mt-2",
+        "title": "Competitive electricity market — Day-Ahead Market",
+        "description": "Implement NERSA-regulated Day-Ahead Market allowing multiple generators to compete for dispatch. Requires NTC operational independence and metering infrastructure. Key to attracting private investment in generation.",
+        "status": "not_started",
+        "owner": "NERSA / NTC-SA / DMRE"
+      },
+      {
+        "id": "pkg1-mt-3",
+        "title": "Durban Container Terminal concession — Phase 2 award",
+        "description": "Complete competitive tender and award concession for DCT Pier 1 or Pier 2 to a private terminal operator. Target: reduce dwell time from 8 days to under 4 days within 18 months of concession start.",
+        "status": "not_started",
+        "owner": "TNPA / DTIC",
+        "legislative_reference": "National Ports Act"
+      },
+      {
+        "id": "pkg1-mt-4",
+        "title": "Open-access freight rail — Network Statement implementation",
+        "description": "Publish and implement a Network Statement allowing third-party operators access to the Transnet freight rail network on commercial terms. Prerequisite for private rail investment on the iron ore and manganese corridors.",
+        "status": "not_started",
+        "owner": "DOT / Transnet / PRASA"
+      },
+      {
+        "id": "pkg1-mt-5",
+        "title": "National Water Resource Infrastructure Agency operationalisation",
+        "description": "Establish and staff the NWRIA as a dedicated infrastructure delivery vehicle for bulk water schemes. Separates water resource infrastructure from DWS regulatory and operational functions.",
+        "status": "in_progress",
+        "owner": "DWS",
+        "legislative_reference": "Water and Sanitation Laws Amendment Act 2023"
+      },
+      {
+        "id": "pkg1-mt-6",
+        "title": "Transmission grid expansion — 14,000km new lines",
+        "description": "Approve and begin procurement for the transmission grid expansion plan required to integrate planned REIPPP capacity. Current grid constraints are the binding limit on renewable energy integration.",
+        "status": "in_progress",
+        "owner": "Eskom / NTC-SA / DMRE"
+      },
+      {
+        "id": "pkg1-mt-7",
+        "title": "SA Connect Phase 2 — broadband rollout",
+        "description": "Implement universal service broadband rollout using USAF funding and DCDT oversight. Target: 80% household internet access by 2027. Includes school and clinic connectivity as priority.",
+        "status": "in_progress",
+        "owner": "DCDT / USAASA"
+      }
+    ],
+    "long_term": [
+      {
+        "id": "pkg1-lt-1",
+        "title": "Full competitive retail electricity market",
+        "description": "Enable competition at the retail level, allowing large industrial consumers and eventually households to choose their electricity supplier. Final stage of the Electricity Regulation Amendment Act implementation pathway.",
+        "status": "not_started",
+        "owner": "NERSA / DMRE / NTC-SA",
+        "legislative_reference": "Electricity Regulation Amendment Act 2024"
+      },
+      {
+        "id": "pkg1-lt-2",
+        "title": "Durban port dwell time — 8 days to 3 days",
+        "description": "Achieve world-class port productivity through private terminal concessions, digitalisation, and infrastructure investment. Full transformation requires 3–5 years of concession operation and capital expenditure.",
+        "status": "not_started",
+        "owner": "TNPA / Transnet / DTIC"
+      },
+      {
+        "id": "pkg1-lt-3",
+        "title": "50% non-Eskom power generation by 2030",
+        "description": "Diversify South Africa's generation mix to 50% non-Eskom (private IPPs, municipalities, C&I) through REIPPP, self-generation, and embedded generation programmes. Eliminates structural load-shedding risk.",
+        "status": "not_started",
+        "owner": "DMRE / NERSA / IPP Office"
+      },
+      {
+        "id": "pkg1-lt-4",
+        "title": "Municipal water network rehabilitation",
+        "description": "Reduce non-revenue water (current national average ~45%) by rehabilitating ageing municipal pipe networks. Requires MISA technical support, conditional grants, and DWS enforcement of Blue Drop standards.",
+        "status": "not_started",
+        "owner": "DWS / COGTA / MISA"
+      },
+      {
+        "id": "pkg1-lt-5",
+        "title": "Durban–Gauteng freight corridor integration",
+        "description": "Achieve seamless road-rail-port logistics for the busiest freight corridor in sub-Saharan Africa, reducing logistics costs by 20–25%. Requires integrated corridor governance and private rail operator entry.",
+        "status": "not_started",
+        "owner": "DOT / Transnet / TNPA / SANRAL"
+      }
+    ],
+    "key_dependencies": [
+      {
+        "from": "NERSA independence",
+        "to": "Competitive electricity market",
+        "description": "Without an independent regulator, market rules lack credibility and private investors cannot price risk. NERSA independence is the legal foundation for all market reform."
+      },
+      {
+        "from": "Eskom financial stabilization",
+        "to": "Grid investment",
+        "description": "Grid expansion requires capital spending Eskom cannot fund without balance sheet repair. Debt restructuring and R254bn government support package must be completed first."
+      },
+      {
+        "from": "NTC-SA formation",
+        "to": "Third-party grid access",
+        "description": "Open-access wheeling and competitive dispatch require a neutral transmission company separated from Eskom generation interests."
+      },
+      {
+        "from": "Port concessions",
+        "to": "Logistics cost reduction",
+        "description": "Private terminal operators bring capital, technology, and productivity incentives that state-owned TNPA cannot replicate. Port reform is the precondition for export competitiveness."
+      }
+    ],
+    "success_metrics": [
+      {
+        "metric": "Load-shedding days per year",
+        "current": "0 (achieved Q1 2024)",
+        "target": "0 days permanently",
+        "timeline": "Sustained 2024–2026"
+      },
+      {
+        "metric": "Durban port average dwell time",
+        "current": "8 days",
+        "target": "3 days",
+        "timeline": "2027"
+      },
+      {
+        "metric": "New generation capacity added (MW)",
+        "current": "~1,500MW new since 2022",
+        "target": "5,000MW by 2026",
+        "timeline": "2026"
+      },
+      {
+        "metric": "Household internet access",
+        "current": "60%",
+        "target": "80%",
+        "timeline": "2027"
+      },
+      {
+        "metric": "Transnet freight rail volumes",
+        "current": "154Mt (FY2023)",
+        "target": "250Mt",
+        "timeline": "2028"
+      }
+    ],
+    "risk_factors": [
+      {
+        "title": "Eskom union resistance to unbundling",
+        "description": "NUM and solidarity have historically opposed Eskom restructuring. NTC-SA formation could face industrial action or legal challenge, delaying grid independence.",
+        "severity": "high"
+      },
+      {
+        "title": "Grid congestion limiting RE integration",
+        "description": "Transmission grid capacity is the binding constraint on REIPPP generation — awarded projects cannot connect. If the 14,000km grid expansion programme is delayed, new generation becomes stranded.",
+        "severity": "high"
+      },
+      {
+        "title": "REIPPP financing costs and currency risk",
+        "description": "IPP project finance is predominantly USD-denominated while revenue is ZAR. Rand depreciation raises tariffs and reduces investor returns, potentially stalling bid windows.",
+        "severity": "medium"
+      },
+      {
+        "title": "Transnet governance and balance sheet fragility",
+        "description": "Transnet's R130bn debt and operational mismanagement constrain its capacity to invest in port and rail infrastructure even under reform. Concession processes require functional governance.",
+        "severity": "high"
+      },
+      {
+        "title": "Regulatory capture of NERSA",
+        "description": "NERSA's history of politically influenced tariff decisions and capacity constraints could undermine market rule-setting even after formal independence.",
+        "severity": "medium"
+      }
+    ]
+  },
+  "2": {
+    "package_id": 2,
+    "quick_wins": [
+      {
+        "id": "pkg2-qw-1",
+        "title": "SMME Ombud Service operationalisation",
+        "description": "Activate the Small Enterprise Ombud Service under the National Small Enterprise Amendment Act 2023. The Ombud resolves B2B payment disputes between SMMEs and large firms without court action — a critical cash flow protection mechanism.",
+        "status": "in_progress",
+        "owner": "DSBD",
+        "legislative_reference": "National Small Enterprise Amendment Act 2023"
+      },
+      {
+        "id": "pkg2-qw-2",
+        "title": "BizPortal 2.0 — single registration integration",
+        "description": "Integrate CIPC, SARS tax registration, UIF, Workmen's Compensation, and business bank account opening into a single digital registration journey. Reduce business registration from 5 days and 6 agencies to 1 day.",
+        "status": "in_progress",
+        "owner": "DSBD / CIPC / SARS"
+      },
+      {
+        "id": "pkg2-qw-3",
+        "title": "30-day payment rule enforcement directive",
+        "description": "Issue a binding directive under the PFMA requiring all national departments and public entities to pay SMME invoices within 30 days. Direct instruction from the Presidency under Operation Vulindlela.",
+        "status": "in_progress",
+        "owner": "National Treasury / NT",
+        "legislative_reference": "Public Finance Management Act Section 38"
+      },
+      {
+        "id": "pkg2-qw-4",
+        "title": "Home-based business zoning — model municipal by-law",
+        "description": "Publish a model municipal by-law permitting home offices, tutoring, repair workshops, and small-scale food production in residential zones. Reduces regulatory barrier for the most accessible entry point to self-employment.",
+        "status": "not_started",
+        "owner": "COGTA / DSBD"
+      },
+      {
+        "id": "pkg2-qw-5",
+        "title": "BBBEE compliance cost reduction for micro-enterprises",
+        "description": "Issue regulations exempting enterprises below R10m turnover from BBBEE verification fees and simplifying annual compliance reporting. Reduces regulatory burden on the smallest firms.",
+        "status": "not_started",
+        "owner": "DTIC / B-BBEE Commission",
+        "legislative_reference": "Broad-Based Black Economic Empowerment Act"
+      }
+    ],
+    "medium_term": [
+      {
+        "id": "pkg2-mt-1",
+        "title": "SEFA mandate expansion — R8bn annual lending envelope",
+        "description": "Increase SEFA's capitalisation and annual lending envelope from ~R2.5bn to R8bn. Requires National Treasury allocation and a revised SEFA mandate prioritising direct lending over wholesale (blended finance vehicles).",
+        "status": "not_started",
+        "owner": "DSBD / National Treasury"
+      },
+      {
+        "id": "pkg2-mt-2",
+        "title": "SMME set-aside: 30% of government procurement",
+        "description": "Mandate that 30% of all government tenders above R500,000 be awarded to qualifying SMMEs and cooperatives. Implement monitoring through NT procurement portal and publish quarterly compliance reports.",
+        "status": "in_progress",
+        "owner": "National Treasury / DSBD",
+        "legislative_reference": "Public Procurement Act 2023"
+      },
+      {
+        "id": "pkg2-mt-3",
+        "title": "Informal economy integration — simplified tax and trading infrastructure",
+        "description": "Introduce a simplified presumptive tax for informal traders below R500k turnover, and develop dignified urban trading infrastructure (covered markets, ablution facilities, storage) in at least 20 municipalities.",
+        "status": "not_started",
+        "owner": "SARS / DSBD / COGTA"
+      },
+      {
+        "id": "pkg2-mt-4",
+        "title": "Township economic zones — fast-track approvals",
+        "description": "Designate 50 township enterprise zones with simplified zoning, infrastructure grants, and reduced municipal levies. Builds on Gauteng and Western Cape pilot programmes.",
+        "status": "not_started",
+        "owner": "DSBD / DTIC / Provinces"
+      },
+      {
+        "id": "pkg2-mt-5",
+        "title": "CCMA dispute resolution — 30-day target",
+        "description": "Increase CCMA commissioner capacity and implement a 30-day maximum for conciliation and arbitration of unfair dismissal and labour disputes. Reduces employment uncertainty for small firms.",
+        "status": "not_started",
+        "owner": "DOEL / CCMA",
+        "legislative_reference": "Labour Relations Act"
+      },
+      {
+        "id": "pkg2-mt-6",
+        "title": "Replacement angel investor tax incentive (post-Section 12J)",
+        "description": "Design and implement a replacement for the Section 12J venture capital incentive (expired 2021) focused on early-stage SMME equity. Target R5bn in private co-investment over 3 years.",
+        "status": "not_started",
+        "owner": "National Treasury / SARS",
+        "legislative_reference": "Income Tax Act"
+      }
+    ],
+    "long_term": [
+      {
+        "id": "pkg2-lt-1",
+        "title": "Alternative credit scoring for SMMEs",
+        "description": "Enable credit bureaux and banks to use alternative data (utility payments, mobile money, SARS tax history) for SMME credit assessment. Unlock formal finance for the estimated 700,000 creditworthy but unscored small firms.",
+        "status": "not_started",
+        "owner": "FSCA / NCR / SA Reserve Bank"
+      },
+      {
+        "id": "pkg2-lt-2",
+        "title": "National Small Business Development Bank",
+        "description": "Establish a dedicated development finance institution for SMMEs, consolidating SEFA, NEF small-business functions, and SEDA financial services. Modelled on Germany's KfW or Brazil's BNDES SME division.",
+        "status": "not_started",
+        "owner": "DSBD / National Treasury"
+      },
+      {
+        "id": "pkg2-lt-3",
+        "title": "Informal sector formalization — 500,000 new registrations",
+        "description": "Achieve 500,000 new formal business registrations from the informal sector by 2030 through combined incentives: tax simplification, social protection eligibility, access to public procurement.",
+        "status": "not_started",
+        "owner": "DSBD / SARS / CIPC"
+      }
+    ],
+    "key_dependencies": [
+      {
+        "from": "BizPortal 2.0",
+        "to": "Reduced registration friction",
+        "description": "Single-window registration is the prerequisite for all downstream SMME interventions — firms must exist formally before they can access SEFA, procurement set-asides, or Ombud protection."
+      },
+      {
+        "from": "30-day payment enforcement",
+        "to": "SMME survival and growth",
+        "description": "Government late payment is the most commonly cited cash flow killer for small suppliers. Rule enforcement is a no-cost intervention with immediate impact on SMME viability."
+      },
+      {
+        "from": "SEFA capitalisation",
+        "to": "Access to growth finance",
+        "description": "Without adequate capitalisation, SEFA cannot serve as a meaningful alternative to commercial banks for SMME lending. NT budget allocation is the binding constraint."
+      }
+    ],
+    "success_metrics": [
+      {
+        "metric": "New business registrations (annual)",
+        "current": "~430,000 per year (CIPC 2023)",
+        "target": "520,000 per year (+20%)",
+        "timeline": "2026"
+      },
+      {
+        "metric": "Business registration time",
+        "current": "5 days (multiple agencies)",
+        "target": "1 day (BizPortal)",
+        "timeline": "2025"
+      },
+      {
+        "metric": "Government 30-day payment compliance",
+        "current": "~50% (National Treasury estimate)",
+        "target": "90%",
+        "timeline": "2026"
+      },
+      {
+        "metric": "SEFA annual disbursements",
+        "current": "R2.5bn",
+        "target": "R8bn",
+        "timeline": "2027"
+      },
+      {
+        "metric": "SMME share of government procurement",
+        "current": "~18%",
+        "target": "30%",
+        "timeline": "2028"
+      }
+    ],
+    "risk_factors": [
+      {
+        "title": "Municipal resistance to by-law reform",
+        "description": "Municipalities jealously guard zoning and trading by-laws as revenue sources. Home-based business and informal trading reforms face pushback from local government officials and established business associations.",
+        "severity": "medium"
+      },
+      {
+        "title": "SEFA capitalisation constraints",
+        "description": "National Treasury's fiscal consolidation programme limits new allocations to SEFA. Without additional capital, the lending envelope expansion cannot materialise.",
+        "severity": "high"
+      },
+      {
+        "title": "Large firm procurement dominance",
+        "description": "Existing procurement relationships and compliance complexity favour large incumbents even under set-aside rules. Enforcement of the 30% SMME set-aside requires active monitoring and consequences for non-compliance.",
+        "severity": "high"
+      },
+      {
+        "title": "Labour law deterrents to formal hiring",
+        "description": "SMME owners consistently cite Labour Relations Act and BCEA dismissal procedures as a reason to avoid formal employment. Without LRA amendment, formal job creation remains constrained.",
+        "severity": "high"
+      },
+      {
+        "title": "Political economy of informal sector regulation",
+        "description": "Informal traders and taxi operators represent organized constituencies. Formalisation and trading infrastructure reforms can trigger political backlash if poorly sequenced.",
+        "severity": "medium"
+      }
+    ]
+  },
+  "3": {
+    "package_id": 3,
+    "quick_wins": [
+      {
+        "id": "pkg3-qw-1",
+        "title": "National Reading Programme — 1,000 priority schools",
+        "description": "Launch targeted structured literacy deployment in the 1,000 lowest-performing primary schools (Quintile 1–2). Based on DBE's Early Grade Reading Study, phonics-based structured literacy can raise Grade 3 reading scores by 0.3–0.5 SD in 18 months.",
+        "status": "in_progress",
+        "owner": "DBE / Provinces"
+      },
+      {
+        "id": "pkg3-qw-2",
+        "title": "CAPS-aligned structured literacy curriculum — Grades 1–3",
+        "description": "Mandate phonics sequencing and decodable texts in the CAPS curriculum for Home Language in Grades 1–3. Requires teacher guides, workbooks, and assessor training — all within the current DBE expenditure envelope.",
+        "status": "in_progress",
+        "owner": "DBE",
+        "legislative_reference": "SA Schools Act / CAPS Curriculum Framework"
+      },
+      {
+        "id": "pkg3-qw-3",
+        "title": "TVET accreditation backlog — QCTO clearance",
+        "description": "Clear the QCTO backlog of TVET college programme accreditations, qualification part-qualifications, and assessment centre approvals. Estimated 2,000+ applications stalled. Blocking artisan certification.",
+        "status": "not_started",
+        "owner": "DHET / QCTO"
+      },
+      {
+        "id": "pkg3-qw-4",
+        "title": "ECD practitioner registration framework",
+        "description": "Publish the qualifications pathway and registration framework for ECD practitioners under the Social Service Professions Act. Required to professionalise the 100,000+ person ECD workforce and unlock subsidy eligibility.",
+        "status": "not_started",
+        "owner": "DSD / SACSSP",
+        "legislative_reference": "Social Service Professions Act"
+      },
+      {
+        "id": "pkg3-qw-5",
+        "title": "Digital skills roadmap — TVET and youth",
+        "description": "Publish a National Digital Skills Framework mapping ICT qualifications across TVET, community colleges, and higher education to labour market demand. Coordinates SETAs, MICT SETA, and DHET programming.",
+        "status": "not_started",
+        "owner": "DCDT / DHET / MICT SETA"
+      }
+    ],
+    "medium_term": [
+      {
+        "id": "pkg3-mt-1",
+        "title": "Reading coaches deployed to all primary schools",
+        "description": "Scale the structured literacy programme from 1,000 pilot schools to all 25,000+ primary schools through a national reading coach deployment programme. Estimated 5,000 coaches at R400m annual cost.",
+        "status": "in_progress",
+        "owner": "DBE / Provinces / SACE"
+      },
+      {
+        "id": "pkg3-mt-2",
+        "title": "TVET artisan pipeline — energy transition trades",
+        "description": "Increase artisan apprenticeship targets specifically for electricians, solar PV technicians, wind turbine technicians, and green hydrogen plant operators. Align MERSETA and EWSETA funding with REIPPP sector needs.",
+        "status": "not_started",
+        "owner": "DHET / MERSETA / EWSETA"
+      },
+      {
+        "id": "pkg3-mt-3",
+        "title": "NHI Phase 1 — district health management and purchasing",
+        "description": "Establish District Health Management Offices and pilot the purchasing function under the NHI Act in 3 pilot districts. Tests the contracting model before national rollout. NHI Act signed May 2024.",
+        "status": "in_progress",
+        "owner": "NDoH",
+        "legislative_reference": "National Health Insurance Act 2023"
+      },
+      {
+        "id": "pkg3-mt-4",
+        "title": "NSFAS sustainability reform",
+        "description": "Implement means-testing improvements, bursary cap administration, and direct payments to institutions to stabilise NSFAS after the administrative collapse of 2023–2024. Critical to TVET and university throughput.",
+        "status": "in_progress",
+        "owner": "DHET / NSFAS"
+      },
+      {
+        "id": "pkg3-mt-5",
+        "title": "Universal Grade R access by 2026",
+        "description": "Extend Grade R (preschool year) to all learners through a combination of public schools, ECD centres, and subsidy expansion. Foundation for reading readiness intervention.",
+        "status": "in_progress",
+        "owner": "DBE / DSD / Provinces"
+      },
+      {
+        "id": "pkg3-mt-6",
+        "title": "Structured teacher development programme",
+        "description": "Implement a national teacher coaching and professional development programme focused on literacy instruction. Built on lesson observation and feedback — distinct from traditional workshop-based CPD.",
+        "status": "not_started",
+        "owner": "DBE / SACE / Provinces"
+      }
+    ],
+    "long_term": [
+      {
+        "id": "pkg3-lt-1",
+        "title": "PIRLS Grade 4 reading: 19% to 40% proficiency by 2030",
+        "description": "Achieve a doubling of Grade 4 reading proficiency in the PIRLS assessment from the 2021 baseline of 19% (worst among middle-income countries). Requires sustained structured literacy and teacher development from 2025.",
+        "status": "not_started",
+        "owner": "DBE / Provinces"
+      },
+      {
+        "id": "pkg3-lt-2",
+        "title": "TVET artisan certifications: 20,000 to 50,000 per year",
+        "description": "Triple annual artisan certification output by transforming TVET colleges from compliance-driven to industry-integrated institutions. Requires SETA reform, industry partnerships, and facility investment.",
+        "status": "not_started",
+        "owner": "DHET / QCTO / SETAs / Industry"
+      },
+      {
+        "id": "pkg3-lt-3",
+        "title": "Universal health coverage — NHI full rollout",
+        "description": "Achieve broad universal health coverage for primary and secondary care through the NHI Fund by 2030. Requires successful Phase 1 pilots, private sector contracting model, and sustained fiscal commitment.",
+        "status": "not_started",
+        "owner": "NDoH / NHI Fund",
+        "legislative_reference": "National Health Insurance Act 2023"
+      },
+      {
+        "id": "pkg3-lt-4",
+        "title": "1 million youth with ICT certifications",
+        "description": "Credential 1 million young South Africans with marketable ICT qualifications by 2030 through TVET, community colleges, and digital skills partnerships with industry (Microsoft, Google, AWS cloud programmes).",
+        "status": "not_started",
+        "owner": "DCDT / DHET / Private sector"
+      }
+    ],
+    "key_dependencies": [
+      {
+        "from": "Foundation literacy (Grades 1–3)",
+        "to": "Secondary school completion",
+        "description": "Children who cannot read for meaning by Grade 4 rarely recover academically. Foundation literacy is the single highest-leverage intervention in the human capital pipeline."
+      },
+      {
+        "from": "ECD investment",
+        "to": "Grade 1 school readiness",
+        "description": "ECD quality determines the cognitive and language baseline children bring to Grade 1. Without ECD investment, the reading programme starts from a lower baseline."
+      },
+      {
+        "from": "TVET quality improvement",
+        "to": "Manufacturing skills pipeline",
+        "description": "Industrial strategy and green transition reforms (Package 4) depend on a supply of qualified artisans. TVET transformation is the upstream requirement."
+      },
+      {
+        "from": "NSFAS stabilisation",
+        "to": "TVET and university throughput",
+        "description": "NSFAS collapse in 2023–2024 disrupted hundreds of thousands of students. Sustainable NSFAS funding is required before throughput targets are meaningful."
+      }
+    ],
+    "success_metrics": [
+      {
+        "metric": "PIRLS Grade 4 reading proficiency",
+        "current": "19% (PIRLS 2021)",
+        "target": "40%",
+        "timeline": "2030"
+      },
+      {
+        "metric": "TVET artisan certifications per year",
+        "current": "~20,000",
+        "target": "50,000",
+        "timeline": "2028"
+      },
+      {
+        "metric": "ECD enrollment (ages 3–5)",
+        "current": "65%",
+        "target": "85%",
+        "timeline": "2027"
+      },
+      {
+        "metric": "Grade 12 pass rate (quality-adjusted)",
+        "current": "80.1% (2023)",
+        "target": "85% with improved bachelor pass share",
+        "timeline": "2027"
+      },
+      {
+        "metric": "Public healthcare worker vacancy rate",
+        "current": "~32% unfilled posts",
+        "target": "Below 20%",
+        "timeline": "2028"
+      }
+    ],
+    "risk_factors": [
+      {
+        "title": "Teacher union resistance to curriculum reform",
+        "description": "SADTU has historically opposed structured literacy mandates as undermining teacher professional autonomy. Implementation requires DBE to navigate union relations carefully while maintaining curriculum accountability.",
+        "severity": "high"
+      },
+      {
+        "title": "NSFAS funding collapse",
+        "description": "Recurring administrative failures and underfunding of NSFAS create student and institution instability. A second major NSFAS crisis would undermine both TVET and university throughput targets.",
+        "severity": "high"
+      },
+      {
+        "title": "ECD practitioner pay and conditions",
+        "description": "ECD practitioners earn below minimum wage in most non-profit centres. Without pay equity with Grade R teachers, the ECD workforce cannot be professionalised or retained.",
+        "severity": "medium"
+      },
+      {
+        "title": "NHI constitutional and legal challenges",
+        "description": "Medical associations, private hospital groups, and some provinces are litigating the NHI Act. Court decisions could delay or fundamentally alter implementation.",
+        "severity": "high"
+      },
+      {
+        "title": "Education procurement corruption",
+        "description": "Structural corruption in textbook, stationery, and school infrastructure procurement in some provinces has historically wasted education resources and delayed curriculum implementation.",
+        "severity": "medium"
+      }
+    ]
+  },
+  "4": {
+    "package_id": 4,
+    "quick_wins": [
+      {
+        "id": "pkg4-qw-1",
+        "title": "Critical Minerals Beneficiation Strategy — gazette",
+        "description": "Publish the DMRE Critical Minerals Strategy as a gazetted government policy, establishing SA's position on PGMs, manganese, vanadium, and lithium beneficiation targets. Required to unlock EU critical minerals partnership investment.",
+        "status": "in_progress",
+        "owner": "DMRE"
+      },
+      {
+        "id": "pkg4-qw-2",
+        "title": "EV White Paper — Cabinet approval",
+        "description": "Secure Cabinet approval for the Electric Vehicles White Paper setting out SA's managed automotive transition strategy. Resolves the policy uncertainty that is delaying OEM investment decisions on EV assembly in SA.",
+        "status": "in_progress",
+        "owner": "DTIC",
+        "legislative_reference": "EV White Paper (published for comment 2023)"
+      },
+      {
+        "id": "pkg4-qw-3",
+        "title": "AfCFTA National Action Plan 2024–2026",
+        "description": "Gazette South Africa's AfCFTA implementation priorities — tariff schedules, sanitary and phytosanitary measures, and services sector commitments — providing business with the regulatory roadmap for continental expansion.",
+        "status": "in_progress",
+        "owner": "DTIC / DTI",
+        "legislative_reference": "AfCFTA Agreement"
+      },
+      {
+        "id": "pkg4-qw-4",
+        "title": "AGOA utilisation improvement plan",
+        "description": "Publish a sector-by-sector AGOA utilisation strategy targeting undercaptured categories (apparel, processed food, automotive parts). SA currently uses AGOA preferences for <40% of eligible exports.",
+        "status": "not_started",
+        "owner": "DTIC / ITAC"
+      },
+      {
+        "id": "pkg4-qw-5",
+        "title": "SEZ approvals — reduce to 6 months",
+        "description": "Reduce the SEZ establishment and licence approval period from the current 18+ months to 6 months through process reform and a single window for SEZ investors. Immediate action available within existing DTIC mandate.",
+        "status": "not_started",
+        "owner": "DTIC / SEZ Board"
+      }
+    ],
+    "medium_term": [
+      {
+        "id": "pkg4-mt-1",
+        "title": "AfCFTA tariff liberalisation — 90% of goods",
+        "description": "Implement 90% of SA's goods tariff reduction commitments under AfCFTA, phased over 2025–2028. Requires ITAC schedule amendments and customs system updates. Unlocks continental market access for manufacturers.",
+        "status": "in_progress",
+        "owner": "DTIC / ITAC / SARS"
+      },
+      {
+        "id": "pkg4-mt-2",
+        "title": "Green Hydrogen IPP Programme — 1GW electrolyzer",
+        "description": "Launch a dedicated green hydrogen IPP procurement round under the REIPPP framework, targeting 1GW of electrolyzer capacity. Requires off-take agreement framework and port hydrogen bunkering infrastructure.",
+        "status": "not_started",
+        "owner": "DMRE / DTIC / IPP Office"
+      },
+      {
+        "id": "pkg4-mt-3",
+        "title": "APDP Phase 2 — EV transition alignment",
+        "description": "Revise the Automotive Production and Development Programme incentives to reward investment in EV component manufacturing (battery packs, electric drivetrains) alongside ICE production. Prevents SA from being stranded in the EV transition.",
+        "status": "in_progress",
+        "owner": "DTIC",
+        "legislative_reference": "APDP Rebate Framework"
+      },
+      {
+        "id": "pkg4-mt-4",
+        "title": "Battery minerals processing — 3 new facilities",
+        "description": "Secure investment for three new battery minerals beneficiation facilities: PGM refining expansion, lithium cathode materials, and vanadium flow battery production. Requires DFI co-investment and streamlined environmental authorisations.",
+        "status": "not_started",
+        "owner": "DMRE / DTIC / IDC / DBSA"
+      },
+      {
+        "id": "pkg4-mt-5",
+        "title": "SA–EU Critical Minerals Partnership",
+        "description": "Finalise and operationalise the SA-EU Strategic Minerals Partnership announced in 2023, securing European investment commitments for beneficiation in exchange for preferential minerals supply access.",
+        "status": "in_progress",
+        "owner": "DIRCO / DMRE / DTIC"
+      },
+      {
+        "id": "pkg4-mt-6",
+        "title": "Competition Commission digital markets inquiry — implementation",
+        "description": "Implement the findings of the ongoing digital markets inquiry into platform dominance, data portability, and interoperability. Enables SA fintech and digital economy firms to compete against global platforms.",
+        "status": "not_started",
+        "owner": "Competition Commission / DTIC",
+        "legislative_reference": "Competition Act"
+      }
+    ],
+    "long_term": [
+      {
+        "id": "pkg4-lt-1",
+        "title": "Green hydrogen exports — 500,000 tonnes by 2030",
+        "description": "Establish South Africa as a competitive green hydrogen and green ammonia exporter, leveraging its renewable energy resources and PGM-based catalyst production. Requires port infrastructure, pipeline investment, and off-take agreements with European utilities.",
+        "status": "not_started",
+        "owner": "DMRE / DTIC / Ports / Private sector"
+      },
+      {
+        "id": "pkg4-lt-2",
+        "title": "Battery minerals beneficiation — R50bn investment",
+        "description": "Attract R50bn in new investment in battery minerals beneficiation by 2030, moving SA up the value chain from raw ore to cathode materials and battery components. Requires long-term mining rights stability and competitive electricity prices.",
+        "status": "not_started",
+        "owner": "DMRE / DTIC / IDC"
+      },
+      {
+        "id": "pkg4-lt-3",
+        "title": "AfCFTA — R100bn additional continental exports",
+        "description": "Achieve R100bn in additional exports to continental Africa by 2030 through AfCFTA tariff liberalisation, pan-African payment systems, and customs corridor agreements.",
+        "status": "not_started",
+        "owner": "DTIC / SARB / DIRCO"
+      },
+      {
+        "id": "pkg4-lt-4",
+        "title": "EV manufacturing — 10% of domestic vehicle output",
+        "description": "Achieve 10% of South African vehicle production being EV by 2030, through APDP incentive alignment, OEM investment attraction, and local EV component supply chain development.",
+        "status": "not_started",
+        "owner": "DTIC / AIDC / OEM Industry"
+      }
+    ],
+    "key_dependencies": [
+      {
+        "from": "Energy transition (Package 1)",
+        "to": "Green hydrogen production cost",
+        "description": "Green hydrogen competitiveness depends entirely on the price of renewable electricity. SA's green hydrogen exports are only viable if REIPPP delivers electricity below R0.50/kWh — requiring Package 1 success."
+      },
+      {
+        "from": "Skills pipeline (Package 3)",
+        "to": "Manufacturing labour supply",
+        "description": "SEZs and APDP beneficiation depend on a supply of qualified manufacturing workers. TVET artisan pipeline transformation is the upstream prerequisite."
+      },
+      {
+        "from": "Port efficiency (Package 1)",
+        "to": "Export competitiveness",
+        "description": "AfCFTA and AGOA export competitiveness improvements are negated if port logistics costs add 15–30% to export costs. Package 1 port reform is a precondition for competitive exports."
+      },
+      {
+        "from": "State capacity (Package 5)",
+        "to": "SEZ governance and IP enforcement",
+        "description": "SEZ investment attraction requires credible governance, reliable customs, and IP protection. Without Package 5 state capacity reform, investor confidence in SEZ commitments remains weak."
+      }
+    ],
+    "success_metrics": [
+      {
+        "metric": "Annual FDI inflows",
+        "current": "R150bn (2023 SA Investment Conference)",
+        "target": "R250bn per annum",
+        "timeline": "2027"
+      },
+      {
+        "metric": "Non-mineral merchandise exports",
+        "current": "~R600bn annually",
+        "target": "10% annual growth",
+        "timeline": "2028"
+      },
+      {
+        "metric": "Green hydrogen first commercial export contract",
+        "current": "Pre-commercial (pilots only)",
+        "target": "First commercial contract",
+        "timeline": "2027"
+      },
+      {
+        "metric": "Vehicle export volumes (APDP)",
+        "current": "~400,000 units per year",
+        "target": "Maintain volume through EV transition",
+        "timeline": "2028"
+      },
+      {
+        "metric": "Intra-Africa exports",
+        "current": "~R250bn",
+        "target": "R350bn (+40%)",
+        "timeline": "2028"
+      }
+    ],
+    "risk_factors": [
+      {
+        "title": "AGOA renewal uncertainty",
+        "description": "AGOA expires in September 2025. US Congressional renewal is uncertain and SA's geopolitical positioning (BRICS, Russia relations) creates political risk. Non-renewal would cost R50bn+ in automotive and textile exports.",
+        "severity": "high"
+      },
+      {
+        "title": "EU Carbon Border Adjustment Mechanism (CBAM)",
+        "description": "EU CBAM full implementation from 2026 will impose carbon costs on SA steel, aluminium, and cement exports. SA's carbon pricing system is not yet accepted as equivalent — exports face a 20–30% cost increase.",
+        "severity": "high"
+      },
+      {
+        "title": "Chinese EV competition undermining APDP",
+        "description": "BYD, Chery, and SAIC are entering the SA domestic market at prices that undercut APDP-supported local assembly. If OEMs lose domestic market share, the volume basis for APDP export incentives collapses.",
+        "severity": "high"
+      },
+      {
+        "title": "Water and land constraints on green hydrogen",
+        "description": "Industrial-scale green hydrogen requires large quantities of desalinated water and land for solar/wind farms. Environmental authorisation backlogs and water licence delays could stall projects.",
+        "severity": "medium"
+      },
+      {
+        "title": "Power cost competitiveness for beneficiation",
+        "description": "Minerals beneficiation (smelting, refining) requires cheap, reliable power. Eskom's tariff trajectory — driven by cost-recovery pricing — threatens the comparative advantage in energy-intensive industries.",
+        "severity": "high"
+      }
+    ]
+  },
+  "5": {
+    "package_id": 5,
+    "quick_wins": [
+      {
+        "id": "pkg5-qw-1",
+        "title": "FATF greylisting exit — sustained compliance",
+        "description": "South Africa was removed from the FATF grey list in October 2024 following passage of the General Laws (Anti-Money Laundering and Combating Terrorism Financing) Amendment Act and the Financial Sector and Deposit Insurance Laws Amendment Act. Maintain compliance to prevent re-listing.",
+        "status": "completed",
+        "owner": "National Treasury / FIC / SARB",
+        "legislative_reference": "General Laws Amendment Act 2022; Financial Sector Laws Amendment Act 2023"
+      },
+      {
+        "id": "pkg5-qw-2",
+        "title": "SARS capacity expansion — high-wealth and transfer pricing",
+        "description": "Deploy 2,000 additional auditors targeting high-wealth individuals, transfer pricing, and VAT fraud. Operation Vulindlela and Zondo Commission identified SARS undercapacity as a major revenue leakage. Reversing the 2015–2018 capacity destruction.",
+        "status": "in_progress",
+        "owner": "SARS"
+      },
+      {
+        "id": "pkg5-qw-3",
+        "title": "SOE rationalization plan — Cabinet approval",
+        "description": "Publish and secure Cabinet approval for a plan to reduce the national government SOE portfolio from 700+ entities to below 200, through mergers, liquidations, and privatisations. Addresses the contingent liability overhang.",
+        "status": "not_started",
+        "owner": "DPE / National Treasury"
+      },
+      {
+        "id": "pkg5-qw-4",
+        "title": "PRASA turnaround — security and track rehabilitation",
+        "description": "Implement the PRASA Recovery Plan Phase 2: security force deployment on Metrorail corridors, track rehabilitation on Johannesburg and Cape Town lines. PRASA ridership has collapsed from 2m to 200,000 daily trips since 2015.",
+        "status": "in_progress",
+        "owner": "PRASA / DOT / SAPS"
+      },
+      {
+        "id": "pkg5-qw-5",
+        "title": "Municipal technical support — 50 distressed municipalities",
+        "description": "Deploy MISA technical support teams to 50 distressed municipalities covering engineering, finance, and supply chain management. Operation Vulindlela priority to restore basic service delivery.",
+        "status": "in_progress",
+        "owner": "COGTA / MISA"
+      },
+      {
+        "id": "pkg5-qw-6",
+        "title": "Public Procurement Act 2023 — implementation regulations",
+        "description": "Issue the secondary regulations required to operationalise the Public Procurement Act signed in 2023. Act consolidates Preferential Procurement Policy Framework and establishes the Office of the Chief Procurement Officer.",
+        "status": "in_progress",
+        "owner": "National Treasury",
+        "legislative_reference": "Public Procurement Act 28 of 2024"
+      }
+    ],
+    "medium_term": [
+      {
+        "id": "pkg5-mt-1",
+        "title": "SOE board governance — performance contracts and fit-and-proper",
+        "description": "Implement binding performance contracts for all SOE board members and executives, with public disclosure of targets and outcomes. Apply fit-and-proper standards using the Companies Act and King IV framework.",
+        "status": "in_progress",
+        "owner": "DPE / National Treasury",
+        "legislative_reference": "Companies Act / PFMA"
+      },
+      {
+        "id": "pkg5-mt-2",
+        "title": "SIU and NPA — consequence management for state capture",
+        "description": "Operationalise SIU civil recovery orders and NPA prosecutions identified in the Zondo Commission findings. Targets: R500bn in identified losses, estimated 1,000+ prosecutable matters. Requires NPA and SIU capacity investment.",
+        "status": "in_progress",
+        "owner": "SIU / NPA / DPCI"
+      },
+      {
+        "id": "pkg5-mt-3",
+        "title": "PRASA rail corridor restoration — full programme",
+        "description": "Restore Metrorail operations on Cape Town (all lines), Johannesburg (main corridors), and Tshwane lines by 2027. Requires R40bn capital programme for rolling stock, signalling, and station infrastructure.",
+        "status": "in_progress",
+        "owner": "PRASA / DOT",
+        "legislative_reference": "National Rail Policy 2022"
+      },
+      {
+        "id": "pkg5-mt-4",
+        "title": "NPA capacity — commercial crime specialisation",
+        "description": "Increase NPA prosecutor complement by 500 and establish dedicated commercial crime prosecution units in all provinces. The NPA currently has a 40% vacancy rate in commercial crime units.",
+        "status": "not_started",
+        "owner": "NPA / DOJ"
+      },
+      {
+        "id": "pkg5-mt-5",
+        "title": "Municipal finance — MFMA intervention protocols",
+        "description": "Standardise and accelerate COGTA's Section 139 interventions in financially distressed municipalities. Develop a graduated support framework from advisory to full administration.",
+        "status": "not_started",
+        "owner": "COGTA / National Treasury",
+        "legislative_reference": "Municipal Finance Management Act"
+      },
+      {
+        "id": "pkg5-mt-6",
+        "title": "Government digital services — GovCloud implementation",
+        "description": "Migrate national government services to a shared cloud infrastructure, reducing IT fragmentation and enabling cross-departmental data integration. Precondition for e-government at scale.",
+        "status": "not_started",
+        "owner": "DCDT / DPSA / SITA"
+      }
+    ],
+    "long_term": [
+      {
+        "id": "pkg5-lt-1",
+        "title": "Fiscal consolidation — debt-to-GDP below 75%",
+        "description": "Stabilise gross national debt below 75% of GDP by FY2025/26 and put it on a declining trajectory. Requires sustained primary balance improvement, SOE bailout containment, and revenue growth from SARS compliance.",
+        "status": "in_progress",
+        "owner": "National Treasury",
+        "legislative_reference": "MTBPS / Budget Review annual frameworks"
+      },
+      {
+        "id": "pkg5-lt-2",
+        "title": "SOE portfolio privatisation — non-strategic entities",
+        "description": "Complete sale or winding up of non-strategic SOEs (SA Forestry, SAA minority stake, Alexkor, Safcol) and partial privatisation of commercial SOEs. Reduces contingent liabilities by an estimated R200bn.",
+        "status": "not_started",
+        "owner": "DPE / National Treasury"
+      },
+      {
+        "id": "pkg5-lt-3",
+        "title": "Anti-corruption institutions — statutory independence",
+        "description": "Amend legislation to entrench the NPA's operational and budgetary independence and the DPCI (Hawks)'s independence from political interference. Implements Zondo Commission Recommendation 4.7.",
+        "status": "not_started",
+        "owner": "DOJ / Parliament",
+        "legislative_reference": "National Prosecuting Authority Act / SA Police Service Act"
+      },
+      {
+        "id": "pkg5-lt-4",
+        "title": "Subnational fiscal reform — equitable share formula revision",
+        "description": "Revise the provincial and local government equitable share formula to better reflect service delivery costs, demographic change, and own-revenue capacity. Last major revision was 2009.",
+        "status": "not_started",
+        "owner": "National Treasury / FFC",
+        "legislative_reference": "Division of Revenue Act"
+      }
+    ],
+    "key_dependencies": [
+      {
+        "from": "FATF exit",
+        "to": "Lower borrowing costs and correspondent banking",
+        "description": "Greylisting raised SA's risk premium by an estimated 25–50bps and impaired correspondent banking relationships. Exit (achieved October 2024) reduces fiscal pressure and improves banking access."
+      },
+      {
+        "from": "SARS capacity",
+        "to": "Revenue baseline for all reforms",
+        "description": "Every other reform package requires fiscal expenditure. SARS revenue performance is the single most important input to fiscal space — each 1% improvement in compliance yields ~R20bn."
+      },
+      {
+        "from": "SOE balance sheet stabilisation",
+        "to": "Reduced contingent liabilities",
+        "description": "Eskom's R254bn bailout and Transnet's distress absorb fiscal headroom that could fund infrastructure and human capital. SOE reform is a prerequisite for fiscal consolidation."
+      },
+      {
+        "from": "Consequence management",
+        "to": "Deterrence and procurement reform",
+        "description": "Without visible prosecutions and asset recovery from state capture, procurement reform norms lack credibility and rent-seeking continues. SIU recovery and NPA prosecutions are the enforcement mechanism."
+      },
+      {
+        "from": "PRASA recovery",
+        "to": "Labour mobility and spatial equity",
+        "description": "Collapsed public rail forces workers into expensive and unreliable minibus taxi transport, limiting labour market access in township communities. Rail restoration is a spatial equity intervention."
+      }
+    ],
+    "success_metrics": [
+      {
+        "metric": "Gross national debt as % of GDP",
+        "current": "74.7% (FY2024/25 Budget)",
+        "target": "Stabilise below 75% by FY2025/26",
+        "timeline": "2026"
+      },
+      {
+        "metric": "SARS revenue above baseline (compliance gains)",
+        "current": "R40bn above baseline (FY2023)",
+        "target": "R90bn above baseline",
+        "timeline": "2028"
+      },
+      {
+        "metric": "PRASA daily rail ridership",
+        "current": "~200,000",
+        "target": "600,000",
+        "timeline": "2027"
+      },
+      {
+        "metric": "Metropolitan municipality clean audit outcomes",
+        "current": "~30%",
+        "target": "50%",
+        "timeline": "2027"
+      },
+      {
+        "metric": "SOE contingent liabilities (excl. Eskom)",
+        "current": "~R600bn",
+        "target": "Below R400bn",
+        "timeline": "2029"
+      },
+      {
+        "metric": "Government tenders on Open Tender portal",
+        "current": "~60%",
+        "target": "95%",
+        "timeline": "2026"
+      }
+    ],
+    "risk_factors": [
+      {
+        "title": "Political will for SOE restructuring against union opposition",
+        "description": "NUM, NUMSA, and COSATU have consistently opposed SOE privatisation and restructuring. Coalition government dynamics in the GNU could produce ministerial resistance to any SOE reform that threatens jobs.",
+        "severity": "high"
+      },
+      {
+        "title": "New SOE bailout requests undermining fiscal consolidation",
+        "description": "SAA, SABC, Denel, Transnet, and the Land Bank have recurring balance sheet crises. Each new bailout request erodes the fiscal consolidation pathway. NT's ability to say no depends on political cover from the Presidency.",
+        "severity": "high"
+      },
+      {
+        "title": "Judicial and NPA capacity constraints",
+        "description": "The NPA faces a 40% vacancy rate and persistent political interference allegations. Even with Zondo prosecutions prioritised, the judicial backlog means state capture consequences may take 8–10 years to materialise.",
+        "severity": "high"
+      },
+      {
+        "title": "GNU coalition paralysis on structural reforms",
+        "description": "The Government of National Unity coalition requires consensus across parties with divergent economic philosophies. Structural reforms (privatisation, NHI renegotiation, LRA amendment) face coalition veto risk.",
+        "severity": "high"
+      },
+      {
+        "title": "PRASA governance and leadership continuity",
+        "description": "PRASA has had repeated CEO and board changes that disrupted implementation. Recovery plan continuity requires stable governance for 5+ years — a historically difficult ask for SA parastatals.",
+        "severity": "medium"
+      }
+    ]
+  }
+}

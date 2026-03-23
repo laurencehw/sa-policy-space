@@ -5,6 +5,243 @@ import { notFound } from "next/navigation";
 import type { IdeaRow, PackageDetail } from "@/lib/local-api";
 import { STATUS_COLORS } from "@/lib/supabase";
 import DiagramViewer from "@/components/DiagramViewer";
+import implementationPlansData from "@/data/implementation_plans.json";
+
+// ── Implementation Plan Types ──────────────────────────────────────────────
+
+interface ActionItem {
+  id: string;
+  title: string;
+  description: string;
+  status: "completed" | "in_progress" | "not_started";
+  owner: string;
+  legislative_reference?: string;
+}
+
+interface Dependency {
+  from: string;
+  to: string;
+  description: string;
+}
+
+interface Metric {
+  metric: string;
+  current: string;
+  target: string;
+  timeline: string;
+}
+
+interface RiskFactor {
+  title: string;
+  description: string;
+  severity: "high" | "medium" | "low";
+}
+
+interface PackageImplementationPlan {
+  package_id: number;
+  quick_wins: ActionItem[];
+  medium_term: ActionItem[];
+  long_term: ActionItem[];
+  key_dependencies: Dependency[];
+  success_metrics: Metric[];
+  risk_factors: RiskFactor[];
+}
+
+const implementationPlans = implementationPlansData as Record<string, PackageImplementationPlan>;
+
+// ── Implementation Roadmap Components ─────────────────────────────────────
+
+const IMPL_STATUS_STYLES: Record<ActionItem["status"], { badge: string; dot: string; label: string }> = {
+  completed:   { badge: "bg-green-100 text-green-800 ring-green-200",  dot: "bg-green-500",  label: "Completed"   },
+  in_progress: { badge: "bg-amber-100 text-amber-800 ring-amber-200",  dot: "bg-amber-400",  label: "In Progress" },
+  not_started: { badge: "bg-gray-100 text-gray-500 ring-gray-200",     dot: "bg-gray-300",   label: "Not Started" },
+};
+
+const RISK_SEVERITY_STYLES: Record<RiskFactor["severity"], string> = {
+  high:   "bg-red-100 text-red-800 ring-red-200",
+  medium: "bg-amber-100 text-amber-700 ring-amber-200",
+  low:    "bg-blue-100 text-blue-700 ring-blue-200",
+};
+
+function ActionItemRow({ item }: { item: ActionItem }) {
+  const s = IMPL_STATUS_STYLES[item.status];
+  return (
+    <div className="flex gap-3 py-3 px-4 rounded-lg bg-white border border-gray-100 hover:border-gray-200 transition-colors">
+      <div className={`mt-1.5 flex-shrink-0 w-2.5 h-2.5 rounded-full ${s.dot}`} />
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-wrap items-start gap-2 mb-1">
+          <span className="text-sm font-medium text-gray-900 leading-snug">{item.title}</span>
+          <span className={`badge ring-1 ${s.badge} flex-shrink-0 text-xs`}>{s.label}</span>
+        </div>
+        <p className="text-xs text-gray-500 leading-relaxed mb-1.5">{item.description}</p>
+        <div className="flex flex-wrap gap-3 text-xs text-gray-400">
+          <span><span className="font-medium text-gray-500">Owner:</span> {item.owner}</span>
+          {item.legislative_reference && (
+            <span><span className="font-medium text-gray-500">Legislation:</span> {item.legislative_reference}</span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PhaseSection({
+  title,
+  timeRange,
+  items,
+  colorScheme,
+}: {
+  title: string;
+  timeRange: string;
+  items: ActionItem[];
+  colorScheme: { bg: string; text: string; border: string; badge: string };
+}) {
+  const completed = items.filter((i) => i.status === "completed").length;
+  const inProgress = items.filter((i) => i.status === "in_progress").length;
+
+  return (
+    <div className={`rounded-xl border ${colorScheme.border} overflow-hidden`}>
+      <div className={`${colorScheme.bg} px-5 py-3 flex items-center justify-between`}>
+        <div>
+          <span className={`font-semibold ${colorScheme.text} text-sm`}>{title}</span>
+          <span className={`ml-2 text-xs ${colorScheme.text} opacity-70`}>{timeRange}</span>
+        </div>
+        <div className="flex gap-2 text-xs">
+          {completed > 0 && (
+            <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded-full ring-1 ring-green-200">
+              {completed} completed
+            </span>
+          )}
+          {inProgress > 0 && (
+            <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full ring-1 ring-amber-200">
+              {inProgress} in progress
+            </span>
+          )}
+          <span className="bg-white/60 text-gray-600 px-2 py-0.5 rounded-full ring-1 ring-gray-200">
+            {items.length} actions
+          </span>
+        </div>
+      </div>
+      <div className="p-3 space-y-2 bg-gray-50/50">
+        {items.map((item) => (
+          <ActionItemRow key={item.id} item={item} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ImplementationRoadmap({ plan }: { plan: PackageImplementationPlan }) {
+  return (
+    <div className="space-y-8">
+      {/* Timeline phases */}
+      <div className="space-y-4">
+        <PhaseSection
+          title="Quick Wins"
+          timeRange="0–6 months"
+          items={plan.quick_wins}
+          colorScheme={{
+            bg: "bg-green-50",
+            text: "text-green-900",
+            border: "border-green-200",
+            badge: "bg-green-100 text-green-800",
+          }}
+        />
+        <PhaseSection
+          title="Medium-Term Reforms"
+          timeRange="6–24 months"
+          items={plan.medium_term}
+          colorScheme={{
+            bg: "bg-blue-50",
+            text: "text-blue-900",
+            border: "border-blue-200",
+            badge: "bg-blue-100 text-blue-800",
+          }}
+        />
+        <PhaseSection
+          title="Long-Term Structural Changes"
+          timeRange="2–5 years"
+          items={plan.long_term}
+          colorScheme={{
+            bg: "bg-purple-50",
+            text: "text-purple-900",
+            border: "border-purple-200",
+            badge: "bg-purple-100 text-purple-800",
+          }}
+        />
+      </div>
+
+      {/* Key dependencies + Success metrics side-by-side on wider screens */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Key dependencies */}
+        <div>
+          <h3 className="text-sm font-semibold text-gray-900 mb-3">Key Dependencies</h3>
+          <div className="space-y-2">
+            {plan.key_dependencies.map((dep, i) => (
+              <div key={i} className="px-4 py-3 rounded-lg bg-gray-50 border border-gray-100 text-sm">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className="font-medium text-gray-800 text-xs bg-white border border-gray-200 px-2 py-0.5 rounded">
+                    {dep.from}
+                  </span>
+                  <span className="text-gray-400 flex-shrink-0">→</span>
+                  <span className="font-medium text-gray-800 text-xs bg-white border border-gray-200 px-2 py-0.5 rounded">
+                    {dep.to}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 leading-relaxed">{dep.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Success metrics */}
+        <div>
+          <h3 className="text-sm font-semibold text-gray-900 mb-3">Success Metrics</h3>
+          <div className="overflow-hidden rounded-lg border border-gray-200">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="bg-gray-50 border-b border-gray-200">
+                  <th className="text-left px-3 py-2 text-gray-600 font-medium">Metric</th>
+                  <th className="text-left px-3 py-2 text-gray-600 font-medium">Current</th>
+                  <th className="text-left px-3 py-2 text-gray-600 font-medium">Target</th>
+                  <th className="text-left px-3 py-2 text-gray-600 font-medium">By</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {plan.success_metrics.map((m, i) => (
+                  <tr key={i} className="bg-white hover:bg-gray-50 transition-colors">
+                    <td className="px-3 py-2 text-gray-800 font-medium leading-snug">{m.metric}</td>
+                    <td className="px-3 py-2 text-gray-500">{m.current}</td>
+                    <td className="px-3 py-2 text-sa-green font-medium">{m.target}</td>
+                    <td className="px-3 py-2 text-gray-500 whitespace-nowrap">{m.timeline}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Risk factors */}
+      <div>
+        <h3 className="text-sm font-semibold text-gray-900 mb-3">Risk Factors</h3>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {plan.risk_factors.map((risk, i) => (
+            <div key={i} className="px-4 py-3 rounded-lg bg-white border border-gray-100">
+              <div className="flex items-start gap-2 mb-1.5">
+                <span className={`badge ring-1 flex-shrink-0 ${RISK_SEVERITY_STYLES[risk.severity]} capitalize`}>
+                  {risk.severity}
+                </span>
+                <span className="text-sm font-medium text-gray-900 leading-snug">{risk.title}</span>
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed">{risk.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const PACKAGE_SVGS: Record<number, string> = {
   1: "/diagrams/pkg1_infrastructure_unblock.svg",
@@ -275,6 +512,19 @@ export default async function PackageDetailPage({
             src={PACKAGE_SVGS[pkg.package_id]}
             alt={`Dependency flow diagram for ${pkg.name}`}
           />
+        </section>
+      )}
+
+      {/* Implementation Roadmap */}
+      {implementationPlans[String(pkg.package_id)] && (
+        <section>
+          <div className="mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">Implementation Roadmap</h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Sequenced action plan from quick regulatory wins to structural reform, with key dependencies, success metrics, and risk factors.
+            </p>
+          </div>
+          <ImplementationRoadmap plan={implementationPlans[String(pkg.package_id)]} />
         </section>
       )}
 
