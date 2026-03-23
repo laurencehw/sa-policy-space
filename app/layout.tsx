@@ -62,8 +62,14 @@ export default function RootLayout({
                 <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Budget Alignment
                 </Link>
+                <Link href="/simulator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Feasibility Simulator
+                </Link>
                 <Link href="/brrr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   BRRR Recommendations
+                </Link>
+                <Link href="/sequencing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Reform Sequencing
                 </Link>
               </NavDropdown>
 
