@@ -175,7 +175,8 @@ export async function getRelatedIdeas(packageId: number, currentId: number) {
     .select("id, title, current_status, time_horizon, growth_impact_rating")
     .eq("reform_package", packageId)
     .neq("id", currentId)
-    .order("growth_impact_rating", { ascending: false });
+    .order("growth_impact_rating", { ascending: false })
+    .limit(6);
 
   if (!data?.length) return [];
   return (data as any[]).map((r) => ({ ...r, slug: slugify(r.title) }));
