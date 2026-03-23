@@ -153,3 +153,11 @@ SELECT
 FROM policy_ideas
 GROUP BY binding_constraint
 ORDER BY total_ideas DESC;
+
+-- ============================================================
+-- MIGRATIONS
+-- ============================================================
+
+-- 001: Fix PMG URLs — api.pmg.org.za → pmg.org.za (see data/migrations/001_fix_pmg_urls.sql)
+-- UPDATE meetings  SET pmg_url      = replace(pmg_url,      'https://api.pmg.org.za/', 'https://pmg.org.za/') WHERE pmg_url      LIKE 'https://api.pmg.org.za/%';
+-- UPDATE documents SET pmg_file_url = replace(pmg_file_url, 'https://api.pmg.org.za/', 'https://pmg.org.za/') WHERE pmg_file_url LIKE 'https://api.pmg.org.za/%';
