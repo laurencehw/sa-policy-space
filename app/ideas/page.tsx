@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -11,6 +11,7 @@ import {
   type BindingConstraint,
   type PolicyStatus,
 } from "@/lib/supabase";
+import { slugify } from "@/lib/utils";
 
 const ALL_CONSTRAINTS = Object.keys(CONSTRAINT_LABELS) as BindingConstraint[];
 const ALL_STATUSES: PolicyStatus[] = [
@@ -61,6 +62,7 @@ function IdeasContent() {
   const [filterStatus, setFilterStatus] = useState<PolicyStatus | "">("");
   const [filterPackage, setFilterPackage] = useState<string>(initialPackage);
   const [filterHorizon, setFilterHorizon] = useState<string>("");
+  const [filterCommittee, setFilterCommittee] = useState<string>("");
 
   // Fetch once on mount; client-side filtering handles search/filter
   useEffect(() => {
@@ -73,7 +75,19 @@ function IdeasContent() {
       .catch(() => setLoading(false));
   }, []);
 
-  const filtered = allIdeas.filter((idea: any) => {
+  // Derive committee list from fetched ideas
+  const committees = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const idea of allIdeas) {
+      const c = idea.source_committee;
+      if (c) counts.set(c, (counts.get(c) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  }, [allIdeas]);
+
+  const filtered = allIdeas.filter((idea) => {
     const matchesSearch =
       !search ||
       idea.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -85,7 +99,9 @@ function IdeasContent() {
       !filterPackage || String(idea.reform_package) === filterPackage;
     const matchesHorizon =
       !filterHorizon || idea.time_horizon === filterHorizon;
-    return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon;
+    const matchesCommittee =
+      !filterCommittee || idea.source_committee === filterCommittee;
+    return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon && matchesCommittee;
   });
 
   return (
@@ -107,6 +123,17 @@ function IdeasContent() {
           className="flex-1 min-w-48 rounded-lg border border-gray-300 px-3 py-2 text-sm
                      focus:outline-none focus:ring-2 focus:ring-sa-green focus:border-transparent"
         />
+        <select
+          value={filterCommittee}
+          onChange={(e) => setFilterCommittee(e.target.value)}
+          className="rounded-lg border border-gray-300 px-3 py-2 text-sm bg-white
+                     focus:outline-none focus:ring-2 focus:ring-sa-green"
+        >
+          <option value="">All Committees</option>
+          {committees.map(({ name, count }) => (
+            <option key={name} value={name}>{name} ({count})</option>
+          ))}
+        </select>
         <select
           value={filterPackage}
           onChange={(e) => setFilterPackage(e.target.value)}
@@ -153,16 +180,31 @@ function IdeasContent() {
         </select>
       </div>
 
-      {/* Active package filter banner */}
-      {filterPackage && (
-        <div className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
-          <span>Filtered to: <strong>{PACKAGE_NAMES[Number(filterPackage)]}</strong></span>
-          <button
-            onClick={() => setFilterPackage("")}
-            className="ml-auto text-gray-400 hover:text-gray-600"
-          >
-            Clear ×
-          </button>
+      {/* Active filter banners */}
+      {(filterPackage || filterCommittee) && (
+        <div className="flex flex-wrap gap-2">
+          {filterPackage && (
+            <div className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span>Package: <strong>{PACKAGE_NAMES[Number(filterPackage)]}</strong></span>
+              <button
+                onClick={() => setFilterPackage("")}
+                className="ml-1 text-gray-400 hover:text-gray-600"
+              >
+                ×
+              </button>
+            </div>
+          )}
+          {filterCommittee && (
+            <div className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span>Committee: <strong>{filterCommittee}</strong></span>
+              <button
+                onClick={() => setFilterCommittee("")}
+                className="ml-1 text-gray-400 hover:text-gray-600"
+              >
+                ×
+              </button>
+            </div>
+          )}
         </div>
       )}
 
@@ -182,24 +224,24 @@ function IdeasContent() {
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((idea) => (
-            <Link key={idea.id} href={`/ideas/${idea.id}`} className="card block space-y-2">
+            <Link key={idea.id} href={`/ideas/${idea.slug || slugify(idea.title)}`} className="card block space-y-2">
               {/* Tags row */}
               <div className="flex flex-wrap gap-1.5">
                 <span className={`badge ${CONSTRAINT_COLORS[idea.binding_constraint]}`}>
                   {CONSTRAINT_LABELS[idea.binding_constraint]}
                 </span>
-                <span className={`badge ring-1 ${(STATUS_COLORS as Record<string, string>)[(idea as any).current_status] ?? "bg-gray-50 text-gray-600 ring-gray-500/20"}`}>
-                  {(idea as any).current_status?.replace(/_/g, " ")}
+                <span className={`badge ring-1 ${(STATUS_COLORS as Record<string, string>)[idea.current_status] ?? "bg-gray-50 text-gray-600 ring-gray-500/20"}`}>
+                  {idea.current_status?.replace(/_/g, " ")}
                 </span>
-                {(idea as any).time_horizon && (
+                {idea.time_horizon && (
                   <span className={`badge ring-1 ${
-                    (idea as any).time_horizon === "quick_win"
+                    idea.time_horizon === "quick_win"
                       ? "bg-green-50 text-green-700 ring-green-600/20"
-                      : (idea as any).time_horizon === "medium_term"
+                      : idea.time_horizon === "medium_term"
                       ? "bg-blue-50 text-blue-700 ring-blue-600/20"
                       : "bg-purple-50 text-purple-700 ring-purple-600/20"
                   }`}>
-                    {TIME_HORIZON_LABELS[(idea as any).time_horizon]}
+                    {TIME_HORIZON_LABELS[idea.time_horizon]}
                   </span>
                 )}
                 {idea.dormant === 1 && (

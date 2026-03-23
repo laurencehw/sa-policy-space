@@ -8,6 +8,7 @@
 import { DatabaseSync } from "node:sqlite";
 import path from "path";
 import fs from "fs";
+import { slugify } from "@/lib/utils";
 
 // SQLITE_DB_PATH env var (set in .env.local) overrides the default relative path.
 // Default assumes cwd() is the frontend/ dir when running next dev.
@@ -73,6 +74,7 @@ export interface IdeaRow {
   reform_package: number | null;
   time_horizon: string | null;
   source_committee: string | null;
+  slug: string;
   created_at: string;
   updated_at: string;
   // Derived from idea_meetings → meetings
@@ -129,7 +131,8 @@ export function getIdeas(opts?: {
         CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
       FROM policy_ideas p ${where} ${order}
     `);
-    return (params.length ? stmt.all(...params) : stmt.all()) as IdeaRow[];
+    const rows = (params.length ? stmt.all(...params) : stmt.all()) as IdeaRow[];
+    return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
   } finally {
     db.close();
   }
@@ -138,13 +141,31 @@ export function getIdeas(opts?: {
 export function getIdeaById(id: number): IdeaRow | null {
   const db = getDb();
   try {
-    return (db.prepare(`
+    const row = (db.prepare(`
       SELECT p.*,
         (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
         (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
         CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
       FROM policy_ideas p WHERE p.id = ?
     `).get(id) as IdeaRow) ?? null;
+    return row ? { ...row, slug: slugify(row.title) } : null;
+  } finally {
+    db.close();
+  }
+}
+
+export function getIdeaBySlug(slug: string): IdeaRow | null {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT p.*,
+        (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
+        (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
+        CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
+      FROM policy_ideas p
+    `).all() as IdeaRow[];
+    const match = rows.find((r) => slugify(r.title) === slug);
+    return match ? { ...match, slug: slugify(match.title) } : null;
   } finally {
     db.close();
   }
@@ -176,6 +197,23 @@ export function getConstraintSummaries(): ConstraintSummaryRow[] {
          ORDER BY total_ideas DESC`
       )
       .all() as ConstraintSummaryRow[];
+  } finally {
+    db.close();
+  }
+}
+
+// ── Committees ─────────────────────────────────────────────────────────────
+
+export function getCommittees(): { name: string; count: number }[] {
+  const db = getDb();
+  try {
+    return db.prepare(`
+      SELECT source_committee AS name, COUNT(*) AS count
+      FROM policy_ideas
+      WHERE source_committee IS NOT NULL AND source_committee != ''
+      GROUP BY source_committee
+      ORDER BY count DESC, name
+    `).all() as { name: string; count: number }[];
   } finally {
     db.close();
   }

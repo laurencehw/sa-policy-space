@@ -56,6 +56,10 @@ export interface PolicyIdea {
   growth_impact_rating: number;
   responsible_department: string;
   key_quote: string;
+  source_committee: string | null;
+  reform_package: number | null;
+  time_horizon: string | null;
+  slug: string;
   created_at: string;
   updated_at: string;
   // Derived from idea_meetings → meetings

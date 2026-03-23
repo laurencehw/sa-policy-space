@@ -51,9 +51,14 @@ CREATE TABLE IF NOT EXISTS policy_ideas (
     source_committee        TEXT,               -- originating parliamentary committee
     reform_package          INT,                -- 1–5 (see data/reform_packages.json)
     time_horizon            TEXT,               -- quick_win | medium_term | long_term
+    slug                    TEXT UNIQUE,        -- URL-friendly slug derived from title
     created_at              TIMESTAMPTZ DEFAULT NOW(),
     updated_at              TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Migration: add slug column to existing databases
+-- ALTER TABLE policy_ideas ADD COLUMN slug TEXT UNIQUE;
+-- UPDATE policy_ideas SET slug = lower(regexp_replace(regexp_replace(title, '[^a-zA-Z0-9\s-]', '', 'g'), '\s+', '-', 'g'));
 
 -- Many-to-many: ideas ↔ meetings
 CREATE TABLE IF NOT EXISTS idea_meetings (

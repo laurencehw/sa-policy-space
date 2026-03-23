@@ -1,7 +1,8 @@
 export const dynamic = "force-dynamic";
 
+import { redirect } from "next/navigation";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { slugify } from "@/lib/utils";
 import {
   CONSTRAINT_LABELS,
   CONSTRAINT_COLORS,
@@ -13,19 +14,26 @@ import {
 
 // ── Data fetching ──────────────────────────────────────────────────────────
 
-const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-async function getIdea(id: string): Promise<PolicyIdea | null> {
-  if (isLocal) {
+async function fetchIdeaById(id: number): Promise<PolicyIdea | null> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { getIdeaById } = await import("@/lib/local-api");
-    return getIdeaById(parseInt(id, 10)) as PolicyIdea | null;
+    return getIdeaById(id) as PolicyIdea | null;
   }
   const { getIdeaById } = await import("@/lib/supabase-api");
-  return await getIdeaById(parseInt(id, 10)) as PolicyIdea | null;
+  return await getIdeaById(id) as PolicyIdea | null;
+}
+
+async function fetchIdeaBySlug(slug: string): Promise<PolicyIdea | null> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    const { getIdeaBySlug } = await import("@/lib/local-api");
+    return getIdeaBySlug(slug) as PolicyIdea | null;
+  }
+  const { getIdeaBySlug } = await import("@/lib/supabase-api");
+  return await getIdeaBySlug(slug) as PolicyIdea | null;
 }
 
 async function getImplementationPlan(ideaId: number): Promise<ImplementationPlan | null> {
-  if (isLocal) {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { getImplementationPlan: localPlan } = await import("@/lib/local-api");
     return localPlan(ideaId) as ImplementationPlan | null;
   }
@@ -34,7 +42,7 @@ async function getImplementationPlan(ideaId: number): Promise<ImplementationPlan
 }
 
 async function getSourceMeetings(ideaId: number): Promise<Meeting[]> {
-  if (isLocal) {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { getIdeaMeetings } = await import("@/lib/local-api");
     return getIdeaMeetings(ideaId) as Meeting[];
   }
@@ -97,6 +105,20 @@ function ImplementationStep({
   );
 }
 
+function NoData() {
+  return (
+    <div className="card text-center py-16 text-gray-400">
+      <p className="text-sm font-medium text-gray-700 mb-1">No data yet</p>
+      <p className="text-xs">
+        Seed the database, then this page will show the full idea detail.
+      </p>
+      <Link href="/ideas" className="text-sa-green text-sm hover:underline mt-3 inline-block">
+        ← Back to Ideas
+      </Link>
+    </div>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default async function IdeaDetailPage({
@@ -104,21 +126,18 @@ export default async function IdeaDetailPage({
 }: {
   params: { id: string };
 }) {
-  const idea = await getIdea(params.id);
+  const slugOrId = params.id;
 
-  if (!idea) {
-    return (
-      <div className="card text-center py-16 text-gray-400">
-        <p className="text-sm font-medium text-gray-700 mb-1">No data yet</p>
-        <p className="text-xs">
-          Seed the database, then this page will show the full idea detail.
-        </p>
-        <Link href="/ideas" className="text-sa-green text-sm hover:underline mt-3 inline-block">
-          ← Back to Ideas
-        </Link>
-      </div>
-    );
+  // Numeric ID → look up and redirect to canonical slug URL
+  if (/^\d+$/.test(slugOrId)) {
+    const idea = await fetchIdeaById(parseInt(slugOrId, 10));
+    if (!idea) return <NoData />;
+    redirect(`/ideas/${idea.slug || slugify(idea.title)}`);
   }
+
+  // Slug lookup
+  const idea = await fetchIdeaBySlug(slugOrId);
+  if (!idea) return <NoData />;
 
   const [plan, meetings] = await Promise.all([
     getImplementationPlan(idea.id),
@@ -145,6 +164,11 @@ export default async function IdeaDetailPage({
           {idea.times_raised > 1 && (
             <span className="badge bg-gray-100 text-gray-600 ring-gray-200">
               Raised {idea.times_raised}× in committee
+            </span>
+          )}
+          {idea.source_committee && (
+            <span className="badge bg-gray-50 text-gray-600 ring-1 ring-gray-200">
+              {idea.source_committee}
             </span>
           )}
         </div>
