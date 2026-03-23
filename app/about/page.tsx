@@ -137,9 +137,30 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <div className="pt-4 border-t border-gray-200">
+      <section className="space-y-3">
+        <h2 className="font-semibold text-gray-900">Developer API</h2>
+        <p className="text-sm text-gray-700 leading-relaxed">
+          SA Policy Space exposes a public JSON API for researchers and developers. No
+          authentication required.
+        </p>
+        <Link
+          href="/api-docs"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-200 hover:border-sa-green/40 hover:bg-sa-green/5 transition-colors text-sm font-medium text-gray-700 hover:text-sa-green"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+          View API Documentation
+        </Link>
+      </section>
+
+      <div className="pt-4 border-t border-gray-200 flex flex-wrap gap-3">
         <Link href="/ideas" className="btn-primary inline-block">
           Browse Policy Ideas
+        </Link>
+        <Link href="/reform-index" className="btn-secondary inline-block">
+          Reform Progress Index
         </Link>
       </div>
     </div>

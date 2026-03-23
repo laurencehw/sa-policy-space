@@ -34,6 +34,8 @@ export default function RootLayout({
               <Link href="/themes" className="hover:text-gray-900 transition-colors">By Constraint</Link>
               <Link href="/analytics" className="hover:text-gray-900 transition-colors">Analytics</Link>
               <Link href="/stakeholders" className="hover:text-gray-900 transition-colors">Stakeholders</Link>
+              <Link href="/reform-index" className="hover:text-gray-900 transition-colors">Reform Index</Link>
+              <Link href="/teaching" className="hover:text-gray-900 transition-colors">Teaching</Link>
               <Link href="/about" className="hover:text-gray-900 transition-colors">About</Link>
               <a
                 href="/documents/SA_Growth_Agenda_Integrated_Framework.docx"

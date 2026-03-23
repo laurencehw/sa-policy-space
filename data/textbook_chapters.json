@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "number": 1,
+    "title": "The South African Economy in Context",
+    "description": "Historical trajectory from colonial extraction through apartheid and the democratic transition. Structural features of the post-1994 economy: dualism, spatial inequality, and the legacy of exclusion. South Africa's place among upper-middle-income comparators.",
+    "binding_constraints": ["government_capacity", "corruption"],
+    "reform_packages": [5],
+    "seminar_questions": [
+      "How did apartheid-era spatial planning shape current patterns of urban unemployment and housing access?",
+      "In what ways does South Africa's economic structure resemble a 'middle-income trap', and in what ways does it differ?",
+      "What institutional inheritances from the apartheid era continue to constrain reform implementation today?",
+      "Compare the economic transition strategies of South Africa and Brazil after their respective democratic transitions. What lessons apply?"
+    ]
+  },
+  {
+    "id": 2,
+    "number": 2,
+    "title": "Growth Diagnostics and Development Strategy",
+    "description": "The Hausmann-Rodrik-Velasco framework applied to South Africa. Identifying binding constraints to growth: which constraint, if relaxed, would deliver the highest growth dividend? The interaction between structural constraints and the sequencing of reform.",
+    "binding_constraints": ["energy", "logistics", "skills", "regulation", "crime", "labor_market", "land", "digital", "government_capacity", "corruption"],
+    "reform_packages": [1, 2, 3, 4, 5],
+    "seminar_questions": [
+      "Apply the HRV growth diagnostic decision tree to South Africa as of 2024. Which binding constraint would you identify as most binding?",
+      "Why is the sequencing of reforms important? Give two examples from the SA context where getting the sequence wrong caused policy failure.",
+      "How should policymakers trade off between quick-win reforms and structural reforms with long gestation lags?",
+      "Is there a single binding constraint in South Africa, or is the country facing multiple simultaneous constraints?"
+    ]
+  },
+  {
+    "id": 3,
+    "number": 3,
+    "title": "The Labour Market and Unemployment",
+    "description": "South Africa's structural unemployment crisis. The dual labour market: formal sector rigidities and the informal economy. Youth unemployment, spatial mismatches, and the interaction between wage-setting institutions and employment outcomes.",
+    "binding_constraints": ["labor_market", "regulation"],
+    "reform_packages": [2],
+    "seminar_questions": [
+      "South Africa's unemployment rate is structural, not cyclical. What does this mean, and what policy responses does it imply?",
+      "Evaluate the evidence for and against the claim that minimum wages and rigid dismissal rules are a primary cause of unemployment.",
+      "How do spatial patterns of apartheid urbanisation interact with current labour market outcomes?",
+      "Design a labour market reform that would increase youth employment without reducing worker protections. Is this possible?"
+    ]
+  },
+  {
+    "id": 4,
+    "number": 4,
+    "title": "Education, Skills, and Human Capital",
+    "description": "South Africa's human capital crisis: learning outcomes, the skills pipeline, and TVET. The reading catastrophe at foundation phase; TVET college capacity; graduate unemployment coexisting with skills shortages. Long-run growth implications of current outcomes.",
+    "binding_constraints": ["skills"],
+    "reform_packages": [3],
+    "seminar_questions": [
+      "PIRLS 2021 found that 81% of South African Grade 4 learners cannot read for meaning. What are the macroeconomic implications of this?",
+      "Is underinvestment in education a cause or a consequence of South Africa's slow growth? How would you distinguish between these?",
+      "Why do skills shortages and graduate unemployment coexist in South Africa? What does this imply about the education system?",
+      "Compare the TVET system's performance in South Africa and Germany. What institutional differences explain the gap?"
+    ]
+  },
+  {
+    "id": 5,
+    "number": 5,
+    "title": "Energy, Electricity, and Infrastructure",
+    "description": "Load-shedding as a structural constraint on growth. The electricity value chain: generation, transmission, distribution. Eskom's financial and operational crisis. The energy transition: IRP, renewables, and the Just Transition. Logistics infrastructure — ports, rail, and roads.",
+    "binding_constraints": ["energy", "logistics"],
+    "reform_packages": [1],
+    "seminar_questions": [
+      "Estimate the GDP cost of load-shedding at Stage 4, including both direct production losses and second-round effects on investment and confidence.",
+      "What is the theory of change behind the Electricity Regulation Amendment Act? Under what conditions will it succeed?",
+      "How should South Africa sequence the energy transition given both climate commitments and the need for affordable reliable power?",
+      "Compare the performance of Transnet's freight rail and the port of Durban against regional benchmarks. What are the governance failures?"
+    ]
+  },
+  {
+    "id": 6,
+    "number": 6,
+    "title": "State-Owned Enterprises and Public Investment",
+    "description": "The SOE portfolio: Eskom, Transnet, SAA, Denel, and others. Financial distress, contingent liabilities, and the fiscal cost of bailouts. Governance failures and state capture. The case for and against privatisation, commercialisation, and restructuring.",
+    "binding_constraints": ["government_capacity", "energy", "logistics"],
+    "reform_packages": [1, 5],
+    "seminar_questions": [
+      "How large are South Africa's contingent liabilities from SOEs, and how should they be reflected in fiscal sustainability analysis?",
+      "Under what conditions should the state sell, reform, or close an SOE? Apply this framework to Eskom and SAA.",
+      "State capture affected Eskom and Transnet most severely. What governance structures would prevent a recurrence?",
+      "Compare SOE reform experiences in Chile, Brazil, and Botswana. What lessons does South Africa need to apply?"
+    ]
+  },
+  {
+    "id": 7,
+    "number": 7,
+    "title": "Trade, Industrial Policy, and Global Value Chains",
+    "description": "South Africa's position in global trade. AfCFTA and the continental market opportunity. AGOA, BRICS+, and geopolitical trade dynamics. Industrial policy instruments: master plans, SEZs, local content requirements. Critical minerals and green hydrogen as emerging growth sectors.",
+    "binding_constraints": ["regulation", "logistics"],
+    "reform_packages": [4],
+    "seminar_questions": [
+      "What are South Africa's revealed comparative advantages? How should industrial policy reinforce rather than override them?",
+      "Evaluate the automotive master plan as an industrial policy instrument. What has worked, what hasn't, and why?",
+      "How should South Africa position itself in the AfCFTA? Which sectors have the most to gain from continental market access?",
+      "Is critical minerals beneficiation a viable growth strategy for South Africa? What conditions must be met for it to succeed?"
+    ]
+  },
+  {
+    "id": 8,
+    "number": 8,
+    "title": "Competition, Market Structure, and Regulation",
+    "description": "Concentrated markets and the competition-growth nexus. The Competition Commission's mandate and record. Administered prices, cartels, and exclusionary conduct. Regulatory reform across network industries. The digital economy and new competition challenges.",
+    "binding_constraints": ["regulation", "crime"],
+    "reform_packages": [2, 4],
+    "seminar_questions": [
+      "South Africa has high price levels in food, data, banking, and construction. To what extent does market concentration explain this?",
+      "Evaluate the Competition Commission's record in prosecuting cartels. Has it had a meaningful effect on prices?",
+      "How should competition policy be adapted for digital platform markets, where winner-takes-all dynamics are common?",
+      "Is business extortion and organised crime a competition-policy problem, a law enforcement problem, or both?"
+    ]
+  },
+  {
+    "id": 9,
+    "number": 9,
+    "title": "Fiscal Policy, Debt, and the Budget",
+    "description": "South Africa's fiscal position: revenue, expenditure, and the deficit trajectory. Debt service costs and the fiscal space problem. Budget reform: zero-based budgeting, conditional grants, and intergovernmental fiscal relations. The trade-off between consolidation and social spending.",
+    "binding_constraints": ["government_capacity", "corruption"],
+    "reform_packages": [5],
+    "seminar_questions": [
+      "At what point does South Africa's public debt become unsustainable? What are the key assumptions in that assessment?",
+      "Debt service is now over 20% of revenue. How does this constrain the government's ability to respond to shocks?",
+      "Evaluate the case for and against fiscal consolidation in South Africa's current conjuncture. What are the opportunity costs?",
+      "How effective is the conditional grants system as a mechanism for delivering services in provinces with weak capacity?"
+    ]
+  },
+  {
+    "id": 10,
+    "number": 10,
+    "title": "Monetary Policy and Price Stability",
+    "description": "The South African Reserve Bank's inflation targeting framework. The repo rate transmission mechanism. Currency volatility, imported inflation, and the exchange rate as a shock absorber. Financial stability and the interaction between monetary and fiscal policy.",
+    "binding_constraints": ["regulation"],
+    "reform_packages": [5],
+    "seminar_questions": [
+      "Has inflation targeting served South Africa well over the past 25 years? What are the criticisms, and how should they be evaluated?",
+      "How does the rand's volatility affect business investment decisions, and what can monetary policy realistically do about it?",
+      "Is there a tension between the SARB's inflation mandate and the need for growth-supportive monetary conditions?",
+      "How should monetary policy respond to supply-side inflation (e.g., energy prices) versus demand-side inflation?"
+    ]
+  },
+  {
+    "id": 11,
+    "number": 11,
+    "title": "The Financial Sector and Capital Allocation",
+    "description": "South Africa's sophisticated but concentrated financial sector. Banking regulation, FATF greylisting, and AML/CFT compliance. Capital allocation to the real economy vs. financial assets. Fintech, mobile money, and financial inclusion. Pension fund reform and the two-pot system.",
+    "binding_constraints": ["regulation", "digital"],
+    "reform_packages": [4, 5],
+    "seminar_questions": [
+      "South Africa was greylisted by the FATF in 2023. What were the causes, and what are the costs to the real economy?",
+      "To what extent is South Africa's financial sector serving the credit needs of SMMEs and emerging farmers?",
+      "What are the growth implications of pension fund reform and the two-pot system?",
+      "How should fintech regulation balance innovation with consumer protection in South Africa's context?"
+    ]
+  },
+  {
+    "id": 12,
+    "number": 12,
+    "title": "Land, Agriculture, and Rural Development",
+    "description": "The unresolved land question: historical dispossession, current ownership patterns, and policy debates. Agricultural productivity and smallholder constraints. Land reform modalities: redistribution, restitution, and tenure reform. Rural poverty and spatial equity.",
+    "binding_constraints": ["land"],
+    "reform_packages": [2, 3],
+    "seminar_questions": [
+      "What does 'land reform' mean in the South African context? Distinguish between redistribution, restitution, and tenure reform.",
+      "Is the slow pace of land reform primarily a political failure, a fiscal failure, or an implementation capacity failure?",
+      "What are the conditions under which land redistribution increases agricultural productivity rather than reducing it?",
+      "How should the state sequence urban land reform for affordable housing versus rural agricultural land reform?"
+    ]
+  },
+  {
+    "id": 13,
+    "number": 13,
+    "title": "Health Systems and the Health Economy",
+    "description": "South Africa's dual health system: a dysfunctional public sector alongside a world-class but expensive private sector. Burden of disease: TB, HIV, and the rise of non-communicable diseases. National Health Insurance — design, feasibility, and implementation challenges. Health as a labour productivity input.",
+    "binding_constraints": ["skills", "government_capacity"],
+    "reform_packages": [3, 5],
+    "seminar_questions": [
+      "Why does South Africa spend roughly 8.5% of GDP on health but achieve health outcomes comparable to much poorer countries?",
+      "Evaluate the NHI as designed. What are its most serious implementation risks, and how should they be mitigated?",
+      "How does TB and HIV burden affect labour productivity and human capital accumulation?",
+      "Design a primary healthcare reform that would improve public health outcomes without the full NHI apparatus."
+    ]
+  },
+  {
+    "id": 14,
+    "number": 14,
+    "title": "Social Protection and the Grants System",
+    "description": "South Africa's social protection architecture: child support grants, old-age pensions, disability grants, and SRD. Coverage, adequacy, and fiscal sustainability. The unemployment insurance system and its gaps. Basic Income Grant debates. The political economy of social protection.",
+    "binding_constraints": ["government_capacity"],
+    "reform_packages": [5],
+    "seminar_questions": [
+      "South Africa has one of the most extensive social grants systems in the developing world. Has it reduced poverty and inequality? What does the evidence say?",
+      "What are the arguments for and against a Basic Income Grant in South Africa's fiscal context?",
+      "How does social protection interact with labour market participation — does it trap recipients in dependency or enable them to seek work?",
+      "Is the current social protection system sustainable as debt service crowds out the fiscal space?"
+    ]
+  },
+  {
+    "id": 15,
+    "number": 15,
+    "title": "Governance, Institutions, and the Reform Agenda",
+    "description": "The state capacity crisis and its roots. State capture, consequence management, and institutional recovery. Anti-corruption architecture: NPA, SIU, Hawks, and the Zondo Commission legacy. Municipal governance and the failure of service delivery. Reform sequencing for a capable democratic state.",
+    "binding_constraints": ["government_capacity", "corruption", "crime"],
+    "reform_packages": [5],
+    "seminar_questions": [
+      "Define 'state capture' precisely. How does it differ from ordinary corruption, and why does it require different remedies?",
+      "The Zondo Commission produced extensive recommendations. Which are most important, and what has been implemented?",
+      "Is South Africa's governance crisis primarily a problem of laws and institutions, or of political will and accountability?",
+      "What would a viable anti-corruption architecture for South Africa look like? Draw on comparative experience."
+    ]
+  }
+]
