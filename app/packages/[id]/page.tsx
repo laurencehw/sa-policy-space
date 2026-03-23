@@ -6,6 +6,7 @@ import type { IdeaRow, PackageDetail } from "@/lib/local-api";
 import { STATUS_COLORS } from "@/lib/supabase";
 import DiagramViewer from "@/components/DiagramViewer";
 import implementationPlansData from "@/data/implementation_plans.json";
+import fiscalEstimatesData from "@/data/fiscal_estimates.json";
 
 // ── Implementation Plan Types ──────────────────────────────────────────────
 
@@ -48,6 +49,64 @@ interface PackageImplementationPlan {
 }
 
 const implementationPlans = implementationPlansData as Record<string, PackageImplementationPlan>;
+
+// ── Fiscal Estimates ───────────────────────────────────────────────────────
+
+interface FiscalEstimate {
+  package_id: number;
+  public_investment_zar_bn: number;
+  private_investment_catalyzed_zar_bn: number;
+  investment_timeframe_years: number;
+  gdp_impact_low_pct: number;
+  gdp_impact_high_pct: number;
+  gdp_impact_reference_year: number;
+  employment_total: number;
+  annual_revenue_uplift_zar_bn: number;
+  break_even_years: number;
+  revenue_note: string;
+  primary_sources: string[];
+}
+
+const fiscalEstimates = fiscalEstimatesData as Record<string, FiscalEstimate>;
+
+function FiscalImpactCard({ packageId }: { packageId: number }) {
+  const est = fiscalEstimates[String(packageId)];
+  if (!est) return null;
+  const hasPrivate = est.private_investment_catalyzed_zar_bn > 0;
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="card space-y-0.5">
+        <p className="text-xs text-gray-400">Public investment</p>
+        <p className="text-xl font-bold text-gray-900">R{est.public_investment_zar_bn}bn</p>
+        <p className="text-xs text-gray-400">over {est.investment_timeframe_years} years</p>
+        {hasPrivate && (
+          <p className="text-xs text-gray-500 mt-1">
+            + R{est.private_investment_catalyzed_zar_bn}bn private capital catalysed
+          </p>
+        )}
+      </div>
+      <div className="card space-y-0.5">
+        <p className="text-xs text-gray-400">GDP impact</p>
+        <p className="text-xl font-bold text-gray-900">
+          +{est.gdp_impact_low_pct}–{est.gdp_impact_high_pct}%
+        </p>
+        <p className="text-xs text-gray-400">by {est.gdp_impact_reference_year}</p>
+      </div>
+      <div className="card space-y-0.5">
+        <p className="text-xs text-gray-400">Jobs created</p>
+        <p className="text-xl font-bold text-gray-900">
+          ~{(est.employment_total / 1000).toFixed(0)}k
+        </p>
+        <p className="text-xs text-gray-400">direct + indirect</p>
+      </div>
+      <div className="card space-y-0.5">
+        <p className="text-xs text-gray-400">Annual revenue uplift</p>
+        <p className="text-xl font-bold text-sa-green">R{est.annual_revenue_uplift_zar_bn}bn/yr</p>
+        <p className="text-xs text-gray-400">break-even ~{est.break_even_years} years</p>
+      </div>
+    </div>
+  );
+}
 
 // ── Implementation Roadmap Components ─────────────────────────────────────
 
@@ -429,6 +488,28 @@ export default async function PackageDetailPage({
           ))}
         </div>
       </section>
+
+      {/* Fiscal impact */}
+      {fiscalEstimates[String(pkg.package_id)] && (
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Fiscal Impact Estimates</h2>
+              <p className="text-sm text-gray-500 mt-0.5">
+                Scenario estimates — not official government projections. See{" "}
+                <Link href="/analytics#fiscal" className="text-sa-green hover:underline">
+                  full methodology
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+          <FiscalImpactCard packageId={pkg.package_id} />
+          <p className="mt-3 text-xs text-gray-400 leading-relaxed">
+            {fiscalEstimates[String(pkg.package_id)]?.revenue_note}
+          </p>
+        </section>
+      )}
 
       {/* Timeline / sequencing view */}
       <section>

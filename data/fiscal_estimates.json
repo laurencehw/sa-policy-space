@@ -1,0 +1,163 @@
+{
+  "1": {
+    "package_id": 1,
+    "package_name": "Infrastructure Unblock",
+    "public_investment_zar_bn": 220,
+    "private_investment_catalyzed_zar_bn": 630,
+    "total_capital_mobilised_zar_bn": 850,
+    "investment_timeframe_years": 5,
+    "gdp_impact_low_pct": 2.5,
+    "gdp_impact_high_pct": 3.5,
+    "gdp_impact_reference_year": 2030,
+    "employment_direct": 130000,
+    "employment_indirect": 150000,
+    "employment_total": 280000,
+    "annual_revenue_uplift_zar_bn": 85,
+    "break_even_years": 9,
+    "cost_per_job_zar_thousands": 786,
+    "revenue_note": "Uplift through reduced load-shedding costs (~R204bn/yr per Eskom estimates), logistics efficiency gains on Transnet corridor, and economic-activity multiplier. Does not capture avoided-cost savings to households and firms from ending load-shedding.",
+    "key_assumptions": [
+      "Eskom unbundling and transmission entity established by 2027",
+      "Private generation programme achieves 8,500 MW new licensed capacity by 2028",
+      "Transnet port productivity recovers to 2017 benchmark levels by 2028",
+      "World Bank infrastructure investment multiplier of 1.5× applied to public spend",
+      "Blended-finance mechanism mobilises R2.86 in private capital per R1 of public anchor"
+    ],
+    "primary_sources": [
+      "World Bank South Africa Economic Update 2023 — infrastructure gap estimates",
+      "National Treasury Budget Review 2024 — Eskom debt-relief package",
+      "CSIR load-shedding economic impact study 2023 (R204bn annual loss estimate)",
+      "Transnet Freight Rail 2023/24 Annual Report — productivity benchmarks",
+      "Presidential Infrastructure Coordinating Commission (PICC) pipeline 2023"
+    ]
+  },
+  "2": {
+    "package_id": 2,
+    "package_name": "SMME & Employment Acceleration",
+    "public_investment_zar_bn": 45,
+    "private_investment_catalyzed_zar_bn": 90,
+    "total_capital_mobilised_zar_bn": 135,
+    "investment_timeframe_years": 5,
+    "gdp_impact_low_pct": 0.8,
+    "gdp_impact_high_pct": 1.2,
+    "gdp_impact_reference_year": 2030,
+    "employment_direct": 220000,
+    "employment_indirect": 330000,
+    "employment_total": 550000,
+    "annual_revenue_uplift_zar_bn": 32,
+    "break_even_years": 5,
+    "cost_per_job_zar_thousands": 82,
+    "revenue_note": "Revenue uplift through broadened income-tax and VAT base as informal workers formalise. Employment Tax Incentive (ETI) expansion costs R5bn/yr but is offset by PAYE gains within 3 years of job creation.",
+    "key_assumptions": [
+      "Regulatory reform (Companies Amendment Act, licencing rationalisation) reduces SMME compliance cost by 30%",
+      "SEFA/SBSA blended-finance facilities catalyse R90bn in private SMME lending over 5 years",
+      "Labour-market flexibility reforms reduce hiring friction in the 10–49 employee band",
+      "NDP assumption that SMMEs account for 90% of net new employment holds",
+      "Formalisation rate of the informal sector reaches 25% by 2030 (from ~18% baseline)"
+    ],
+    "primary_sources": [
+      "National Development Plan 2030 — employment targets and SMME projections",
+      "OECD SME and Entrepreneurship Outlook 2023 — regulatory burden benchmarks",
+      "SEDA Annual Report 2022/23 — SMME development fund disbursements",
+      "National Treasury Employment Tax Incentive evaluation 2023",
+      "World Bank Doing Business / Business Ready 2024 — SA regulatory environment"
+    ]
+  },
+  "3": {
+    "package_id": 3,
+    "package_name": "Human Capital Pipeline",
+    "public_investment_zar_bn": 180,
+    "private_investment_catalyzed_zar_bn": 35,
+    "total_capital_mobilised_zar_bn": 215,
+    "investment_timeframe_years": 7,
+    "gdp_impact_low_pct": 1.2,
+    "gdp_impact_high_pct": 2.0,
+    "gdp_impact_reference_year": 2035,
+    "employment_direct": 45000,
+    "employment_indirect": 180000,
+    "employment_total": 225000,
+    "annual_revenue_uplift_zar_bn": 70,
+    "break_even_years": 14,
+    "cost_per_job_zar_thousands": 800,
+    "revenue_note": "Revenue uplift is primarily structural: a higher-skilled workforce raises average earnings and therefore PAYE receipts, and reduces expenditure on social grants and remedial programmes. Returns are back-loaded — most impact accrues post-2032.",
+    "key_assumptions": [
+      "TVET college throughput rate improves from 40% to 65% by 2030 with curriculum reform",
+      "Early Childhood Development (ECD) subsidised enrolment reaches 85% by 2028",
+      "SETA rationalisation releases R8bn/yr for industry-relevant artisan training",
+      "University dropout rate falls by 15 percentage points through NSFAS reform",
+      "Skills-to-jobs matching efficiency improves via digital labour-market platform",
+      "Education quality improvements follow Hanushek-Woessmann human-capital growth model"
+    ],
+    "primary_sources": [
+      "DHET White Paper for Post-School Education and Training 2013 (updated targets)",
+      "National Treasury ECD costing study 2020 — R28bn gap estimate",
+      "Hanushek & Woessmann (2012) — human capital and economic growth (SA calibration)",
+      "SETA landscape review — National Treasury 2022",
+      "NSFAS 2023 Annual Report — throughput and dropout analysis"
+    ]
+  },
+  "4": {
+    "package_id": 4,
+    "package_name": "Trade & Industrial Competitiveness",
+    "public_investment_zar_bn": 95,
+    "private_investment_catalyzed_zar_bn": 210,
+    "total_capital_mobilised_zar_bn": 305,
+    "investment_timeframe_years": 5,
+    "gdp_impact_low_pct": 1.0,
+    "gdp_impact_high_pct": 1.8,
+    "gdp_impact_reference_year": 2030,
+    "employment_direct": 95000,
+    "employment_indirect": 135000,
+    "employment_total": 230000,
+    "annual_revenue_uplift_zar_bn": 52,
+    "break_even_years": 8,
+    "cost_per_job_zar_thousands": 413,
+    "revenue_note": "Revenue gains through higher customs receipts (AfCFTA and AGOA export growth), corporate income tax from expanded manufacturing base, and SEZ company tax receipts. The EV transition creates a new R60bn annual export opportunity by 2032 if managed correctly.",
+    "key_assumptions": [
+      "AGOA retained through 2035 (or equivalent EU/AfCFTA arrangements activated)",
+      "AfCFTA full implementation delivers 30% intra-African trade growth by 2030 for SA",
+      "Automotive Master Plan targets maintained: 1% global market share, 50% localisation",
+      "SEZ expansion adds 12 new operational zones with improved utility provision",
+      "Green Hydrogen commercialisation achieves first export contracts by 2028"
+    ],
+    "primary_sources": [
+      "DTIC Automotive Master Plan 2035 — employment and investment targets",
+      "AfCFTA Secretariat — SA trade impact modelling 2022",
+      "UNCTAD Investment Policy Review: South Africa 2023",
+      "AGOA utilisation review — USITC 2023",
+      "DTIC Green Hydrogen Commercialisation Strategy 2022"
+    ]
+  },
+  "5": {
+    "package_id": 5,
+    "package_name": "State Capacity & Governance",
+    "public_investment_zar_bn": 28,
+    "private_investment_catalyzed_zar_bn": 0,
+    "total_capital_mobilised_zar_bn": 28,
+    "investment_timeframe_years": 5,
+    "gdp_impact_low_pct": 0.5,
+    "gdp_impact_high_pct": 1.0,
+    "gdp_impact_reference_year": 2030,
+    "employment_direct": 12000,
+    "employment_indirect": 95000,
+    "employment_total": 107000,
+    "annual_revenue_uplift_zar_bn": 185,
+    "break_even_years": 3,
+    "cost_per_job_zar_thousands": 262,
+    "revenue_note": "Highest return package by fiscal ROI. The SIU and GIZ estimate R100–200bn/yr in procurement irregularities alone. SARS modernisation is projected to close a R50bn/yr compliance gap. Indirect employment gains accrue as investor confidence improves and the regulatory environment becomes predictable.",
+    "key_assumptions": [
+      "SARS technology modernisation (revenue authority digital platform) achieves R50bn/yr additional collections",
+      "Procurement reform under revised PPPFA eliminates R30bn/yr in irregular expenditure",
+      "Anti-corruption institutions (NPA, SIU, DPCI) receive sustained budget and independence",
+      "Digital government platform (GovTech) reduces service-delivery cost by 15%",
+      "Consequence management framework leads to measurable reduction in audit findings within 3 years"
+    ],
+    "primary_sources": [
+      "Special Investigating Unit (SIU) — procurement irregularities consolidated report 2023",
+      "GIZ / DPME — State Capacity Diagnostic 2022 (R100–200bn annual loss estimate)",
+      "SARS Modernisation Programme business case — National Treasury 2023",
+      "Auditor-General SA — Consolidated General Report 2022/23",
+      "World Bank Governance Indicators — SA public-sector efficiency scores"
+    ]
+  }
+}
