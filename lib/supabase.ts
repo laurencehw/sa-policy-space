@@ -67,7 +67,7 @@ export interface PolicyIdea {
   last_discussed: string | null;
   dormant: number; // 1 = last discussed > 12 months ago
   // Enriched fields (may be absent in older records)
-  feasibility_notes?: string | null;
+  feasibility_note?: string | null;    // DB column name (singular) — populated by enrichment migration
   key_quotes?: string[] | string | null;
   growth_impact_pct?: number | null;
   fiscal_impact_zar_bn?: number | null;
