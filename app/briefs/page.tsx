@@ -74,25 +74,85 @@ const REFORM_OPTIONS = [
   { value: "idea_fatf", label: "Idea: FATF Greylisting Exit (implemented)" },
 ];
 
+// ── Markdown renderer ──────────────────────────────────────────────────────
+// Handles ## headers and **bold** inline — no external dependency required.
+
+function renderMarkdown(text: string): React.ReactNode[] {
+  return text.split("\n").map((line, i) => {
+    if (line.startsWith("## ")) {
+      return (
+        <h3 key={i} className="text-base font-bold text-gray-900 mt-6 mb-2 pb-1 border-b border-gray-200">
+          {line.slice(3)}
+        </h3>
+      );
+    }
+    if (line.trim() === "") {
+      return <div key={i} className="h-2" />;
+    }
+    // Inline **bold**
+    const parts = line.split(/(\*\*[^*]+\*\*)/g);
+    const rendered = parts.map((part, j) =>
+      part.startsWith("**") && part.endsWith("**")
+        ? <strong key={j}>{part.slice(2, -2)}</strong>
+        : part
+    );
+    return (
+      <p key={i} className="text-sm text-gray-700 leading-relaxed">
+        {rendered}
+      </p>
+    );
+  });
+}
+
 // ── Component ─────────────────────────────────────────────────────────────
 
 export default function BriefsPage() {
   const [selectedIdea, setSelectedIdea] = useState("");
   const [audience, setAudience] = useState<Audience>("policymaker");
   const [generating, setGenerating] = useState(false);
-  const [attempted, setAttempted] = useState(false);
+  const [briefContent, setBriefContent] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  function handleGenerate() {
+  async function handleGenerate() {
+    if (!selectedIdea) return;
     setGenerating(true);
-    setTimeout(() => {
+    setBriefContent("");
+    setError(null);
+
+    const reformLabel = REFORM_OPTIONS.find((o) => o.value === selectedIdea)?.label ?? "";
+
+    try {
+      const res = await fetch("/api/generate-brief", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reformId: selectedIdea, audience, reformLabel }),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error((body as { error?: string }).error ?? `Server error ${res.status}`);
+      }
+
+      const reader = res.body!.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        setBriefContent((prev) => prev + decoder.decode(value, { stream: true }));
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to generate brief");
+    } finally {
       setGenerating(false);
-      setAttempted(true);
-    }, 800);
+    }
   }
 
   const canGenerate = !!selectedIdea;
   const sections = BRIEF_SECTIONS[audience];
   const audienceCfg = AUDIENCE_CONFIG[audience];
+  const reformLabel = REFORM_OPTIONS.find((o) => o.value === selectedIdea)?.label ?? "";
+  const reformTitle = reformLabel.replace(/^(Idea|Package \d): /, "") || "Reform Title";
 
   return (
     <div className="space-y-8">
@@ -102,7 +162,7 @@ export default function BriefsPage() {
         <h1 className="text-2xl font-bold text-gray-900">Policy Brief Generator</h1>
         <p className="text-sm text-gray-500 mt-1 max-w-2xl">
           Generate tailored policy briefs from SA Policy Space data — structured for policymakers,
-          civil society, or researchers. Powered by Claude AI (configuration pending).
+          civil society, or researchers. Powered by Claude AI.
         </p>
       </div>
 
@@ -117,7 +177,7 @@ export default function BriefsPage() {
             </label>
             <select
               value={selectedIdea}
-              onChange={(e) => { setSelectedIdea(e.target.value); setAttempted(false); }}
+              onChange={(e) => { setSelectedIdea(e.target.value); setBriefContent(""); setError(null); }}
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-sa-green/30"
             >
               {REFORM_OPTIONS.map((opt) => (
@@ -148,7 +208,7 @@ export default function BriefsPage() {
                       name="audience"
                       value={key}
                       checked={audience === key}
-                      onChange={() => { setAudience(key); setAttempted(false); }}
+                      onChange={() => { setAudience(key); setBriefContent(""); setError(null); }}
                       className="mt-0.5 accent-sa-green"
                     />
                     <div>
@@ -188,90 +248,120 @@ export default function BriefsPage() {
           )}
         </div>
 
-        {/* API key notice — shown after generation attempt */}
-        {attempted && (
-          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+        {/* Error state */}
+        {error && (
+          <div className="rounded-xl border border-red-200 bg-red-50 p-4">
             <div className="flex items-start gap-3">
-              <span className="text-amber-500 text-lg flex-shrink-0">⚠</span>
+              <span className="text-red-500 text-lg flex-shrink-0">✕</span>
               <div>
-                <p className="font-semibold text-amber-900 text-sm">Claude API Key Required</p>
-                <p className="text-xs text-amber-700 mt-1 leading-relaxed">
-                  Policy brief generation uses the Claude API to synthesise structured data from the SA Policy Space
-                  database into a formatted brief. To activate this feature, add your{" "}
-                  <code className="bg-amber-100 px-1 rounded font-mono">ANTHROPIC_API_KEY</code>{" "}
-                  to the environment variables and re-deploy.
-                </p>
-                <p className="text-xs text-amber-600 mt-2">
-                  Once configured, briefs will be generated using the idea's description, binding constraint,
-                  implementation status, fiscal estimates, stakeholder data, and international comparisons
-                  from this database — structured according to the template below.
-                </p>
+                <p className="font-semibold text-red-900 text-sm">Generation failed</p>
+                <p className="text-xs text-red-700 mt-1">{error}</p>
               </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* Template Preview */}
-      <div>
-        <div className="flex items-center gap-2 mb-3">
-          <h2 className="text-base font-semibold text-gray-900">
-            Brief Structure Preview
-          </h2>
-          <span className="text-xs text-gray-400">— {audienceCfg.label} format</span>
-        </div>
+      {/* Generated Brief — shown once content starts arriving */}
+      {briefContent && (
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <h2 className="text-base font-semibold text-gray-900">Generated Brief</h2>
+            <span className="text-xs text-gray-400">— {audienceCfg.label} format</span>
+            {generating && (
+              <span className="text-xs text-sa-green animate-pulse">● streaming…</span>
+            )}
+          </div>
 
-        <div className={`rounded-2xl border-2 p-1 ${audienceCfg.color.split(" bg-")[0]} overflow-hidden`}>
-          <div className="bg-white rounded-xl p-5 space-y-0">
+          <div className={`rounded-2xl border-2 p-1 ${audienceCfg.color.split(" bg-")[0]} overflow-hidden`}>
+            <div className="bg-white rounded-xl p-5">
 
-            {/* Simulated brief header */}
-            <div className={`rounded-lg p-4 mb-4 ${audienceCfg.color}`}>
-              <div className="text-[10px] font-semibold uppercase tracking-wide opacity-70 mb-1">
-                SA Policy Space — {audienceCfg.label} Brief
-              </div>
-              <div className="font-bold text-lg">
-                {selectedIdea
-                  ? REFORM_OPTIONS.find((o) => o.value === selectedIdea)?.label.replace(/^(Idea|Package \d): /, "") ?? "Selected Reform"
-                  : "Reform Title"}
-              </div>
-              <div className="text-sm opacity-80 mt-0.5">
-                {audienceCfg.icon} For {audienceCfg.label}s · SA Policy Space · {new Date().getFullYear()}
-              </div>
-            </div>
-
-            {/* Section previews */}
-            <div className="space-y-3">
-              {sections.map((section, i) => (
-                <div key={i} className="group">
-                  <div className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-b-0">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 text-gray-500 text-xs font-bold flex items-center justify-center">
-                      {i + 1}
-                    </span>
-                    <div className="flex-1">
-                      <div className="font-semibold text-gray-900 text-sm">{section.title}</div>
-                      <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                        {section.description}
-                      </div>
-                      {/* Placeholder content lines */}
-                      <div className="mt-2 space-y-1.5">
-                        <div className="h-2.5 bg-gray-100 rounded-full w-full" />
-                        <div className="h-2.5 bg-gray-100 rounded-full w-4/5" />
-                        <div className="h-2.5 bg-gray-100 rounded-full w-3/4" />
-                      </div>
-                    </div>
-                  </div>
+              {/* Brief header */}
+              <div className={`rounded-lg p-4 mb-5 ${audienceCfg.color}`}>
+                <div className="text-[10px] font-semibold uppercase tracking-wide opacity-70 mb-1">
+                  SA Policy Space — {audienceCfg.label} Brief
                 </div>
-              ))}
-            </div>
+                <div className="font-bold text-lg">{reformTitle}</div>
+                <div className="text-sm opacity-80 mt-0.5">
+                  {audienceCfg.icon} For {audienceCfg.label}s · SA Policy Space · {new Date().getFullYear()}
+                </div>
+              </div>
 
-            {/* Footer watermark */}
-            <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
-              <span className="text-[10px] text-gray-400">SA Policy Space · sapolicyspace.org</span>
-              <span className="text-[10px] text-gray-400">Parliamentary source data via PMG</span>
+              {/* Rendered markdown content */}
+              <div className="space-y-1">
+                {renderMarkdown(briefContent)}
+              </div>
+
+              {/* Footer */}
+              <div className="pt-5 mt-5 border-t border-gray-100 flex justify-between items-center">
+                <span className="text-[10px] text-gray-400">SA Policy Space · sapolicyspace.org</span>
+                <span className="text-[10px] text-gray-400">Parliamentary source data via PMG</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Template Preview — shown when no brief yet generated */}
+      {!briefContent && (
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <h2 className="text-base font-semibold text-gray-900">
+              Brief Structure Preview
+            </h2>
+            <span className="text-xs text-gray-400">— {audienceCfg.label} format</span>
+          </div>
+
+          <div className={`rounded-2xl border-2 p-1 ${audienceCfg.color.split(" bg-")[0]} overflow-hidden`}>
+            <div className="bg-white rounded-xl p-5 space-y-0">
+
+              {/* Simulated brief header */}
+              <div className={`rounded-lg p-4 mb-4 ${audienceCfg.color}`}>
+                <div className="text-[10px] font-semibold uppercase tracking-wide opacity-70 mb-1">
+                  SA Policy Space — {audienceCfg.label} Brief
+                </div>
+                <div className="font-bold text-lg">
+                  {selectedIdea ? reformTitle : "Reform Title"}
+                </div>
+                <div className="text-sm opacity-80 mt-0.5">
+                  {audienceCfg.icon} For {audienceCfg.label}s · SA Policy Space · {new Date().getFullYear()}
+                </div>
+              </div>
+
+              {/* Section previews */}
+              <div className="space-y-3">
+                {sections.map((section, i) => (
+                  <div key={i} className="group">
+                    <div className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-b-0">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 text-gray-500 text-xs font-bold flex items-center justify-center">
+                        {i + 1}
+                      </span>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900 text-sm">{section.title}</div>
+                        <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                          {section.description}
+                        </div>
+                        {/* Placeholder content lines */}
+                        <div className="mt-2 space-y-1.5">
+                          <div className="h-2.5 bg-gray-100 rounded-full w-full" />
+                          <div className="h-2.5 bg-gray-100 rounded-full w-4/5" />
+                          <div className="h-2.5 bg-gray-100 rounded-full w-3/4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Footer watermark */}
+              <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
+                <span className="text-[10px] text-gray-400">SA Policy Space · sapolicyspace.org</span>
+                <span className="text-[10px] text-gray-400">Parliamentary source data via PMG</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Audience comparison table */}
       <div className="card p-5">
@@ -306,17 +396,6 @@ export default function BriefsPage() {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* Technical note */}
-      <div className="rounded-xl bg-gray-50 border border-gray-200 p-4 text-xs text-gray-500">
-        <p className="font-medium text-gray-700 mb-1">Implementation Note</p>
-        <p>
-          When an Anthropic API key is configured, the generator will call the Claude API with a structured prompt
-          built from: (1) the selected idea or package data from the SQLite/Supabase database, (2) associated
-          fiscal estimates, stakeholder data, and international comparisons, and (3) a format template for the
-          chosen audience. Output will be rendered as formatted HTML and made available for download as PDF.
-        </p>
       </div>
 
     </div>
