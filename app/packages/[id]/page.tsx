@@ -538,10 +538,12 @@ export default async function PackageDetailPage({
     <div className="space-y-10">
 
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500">
-        <Link href="/packages" className="hover:text-gray-700">Reform Packages</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">{pkg.name}</span>
+      <nav className="flex items-center gap-1.5 text-sm text-gray-400" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-gray-600 transition-colors">Home</Link>
+        <span>/</span>
+        <Link href="/packages" className="hover:text-gray-600 transition-colors">Reform Packages</Link>
+        <span>/</span>
+        <span className="text-gray-600 truncate max-w-[240px]">{pkg.name}</span>
       </nav>
 
       {/* Header */}

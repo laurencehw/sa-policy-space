@@ -147,10 +147,14 @@ export default async function IdeaDetailPage({
   return (
     <div className="max-w-3xl space-y-8">
 
-      {/* Back */}
-      <Link href="/ideas" className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
-        ← All Ideas
-      </Link>
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-1.5 text-sm text-gray-400" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-gray-600 transition-colors">Home</Link>
+        <span>/</span>
+        <Link href="/ideas" className="hover:text-gray-600 transition-colors">Ideas</Link>
+        <span>/</span>
+        <span className="text-gray-600 truncate max-w-[240px]">{idea.title}</span>
+      </nav>
 
       {/* Header */}
       <div>

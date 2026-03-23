@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import NavDropdown from "@/components/NavDropdown";
 import MobileNav from "@/components/MobileNav";
+import SearchModal from "@/components/SearchModal";
 
 export const metadata: Metadata = {
   title: "SA Policy Space",
@@ -96,7 +97,11 @@ export default function RootLayout({
               </a>
             </nav>
 
-            <MobileNav />
+            {/* Search always visible; MobileNav only on small screens */}
+            <div className="flex items-center gap-1">
+              <SearchModal />
+              <MobileNav />
+            </div>
           </div>
         </header>
 

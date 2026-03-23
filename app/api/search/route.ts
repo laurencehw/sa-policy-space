@@ -1,0 +1,118 @@
+import { NextRequest, NextResponse } from "next/server";
+import stakeholdersData from "@/data/stakeholders.json";
+import comparisonsData from "@/data/international_comparisons.json";
+import textbookChapters from "@/data/textbook_chapters.json";
+import reformPackagesData from "@/data/reform_packages.json";
+import { slugify } from "@/lib/utils";
+
+export async function GET(req: NextRequest) {
+  const q = req.nextUrl.searchParams.get("q")?.trim().toLowerCase() ?? "";
+  if (!q || q.length < 2) {
+    return NextResponse.json({
+      ideas: [],
+      packages: [],
+      stakeholders: [],
+      comparisons: [],
+      chapters: [],
+    });
+  }
+
+  // ── Ideas (SQLite or Supabase) ────────────────────────────────────────────
+  let ideas: Array<{
+    id: number;
+    title: string;
+    description: string;
+    slug: string;
+    binding_constraint: string;
+  }> = [];
+  try {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      const { getIdeas } = await import("@/lib/local-api");
+      const rows = getIdeas({ search: q });
+      ideas = rows.slice(0, 6).map((r) => ({
+        id: r.id,
+        title: r.title,
+        description: r.description,
+        slug: r.slug,
+        binding_constraint: r.binding_constraint,
+      }));
+    } else {
+      const { getIdeas } = await import("@/lib/supabase-api");
+      const rows = await getIdeas({ search: q });
+      ideas = (rows as any[]).slice(0, 6).map((r: any) => ({
+        id: r.id,
+        title: r.title,
+        description: r.description,
+        slug: r.slug || slugify(r.title),
+        binding_constraint: r.binding_constraint,
+      }));
+    }
+  } catch (e) {
+    console.error("Search ideas error:", e);
+  }
+
+  // ── Packages (bundled JSON) ───────────────────────────────────────────────
+  const packages = (Object.values(reformPackagesData) as any[])
+    .filter(
+      (p) =>
+        p.name?.toLowerCase().includes(q) ||
+        p.tagline?.toLowerCase().includes(q) ||
+        p.theory_of_change?.toLowerCase().includes(q)
+    )
+    .slice(0, 4)
+    .map((p) => ({
+      id: p.package_id,
+      name: p.name,
+      tagline: p.tagline,
+    }));
+
+  // ── Stakeholders (bundled JSON) ───────────────────────────────────────────
+  const stakeholders = (stakeholdersData as any[])
+    .filter(
+      (s) =>
+        s.name?.toLowerCase().includes(q) ||
+        s.primary_interests?.toLowerCase().includes(q) ||
+        s.category?.toLowerCase().includes(q)
+    )
+    .slice(0, 5)
+    .map((s) => ({
+      id: s.id,
+      name: s.name,
+      category: s.category,
+      primary_interests: s.primary_interests,
+    }));
+
+  // ── International Comparisons (bundled JSON) ──────────────────────────────
+  const comparisons = ((comparisonsData as any).comparisons as any[])
+    .filter(
+      (c) =>
+        c.title?.toLowerCase().includes(q) ||
+        c.approach?.toLowerCase().includes(q) ||
+        c.country?.toLowerCase().includes(q) ||
+        c.constraint_label?.toLowerCase().includes(q)
+    )
+    .slice(0, 5)
+    .map((c) => ({
+      id: c.id,
+      title: c.title,
+      country: c.country,
+      flag: c.flag,
+      constraint_label: c.constraint_label,
+    }));
+
+  // ── Textbook Chapters (bundled JSON) ─────────────────────────────────────
+  const chapters = (textbookChapters as any[])
+    .filter(
+      (c) =>
+        c.title?.toLowerCase().includes(q) ||
+        c.description?.toLowerCase().includes(q)
+    )
+    .slice(0, 5)
+    .map((c) => ({
+      id: c.id,
+      number: c.number,
+      title: c.title,
+    }));
+
+  return NextResponse.json({ ideas, packages, stakeholders, comparisons, chapters });
+}
