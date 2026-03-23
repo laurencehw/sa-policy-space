@@ -7,6 +7,7 @@ import { STATUS_COLORS } from "@/lib/supabase";
 import DiagramViewer from "@/components/DiagramViewer";
 import implementationPlansData from "@/data/implementation_plans.json";
 import fiscalEstimatesData from "@/data/fiscal_estimates.json";
+import stakeholdersData from "@/data/stakeholders.json";
 
 // ── Implementation Plan Types ──────────────────────────────────────────────
 
@@ -68,6 +69,89 @@ interface FiscalEstimate {
 }
 
 const fiscalEstimates = fiscalEstimatesData as Record<string, FiscalEstimate>;
+
+// ── Stakeholders ──────────────────────────────────────────────────────────
+
+type StakeholderCategory = "Government" | "Regulator" | "SOE" | "Private Sector" | "Labour" | "Civil Society" | "International";
+type StakeholderPosition = "supporter" | "opponent" | "neutral" | "mixed";
+
+interface StakeholderEntry {
+  id: string;
+  name: string;
+  category: StakeholderCategory;
+  influence_score: number;
+  support_level: number;
+  key_interests: string;
+  related_packages: number[];
+  position: StakeholderPosition;
+}
+
+const allStakeholders = stakeholdersData as StakeholderEntry[];
+
+const STAKEHOLDER_CATEGORY_COLORS: Record<StakeholderCategory, string> = {
+  Government:       "bg-blue-100 text-blue-800 ring-blue-200",
+  Regulator:        "bg-purple-100 text-purple-800 ring-purple-200",
+  SOE:              "bg-amber-100 text-amber-800 ring-amber-200",
+  "Private Sector": "bg-teal-100 text-teal-800 ring-teal-200",
+  Labour:           "bg-red-100 text-red-800 ring-red-200",
+  "Civil Society":  "bg-green-100 text-green-800 ring-green-200",
+  International:    "bg-slate-100 text-slate-700 ring-slate-200",
+};
+
+const STAKEHOLDER_POSITION_STYLES: Record<StakeholderPosition, string> = {
+  supporter: "bg-green-100 text-green-800 ring-green-200",
+  opponent:  "bg-red-100 text-red-800 ring-red-200",
+  neutral:   "bg-gray-100 text-gray-600 ring-gray-200",
+  mixed:     "bg-amber-100 text-amber-800 ring-amber-200",
+};
+
+function KeyStakeholdersSection({ packageId }: { packageId: number }) {
+  const relevant = allStakeholders
+    .filter((s) => s.related_packages.includes(packageId))
+    .sort((a, b) => b.influence_score - a.influence_score);
+
+  if (relevant.length === 0) return null;
+
+  return (
+    <section>
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">Key Stakeholders</h2>
+        <p className="text-sm text-gray-500 mt-1">
+          Major actors with a stake in this reform package, ranked by influence.{" "}
+          <a href="/stakeholders" className="text-sa-green hover:underline">
+            Full stakeholder map →
+          </a>
+        </p>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {relevant.map((s) => (
+          <div
+            key={s.id}
+            className="flex items-start gap-3 px-4 py-3 rounded-lg bg-white border border-gray-100 hover:border-gray-200 transition-colors"
+          >
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-start gap-1.5 mb-1">
+                <span className="text-sm font-medium text-gray-900 leading-snug">{s.name}</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className={`badge ring-1 text-xs ${STAKEHOLDER_CATEGORY_COLORS[s.category]}`}>
+                  {s.category}
+                </span>
+                <span className={`badge ring-1 text-xs capitalize ${STAKEHOLDER_POSITION_STYLES[s.position]}`}>
+                  {s.position}
+                </span>
+              </div>
+            </div>
+            <div className="flex-shrink-0 text-right">
+              <p className="text-xs text-gray-400">Influence</p>
+              <p className="text-lg font-bold text-gray-700">{s.influence_score}<span className="text-xs font-normal text-gray-400">/10</span></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function FiscalImpactCard({ packageId }: { packageId: number }) {
   const est = fiscalEstimates[String(packageId)];
@@ -608,6 +692,9 @@ export default async function PackageDetailPage({
           <ImplementationRoadmap plan={implementationPlans[String(pkg.package_id)]} />
         </section>
       )}
+
+      {/* Key Stakeholders */}
+      <KeyStakeholdersSection packageId={pkg.package_id} />
 
     </div>
   );

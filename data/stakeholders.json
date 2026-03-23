@@ -1,0 +1,282 @@
+[
+  {
+    "id": "presidency",
+    "name": "Presidency / Operation Vulindlela",
+    "category": "Government",
+    "influence_score": 10,
+    "support_level": 5,
+    "key_interests": "Structural reform delivery, investor confidence, economic recovery",
+    "related_packages": [1, 2, 3, 4, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "national-treasury",
+    "name": "National Treasury",
+    "category": "Government",
+    "influence_score": 9,
+    "support_level": 4,
+    "key_interests": "Fiscal consolidation, macro-stability, private sector participation",
+    "related_packages": [1, 2, 4, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "cosatu",
+    "name": "COSATU",
+    "category": "Labour",
+    "influence_score": 9,
+    "support_level": -2,
+    "key_interests": "Job protection, wage floors, SOE preservation, worker rights",
+    "related_packages": [1, 2, 3, 5],
+    "position": "mixed"
+  },
+  {
+    "id": "sarb",
+    "name": "South African Reserve Bank",
+    "category": "Regulator",
+    "influence_score": 8,
+    "support_level": 3,
+    "key_interests": "Macro-stability, financial system integrity, prudential oversight",
+    "related_packages": [2, 4, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "busa",
+    "name": "Business Unity South Africa (BUSA)",
+    "category": "Private Sector",
+    "influence_score": 8,
+    "support_level": 4,
+    "key_interests": "Regulatory reform, investment climate, energy reliability, logistics",
+    "related_packages": [1, 2, 4, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "eskom",
+    "name": "Eskom",
+    "category": "SOE",
+    "influence_score": 8,
+    "support_level": -1,
+    "key_interests": "Monopoly preservation, debt relief, capital investment, tariff increases",
+    "related_packages": [1, 5],
+    "position": "mixed"
+  },
+  {
+    "id": "dtic",
+    "name": "DTIC",
+    "category": "Government",
+    "influence_score": 7,
+    "support_level": 2,
+    "key_interests": "Industrial policy, local content, SMME development, export promotion",
+    "related_packages": [2, 3, 4],
+    "position": "supporter"
+  },
+  {
+    "id": "nersa",
+    "name": "NERSA",
+    "category": "Regulator",
+    "influence_score": 7,
+    "support_level": -2,
+    "key_interests": "Regulatory control, tariff-setting authority, licensing oversight",
+    "related_packages": [1],
+    "position": "opponent"
+  },
+  {
+    "id": "transnet",
+    "name": "Transnet",
+    "category": "SOE",
+    "influence_score": 7,
+    "support_level": -2,
+    "key_interests": "Logistics monopoly, infrastructure control, operational autonomy",
+    "related_packages": [1, 4, 5],
+    "position": "opponent"
+  },
+  {
+    "id": "blsa",
+    "name": "Business Leadership South Africa (BLSA)",
+    "category": "Private Sector",
+    "influence_score": 7,
+    "support_level": 4,
+    "key_interests": "Energy reform, logistics privatisation, rule of law, investment facilitation",
+    "related_packages": [1, 4, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "mining-council",
+    "name": "Minerals Council South Africa",
+    "category": "Private Sector",
+    "influence_score": 7,
+    "support_level": 1,
+    "key_interests": "Energy reliability, rail and port access, regulatory certainty, royalty regime",
+    "related_packages": [1, 4],
+    "position": "mixed"
+  },
+  {
+    "id": "num",
+    "name": "National Union of Mineworkers (NUM)",
+    "category": "Labour",
+    "influence_score": 7,
+    "support_level": -3,
+    "key_interests": "Mining employment, labour protections, nationalisation, living wage",
+    "related_packages": [1, 4],
+    "position": "opponent"
+  },
+  {
+    "id": "numsa",
+    "name": "NUMSA",
+    "category": "Labour",
+    "influence_score": 7,
+    "support_level": -4,
+    "key_interests": "Industrial employment, SOE control, anti-privatisation, energy sector jobs",
+    "related_packages": [1, 2, 5],
+    "position": "opponent"
+  },
+  {
+    "id": "dmre",
+    "name": "DMRE",
+    "category": "Government",
+    "influence_score": 6,
+    "support_level": -1,
+    "key_interests": "Energy sovereignty, mineral beneficiation, state control of resources",
+    "related_packages": [1, 4],
+    "position": "mixed"
+  },
+  {
+    "id": "icasa",
+    "name": "ICASA",
+    "category": "Regulator",
+    "influence_score": 6,
+    "support_level": 1,
+    "key_interests": "Spectrum regulation, telecom competition, digital infrastructure",
+    "related_packages": [2, 3, 4],
+    "position": "neutral"
+  },
+  {
+    "id": "renewable-ipps",
+    "name": "Renewable Energy IPPs",
+    "category": "Private Sector",
+    "influence_score": 6,
+    "support_level": 5,
+    "key_interests": "Grid access, wheeling rights, REIPPPP continuity, power purchase agreements",
+    "related_packages": [1, 4],
+    "position": "supporter"
+  },
+  {
+    "id": "saftu",
+    "name": "SAFTU",
+    "category": "Labour",
+    "influence_score": 6,
+    "support_level": -4,
+    "key_interests": "Anti-austerity, nationalisation, worker ownership, universal basic income",
+    "related_packages": [1, 2, 5],
+    "position": "opponent"
+  },
+  {
+    "id": "us-agoa",
+    "name": "US / AGOA Trade Relations",
+    "category": "International",
+    "influence_score": 6,
+    "support_level": 2,
+    "key_interests": "Trade access, preferential market terms, geopolitical alignment",
+    "related_packages": [4],
+    "position": "mixed"
+  },
+  {
+    "id": "world-bank",
+    "name": "World Bank Group",
+    "category": "International",
+    "influence_score": 6,
+    "support_level": 4,
+    "key_interests": "Structural reform, private sector development, fiscal sustainability, poverty reduction",
+    "related_packages": [1, 2, 3, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "dpe",
+    "name": "Department of Public Enterprises (DPE)",
+    "category": "Government",
+    "influence_score": 5,
+    "support_level": 1,
+    "key_interests": "SOE oversight, restructuring mandates, public asset management",
+    "related_packages": [1, 5],
+    "position": "neutral"
+  },
+  {
+    "id": "prasa",
+    "name": "PRASA",
+    "category": "SOE",
+    "influence_score": 5,
+    "support_level": 0,
+    "key_interests": "Passenger rail funding, infrastructure recapitalisation, operational continuity",
+    "related_packages": [1, 3],
+    "position": "neutral"
+  },
+  {
+    "id": "outa",
+    "name": "OUTA",
+    "category": "Civil Society",
+    "influence_score": 5,
+    "support_level": 4,
+    "key_interests": "Accountability, anti-corruption, public infrastructure delivery",
+    "related_packages": [1, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "imf",
+    "name": "IMF",
+    "category": "International",
+    "influence_score": 5,
+    "support_level": 3,
+    "key_interests": "Fiscal consolidation, SOE reform, debt sustainability, structural adjustment",
+    "related_packages": [1, 5],
+    "position": "supporter"
+  },
+  {
+    "id": "eu",
+    "name": "European Union",
+    "category": "International",
+    "influence_score": 5,
+    "support_level": 3,
+    "key_interests": "Green energy transition, trade access, rule of law, Just Energy Transition",
+    "related_packages": [1, 4],
+    "position": "supporter"
+  },
+  {
+    "id": "section27",
+    "name": "Section27",
+    "category": "Civil Society",
+    "influence_score": 4,
+    "support_level": 3,
+    "key_interests": "Healthcare access, education rights, social determinants of health",
+    "related_packages": [3],
+    "position": "supporter"
+  },
+  {
+    "id": "equal-education",
+    "name": "Equal Education",
+    "category": "Civil Society",
+    "influence_score": 4,
+    "support_level": 3,
+    "key_interests": "Basic education quality, school infrastructure, teacher accountability",
+    "related_packages": [3],
+    "position": "supporter"
+  },
+  {
+    "id": "competition-commission",
+    "name": "Competition Commission",
+    "category": "Regulator",
+    "influence_score": 7,
+    "support_level": 3,
+    "key_interests": "Market concentration, anti-competitive behaviour, SMME access, pricing",
+    "related_packages": [2, 4],
+    "position": "supporter"
+  },
+  {
+    "id": "pari",
+    "name": "Public Affairs Research Institute (PARI)",
+    "category": "Civil Society",
+    "influence_score": 3,
+    "support_level": 4,
+    "key_interests": "State capacity, public administration reform, policy implementation quality",
+    "related_packages": [5],
+    "position": "supporter"
+  }
+]
