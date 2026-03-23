@@ -171,6 +171,26 @@ export function getIdeaBySlug(slug: string): IdeaRow | null {
   }
 }
 
+// ── Related ideas (same reform package) ───────────────────────────────────
+
+export function getRelatedIdeas(packageId: number, currentId: number): IdeaRow[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT p.*,
+        (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
+        (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
+        CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
+      FROM policy_ideas p
+      WHERE p.reform_package = ? AND p.id != ?
+      ORDER BY p.growth_impact_rating DESC, p.id
+    `).all(packageId, currentId) as IdeaRow[];
+    return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
+  } finally {
+    db.close();
+  }
+}
+
 // ── Constraint summaries ───────────────────────────────────────────────────
 
 export interface ConstraintSummaryRow {

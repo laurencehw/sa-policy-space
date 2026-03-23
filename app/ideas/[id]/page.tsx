@@ -50,13 +50,46 @@ async function getSourceMeetings(ideaId: number): Promise<Meeting[]> {
   return await getIdeaMeetings(ideaId) as Meeting[];
 }
 
+async function fetchRelatedIdeas(packageId: number, currentId: number): Promise<any[]> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    const { getRelatedIdeas } = await import("@/lib/local-api");
+    return getRelatedIdeas(packageId, currentId) as any[];
+  }
+  const { getRelatedIdeas } = await import("@/lib/supabase-api");
+  return await getRelatedIdeas(packageId, currentId) as any[];
+}
+
 function fmtMonthYear(iso: string | null | undefined): string | null {
   if (!iso) return null;
   const d = new Date(iso);
   return d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
 }
 
+/** Safely parse a field that might be a JSON string or already an array */
+function parseArrayField(value: unknown): string[] | null {
+  if (!value) return null;
+  if (Array.isArray(value)) return value as string[];
+  if (typeof value === "string") {
+    try { return JSON.parse(value); } catch { return null; }
+  }
+  return null;
+}
+
 // ── Sub-components ─────────────────────────────────────────────────────────
+
+function TimeHorizonBadge({ horizon }: { horizon: string | null | undefined }) {
+  if (!horizon) return null;
+  const config: Record<string, { label: string; className: string }> = {
+    quick_win:   { label: "Quick Win",   className: "bg-green-100 text-green-800 ring-green-600/20" },
+    medium_term: { label: "Medium Term", className: "bg-amber-100 text-amber-800 ring-amber-600/20" },
+    long_term:   { label: "Long Term",   className: "bg-red-100 text-red-800 ring-red-600/20" },
+  };
+  const c = config[horizon];
+  if (!c) return null;
+  return (
+    <span className={`badge ring-1 ${c.className}`}>{c.label}</span>
+  );
+}
 
 function RatingIndicator({ label, value, max = 5 }: {
   label: string;
@@ -139,10 +172,15 @@ export default async function IdeaDetailPage({
   const idea = await fetchIdeaBySlug(slugOrId);
   if (!idea) return <NoData />;
 
-  const [plan, meetings] = await Promise.all([
+  const [plan, meetings, relatedIdeas] = await Promise.all([
     getImplementationPlan(idea.id),
     getSourceMeetings(idea.id),
+    idea.reform_package ? fetchRelatedIdeas(idea.reform_package, idea.id) : Promise.resolve([]),
   ]);
+
+  // Parse enriched array fields (may arrive as JSON strings from SQLite)
+  const keyQuotes = parseArrayField(idea.key_quotes);
+  const departments = parseArrayField(idea.responsible_departments);
 
   return (
     <div className="max-w-3xl space-y-8">
@@ -165,6 +203,7 @@ export default async function IdeaDetailPage({
           <span className={`badge ring-1 ${STATUS_COLORS[idea.current_status]}`}>
             {idea.current_status}
           </span>
+          <TimeHorizonBadge horizon={idea.time_horizon} />
           {idea.times_raised > 1 && (
             <span className="badge bg-gray-100 text-gray-600 ring-gray-200">
               Raised {idea.times_raised}× in committee
@@ -205,17 +244,71 @@ export default async function IdeaDetailPage({
         )}
       </div>
 
-      {/* Ratings */}
+      {/* Assessment */}
       <div className="card space-y-3">
         <h2 className="font-semibold text-sm text-gray-700">Assessment</h2>
         <RatingIndicator label="Growth Impact" value={idea.growth_impact_rating} />
         <RatingIndicator label="Feasibility" value={idea.feasibility_rating} />
-        {idea.responsible_department && (
+
+        {/* Quantified impact numbers */}
+        {(idea.growth_impact_pct != null || idea.fiscal_impact_zar_bn != null) && (
+          <div className="grid grid-cols-2 gap-3 pt-1">
+            {idea.growth_impact_pct != null && (
+              <div className="rounded-lg bg-green-50 px-3 py-2">
+                <p className="text-xs text-gray-500 mb-0.5">Growth Impact</p>
+                <p className="font-semibold text-green-800 text-sm">
+                  {idea.growth_impact_pct > 0 ? "+" : ""}
+                  {idea.growth_impact_pct.toFixed(1)}% GDP
+                </p>
+              </div>
+            )}
+            {idea.fiscal_impact_zar_bn != null && (
+              <div className="rounded-lg bg-amber-50 px-3 py-2">
+                <p className="text-xs text-gray-500 mb-0.5">Fiscal Impact</p>
+                <p className="font-semibold text-amber-800 text-sm">
+                  R {Math.abs(idea.fiscal_impact_zar_bn).toFixed(1)} bn
+                  {idea.fiscal_impact_zar_bn < 0 ? " cost" : " saving"}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Responsible department(s) */}
+        {departments && departments.length > 0 ? (
+          <div className="pt-1">
+            <p className="text-xs text-gray-500 mb-1.5">Responsible departments</p>
+            <div className="flex flex-wrap gap-1.5">
+              {departments.map((dept) => (
+                <span
+                  key={dept}
+                  className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+                  style={{ backgroundColor: "#e6f4ed", color: "#007A4D" }}
+                >
+                  {dept}
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : idea.responsible_department ? (
           <p className="text-xs text-gray-500 pt-1">
             Responsible: <span className="font-medium text-gray-700">{idea.responsible_department}</span>
           </p>
-        )}
+        ) : null}
       </div>
+
+      {/* Feasibility Assessment callout */}
+      {idea.feasibility_notes && (
+        <div
+          className="rounded-lg border-l-4 p-4"
+          style={{ backgroundColor: "#f0faf4", borderColor: "#007A4D" }}
+        >
+          <h2 className="font-semibold text-sm mb-1" style={{ color: "#007A4D" }}>
+            Feasibility Assessment
+          </h2>
+          <p className="text-sm text-gray-700 leading-relaxed">{idea.feasibility_notes}</p>
+        </div>
+      )}
 
       {/* Description */}
       <div>
@@ -223,8 +316,24 @@ export default async function IdeaDetailPage({
         <p className="text-gray-700 leading-relaxed">{idea.description}</p>
       </div>
 
-      {/* Key Quote */}
-      {idea.key_quote && (
+      {/* Key Quotes (array) */}
+      {keyQuotes && keyQuotes.length > 0 && (
+        <div className="space-y-3">
+          <h2 className="font-semibold text-gray-900">Key Quotes</h2>
+          {keyQuotes.map((quote, i) => (
+            <blockquote
+              key={i}
+              className="border-l-4 pl-4 italic text-gray-600"
+              style={{ borderColor: "#FFB612" }}
+            >
+              {quote}
+            </blockquote>
+          ))}
+        </div>
+      )}
+
+      {/* Key Quote (single, fallback) */}
+      {!keyQuotes?.length && idea.key_quote && (
         <blockquote className="border-l-4 border-sa-gold pl-4 italic text-gray-600">
           {idea.key_quote}
         </blockquote>
@@ -268,12 +377,55 @@ export default async function IdeaDetailPage({
             </div>
           )}
 
+          {plan.political_feasibility_notes && (
+            <div
+              className="rounded-lg border-l-4 p-3"
+              style={{ backgroundColor: "#fffbeb", borderColor: "#FFB612" }}
+            >
+              <span className="text-xs font-medium" style={{ color: "#92600a" }}>
+                Political Feasibility
+              </span>
+              <p className="text-sm mt-0.5 text-gray-700">{plan.political_feasibility_notes}</p>
+            </div>
+          )}
+
           {plan.international_precedents && (
             <div>
               <span className="text-xs text-gray-500">International Precedents</span>
               <p className="text-sm mt-0.5">{plan.international_precedents}</p>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Related Reforms */}
+      {relatedIdeas.length > 0 && (
+        <div>
+          <h2 className="font-semibold text-gray-900 mb-3">Related Reforms in Package</h2>
+          <div className="space-y-2">
+            {relatedIdeas.map((related: any) => (
+              <Link
+                key={related.id}
+                href={`/ideas/${related.slug}`}
+                className="card flex items-center justify-between group hover:border-sa-green transition-colors"
+              >
+                <div>
+                  <p className="text-sm font-medium text-gray-900 group-hover:text-sa-green">
+                    {related.title}
+                  </p>
+                  <div className="flex gap-2 mt-0.5">
+                    {related.current_status && (
+                      <span className="text-xs text-gray-400">{related.current_status}</span>
+                    )}
+                    {related.time_horizon && (
+                      <TimeHorizonBadge horizon={related.time_horizon} />
+                    )}
+                  </div>
+                </div>
+                <span className="text-xs text-sa-green flex-shrink-0">→</span>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
 

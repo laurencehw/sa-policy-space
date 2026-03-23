@@ -167,6 +167,20 @@ export async function getIdeaBySlug(slug: string) {
   return await getIdeaById(match.id);
 }
 
+// ── Related ideas (same reform package) ───────────────────────────────────
+
+export async function getRelatedIdeas(packageId: number, currentId: number) {
+  const { data } = await supabase
+    .from("policy_ideas")
+    .select("id, title, current_status, time_horizon, growth_impact_rating")
+    .eq("reform_package", packageId)
+    .neq("id", currentId)
+    .order("growth_impact_rating", { ascending: false });
+
+  if (!data?.length) return [];
+  return (data as any[]).map((r) => ({ ...r, slug: slugify(r.title) }));
+}
+
 // ── Committees ─────────────────────────────────────────────────────────────
 
 export async function getCommittees(): Promise<{ name: string; count: number }[]> {

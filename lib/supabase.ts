@@ -66,6 +66,12 @@ export interface PolicyIdea {
   first_raised: string | null;
   last_discussed: string | null;
   dormant: number; // 1 = last discussed > 12 months ago
+  // Enriched fields (may be absent in older records)
+  feasibility_notes?: string | null;
+  key_quotes?: string[] | string | null;
+  growth_impact_pct?: number | null;
+  fiscal_impact_zar_bn?: number | null;
+  responsible_departments?: string[] | string | null;
 }
 
 export interface ImplementationPlan {
