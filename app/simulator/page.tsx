@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { useState, useMemo } from "react";
 import stakeholdersData from "@/data/stakeholders.json";
 import reformPackagesData from "@/data/reform_packages.json";
+import budgetAlignmentData from "@/data/budget_alignment.json";
 
 // ── Types ─────────────────────────────────────────────────────────────────
 
@@ -37,6 +38,18 @@ const stakeholders = stakeholdersData as Stakeholder[];
 const reformPackages = (Object.values(reformPackagesData) as PackageData[]).sort(
   (a, b) => a.package_id - b.package_id
 );
+
+// ── Fiscal readiness (derived from budget_alignment.json) ─────────────────
+
+const FISCAL_READINESS: Record<number, number> = Object.fromEntries(
+  budgetAlignmentData.packages.map((p) => [
+    p.package_id,
+    Math.round((p.budget_allocated / p.budget_recommended) * 100),
+  ])
+);
+
+const POLITICAL_WEIGHT = 0.7;
+const FISCAL_WEIGHT = 0.3;
 
 // ── Scoring constants ─────────────────────────────────────────────────────
 
@@ -73,7 +86,7 @@ const CATEGORY_DOT: Record<Category, string> = {
   International: "bg-slate-500",
 };
 
-const FEASIBILITY_THRESHOLD = 60;
+const FEASIBILITY_THRESHOLD = 75;
 
 // ── Baseline helpers ──────────────────────────────────────────────────────
 
@@ -84,9 +97,9 @@ function baselineInfluences(): Record<string, number> {
   return Object.fromEntries(stakeholders.map((s) => [s.id, s.influence_score]));
 }
 
-// ── Feasibility calculation ───────────────────────────────────────────────
+// ── Scoring ───────────────────────────────────────────────────────────────
 
-function computeFeasibility(
+function computePoliticalScore(
   packageId: number,
   stances: Record<string, Stance>,
   influences: Record<string, number>
@@ -110,6 +123,16 @@ function computeFeasibility(
   return Math.max(0, Math.min(100, Math.round(((raw - min) / (max - min)) * 100)));
 }
 
+function computeCombinedScore(
+  packageId: number,
+  stances: Record<string, Stance>,
+  influences: Record<string, number>
+): number {
+  const political = computePoliticalScore(packageId, stances, influences);
+  const fiscal = FISCAL_READINESS[packageId] ?? 50;
+  return Math.round(POLITICAL_WEIGHT * political + FISCAL_WEIGHT * fiscal);
+}
+
 // ── Coalition finder (greedy: highest-influence swing stakeholders first) ─
 
 interface CoalitionStep {
@@ -123,7 +146,7 @@ function findCoalition(
   stances: Record<string, Stance>,
   influences: Record<string, number>
 ): CoalitionStep[] {
-  if (computeFeasibility(packageId, stances, influences) >= FEASIBILITY_THRESHOLD) return [];
+  if (computeCombinedScore(packageId, stances, influences) >= FEASIBILITY_THRESHOLD) return [];
 
   const relevant = stakeholders.filter((s) =>
     s.related_packages.includes(packageId)
@@ -137,13 +160,13 @@ function findCoalition(
 
   const steps: CoalitionStep[] = [];
   let sim = { ...stances };
-  let score = computeFeasibility(packageId, sim, influences);
+  let combined = computeCombinedScore(packageId, sim, influences);
 
   for (const s of swingable) {
-    if (score >= FEASIBILITY_THRESHOLD) break;
+    if (combined >= FEASIBILITY_THRESHOLD) break;
     sim = { ...sim, [s.id]: "constructive_critic" };
-    score = computeFeasibility(packageId, sim, influences);
-    steps.push({ stakeholder: s, fromStance: stances[s.id] as Stance, cumulativeScore: score });
+    combined = computeCombinedScore(packageId, sim, influences);
+    steps.push({ stakeholder: s, fromStance: stances[s.id] as Stance, cumulativeScore: combined });
   }
 
   return steps;
@@ -232,19 +255,30 @@ const SCENARIOS: Scenario[] = [
   },
 ];
 
-// ── Score bar colour helper ───────────────────────────────────────────────
+// ── Score colour helpers ───────────────────────────────────────────────────
 
 function scoreColor(score: number): string {
-  if (score >= 75) return "bg-emerald-500";
-  if (score >= FEASIBILITY_THRESHOLD) return "bg-green-400";
-  if (score >= 40) return "bg-amber-500";
+  if (score >= FEASIBILITY_THRESHOLD) return "bg-emerald-500";
+  if (score >= 55) return "bg-amber-500";
   return "bg-red-500";
 }
 
 function scoreLabelColor(score: number): string {
   if (score >= FEASIBILITY_THRESHOLD) return "text-emerald-700";
-  if (score >= 40) return "text-amber-700";
+  if (score >= 55) return "text-amber-700";
   return "text-red-700";
+}
+
+function politicalBarColor(score: number): string {
+  if (score >= 80) return "bg-blue-500";
+  if (score >= 60) return "bg-blue-400";
+  return "bg-blue-300";
+}
+
+function fiscalBarColor(score: number): string {
+  if (score >= 75) return "bg-violet-500";
+  if (score >= 55) return "bg-violet-400";
+  return "bg-violet-300";
 }
 
 // ── Package short names ───────────────────────────────────────────────────
@@ -281,34 +315,45 @@ export default function SimulatorPage() {
     [stances, influences]
   );
 
-  const baseScores = useMemo(
-    () =>
-      Object.fromEntries(
-        reformPackages.map((p) => [
-          p.package_id,
-          computeFeasibility(p.package_id, baselineStances(), baselineInfluences()),
-        ])
-      ),
-    []
-  );
+  const baselineScores = useMemo(() => {
+    const baseS = baselineStances();
+    const baseI = baselineInfluences();
+    return Object.fromEntries(
+      reformPackages.map((p) => [
+        p.package_id,
+        {
+          political: computePoliticalScore(p.package_id, baseS, baseI),
+          combined: computeCombinedScore(p.package_id, baseS, baseI),
+        },
+      ])
+    );
+  }, []);
 
   const scores = useMemo(
     () =>
-      reformPackages.map((pkg) => ({
-        pkg,
-        score: computeFeasibility(pkg.package_id, stances, influences),
-        baseline: baseScores[pkg.package_id],
-      })),
-    [stances, influences, baseScores]
+      reformPackages.map((pkg) => {
+        const political = computePoliticalScore(pkg.package_id, stances, influences);
+        const fiscal = FISCAL_READINESS[pkg.package_id] ?? 50;
+        const combined = Math.round(POLITICAL_WEIGHT * political + FISCAL_WEIGHT * fiscal);
+        const base = baselineScores[pkg.package_id];
+        return {
+          pkg,
+          political,
+          fiscal,
+          combined,
+          baselineCombined: base.combined,
+        };
+      }),
+    [stances, influences, baselineScores]
   );
 
   const coalitions = useMemo(
     () =>
       scores
-        .filter(({ score }) => score < FEASIBILITY_THRESHOLD)
-        .map(({ pkg, score }) => ({
+        .filter(({ combined }) => combined < FEASIBILITY_THRESHOLD)
+        .map(({ pkg, combined }) => ({
           pkg,
-          score,
+          score: combined,
           steps: findCoalition(pkg.package_id, stances, influences),
         })),
     [scores, stances, influences]
@@ -374,9 +419,11 @@ export default function SimulatorPage() {
           Political Feasibility Simulator
         </h1>
         <p className="text-sm text-gray-500 mt-1 max-w-2xl">
-          Model how shifting stakeholder stances affects the political feasibility of each
-          reform package. Toggle individual stances or apply a preset scenario — scores
-          update in real time. Feasibility threshold: <strong>60 / 100</strong>.
+          Model how shifting stakeholder stances affects the feasibility of each reform package.
+          Scores combine <strong>political support (70%)</strong> and{" "}
+          <strong>fiscal readiness (30%)</strong> — a package can have strong coalition backing
+          but still stall if it is massively underfunded. Feasibility threshold:{" "}
+          <strong>75 / 100</strong>.
         </p>
       </div>
 
@@ -401,6 +448,11 @@ export default function SimulatorPage() {
             {STANCE_WEIGHTS[s]} × influence
           </span>
         ))}
+        <span className="text-gray-300">|</span>
+        <span className="flex items-center gap-1">
+          <span className="inline-block w-2 h-2 rounded-full bg-violet-400" />
+          Fiscal readiness = allocated / recommended spend
+        </span>
       </div>
 
       {/* ── Preset scenarios ── */}
@@ -558,11 +610,12 @@ export default function SimulatorPage() {
               Reform Package Feasibility
             </h2>
             <div className="space-y-3">
-              {scores.map(({ pkg, score, baseline }) => {
-                const delta = score - baseline;
+              {scores.map(({ pkg, political, fiscal, combined, baselineCombined }) => {
+                const delta = combined - baselineCombined;
                 return (
                   <div key={pkg.package_id} className="card p-4">
-                    <div className="flex items-start justify-between mb-1">
+                    {/* Package header */}
+                    <div className="flex items-start justify-between mb-3">
                       <div className="flex-1 min-w-0 pr-3">
                         <span className="text-sm font-semibold text-gray-900">
                           {pkg.name}
@@ -582,57 +635,104 @@ export default function SimulatorPage() {
                           </span>
                         )}
                         <span
-                          className={`text-lg font-bold tabular-nums ${scoreLabelColor(score)}`}
+                          className={`text-lg font-bold tabular-nums ${scoreLabelColor(combined)}`}
                         >
-                          {score}
+                          {combined}
                         </span>
                         <span className="text-xs text-gray-400">/100</span>
                       </div>
                     </div>
 
-                    {/* Bar */}
-                    <div className="relative h-3 bg-gray-100 rounded-full mt-2 overflow-hidden">
-                      <div
-                        className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${scoreColor(score)}`}
-                        style={{ width: `${score}%` }}
-                      />
-                      {/* Baseline ghost bar */}
-                      {delta !== 0 && (
-                        <div
-                          className="absolute inset-y-0 left-0 rounded-full bg-gray-300/50"
-                          style={{ width: `${baseline}%` }}
-                        />
-                      )}
-                      {/* Threshold line */}
-                      <div
-                        className="absolute top-0 bottom-0 w-px bg-gray-500 z-10"
-                        style={{ left: `${FEASIBILITY_THRESHOLD}%` }}
-                      />
-                    </div>
+                    {/* Component bars */}
+                    <div className="space-y-1.5">
+                      {/* Political bar */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-gray-400 w-14 flex-shrink-0 text-right">
+                          Political
+                        </span>
+                        <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-300 ${politicalBarColor(political)}`}
+                            style={{ width: `${political}%` }}
+                          />
+                        </div>
+                        <span className="text-[10px] text-gray-500 tabular-nums w-6 text-right flex-shrink-0">
+                          {political}
+                        </span>
+                      </div>
 
-                    {/* Bar labels */}
-                    <div className="flex justify-between mt-1 relative">
-                      <span className="text-[9px] text-gray-400">0</span>
-                      <span
-                        className="text-[9px] text-gray-500 absolute"
-                        style={{ left: `calc(${FEASIBILITY_THRESHOLD}% - 10px)` }}
-                      >
-                        60↑
-                      </span>
-                      <span className="text-[9px] text-gray-400">100</span>
+                      {/* Fiscal readiness bar */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-gray-400 w-14 flex-shrink-0 text-right">
+                          Fiscal
+                        </span>
+                        <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${fiscalBarColor(fiscal)}`}
+                            style={{ width: `${fiscal}%` }}
+                          />
+                        </div>
+                        <span className="text-[10px] text-gray-500 tabular-nums w-6 text-right flex-shrink-0">
+                          {fiscal}
+                        </span>
+                      </div>
+
+                      {/* Combined bar with threshold marker */}
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] text-gray-600 font-medium w-14 flex-shrink-0 text-right">
+                          Combined
+                        </span>
+                        <div className="flex-1 relative h-3 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${scoreColor(combined)}`}
+                            style={{ width: `${combined}%` }}
+                          />
+                          {delta !== 0 && (
+                            <div
+                              className="absolute inset-y-0 left-0 rounded-full bg-gray-300/50"
+                              style={{ width: `${baselineCombined}%` }}
+                            />
+                          )}
+                          {/* Threshold line */}
+                          <div
+                            className="absolute top-0 bottom-0 w-px bg-gray-600 z-10"
+                            style={{ left: `${FEASIBILITY_THRESHOLD}%` }}
+                          />
+                        </div>
+                        <span className="text-[10px] text-gray-600 font-medium tabular-nums w-6 text-right flex-shrink-0">
+                          {combined}
+                        </span>
+                      </div>
+
+                      {/* Threshold label row */}
+                      <div className="flex items-center gap-2">
+                        <span className="w-14 flex-shrink-0" />
+                        <div className="flex-1 relative h-3">
+                          <span
+                            className="text-[9px] text-gray-400 absolute -translate-x-1/2"
+                            style={{ left: `${FEASIBILITY_THRESHOLD}%` }}
+                          >
+                            75 threshold
+                          </span>
+                        </div>
+                        <span className="w-6 flex-shrink-0" />
+                      </div>
                     </div>
 
                     {/* Status chip */}
-                    <div className="mt-2">
-                      {score >= FEASIBILITY_THRESHOLD ? (
+                    <div className="mt-2 flex items-center gap-2">
+                      {combined >= FEASIBILITY_THRESHOLD ? (
                         <span className="inline-flex items-center gap-1 text-[10px] font-medium text-emerald-700 bg-emerald-50 ring-1 ring-emerald-200 px-2 py-0.5 rounded-full">
                           ✓ Feasible
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 text-[10px] font-medium text-amber-700 bg-amber-50 ring-1 ring-amber-200 px-2 py-0.5 rounded-full">
-                          {FEASIBILITY_THRESHOLD - score} pts below threshold
+                          {FEASIBILITY_THRESHOLD - combined} pts below threshold
                         </span>
                       )}
+                      <span className="text-[9px] text-gray-300">
+                        {POLITICAL_WEIGHT * 100}% political · {FISCAL_WEIGHT * 100}% fiscal
+                      </span>
                     </div>
                   </div>
                 );
@@ -646,8 +746,10 @@ export default function SimulatorPage() {
               Coalition Map
             </h2>
             <p className="text-xs text-gray-400 mb-3">
-              Minimum shifts (greedy, highest-influence first) needed to reach the 60-point
-              threshold for packages currently below it.
+              Minimum stakeholder shifts (greedy, highest-influence first) needed to push the
+              combined score above the 75-point threshold for packages currently below it.
+              Note: fiscal readiness is fixed — political shifts alone may not be sufficient
+              if underfunding is severe.
             </p>
 
             {coalitions.length === 0 ? (
@@ -668,17 +770,23 @@ export default function SimulatorPage() {
                       <span className="text-sm font-semibold text-gray-900">
                         {pkg.name}
                       </span>
-                      <span className="text-xs text-gray-500">
-                        Current:{" "}
-                        <span className="font-medium text-amber-700">{score}</span>
-                        /100
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-gray-400">
+                          Fiscal readiness: {FISCAL_READINESS[pkg.package_id]}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          Combined:{" "}
+                          <span className="font-medium text-amber-700">{score}</span>
+                          /100
+                        </span>
+                      </div>
                     </div>
 
                     {steps.length === 0 ? (
                       <p className="text-xs text-gray-400">
                         No feasible path found — all cautious/concerned stakeholders already
-                        shifted. Consider addressing concerned stakeholders directly.
+                        shifted. The fiscal readiness gap ({100 - (FISCAL_READINESS[pkg.package_id] ?? 50)} pts below full funding)
+                        may be the binding constraint.
                       </p>
                     ) : (
                       <>
@@ -788,7 +896,7 @@ export default function SimulatorPage() {
             <div className="grid grid-cols-3 gap-3 text-center">
               <div>
                 <p className="text-2xl font-bold text-gray-900">
-                  {scores.filter(({ score }) => score >= FEASIBILITY_THRESHOLD).length}
+                  {scores.filter(({ combined }) => combined >= FEASIBILITY_THRESHOLD).length}
                 </p>
                 <p className="text-[10px] text-gray-500 mt-0.5">
                   packages feasible
@@ -796,9 +904,9 @@ export default function SimulatorPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">
-                  {Math.round(scores.reduce((acc, { score }) => acc + score, 0) / scores.length)}
+                  {Math.round(scores.reduce((acc, { combined }) => acc + combined, 0) / scores.length)}
                 </p>
-                <p className="text-[10px] text-gray-500 mt-0.5">avg score</p>
+                <p className="text-[10px] text-gray-500 mt-0.5">avg combined score</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">
