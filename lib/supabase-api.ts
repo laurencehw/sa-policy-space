@@ -260,7 +260,11 @@ export async function getIdeaMeetings(ideaId: number) {
   return (data as any[])
     .map((r) => r.meetings)
     .filter(Boolean)
-    .sort((a: any, b: any) => (b.date > a.date ? 1 : -1));
+    .sort((a: any, b: any) => (b.date > a.date ? 1 : -1))
+    .map((m: any) => ({
+      ...m,
+      pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+    }));
 }
 
 // ── Reform packages (bundled JSON, no DB needed) ──────────────────────────

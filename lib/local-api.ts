@@ -244,7 +244,7 @@ export function getImplementationPlan(ideaId: number): Record<string, unknown> |
 export function getIdeaMeetings(ideaId: number): unknown[] {
   const db = getDb();
   try {
-    return db
+    return (db
       .prepare(
         `SELECT m.*
          FROM meetings m
@@ -252,7 +252,11 @@ export function getIdeaMeetings(ideaId: number): unknown[] {
          WHERE im.idea_id = ?
          ORDER BY m.date DESC`
       )
-      .all(ideaId);
+      .all(ideaId) as any[])
+      .map((m: any) => ({
+        ...m,
+        pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+      }));
   } finally {
     db.close();
   }
