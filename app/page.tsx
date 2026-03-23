@@ -5,8 +5,6 @@ import { CONSTRAINT_LABELS, type BindingConstraint } from "@/lib/supabase";
 
 // ── Data fetching ──────────────────────────────────────────────────────────
 
-const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-
 const PACKAGE_STYLES: Record<number, { border: string; dot: string }> = {
   1: { border: "border-amber-300",  dot: "bg-amber-400"  },
   2: { border: "border-blue-300",   dot: "bg-blue-400"   },
@@ -16,6 +14,7 @@ const PACKAGE_STYLES: Record<number, { border: string; dot: string }> = {
 };
 
 async function getDashboardData() {
+  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (isLocal) {
     const { getStats, getIdeas, getPackageSummaries } = await import("@/lib/local-api");
     const stats = getStats();
