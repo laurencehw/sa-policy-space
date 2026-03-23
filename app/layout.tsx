@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import NavDropdown from "@/components/NavDropdown";
 
 export const metadata: Metadata = {
   title: "SA Policy Space",
@@ -27,18 +28,55 @@ export default function RootLayout({
               </span>
               <span className="font-semibold text-gray-900">SA Policy Space</span>
             </Link>
-            <nav className="hidden sm:flex items-center gap-6 text-sm text-gray-600">
-              <Link href="/ideas" className="hover:text-gray-900 transition-colors">Ideas</Link>
-              <Link href="/packages" className="hover:text-gray-900 transition-colors">Reform Packages</Link>
-              <Link href="/dependencies" className="hover:text-gray-900 transition-colors">Dependencies</Link>
-              <Link href="/themes" className="hover:text-gray-900 transition-colors">By Constraint</Link>
-              <Link href="/analytics" className="hover:text-gray-900 transition-colors">Analytics</Link>
-              <Link href="/stakeholders" className="hover:text-gray-900 transition-colors">Stakeholders</Link>
-              <Link href="/about" className="hover:text-gray-900 transition-colors">About</Link>
+
+            <nav className="hidden sm:flex items-center gap-1 text-sm text-gray-600">
+              <Link href="/ideas" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                Ideas
+              </Link>
+              <Link href="/packages" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                Packages
+              </Link>
+              <Link href="/themes" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                By Constraint
+              </Link>
+
+              {/* Analyse dropdown */}
+              <NavDropdown label="Analyse">
+                <Link href="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Analytics
+                </Link>
+                <Link href="/dependencies" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Dependencies
+                </Link>
+                <Link href="/stakeholders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Stakeholders
+                </Link>
+                <Link href="/comparisons" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  International Comparisons
+                </Link>
+                <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Budget Alignment
+                </Link>
+              </NavDropdown>
+
+              {/* Policy Tools dropdown */}
+              <NavDropdown label="Policy Tools">
+                <Link href="/accountability" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Accountability Dashboard
+                </Link>
+                <Link href="/briefs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Brief Generator
+                </Link>
+              </NavDropdown>
+
+              <Link href="/about" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                About
+              </Link>
+
               <a
                 href="/documents/SA_Growth_Agenda_Integrated_Framework.docx"
                 download
-                className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-sa-green/10 text-sa-green hover:bg-sa-green/20 transition-colors text-xs font-medium"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-sa-green/10 text-sa-green hover:bg-sa-green/20 transition-colors text-xs font-medium ml-1"
               >
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -47,6 +85,7 @@ export default function RootLayout({
                 Report
               </a>
             </nav>
+
             {/* Mobile nav toggle placeholder */}
             <button className="sm:hidden p-2 text-gray-500" aria-label="Open menu">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
