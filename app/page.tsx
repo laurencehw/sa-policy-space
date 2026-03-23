@@ -1,226 +1,458 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
-import { CONSTRAINT_LABELS, type BindingConstraint } from "@/lib/supabase";
+import fs from "fs";
+import path from "path";
+import { computeReformIndex } from "@/lib/reform-index";
+import { computeNetworkCentrality } from "@/lib/analytics";
+import type { DependencyGraph } from "@/lib/analytics";
 
-// ── Data fetching ──────────────────────────────────────────────────────────
+// ── Data ────────────────────────────────────────────────────────────────────
 
-const PACKAGE_STYLES: Record<number, { border: string; dot: string }> = {
-  1: { border: "border-amber-300",  dot: "bg-amber-400"  },
-  2: { border: "border-blue-300",   dot: "bg-blue-400"   },
-  3: { border: "border-purple-300", dot: "bg-purple-400" },
-  4: { border: "border-teal-300",   dot: "bg-teal-400"   },
-  5: { border: "border-slate-300",  dot: "bg-slate-400"  },
-};
-
-async function getDashboardData() {
+async function getHomepageData() {
   const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+  let stats: { totalIdeas: number; meetingsAnalyzed: number; constraintsCovered: number };
   if (isLocal) {
-    const { getStats, getIdeas, getPackageSummaries } = await import("@/lib/local-api");
-    const stats = getStats();
-    const topIdeas = getIdeas({ sort: "impact" }).slice(0, 6);
-    const stalledIdeas = getIdeas({ status: "stalled" }).slice(0, 5);
-    const packageSummaries = getPackageSummaries();
-    return {
-      stats,
-      featuredIdeas: topIdeas as Array<{
-        id: number; title: string; binding_constraint: BindingConstraint;
-        growth_impact_rating: number; current_status: string; description: string;
-      }>,
-      stalledIdeas: stalledIdeas as Array<{
-        id: number; title: string; times_raised: number; responsible_department: string;
-      }>,
-      packageSummaries,
-    };
+    const { getStats } = await import("@/lib/local-api");
+    stats = getStats();
+  } else {
+    const { getStats } = await import("@/lib/supabase-api");
+    stats = await getStats();
   }
 
-  const { getStats, getIdeas, getPackageSummaries } = await import("@/lib/supabase-api");
-  const stats = await getStats();
-  const topIdeas = (await getIdeas({ sort: "impact" })).slice(0, 6);
-  const stalledIdeas = (await getIdeas({ status: "stalled" })).slice(0, 5);
-  const packageSummaries = getPackageSummaries();
+  const reformIndex = computeReformIndex();
 
-  return {
-    stats,
-    featuredIdeas: topIdeas as Array<{
-      id: number; title: string; binding_constraint: BindingConstraint;
-      growth_impact_rating: number; current_status: string; description: string;
-    }>,
-    stalledIdeas: stalledIdeas as Array<{
-      id: number; title: string; times_raised: number; responsible_department: string;
-    }>,
-    packageSummaries,
-  };
+  let keystones: { id: number; title: string; keystoneScore: number }[] = [];
+  try {
+    const graphPath = path.resolve(process.cwd(), "data", "dependency_graph.json");
+    const graph = JSON.parse(fs.readFileSync(graphPath, "utf-8")) as DependencyGraph;
+    keystones = computeNetworkCentrality(graph)
+      .slice(0, 3)
+      .map((k) => ({ id: k.id, title: k.title, keystoneScore: k.keystoneScore }));
+  } catch {
+    // dependency graph unavailable — skip keystone section
+  }
+
+  let totalGap = 0;
+  try {
+    const budgetPath = path.resolve(process.cwd(), "data", "budget_alignment.json");
+    const budgetData = JSON.parse(fs.readFileSync(budgetPath, "utf-8"));
+    const allocated: number = budgetData.packages.reduce(
+      (s: number, p: { budget_allocated: number }) => s + p.budget_allocated,
+      0
+    );
+    const recommended: number = budgetData.packages.reduce(
+      (s: number, p: { budget_recommended: number }) => s + p.budget_recommended,
+      0
+    );
+    totalGap = Math.round((recommended - allocated) * 10) / 10;
+  } catch {
+    // budget data unavailable
+  }
+
+  return { stats, reformIndex, keystones, totalGap };
 }
 
-// ── Rating dots component ──────────────────────────────────────────────────
+// ── Static content ───────────────────────────────────────────────────────────
 
-function RatingDots({ value, max = 5, color = "bg-sa-green" }: {
-  value: number;
-  max?: number;
-  color?: string;
-}) {
-  return (
-    <span className="flex gap-1">
-      {Array.from({ length: max }).map((_, i) => (
-        <span
-          key={i}
-          className={`rating-dot ${i < value ? color : "bg-gray-200"}`}
-        />
-      ))}
-    </span>
-  );
-}
+const BINDING_CONSTRAINTS = [
+  { id: "energy",             label: "Energy & Electricity",   icon: "⚡" },
+  { id: "logistics",          label: "Logistics & Transport",  icon: "🚂" },
+  { id: "skills",             label: "Skills & Education",     icon: "🎓" },
+  { id: "regulation",         label: "Regulatory Burden",      icon: "📋" },
+  { id: "crime",              label: "Crime & Safety",         icon: "⚖️" },
+  { id: "labor_market",       label: "Labour Market",          icon: "👷" },
+  { id: "land",               label: "Land & Property",        icon: "🏗️" },
+  { id: "digital",            label: "Digital Infrastructure", icon: "💻" },
+  { id: "government_capacity",label: "Government Capacity",    icon: "🏛️" },
+  { id: "corruption",         label: "Corruption & Governance",icon: "🔍" },
+];
 
-// ── Page ──────────────────────────────────────────────────────────────────
+const AUDIENCE_PATHWAYS = [
+  {
+    role: "Policymaker",
+    tagline: "Find evidence-based reform priorities",
+    description:
+      "Access curated reform packages, budget alignment analysis, and AI-assisted policy briefs grounded in committee deliberations.",
+    links: [
+      { label: "Analytics",      href: "/analytics" },
+      { label: "Brief Generator",href: "/briefs" },
+      { label: "Reform Index",   href: "/reform-index" },
+    ],
+    borderColor: "border-sa-green",
+    badgeClass: "bg-sa-green/10 text-sa-green ring-sa-green/20",
+  },
+  {
+    role: "Researcher",
+    tagline: "Explore reform dependencies and data",
+    description:
+      "Map how policy ideas interlock, run network centrality analysis, access raw data via the API, and explore international comparisons.",
+    links: [
+      { label: "Dependencies",   href: "/dependencies" },
+      { label: "API Docs",       href: "/api-docs" },
+      { label: "Comparisons",    href: "/comparisons" },
+    ],
+    borderColor: "border-[#001489]",
+    badgeClass: "bg-blue-50 text-[#001489] ring-blue-200",
+  },
+  {
+    role: "Civil Society",
+    tagline: "Track accountability and progress",
+    description:
+      "Monitor which reform ideas are stalled, who is responsible, and how parliamentary committees are following through on commitments.",
+    links: [
+      { label: "Accountability", href: "/accountability" },
+      { label: "Reform Index",   href: "/reform-index" },
+      { label: "By Constraint",  href: "/themes" },
+    ],
+    borderColor: "border-sa-red",
+    badgeClass: "bg-red-50 text-sa-red ring-red-200",
+  },
+  {
+    role: "Student",
+    tagline: "Learn about SA's economic challenges",
+    description:
+      "Access structured teaching materials, the open textbook, and data-driven explanations of South Africa's binding constraints.",
+    links: [
+      { label: "Teaching",       href: "/teaching" },
+      { label: "By Constraint",  href: "/themes" },
+    ],
+    borderColor: "border-sa-gold",
+    badgeClass: "bg-amber-50 text-amber-700 ring-amber-200",
+  },
+];
+
+// ── Page ────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const { stats, featuredIdeas, stalledIdeas, packageSummaries } = await getDashboardData();
+  const { stats, reformIndex, keystones, totalGap } = await getHomepageData();
+
+  const trendArrow =
+    reformIndex.trend === "up" ? "↑" : reformIndex.trend === "down" ? "↓" : "→";
+  const trendColorClass =
+    reformIndex.trend === "up"
+      ? "text-emerald-600"
+      : reformIndex.trend === "down"
+      ? "text-sa-red"
+      : "text-gray-400";
 
   return (
-    <div className="space-y-10">
+    <div>
 
-      {/* Hero */}
-      <section className="py-8 sm:py-12">
-        <div className="max-w-2xl">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="badge bg-sa-green/10 text-sa-green ring-sa-green/20">
-              Beta
+      {/* ── Hero ───────────────────────────────────────────────────────────── */}
+      <section className="-mx-4 sm:-mx-6 -mt-8 bg-gradient-to-br from-[#007A4D] via-[#006640] to-[#004d30] text-white px-4 sm:px-6 py-14 sm:py-20">
+        <div className="max-w-3xl">
+          {/* Branding accent */}
+          <div className="flex items-center gap-2.5 mb-5">
+            <span className="flex gap-0.5">
+              <span className="w-1 h-4 bg-white/70 rounded-sm" />
+              <span className="w-1 h-4 bg-sa-gold rounded-sm" />
+              <span className="w-1 h-4 bg-sa-red rounded-sm" />
             </span>
-            <span className="text-sm text-gray-500">Parliamentary intelligence for growth</span>
+            <span className="text-white/60 text-xs font-medium tracking-widest uppercase">
+              Beta · Independent Research · NYU Wagner
+            </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4">
-            SA Policy Space:<br />
-            <span className="text-sa-green">Ideas for Growth</span>
+
+          <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-4">
+            Mapping South Africa&apos;s<br />
+            <span className="text-sa-gold">Path to Reform</span>
           </h1>
-          <p className="text-lg text-gray-600 mb-6">
-            Tracking policy ideas that emerge from South African parliamentary
-            committee proceedings — curated, assessed, and held accountable.
+          <p className="text-lg sm:text-xl text-white/80 max-w-2xl leading-relaxed mb-8">
+            A comprehensive database of policy reform ideas drawn from parliamentary committee
+            deliberations — curated, assessed for impact, and tracked for accountability.
           </p>
+
+          {/* Key stats */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[
+              { value: stats.totalIdeas, label: "Policy Ideas" },
+              { value: 5,               label: "Reform Packages" },
+              { value: 10,              label: "Binding Constraints" },
+              { value: 38,              label: "Stakeholders Mapped" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-lg px-4 py-3 text-center min-w-[90px]"
+              >
+                <div className="text-2xl font-bold text-white">{s.value}</div>
+                <div className="text-white/60 text-xs mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA buttons */}
           <div className="flex flex-wrap gap-3">
-            <Link href="/ideas" className="btn-primary">Browse Ideas</Link>
-            <Link href="/packages" className="btn-secondary">Reform Packages</Link>
-            <Link href="/themes" className="btn-secondary">By Binding Constraint</Link>
+            <Link
+              href="/ideas"
+              className="bg-sa-gold text-gray-900 px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-amber-400 transition-colors"
+            >
+              Explore Ideas →
+            </Link>
+            <Link
+              href="/packages"
+              className="bg-white/12 text-white px-6 py-2.5 rounded-lg font-medium text-sm border border-white/25 hover:bg-white/20 transition-colors"
+            >
+              View Reform Packages
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section>
-        <div className="grid grid-cols-3 gap-4">
-          {[
-            { label: "Policy Ideas", value: stats.totalIdeas },
-            { label: "Meetings Analysed", value: stats.meetingsAnalyzed },
-            { label: "Constraints Covered", value: stats.constraintsCovered },
-          ].map((s) => (
-            <div key={s.label} className="card text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-sa-green">
-                {s.value > 0 ? s.value.toLocaleString() : "—"}
+      {/* ── Why This Matters ────────────────────────────────────────────────── */}
+      <section className="py-12 border-b border-gray-100">
+        <div className="grid md:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why This Matters</h2>
+            <div className="space-y-3 text-gray-600 leading-relaxed text-[15px]">
+              <p>
+                South Africa&apos;s economy has grown at under 2% per year for more than a decade —
+                not for want of policy ideas, but because of chronic implementation failure.
+                Parliamentary portfolio committees regularly surface detailed, actionable reforms,
+                yet most go unimplemented or are debated repeatedly without resolution.
+              </p>
+              <p>
+                SA Policy Space systematically catalogues these reform proposals, organised around
+                ten structural{" "}
+                <strong className="text-gray-800">binding constraints</strong> — the core barriers
+                that economists identify as blocking sustained, inclusive growth: energy, logistics,
+                skills, regulation, crime, labour market rigidity, land access, digital infrastructure,
+                government capacity, and corruption.
+              </p>
+              <p>
+                By mapping dependencies between ideas and tracking implementation status, the platform
+                identifies which reforms are{" "}
+                <em className="text-gray-800">keystones</em> — those whose progress unblocks multiple
+                others — and which are stalled despite political commitments.
+              </p>
+            </div>
+            <div className="mt-5">
+              <Link href="/about" className="text-sa-green text-sm font-medium hover:underline">
+                Read the full methodology →
+              </Link>
+            </div>
+          </div>
+
+          {/* Binding constraints grid */}
+          <div>
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
+              10 Binding Constraints Covered
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {BINDING_CONSTRAINTS.map((c) => (
+                <Link
+                  key={c.id}
+                  href={`/themes?constraint=${c.id}`}
+                  className="flex items-center gap-2 p-2.5 rounded-lg border border-gray-100 bg-white hover:border-sa-green/40 hover:bg-sa-green/5 transition-colors group"
+                >
+                  <span className="text-base leading-none">{c.icon}</span>
+                  <span className="text-gray-600 group-hover:text-sa-green text-xs leading-snug">
+                    {c.label}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── What You Can Do Here ────────────────────────────────────────────── */}
+      <section className="py-12 border-b border-gray-100">
+        <h2 className="text-2xl font-bold text-gray-900 mb-1">What You Can Do Here</h2>
+        <p className="text-gray-500 text-sm mb-6">
+          Different tools for different audiences — choose your starting point.
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {AUDIENCE_PATHWAYS.map((audience) => (
+            <div
+              key={audience.role}
+              className={`card border-t-4 ${audience.borderColor} flex flex-col`}
+            >
+              <span className={`badge ${audience.badgeClass} mb-3 self-start`}>
+                {audience.role}
+              </span>
+              <p className="font-semibold text-gray-900 text-sm mb-1.5">{audience.tagline}</p>
+              <p className="text-xs text-gray-500 leading-relaxed flex-1 mb-4">
+                {audience.description}
+              </p>
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
+                {audience.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-xs text-sa-green hover:underline font-medium"
+                  >
+                    {link.label} →
+                  </Link>
+                ))}
               </div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{s.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Featured High-Impact Ideas */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">High-Impact Ideas</h2>
-          <Link href="/ideas?sort=impact" className="text-sm text-sa-green hover:underline">
-            View all →
-          </Link>
+      {/* ── Latest Insights ─────────────────────────────────────────────────── */}
+      <section className="py-12 border-b border-gray-100">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">Latest Insights</h2>
+          <p className="text-gray-500 text-sm mt-0.5">Live data from the database — Q1 2026</p>
         </div>
-        {featuredIdeas.length === 0 ? (
-          <div className="card text-center py-10 text-gray-400">
-            <p className="text-sm">No ideas seeded yet.</p>
-            <p className="text-xs mt-1">
-              Add entries to the{" "}
-              <code className="bg-gray-100 px-1 rounded">policy_ideas</code> table to populate this section.
+
+        <div className="grid md:grid-cols-3 gap-5">
+
+          {/* Reform progress score */}
+          <div className="card border-t-4 border-sa-green">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-gray-700">Reform Progress Score</h3>
+              <Link href="/reform-index" className="text-xs text-sa-green hover:underline">
+                Full index →
+              </Link>
+            </div>
+            <div className="flex items-end gap-2 mb-2">
+              <span className="text-4xl font-bold text-sa-green">
+                {reformIndex.current_score}
+              </span>
+              <span className="text-gray-400 text-lg mb-1">/100</span>
+              <span className={`text-sm font-medium mb-1 ${trendColorClass}`}>
+                {trendArrow} {reformIndex.trend_delta}pt
+              </span>
+            </div>
+            <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-2">
+              <div
+                className="h-full bg-sa-green rounded-full transition-all"
+                style={{ width: `${reformIndex.current_score}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-xs text-gray-400 mb-3">
+              <span>0</span>
+              <span>Near-term target: 40</span>
+              <span>100</span>
+            </div>
+            <p className="text-xs text-gray-500 leading-snug">
+              Weighted index across 5 reform packages. Advancing ~15–20 stalled ideas would reach the 40-point near-term target.
             </p>
           </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {featuredIdeas.map((idea) => (
-              <Link key={idea.id} href={`/ideas/${idea.id}`} className="card block">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge bg-gray-100 text-gray-700 ring-gray-200">
-                    {CONSTRAINT_LABELS[idea.binding_constraint as BindingConstraint]}
-                  </span>
-                  <RatingDots value={idea.growth_impact_rating} />
-                </div>
-                <h3 className="font-medium text-gray-900 text-sm leading-snug mb-1">
-                  {idea.title}
-                </h3>
-                <p className="text-xs text-gray-500 line-clamp-2">{idea.description}</p>
+
+          {/* Keystone reforms */}
+          <div className="card border-t-4 border-[#001489]">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-gray-700">Top Keystone Reforms</h3>
+              <Link href="/dependencies" className="text-xs text-sa-green hover:underline">
+                Dependency map →
               </Link>
-            ))}
+            </div>
+            <p className="text-xs text-gray-500 mb-3 leading-snug">
+              Highest network centrality — unblocking these reforms unlocks many others.
+            </p>
+            {keystones.length === 0 ? (
+              <p className="text-xs text-gray-400 italic">Dependency data unavailable.</p>
+            ) : (
+              <ul className="space-y-3">
+                {keystones.map((k, i) => (
+                  <li key={k.id} className="flex items-start gap-2.5">
+                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#001489] text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <Link
+                        href={`/ideas/${k.id}`}
+                        className="text-xs font-medium text-gray-800 hover:text-sa-green leading-snug block"
+                      >
+                        {k.title}
+                      </Link>
+                      <span className="text-[11px] text-gray-400">
+                        Keystone score: {k.keystoneScore}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        )}
+
+          {/* Budget alignment gap */}
+          <div className="card border-t-4 border-sa-gold">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-gray-700">Budget Alignment Gap</h3>
+              <Link href="/budget" className="text-xs text-sa-green hover:underline">
+                Full analysis →
+              </Link>
+            </div>
+            <div className="mb-2">
+              <span className="text-3xl font-bold text-amber-600">
+                R{totalGap > 0 ? totalGap.toFixed(1) : "—"}bn
+              </span>
+            </div>
+            <p className="text-xs text-gray-500 leading-snug mb-4">
+              Total gap between parliamentary committee recommendations and current budget allocations
+              across all 5 reform packages.
+            </p>
+            <div className="space-y-2">
+              {reformIndex.package_sub_indices.map((pkg) => (
+                <div key={pkg.package_id} className="flex items-center gap-2">
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs text-gray-600 truncate block">{pkg.name}</span>
+                  </div>
+                  <div className="h-1.5 w-14 bg-gray-100 rounded-full overflow-hidden flex-shrink-0">
+                    <div
+                      className="h-full bg-amber-400 rounded-full"
+                      style={{ width: `${pkg.score}%` }}
+                    />
+                  </div>
+                  <span className="text-xs text-gray-400 w-7 text-right flex-shrink-0">
+                    {pkg.score}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
       </section>
 
-      {/* Reform Packages */}
-      {packageSummaries.length > 0 && (
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold">Reform Packages</h2>
-            <Link href="/packages" className="text-sm text-sa-green hover:underline">
-              View all packages →
-            </Link>
+      {/* ── Data Sources ────────────────────────────────────────────────────── */}
+      <section className="py-10">
+        <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+          Data Sources &amp; Methodology
+        </h2>
+        <div className="grid sm:grid-cols-3 gap-6">
+          <div>
+            <h3 className="text-sm font-semibold text-gray-800 mb-1">Parliamentary Record</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">
+              Policy ideas are synthesised from{" "}
+              <a
+                href="https://pmg.org.za"
+                className="text-sa-green hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                PMG
+              </a>{" "}
+              committee transcripts and meeting reports. Each idea is original synthesis — not
+              verbatim PMG text.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
-            {packageSummaries.map((pkg) => {
-              const style = PACKAGE_STYLES[pkg.package_id] ?? PACKAGE_STYLES[1];
-              return (
-                <Link
-                  key={pkg.package_id}
-                  href={`/packages/${pkg.package_id}`}
-                  className={`card block border-t-4 ${style.border} hover:shadow-md transition-shadow`}
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`w-5 h-5 rounded-full ${style.dot} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
-                      {pkg.package_id}
-                    </span>
-                    <h3 className="font-medium text-gray-900 text-sm leading-tight">{pkg.name}</h3>
-                  </div>
-                  <p className="text-xs text-gray-500 line-clamp-2 italic mb-2">{pkg.tagline}</p>
-                  <p className="text-xs text-gray-600">
-                    <span className="font-semibold">{pkg.idea_count}</span> ideas &middot; growth {pkg.avg_growth_impact.toFixed(1)}/5
-                  </p>
-                </Link>
-              );
-            })}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-800 mb-1">Fiscal &amp; Budget Data</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">
+              Budget alignment draws on 2024/25 MTBPS allocations, National Treasury Budget
+              Reviews, and Parliamentary BRRR recommendations from portfolio committees.
+            </p>
           </div>
-        </section>
-      )}
-
-      {/* Stalled Ideas Callout */}
-      <section className="rounded-xl border-l-4 border-sa-red bg-red-50 p-5">
-        <h2 className="font-semibold text-red-900 mb-1">⚠ Stalled Ideas</h2>
-        <p className="text-sm text-red-800 mb-4">
-          These proposals have been raised repeatedly in committee but remain unimplemented.
-        </p>
-        {stalledIdeas.length === 0 ? (
-          <p className="text-xs text-red-600">
-            None catalogued yet —{" "}
-            <Link href="/ideas?status=stalled" className="underline">
-              check back as we seed the data
-            </Link>.
-          </p>
-        ) : (
-          <ul className="space-y-2">
-            {stalledIdeas.map((idea) => (
-              <li key={idea.id} className="flex items-center justify-between">
-                <Link href={`/ideas/${idea.id}`} className="text-sm text-red-900 hover:underline">
-                  {idea.title}
-                </Link>
-                <span className="text-xs text-red-600">
-                  Raised {idea.times_raised}× — {idea.responsible_department}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-800 mb-1">Comparative &amp; Academic</h3>
+            <p className="text-xs text-gray-500 leading-relaxed">
+              International comparisons use World Bank, IMF, and OECD datasets. The binding
+              constraints framework draws on Hausmann-Rodrik-Velasco growth diagnostics.
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 pt-5 border-t border-gray-100">
+          <Link href="/about" className="text-sm text-sa-green hover:underline font-medium">
+            Full methodology and data documentation →
+          </Link>
+        </div>
       </section>
 
     </div>
