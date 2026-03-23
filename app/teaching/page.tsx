@@ -140,6 +140,44 @@ export default function TeachingPage() {
         </p>
       </div>
 
+      {/* Textbook callout */}
+      <a
+        href="https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy?fallback=true"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 rounded-xl border border-blue-200 bg-blue-50 px-5 py-4 hover:bg-blue-100 transition-colors group"
+      >
+        <svg
+          className="w-6 h-6 text-blue-500 flex-shrink-0"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+          />
+        </svg>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-blue-900">
+            Full textbook available online
+          </p>
+          <p className="text-xs text-blue-700 mt-0.5">
+            <em>The South African Economy: A Contemporary Textbook</em> — read the complete text on GitBook
+          </p>
+        </div>
+        <svg
+          className="w-4 h-4 text-blue-400 flex-shrink-0 group-hover:translate-x-0.5 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+
       {/* Intro card */}
       <div className="rounded-xl border border-sa-green/20 bg-sa-green/5 p-5">
         <p className="text-sm text-gray-700 leading-relaxed">
