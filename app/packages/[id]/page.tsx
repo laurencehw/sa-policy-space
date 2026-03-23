@@ -73,17 +73,17 @@ const fiscalEstimates = fiscalEstimatesData as Record<string, FiscalEstimate>;
 // ── Stakeholders ──────────────────────────────────────────────────────────
 
 type StakeholderCategory = "Government" | "Regulator" | "SOE" | "Private Sector" | "Labour" | "Civil Society" | "International";
-type StakeholderPosition = "supporter" | "opponent" | "neutral" | "mixed";
+type StakeholderStance = "champion" | "constructive_critic" | "cautious" | "concerned";
 
 interface StakeholderEntry {
   id: string;
   name: string;
   category: StakeholderCategory;
   influence_score: number;
-  support_level: number;
-  key_interests: string;
+  stance: StakeholderStance;
+  primary_interests: string;
+  key_concerns: string;
   related_packages: number[];
-  position: StakeholderPosition;
 }
 
 const allStakeholders = stakeholdersData as StakeholderEntry[];
@@ -98,11 +98,11 @@ const STAKEHOLDER_CATEGORY_COLORS: Record<StakeholderCategory, string> = {
   International:    "bg-slate-100 text-slate-700 ring-slate-200",
 };
 
-const STAKEHOLDER_POSITION_STYLES: Record<StakeholderPosition, string> = {
-  supporter: "bg-green-100 text-green-800 ring-green-200",
-  opponent:  "bg-red-100 text-red-800 ring-red-200",
-  neutral:   "bg-gray-100 text-gray-600 ring-gray-200",
-  mixed:     "bg-amber-100 text-amber-800 ring-amber-200",
+const STAKEHOLDER_STANCE_STYLES: Record<StakeholderStance, { badge: string; label: string }> = {
+  champion:            { badge: "bg-emerald-100 text-emerald-800 ring-emerald-200", label: "Champion" },
+  constructive_critic: { badge: "bg-blue-100 text-blue-800 ring-blue-200",          label: "Constructive Critic" },
+  cautious:            { badge: "bg-amber-100 text-amber-800 ring-amber-200",        label: "Cautious" },
+  concerned:           { badge: "bg-orange-100 text-orange-800 ring-orange-200",     label: "Concerned" },
 };
 
 function KeyStakeholdersSection({ packageId }: { packageId: number }) {
@@ -124,30 +124,41 @@ function KeyStakeholdersSection({ packageId }: { packageId: number }) {
         </p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {relevant.map((s) => (
-          <div
-            key={s.id}
-            className="flex items-start gap-3 px-4 py-3 rounded-lg bg-white border border-gray-100 hover:border-gray-200 transition-colors"
-          >
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-start gap-1.5 mb-1">
-                <span className="text-sm font-medium text-gray-900 leading-snug">{s.name}</span>
+        {relevant.map((s) => {
+          const stanceConf = STAKEHOLDER_STANCE_STYLES[s.stance];
+          return (
+            <div
+              key={s.id}
+              className="flex flex-col gap-2 px-4 py-3 rounded-lg bg-white border border-gray-100 hover:border-gray-200 transition-colors"
+            >
+              <div className="flex items-start gap-2 justify-between">
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 leading-snug mb-1.5">{s.name}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className={`badge ring-1 text-xs ${STAKEHOLDER_CATEGORY_COLORS[s.category]}`}>
+                      {s.category}
+                    </span>
+                    <span className={`badge ring-1 text-xs ${stanceConf.badge}`}>
+                      {stanceConf.label}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 text-right ml-2">
+                  <p className="text-xs text-gray-400">Influence</p>
+                  <p className="text-lg font-bold text-gray-700">
+                    {s.influence_score}
+                    <span className="text-xs font-normal text-gray-400">/10</span>
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-1.5">
-                <span className={`badge ring-1 text-xs ${STAKEHOLDER_CATEGORY_COLORS[s.category]}`}>
-                  {s.category}
-                </span>
-                <span className={`badge ring-1 text-xs capitalize ${STAKEHOLDER_POSITION_STYLES[s.position]}`}>
-                  {s.position}
-                </span>
-              </div>
+              <p className="text-xs text-gray-500 leading-relaxed border-t border-gray-100 pt-2">
+                {s.primary_interests.length > 140
+                  ? s.primary_interests.slice(0, 140).trimEnd() + "…"
+                  : s.primary_interests}
+              </p>
             </div>
-            <div className="flex-shrink-0 text-right">
-              <p className="text-xs text-gray-400">Influence</p>
-              <p className="text-lg font-bold text-gray-700">{s.influence_score}<span className="text-xs font-normal text-gray-400">/10</span></p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
