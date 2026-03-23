@@ -8,6 +8,7 @@
 import { createClient } from "@supabase/supabase-js";
 import reformPackagesData from "@/data/reform_packages.json";
 import dependencyGraphData from "@/data/dependency_graph.json";
+import { slugify } from "@/lib/utils";
 
 // Re-export interfaces so API routes have a stable import path
 export type {
@@ -129,7 +130,7 @@ export async function getIdeas(opts?: {
     const last_discussed = dates[dates.length - 1] ?? null;
     const dormant =
       last_discussed && last_discussed < cutoffStr ? 1 : 0;
-    return { ...idea, first_raised, last_discussed, dormant };
+    return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) };
   });
 }
 
@@ -153,7 +154,40 @@ export async function getIdeaById(id: number) {
     .split("T")[0];
   const dormant = last_discussed && last_discussed < cutoffStr ? 1 : 0;
 
-  return { ...idea, first_raised, last_discussed, dormant };
+  return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) };
+}
+
+export async function getIdeaBySlug(slug: string) {
+  const { data: rows } = await supabase
+    .from("policy_ideas")
+    .select("id, title");
+  if (!rows?.length) return null;
+  const match = rows.find((r: any) => slugify(r.title) === slug);
+  if (!match) return null;
+  return await getIdeaById(match.id);
+}
+
+// ── Committees ─────────────────────────────────────────────────────────────
+
+export async function getCommittees(): Promise<{ name: string; count: number }[]> {
+  const { data } = await supabase
+    .from("policy_ideas")
+    .select("source_committee")
+    .not("source_committee", "is", null)
+    .neq("source_committee", "");
+
+  if (!data?.length) return [];
+
+  const counts = new Map<string, number>();
+  for (const row of data) {
+    if (row.source_committee) {
+      counts.set(row.source_committee, (counts.get(row.source_committee) ?? 0) + 1);
+    }
+  }
+
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
 // ── Constraint summaries ───────────────────────────────────────────────────
