@@ -350,3 +350,46 @@ export async function getPackageDetail(packageId: number) {
 
   return { ...summary, ideas_by_horizon, dependencies };
 }
+
+// ── Timeline data ────────────────────────────────────────────────────────
+
+export async function getTimelineData() {
+  const [{ data: allMeetings }, { data: linkRows }] = await Promise.all([
+    supabase
+      .from("meetings")
+      .select("id, date, committee_name, title, pmg_url")
+      .order("date", { ascending: false }),
+    supabase
+      .from("idea_meetings")
+      .select("meeting_id, policy_ideas(id, title, reform_package, current_status)"),
+  ]);
+
+  const ideasByMeeting = new Map<number, Array<{
+    id: number; title: string; slug: string;
+    reform_package: number | null; current_status: string;
+  }>>();
+  for (const row of linkRows || []) {
+    const idea = (row as any).policy_ideas;
+    if (!idea) continue;
+    const arr = ideasByMeeting.get(row.meeting_id) ?? [];
+    arr.push({
+      id: idea.id,
+      title: idea.title,
+      slug: slugify(idea.title),
+      reform_package: idea.reform_package,
+      current_status: idea.current_status,
+    });
+    ideasByMeeting.set(row.meeting_id, arr);
+  }
+
+  return (allMeetings || [])
+    .filter((m: any) => ideasByMeeting.has(m.id))
+    .map((m: any) => ({
+      id: m.id,
+      date: m.date,
+      committee_name: m.committee_name,
+      title: m.title,
+      pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+      ideas: ideasByMeeting.get(m.id) ?? [],
+    }));
+}

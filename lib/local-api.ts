@@ -401,3 +401,69 @@ export function getPackageDetail(packageId: number): PackageDetail | null {
 
   return { ...summary, ideas_by_horizon, dependencies };
 }
+
+// ── Timeline data ────────────────────────────────────────────────────────
+
+export interface TimelineMeeting {
+  id: number;
+  date: string;
+  committee_name: string;
+  title: string;
+  pmg_url: string;
+  ideas: Array<{
+    id: number;
+    title: string;
+    slug: string;
+    reform_package: number | null;
+    current_status: string;
+  }>;
+}
+
+export function getTimelineData(): TimelineMeeting[] {
+  const db = getDb();
+  try {
+    const meetings = db.prepare(`
+      SELECT DISTINCT m.id, m.date, m.committee_name, m.title, m.pmg_url
+      FROM meetings m
+      INNER JOIN idea_meetings im ON im.meeting_id = m.id
+      ORDER BY m.date DESC
+    `).all() as Array<{
+      id: number; date: string; committee_name: string; title: string; pmg_url: string;
+    }>;
+
+    if (!meetings.length) return [];
+
+    const ideaLinks = db.prepare(`
+      SELECT im.meeting_id, p.id, p.title, p.reform_package, p.current_status
+      FROM idea_meetings im
+      JOIN policy_ideas p ON p.id = im.idea_id
+    `).all() as Array<{
+      meeting_id: number; id: number; title: string;
+      reform_package: number | null; current_status: string;
+    }>;
+
+    const ideasByMeeting = new Map<number, Array<{
+      id: number; title: string; slug: string;
+      reform_package: number | null; current_status: string;
+    }>>();
+    for (const link of ideaLinks) {
+      const arr = ideasByMeeting.get(link.meeting_id) ?? [];
+      arr.push({
+        id: link.id,
+        title: link.title,
+        slug: slugify(link.title),
+        reform_package: link.reform_package,
+        current_status: link.current_status,
+      });
+      ideasByMeeting.set(link.meeting_id, arr);
+    }
+
+    return meetings.map((m) => ({
+      ...m,
+      pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+      ideas: ideasByMeeting.get(m.id) ?? [],
+    }));
+  } finally {
+    db.close();
+  }
+}
