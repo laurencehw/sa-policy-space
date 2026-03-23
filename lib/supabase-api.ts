@@ -6,8 +6,8 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
-import fs from "fs";
-import path from "path";
+import reformPackagesData from "@/data/reform_packages.json";
+import dependencyGraphData from "@/data/dependency_graph.json";
 
 // Re-export interfaces so API routes have a stable import path
 export type {
@@ -25,9 +25,6 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
-
-// Static JSON files (committed to repo, available in Vercel at process.cwd()/data/)
-const DATA_DIR = path.join(process.cwd(), "data");
 
 // ── Stats ──────────────────────────────────────────────────────────────────
 
@@ -232,12 +229,10 @@ export async function getIdeaMeetings(ideaId: number) {
     .sort((a: any, b: any) => (b.date > a.date ? 1 : -1));
 }
 
-// ── Reform packages (reads static JSON, no DB needed) ─────────────────────
+// ── Reform packages (bundled JSON, no DB needed) ──────────────────────────
 
 export function getPackageSummaries() {
-  const jsonPath = path.join(DATA_DIR, "reform_packages.json");
-  const raw = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-  return Object.values(raw) as any[];
+  return Object.values(reformPackagesData) as any[];
 }
 
 export async function getPackageTimeHorizonCounts() {
@@ -277,11 +272,10 @@ export async function getPackageDetail(packageId: number) {
     unassigned: ideas.filter((i: any) => !i.time_horizon),
   };
 
-  // Read dependency graph
+  // Read dependency graph (bundled at build time)
   let dependencies: any[] = [];
   try {
-    const graphPath = path.join(DATA_DIR, "dependency_graph.json");
-    const graph = JSON.parse(fs.readFileSync(graphPath, "utf-8"));
+    const graph = dependencyGraphData as any;
     const ideaIdSet = new Set(summary.idea_ids);
     const nodeMap = new Map<number, string>(
       graph.nodes.map((n: any) => [n.id, n.title])

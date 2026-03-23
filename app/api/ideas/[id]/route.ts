@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const id = parseInt(params.id, 10);
   if (isNaN(id)) return NextResponse.json(null, { status: 404 });

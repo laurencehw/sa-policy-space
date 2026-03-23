@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -18,8 +20,8 @@ async function getIdea(id: string): Promise<PolicyIdea | null> {
     const { getIdeaById } = await import("@/lib/local-api");
     return getIdeaById(parseInt(id, 10)) as PolicyIdea | null;
   }
-  // TODO: const { data } = await supabase.from("policy_ideas").select("*").eq("id", id).single();
-  return null;
+  const { getIdeaById } = await import("@/lib/supabase-api");
+  return await getIdeaById(parseInt(id, 10)) as PolicyIdea | null;
 }
 
 async function getImplementationPlan(ideaId: number): Promise<ImplementationPlan | null> {
@@ -27,8 +29,8 @@ async function getImplementationPlan(ideaId: number): Promise<ImplementationPlan
     const { getImplementationPlan: localPlan } = await import("@/lib/local-api");
     return localPlan(ideaId) as ImplementationPlan | null;
   }
-  // TODO: Supabase
-  return null;
+  const { getImplementationPlan: supabasePlan } = await import("@/lib/supabase-api");
+  return await supabasePlan(ideaId) as ImplementationPlan | null;
 }
 
 async function getSourceMeetings(ideaId: number): Promise<Meeting[]> {
@@ -36,8 +38,8 @@ async function getSourceMeetings(ideaId: number): Promise<Meeting[]> {
     const { getIdeaMeetings } = await import("@/lib/local-api");
     return getIdeaMeetings(ideaId) as Meeting[];
   }
-  // TODO: join via idea_meetings → meetings
-  return [];
+  const { getIdeaMeetings } = await import("@/lib/supabase-api");
+  return await getIdeaMeetings(ideaId) as Meeting[];
 }
 
 function fmtMonthYear(iso: string | null | undefined): string | null {
