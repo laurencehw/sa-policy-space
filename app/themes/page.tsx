@@ -32,14 +32,15 @@ async function getConstraintSummaries(): Promise<ConstraintSummary[]> {
     }));
   }
 
-  // TODO: Supabase path
-  // const { data } = await supabase.from("constraint_summary").select("*");
+  const { getConstraintSummaries: supabaseSummaries } = await import("@/lib/supabase-api");
+  const rows = await supabaseSummaries();
+  const byKey = Object.fromEntries(rows.map((r) => [r.binding_constraint, r]));
   return (Object.keys(CONSTRAINT_LABELS) as BindingConstraint[]).map((c) => ({
     binding_constraint: c,
-    total_ideas: 0,
-    avg_growth_impact: 0,
-    stalled_count: 0,
-    implemented_count: 0,
+    total_ideas: byKey[c]?.total_ideas ?? 0,
+    avg_growth_impact: byKey[c]?.avg_growth_impact ?? 0,
+    stalled_count: byKey[c]?.stalled_count ?? 0,
+    implemented_count: byKey[c]?.implemented_count ?? 0,
   }));
 }
 

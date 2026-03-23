@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { IdeaRow } from "@/lib/local-api";
+import type { IdeaRow, PackageDetail } from "@/lib/local-api";
 import { STATUS_COLORS } from "@/lib/supabase";
 import DiagramViewer from "@/components/DiagramViewer";
 
@@ -126,19 +126,18 @@ export default async function PackageDetailPage({
   params: { id: string };
 }) {
   const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-  if (!isLocal) {
-    return (
-      <div className="card text-center py-16 text-gray-400">
-        <p className="text-sm">Reform packages view is not yet connected to Supabase.</p>
-      </div>
-    );
-  }
 
   const packageId = Number(params.id);
   if (isNaN(packageId)) notFound();
 
-  const { getPackageDetail } = await import("@/lib/local-api");
-  const pkg = getPackageDetail(packageId);
+  let pkg: PackageDetail | null;
+  if (isLocal) {
+    const { getPackageDetail } = await import("@/lib/local-api");
+    pkg = getPackageDetail(packageId);
+  } else {
+    const { getPackageDetail } = await import("@/lib/supabase-api");
+    pkg = await getPackageDetail(packageId) as PackageDetail | null;
+  }
   if (!pkg) notFound();
 
   const style = PACKAGE_STYLES[pkg.package_id] ?? PACKAGE_STYLES[1];

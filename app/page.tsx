@@ -16,22 +16,29 @@ const PACKAGE_STYLES: Record<number, { border: string; dot: string }> = {
 };
 
 async function getDashboardData() {
-  if (!isLocal) {
+  if (isLocal) {
+    const { getStats, getIdeas, getPackageSummaries } = await import("@/lib/local-api");
+    const stats = getStats();
+    const topIdeas = getIdeas({ sort: "impact" }).slice(0, 6);
+    const stalledIdeas = getIdeas({ status: "stalled" }).slice(0, 5);
+    const packageSummaries = getPackageSummaries();
     return {
-      stats: { totalIdeas: 0, meetingsAnalyzed: 0, constraintsCovered: 0 },
-      featuredIdeas: [] as Array<{
+      stats,
+      featuredIdeas: topIdeas as Array<{
         id: number; title: string; binding_constraint: BindingConstraint;
         growth_impact_rating: number; current_status: string; description: string;
       }>,
-      stalledIdeas: [] as Array<{ id: number; title: string; times_raised: number; responsible_department: string }>,
-      packageSummaries: [] as Array<{ package_id: number; name: string; tagline: string; idea_count: number; avg_growth_impact: number }>,
+      stalledIdeas: stalledIdeas as Array<{
+        id: number; title: string; times_raised: number; responsible_department: string;
+      }>,
+      packageSummaries,
     };
   }
 
-  const { getStats, getIdeas, getPackageSummaries } = await import("@/lib/local-api");
-  const stats = getStats();
-  const topIdeas = getIdeas({ sort: "impact" }).slice(0, 6);
-  const stalledIdeas = getIdeas({ status: "stalled" }).slice(0, 5);
+  const { getStats, getIdeas, getPackageSummaries } = await import("@/lib/supabase-api");
+  const stats = await getStats();
+  const topIdeas = (await getIdeas({ sort: "impact" })).slice(0, 6);
+  const stalledIdeas = (await getIdeas({ status: "stalled" })).slice(0, 5);
   const packageSummaries = getPackageSummaries();
 
   return {

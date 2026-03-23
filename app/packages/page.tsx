@@ -35,17 +35,19 @@ function firstParagraph(text: string): string {
 
 export default async function PackagesPage() {
   const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-  if (!isLocal) {
-    return (
-      <div className="card text-center py-16 text-gray-400">
-        <p className="text-sm">Reform packages view is not yet connected to Supabase.</p>
-      </div>
-    );
-  }
 
-  const { getPackageSummaries, getPackageTimeHorizonCounts } = await import("@/lib/local-api");
-  const summaries = getPackageSummaries();
-  const horizonCounts = getPackageTimeHorizonCounts();
+  let summaries: PackageSummary[];
+  let horizonCounts: Record<number, TimeHorizonCounts>;
+
+  if (isLocal) {
+    const { getPackageSummaries, getPackageTimeHorizonCounts } = await import("@/lib/local-api");
+    summaries = getPackageSummaries();
+    horizonCounts = getPackageTimeHorizonCounts();
+  } else {
+    const { getPackageSummaries, getPackageTimeHorizonCounts } = await import("@/lib/supabase-api");
+    summaries = getPackageSummaries() as PackageSummary[];
+    horizonCounts = await getPackageTimeHorizonCounts();
+  }
 
   return (
     <div className="space-y-8">
