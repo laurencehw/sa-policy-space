@@ -1,21 +1,4 @@
 {
-  "fiscal_aggregates_2025_26": {
-    "fiscal_year": "2025/26",
-    "source": "South Africa Budget Review 2026, National Treasury, 25 February 2026",
-    "consolidated_expenditure_zar_bn": 2580,
-    "consolidated_deficit_pct_gdp": 4.5,
-    "primary_surplus_pct_gdp": 0.9,
-    "gross_debt_pct_gdp": 78.9,
-    "tax_to_gdp_pct": 25.9,
-    "gdp_growth_pct": 1.4,
-    "peace_security_total_zar_bn": 268.2,
-    "saps_allocation_zar_bn": 133.4,
-    "health_provincial_total_zar_bn": 298.9,
-    "infrastructure_mtef_total_zar_bn": 526.3,
-    "srd_grant_extension_zar_bn": 35.2,
-    "tax_revenue_upward_revision_zar_bn": 21.3,
-    "notes": "Key macro aggregates from 2026 Budget Review covering 2025/26 fiscal year. Gross debt-to-GDP of 78.9% marks a projected peak — first debt stabilisation in 17 years. Primary surplus of 0.9% of GDP achieved. Tax-to-GDP rises to 25.9% (from 25.1% in 2024/25), reflecting SARS modernisation and improved compliance. Infrastructure MTEF total of R526.3bn focuses on water and roads. SRD grant extended to March 2026 at cost of R35.2bn."
-  },
   "1": {
     "package_id": 1,
     "package_name": "Infrastructure Unblock",
