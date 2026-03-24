@@ -95,6 +95,8 @@ CREATE TABLE IF NOT EXISTS policy_ideas (
     source_committee        TEXT,
     reform_package          INTEGER,
     time_horizon            TEXT,
+    economic_impact_estimate TEXT,
+    source_url              TEXT,
     slug                    TEXT UNIQUE,
     created_at              TEXT DEFAULT (datetime('now')),
     updated_at              TEXT DEFAULT (datetime('now'))
