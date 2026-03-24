@@ -100,7 +100,11 @@ export async function getIdeas(opts?: {
     query = query.order("id", { ascending: false });
   }
 
-  const { data: ideas } = await query;
+  const { data: ideas, error: ideasError } = await query;
+  if (ideasError) {
+    console.error("[supabase] getIdeas error:", ideasError);
+    return [];
+  }
   if (!ideas?.length) return [];
 
   // Fetch meeting dates for these ideas in one query
@@ -135,11 +139,12 @@ export async function getIdeas(opts?: {
 }
 
 export async function getIdeaById(id: number) {
-  const [{ data: idea }, { data: linkRows }] = await Promise.all([
+  const [{ data: idea, error: ideaError }, { data: linkRows }] = await Promise.all([
     supabase.from("policy_ideas").select("*").eq("id", id).single(),
     supabase.from("idea_meetings").select("meetings(date)").eq("idea_id", id),
   ]);
 
+  if (ideaError) console.error("[supabase] getIdeaById error:", ideaError);
   if (!idea) return null;
 
   const dates = (linkRows || [])
@@ -158,9 +163,10 @@ export async function getIdeaById(id: number) {
 }
 
 export async function getIdeaBySlug(slug: string) {
-  const { data: rows } = await supabase
+  const { data: rows, error: slugError } = await supabase
     .from("policy_ideas")
     .select("id, title");
+  if (slugError) console.error("[supabase] getIdeaBySlug error:", slugError);
   if (!rows?.length) return null;
   const match = rows.find((r: any) => slugify(r.title) === slug);
   if (!match) return null;
