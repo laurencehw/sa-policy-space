@@ -55,15 +55,26 @@ export default function MobileNav() {
             {/* Primary — visually prominent */}
             <Link href="/ideas" onClick={close} className="px-3 py-2.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 active:bg-sa-green/15">Ideas</Link>
             <Link href="/packages" onClick={close} className="px-3 py-2.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 active:bg-sa-green/15">Packages</Link>
+            <Link href="/themes" onClick={close} className="px-3 py-2.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 active:bg-sa-green/15">Themes</Link>
 
             <div className="h-px bg-gray-100 my-2" />
 
-            {/* Analyse */}
-            <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Analyse</p>
+            {/* Tools — featured new dashboards first */}
+            <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Tools</p>
+            <Link href="/progress" onClick={close} className="flex items-center gap-2 px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">
+              <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
+              Progress Dashboard
+            </Link>
+            <Link href="/matrix" onClick={close} className="flex items-center gap-2 px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">
+              <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
+              Feasibility Matrix
+            </Link>
+            <Link href="/compare" onClick={close} className="flex items-center gap-2 px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">
+              <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
+              Compare Ideas
+            </Link>
+            <div className="h-px bg-gray-100 my-1 mx-2" />
             <Link href="/analytics" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Analytics</Link>
-            <Link href="/progress" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Progress</Link>
-            <Link href="/matrix" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Feasibility Matrix</Link>
-            <Link href="/compare" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Compare Ideas</Link>
             <Link href="/timeline" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Parliamentary Timeline</Link>
             <Link href="/dependencies" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Dependencies</Link>
             <Link href="/stakeholders" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Stakeholders</Link>
@@ -71,7 +82,6 @@ export default function MobileNav() {
             <Link href="/reform-index" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Index</Link>
             <Link href="/brrr" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">BRRR Recommendations</Link>
             <Link href="/sequencing" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Sequencing</Link>
-            <Link href="/themes" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">By Constraint</Link>
 
             <div className="h-px bg-gray-100 my-2" />
 
