@@ -32,7 +32,7 @@ export default function MobileNav() {
   const close = () => setOpen(false);
 
   return (
-    <div className="sm:hidden" ref={ref}>
+    <div className="md:hidden" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
         className="p-2 text-gray-500"

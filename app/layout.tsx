@@ -31,7 +31,7 @@ export default function RootLayout({
               <span className="font-semibold text-gray-900">SA Policy Space</span>
             </Link>
 
-            <nav className="hidden sm:flex items-center gap-1 text-sm text-gray-600">
+            <nav className="hidden md:flex items-center gap-1 text-sm text-gray-600">
               {/* Primary content links — visually prominent */}
               <Link href="/ideas" className="px-3 py-1.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 hover:text-sa-green transition-colors">
                 Ideas
