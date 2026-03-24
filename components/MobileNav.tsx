@@ -80,6 +80,7 @@ export default function MobileNav() {
             <Link href="/briefs" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Brief Generator</Link>
             <Link href="/teaching" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Teaching</Link>
             <Link href="/api-docs" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">API Docs</Link>
+            <Link href="/methodology" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Methodology</Link>
             <Link href="/about" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">About</Link>
 
             <a
