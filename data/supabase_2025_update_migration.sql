@@ -98,7 +98,7 @@ INSERT INTO policy_ideas (
   first_raised_date, current_status,
   feasibility_rating, growth_impact_rating,
   responsible_department, key_quote,
-  source_committee, reform_package, time_horizon, slug,
+  source_committee, reform_package, time_horizon,
   created_at, updated_at
 ) VALUES (
   124,
