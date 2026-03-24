@@ -203,7 +203,9 @@ export default async function BillPage({
   const objects: string[] = [];
   if (plan?.implementation_steps && plan.implementation_steps.length > 0) {
     plan.implementation_steps.slice(0, 5).forEach((step) => {
-      objects.push(`to ${step.step.charAt(0).toLowerCase() + step.step.slice(1)}`);
+      // step.step is a sequence number (1,2,3…); use step.description for the text
+      const text = String(step.description || "").trim();
+      if (text) objects.push(`to ${text.charAt(0).toLowerCase() + text.slice(1)}`);
     });
   } else {
     objects.push(
@@ -223,8 +225,9 @@ export default async function BillPage({
   // Powers derived from implementation steps
   const powers: string[] = [];
   if (plan?.implementation_steps && plan.implementation_steps.length > 0) {
-    plan.implementation_steps.forEach((step, i) => {
-      powers.push(`${step.step}: ${step.description}`);
+    plan.implementation_steps.forEach((step) => {
+      const desc = String(step.description || "").trim();
+      if (desc) powers.push(desc);
     });
   }
 
