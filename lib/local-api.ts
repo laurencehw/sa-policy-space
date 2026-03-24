@@ -298,6 +298,12 @@ export interface PackageSummary {
   name: string;
   tagline: string;
   theory_of_change: string;
+  // Narrative enrichment fields (optional — present in JSON, may be absent in legacy data)
+  overview?: string;
+  binding_constraints_addressed?: string;
+  sequencing_rationale?: string;
+  international_precedents?: string;
+  expected_impact?: string;
   idea_count: number;
   avg_feasibility: number;
   avg_growth_impact: number;

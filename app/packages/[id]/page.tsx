@@ -576,6 +576,71 @@ export default async function PackageDetailPage({
         </Link>
       </section>
 
+      {/* Overview narrative */}
+      {pkg.overview && (
+        <section>
+          <div className="prose prose-sm max-w-none text-gray-700 space-y-3 text-base leading-relaxed">
+            {pkg.overview.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Narrative context panels */}
+      {(pkg.binding_constraints_addressed || pkg.sequencing_rationale || pkg.international_precedents || pkg.expected_impact) && (
+        <section>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Diagnostic Context</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {pkg.binding_constraints_addressed && (
+              <div className="rounded-xl border border-gray-200 bg-white p-5 border-l-4 border-l-sa-green">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-sa-green/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-sa-green text-xs font-bold">BC</span>
+                  </span>
+                  <h3 className="text-sm font-semibold text-gray-900">Binding Constraints Addressed</h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{pkg.binding_constraints_addressed}</p>
+                <p className="text-xs text-gray-400 mt-3 italic">Hausmann-Rodrik-Velasco growth diagnostics framework</p>
+              </div>
+            )}
+            {pkg.sequencing_rationale && (
+              <div className="rounded-xl border border-gray-200 bg-white p-5 border-l-4 border-l-sa-gold">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-sa-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-amber-600 text-xs font-bold">→</span>
+                  </span>
+                  <h3 className="text-sm font-semibold text-gray-900">Sequencing Rationale</h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{pkg.sequencing_rationale}</p>
+              </div>
+            )}
+            {pkg.international_precedents && (
+              <div className="rounded-xl border border-gray-200 bg-white p-5 border-l-4 border-l-blue-400">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-500 text-xs font-bold">🌍</span>
+                  </span>
+                  <h3 className="text-sm font-semibold text-gray-900">International Precedents</h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{pkg.international_precedents}</p>
+              </div>
+            )}
+            {pkg.expected_impact && (
+              <div className="rounded-xl border border-gray-200 bg-white p-5 border-l-4 border-l-purple-400">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-500 text-xs font-bold">↑</span>
+                  </span>
+                  <h3 className="text-sm font-semibold text-gray-900">Expected Economic Impact</h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{pkg.expected_impact}</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Theory of change */}
       <section>
         <h2 className="text-lg font-semibold text-gray-900 mb-3">Theory of Change</h2>
