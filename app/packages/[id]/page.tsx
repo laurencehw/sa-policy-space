@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { IdeaRow, PackageDetail } from "@/lib/local-api";
@@ -509,6 +510,42 @@ function HorizonSection({
       </div>
     </section>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const packageId = Number(params.id);
+  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
+  let pkg: any = null;
+  if (isLocal) {
+    const { getPackageDetail } = await import("@/lib/local-api");
+    pkg = getPackageDetail(packageId);
+  } else {
+    const { getPackageDetail } = await import("@/lib/supabase-api");
+    pkg = await getPackageDetail(packageId);
+  }
+  if (!pkg) return {};
+  const description = (pkg.overview ?? pkg.tagline ?? `Reform package: ${pkg.name}`).slice(0, 160);
+  const url = `https://sa-policy-space.vercel.app/packages/${packageId}`;
+  return {
+    title: pkg.name,
+    description,
+    openGraph: {
+      title: `${pkg.name} — SA Policy Space`,
+      description,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${pkg.name} — SA Policy Space`,
+      description,
+    },
+    alternates: { canonical: url },
+  };
 }
 
 export default async function PackageDetailPage({

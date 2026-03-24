@@ -6,9 +6,39 @@ import MobileNav from "@/components/MobileNav";
 import SearchModal from "@/components/SearchModal";
 
 export const metadata: Metadata = {
-  title: "SA Policy Space",
+  metadataBase: new URL("https://sa-policy-space.vercel.app"),
+  title: {
+    default: "SA Policy Space — South African Reform Database",
+    template: "%s — SA Policy Space",
+  },
   description:
-    "Tracking policy ideas for South African economic growth — curated from parliamentary committee proceedings.",
+    "Comprehensive database of 49 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
+  openGraph: {
+    type: "website",
+    siteName: "SA Policy Space",
+    title: "SA Policy Space — South African Reform Database",
+    description:
+      "Comprehensive database of 49 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
+    url: "https://sa-policy-space.vercel.app",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "SA Policy Space — South African Reform Database",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SA Policy Space — South African Reform Database",
+    description:
+      "Comprehensive database of 49 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
+    images: ["/opengraph-image"],
+  },
+  alternates: {
+    canonical: "https://sa-policy-space.vercel.app",
+  },
 };
 
 export default function RootLayout({
