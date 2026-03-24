@@ -39,22 +39,30 @@ export default function RootLayout({
               <Link href="/packages" className="px-3 py-1.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 hover:text-sa-green transition-colors">
                 Packages
               </Link>
+              <Link href="/themes" className="px-3 py-1.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 hover:text-sa-green transition-colors">
+                Themes
+              </Link>
 
               <span className="w-px h-4 bg-gray-200 mx-0.5" />
 
-              {/* Analyse dropdown — analytical tools */}
-              <NavDropdown label="Analyse">
-                <Link href="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Analytics
+              {/* Tools dropdown — analytical tools */}
+              <NavDropdown label="Tools">
+                {/* Featured: new dashboard tools */}
+                <Link href="/progress" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
+                  Progress Dashboard
                 </Link>
-                <Link href="/progress" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Reform Progress
-                </Link>
-                <Link href="/matrix" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                <Link href="/matrix" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
                   Feasibility Matrix
                 </Link>
-                <Link href="/compare" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                <Link href="/compare" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
                   Compare Ideas
+                </Link>
+                <div className="my-1 border-t border-gray-100" />
+                <Link href="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Analytics
                 </Link>
                 <Link href="/timeline" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Parliamentary Timeline
@@ -76,9 +84,6 @@ export default function RootLayout({
                 </Link>
                 <Link href="/sequencing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Reform Sequencing
-                </Link>
-                <Link href="/themes" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  By Constraint
                 </Link>
               </NavDropdown>
 
