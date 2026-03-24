@@ -336,7 +336,7 @@ export interface PackageDetail extends PackageSummary {
 }
 
 export function getPackageSummaries(): PackageSummary[] {
-  const jsonPath = path.join(DATA_DIR, "processed", "reform_packages.json");
+  const jsonPath = path.join(DATA_DIR, "reform_packages.json");
   const raw = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
   return Object.values(raw) as PackageSummary[];
 }
@@ -384,7 +384,7 @@ export function getPackageDetail(packageId: number): PackageDetail | null {
   };
 
   // Read dependency graph and filter to edges within this package
-  const graphPath = path.join(DATA_DIR, "processed", "dependency_graph.json");
+  const graphPath = path.join(DATA_DIR, "dependency_graph.json");
   let dependencies: PackageDetail["dependencies"] = [];
   try {
     const graph = JSON.parse(fs.readFileSync(graphPath, "utf-8"));
