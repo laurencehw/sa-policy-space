@@ -41,7 +41,29 @@ jobs:
           # Silence the Next.js telemetry prompt
           NEXT_TELEMETRY_DISABLED: "1"
 
-  # ── Job 2: Validate JSON source files (no credentials needed) ───────────────
+  # ── Job 2: Jest test suite ───────────────────────────────────────────────────
+  test:
+    name: Jest tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:ci
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+  # ── Job 3: Validate JSON source files (no credentials needed) ───────────────
   validate-json:
     name: Validate JSON source files
     runs-on: ubuntu-latest

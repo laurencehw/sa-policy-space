@@ -10,7 +10,9 @@
     "validate": "python scripts/validate_data.py",
     "db:init": "python scripts/init_local_db.py",
     "db:migrate": "python scripts/sync_to_supabase.py",
-    "db:status": "python scripts/sync_to_supabase.py --list"
+    "db:status": "python scripts/sync_to_supabase.py --list",
+    "test": "node node_modules/jest/bin/jest.js --runInBand",
+    "test:ci": "node node_modules/jest/bin/jest.js --runInBand --ci"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
@@ -26,14 +28,17 @@
     "node": ">=22.0.0"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "jest": "^30.3.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
+    "ts-jest": "^29.4.6",
     "typescript": "^5"
   }
 }
