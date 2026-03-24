@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { useState } from "react";
 
 // ── Static data (no DB dependency needed — this page is civil-society facing) ──

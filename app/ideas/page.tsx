@@ -89,7 +89,7 @@ function IdeasContent() {
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   }, [allIdeas]);
 
-  const filtered = allIdeas.filter((idea) => {
+  const filtered = useMemo(() => allIdeas.filter((idea) => {
     const matchesSearch =
       !search ||
       idea.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -104,7 +104,7 @@ function IdeasContent() {
     const matchesCommittee =
       !filterCommittee || idea.source_committee === filterCommittee;
     return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon && matchesCommittee;
-  });
+  }), [allIdeas, search, filterConstraint, filterStatus, filterPackage, filterHorizon, filterCommittee]);
 
   return (
     <div className="space-y-6">

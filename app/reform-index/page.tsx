@@ -2,7 +2,7 @@ import { computeReformIndex } from "@/lib/reform-index";
 import type { PackageSubIndex, QuarterlySnapshot } from "@/lib/reform-index";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // Computed from static JSON
 
 // SA flag palette used across the app
 const PACKAGE_COLORS: Record<number, { bar: string; text: string; bg: string }> = {
