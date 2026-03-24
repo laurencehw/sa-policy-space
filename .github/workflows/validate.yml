@@ -1,0 +1,82 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Prevent concurrent runs on the same ref (e.g. rapid pushes to main)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Job 1: Build ────────────────────────────────────────────────────────────
+  build:
+    name: Next.js build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          # Supabase credentials — stored as repository secrets.
+          # Set these in: GitHub repo → Settings → Secrets → Actions.
+          # The build will succeed without them (app falls back to SQLite),
+          # but Supabase-dependent pages may emit warnings.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          # Silence the Next.js telemetry prompt
+          NEXT_TELEMETRY_DISABLED: "1"
+
+  # ── Job 2: Validate JSON source files (no credentials needed) ───────────────
+  validate-json:
+    name: Validate JSON source files
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate JSON data files
+        run: python scripts/validate_data.py --source json --json
+
+  # ── Job 3: Validate against Supabase (requires secrets) ────────────────────
+  validate-supabase:
+    name: Validate Supabase data
+    runs-on: ubuntu-latest
+    # Only run if Supabase secrets are configured; skip gracefully if not.
+    # The check is done via an env step — if either secret is blank the job is
+    # skipped rather than failing.
+    if: |
+      vars.SUPABASE_VALIDATION_ENABLED == 'true'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate data against Supabase
+        run: python scripts/validate_data.py --source supabase --json
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

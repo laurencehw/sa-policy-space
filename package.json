@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate": "python scripts/validate_data.py",
+    "db:init": "python scripts/init_local_db.py",
+    "db:migrate": "python scripts/sync_to_supabase.py",
+    "db:status": "python scripts/sync_to_supabase.py --list"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
