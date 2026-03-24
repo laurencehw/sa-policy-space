@@ -129,9 +129,9 @@
     "name": "Human Capital Pipeline",
     "tagline": "Invest now because the lags are a decade long",
     "theory_of_change": "South Africa's medium-term growth potential is capped by human capital failure. Only 19% of Grade 4 learners can read for meaning (PIRLS 2021) \u2014 the worst outcome among middle-income comparators. The TVET system produces artisans at roughly 20% of the economy's estimated need. Healthcare worker unemployment coexists with healthcare worker shortages in public facilities. These are not primarily fiscal problems; they are institutional, pedagogical, and governance failures that can be addressed now, but whose full returns arrive in 8\u201315 years. Starting late means locking in the human capital deficit for a generation.\n\nThe package is anchored in the reading crisis: foundation literacy is the prerequisite for every other human capital outcome. ECD reform feeds into primary literacy; primary literacy feeds TVET take-up and university readiness; TVET quality feeds the manufacturing and energy transition skills pipelines. Health system strengthening runs in parallel as a labour productivity intervention \u2014 TB, mental health, and the primary healthcare platform directly affect workforce capacity. NHI implementation is included because a credible roadmap is necessary to prevent further talent flight from the public health system.",
-    "idea_count": 37,
-    "avg_feasibility": 3.03,
-    "avg_growth_impact": 3.43,
+    "idea_count": 42,
+    "avg_feasibility": 3.05,
+    "avg_growth_impact": 3.26,
     "stalled_or_proposed_count": 18,
     "implemented_or_partial_count": 7,
     "top_priority_ideas": [
@@ -195,8 +195,13 @@
       127,
       129,
       130,
+      131,
       132,
+      133,
       134,
+      135,
+      136,
+      137,
       139
     ]
   },
@@ -267,10 +272,10 @@
     "name": "State Capacity & Governance",
     "tagline": "None of the above works without a capable state",
     "theory_of_change": "Every other reform package is mediated by state institutions: regulators, procurement systems, tax authorities, SOE boards, provincial departments. Where those institutions are captured, underfunded, or dysfunctional, reform legislation sits unimplemented and fiscal resources leak. South Africa's structural fiscal deficit \u2014 debt service now absorbs over 20 cents of every revenue rand \u2014 is itself a governance failure compounded by Eskom bailouts, SOE losses, and revenue shortfalls that a fully capacitated SARS could partially recover.\n\nThis package addresses the enabling conditions for all other packages. FATF greylisting exit is the most urgent: it raises borrowing costs, impairs correspondent banking, and signals institutional fragility to investors. Fiscal consolidation and SARS capacity expansion create the headroom for infrastructure investment. SOE reform \u2014 not just Eskom but the full portfolio \u2014 reduces contingent liabilities. Anti-corruption and consequence management reforms close the governance loop. Without meaningful progress here, the other four packages will be partially implemented, poorly resourced, and chronically stalled.",
-    "idea_count": 26,
-    "avg_feasibility": 3.0,
+    "idea_count": 27,
+    "avg_feasibility": 2.96,
     "avg_growth_impact": 3.12,
-    "stalled_or_proposed_count": 9,
+    "stalled_or_proposed_count": 10,
     "implemented_or_partial_count": 7,
     "top_priority_ideas": [
       {
@@ -324,7 +329,8 @@
       97,
       100,
       101,
-      111
+      111,
+      138
     ]
   }
 }
