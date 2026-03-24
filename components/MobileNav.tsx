@@ -52,28 +52,35 @@ export default function MobileNav() {
       {open && (
         <div className="absolute top-14 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-50 py-3">
           <nav className="flex flex-col px-4 gap-0.5 text-sm text-gray-700">
-            <Link href="/ideas" onClick={close} className="px-3 py-2.5 rounded-md hover:bg-gray-50 active:bg-gray-100">Ideas</Link>
-            <Link href="/packages" onClick={close} className="px-3 py-2.5 rounded-md hover:bg-gray-50 active:bg-gray-100">Packages</Link>
-            <Link href="/themes" onClick={close} className="px-3 py-2.5 rounded-md hover:bg-gray-50 active:bg-gray-100">By Constraint</Link>
+            {/* Primary — visually prominent */}
+            <Link href="/ideas" onClick={close} className="px-3 py-2.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 active:bg-sa-green/15">Ideas</Link>
+            <Link href="/packages" onClick={close} className="px-3 py-2.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 active:bg-sa-green/15">Packages</Link>
 
-            <p className="px-3 pt-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Analyse</p>
+            <div className="h-px bg-gray-100 my-2" />
+
+            {/* Analyse */}
+            <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Analyse</p>
             <Link href="/analytics" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Analytics</Link>
+            <Link href="/timeline" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Parliamentary Timeline</Link>
             <Link href="/dependencies" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Dependencies</Link>
             <Link href="/stakeholders" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Stakeholders</Link>
-            <Link href="/reform-index" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Index</Link>
-            <Link href="/comparisons" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">International Comparisons</Link>
-            <Link href="/budget" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Budget Alignment</Link>
             <Link href="/simulator" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Feasibility Simulator</Link>
+            <Link href="/reform-index" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Index</Link>
             <Link href="/brrr" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">BRRR Recommendations</Link>
             <Link href="/sequencing" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Sequencing</Link>
+            <Link href="/themes" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">By Constraint</Link>
 
-            <p className="px-3 pt-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Policy Tools</p>
+            <div className="h-px bg-gray-100 my-2" />
+
+            {/* Resources */}
+            <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Resources</p>
+            <Link href="/budget" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Budget Alignment</Link>
+            <Link href="/comparisons" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">International Comparisons</Link>
             <Link href="/accountability" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Accountability Dashboard</Link>
             <Link href="/briefs" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Brief Generator</Link>
             <Link href="/teaching" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Teaching</Link>
             <Link href="/api-docs" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">API Docs</Link>
-
-            <Link href="/about" onClick={close} className="px-3 py-2.5 rounded-md hover:bg-gray-50 active:bg-gray-100">About</Link>
+            <Link href="/about" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">About</Link>
 
             <a
               href="/documents/SA_Growth_Agenda_Integrated_Framework.docx"

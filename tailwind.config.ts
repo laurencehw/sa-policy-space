@@ -10,7 +10,7 @@ const config: Config = {
       colors: {
         // South African flag palette — used sparingly
         "sa-green": "#007A4D",
-        "sa-gold": "#FFB81C",
+        "sa-gold": "#FFB612",
         "sa-black": "#001489",  // the blue-black of the flag
         "sa-red": "#DE3831",
         "sa-white": "#FFFFFF",

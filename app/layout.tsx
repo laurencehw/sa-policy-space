@@ -32,17 +32,17 @@ export default function RootLayout({
             </Link>
 
             <nav className="hidden sm:flex items-center gap-1 text-sm text-gray-600">
-              <Link href="/ideas" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
+              {/* Primary content links — visually prominent */}
+              <Link href="/ideas" className="px-3 py-1.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 hover:text-sa-green transition-colors">
                 Ideas
               </Link>
-              <Link href="/packages" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
+              <Link href="/packages" className="px-3 py-1.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 hover:text-sa-green transition-colors">
                 Packages
               </Link>
-              <Link href="/themes" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
-                By Constraint
-              </Link>
 
-              {/* Analyse dropdown */}
+              <span className="w-px h-4 bg-gray-200 mx-0.5" />
+
+              {/* Analyse dropdown — analytical tools */}
               <NavDropdown label="Analyse">
                 <Link href="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Analytics
@@ -56,17 +56,11 @@ export default function RootLayout({
                 <Link href="/stakeholders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Stakeholders
                 </Link>
-                <Link href="/reform-index" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Reform Index
-                </Link>
-                <Link href="/comparisons" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  International Comparisons
-                </Link>
-                <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Budget Alignment
-                </Link>
                 <Link href="/simulator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Feasibility Simulator
+                </Link>
+                <Link href="/reform-index" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Reform Index
                 </Link>
                 <Link href="/brrr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   BRRR Recommendations
@@ -74,10 +68,19 @@ export default function RootLayout({
                 <Link href="/sequencing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Reform Sequencing
                 </Link>
+                <Link href="/themes" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  By Constraint
+                </Link>
               </NavDropdown>
 
-              {/* Policy Tools dropdown */}
-              <NavDropdown label="Policy Tools">
+              {/* Resources dropdown — reference & tools */}
+              <NavDropdown label="Resources">
+                <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Budget Alignment
+                </Link>
+                <Link href="/comparisons" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  International Comparisons
+                </Link>
                 <Link href="/accountability" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Accountability Dashboard
                 </Link>
@@ -90,11 +93,10 @@ export default function RootLayout({
                 <Link href="/api-docs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   API Docs
                 </Link>
+                <Link href="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  About
+                </Link>
               </NavDropdown>
-
-              <Link href="/about" className="px-2.5 py-1.5 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors">
-                About
-              </Link>
 
               <a
                 href="/documents/SA_Growth_Agenda_Integrated_Framework.docx"
