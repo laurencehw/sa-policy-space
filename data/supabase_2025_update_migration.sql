@@ -115,7 +115,6 @@ INSERT INTO policy_ideas (
   'Finance',
   2,
   'quick_win',
-  'sarb-inflation-target-reform-3pct-point-target',
   NOW(),
   NOW()
 )
