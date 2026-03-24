@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { redirect } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import CitationWidget from "@/components/CitationWidget";
@@ -183,13 +183,13 @@ export default async function IdeaDetailPage({
   // Numeric ID → look up and redirect to canonical slug URL
   if (/^\d+$/.test(slugOrId)) {
     const idea = await fetchIdeaById(parseInt(slugOrId, 10));
-    if (!idea) return <NoData />;
+    if (!idea) notFound();
     redirect(`/ideas/${idea.slug || slugify(idea.title)}`);
   }
 
   // Slug lookup
   const idea = await fetchIdeaBySlug(slugOrId);
-  if (!idea) return <NoData />;
+  if (!idea) notFound();
 
   const [plan, meetings, relatedIdeas, comparisons] = await Promise.all([
     getImplementationPlan(idea.id),
@@ -217,14 +217,16 @@ export default async function IdeaDetailPage({
       {/* Header */}
       <div>
         <div className="flex flex-wrap gap-2 mb-3">
-          <span className={`badge ${CONSTRAINT_COLORS[idea.binding_constraint]}`}>
-            {CONSTRAINT_LABELS[idea.binding_constraint]}
-          </span>
+          {idea.binding_constraint && (
+            <span className={`badge ${CONSTRAINT_COLORS[idea.binding_constraint] ?? "bg-gray-100 text-gray-600"}`}>
+              {CONSTRAINT_LABELS[idea.binding_constraint] ?? idea.binding_constraint.replace(/_/g, " ")}
+            </span>
+          )}
           <span className={`badge ring-1 ${(STATUS_COLORS as Record<string, string>)[idea.current_status] ?? "bg-gray-50 text-gray-600 ring-gray-500/20"}`}>
             {idea.current_status?.replace(/_/g, " ")}
           </span>
           <TimeHorizonBadge horizon={idea.time_horizon} />
-          {idea.times_raised > 1 && (
+          {(idea.times_raised ?? 0) > 1 && (
             <span className="badge bg-gray-100 text-gray-600 ring-gray-200">
               Raised {idea.times_raised}× in committee
             </span>
@@ -298,8 +300,12 @@ export default async function IdeaDetailPage({
       {/* Assessment */}
       <div className="card space-y-3">
         <h2 className="font-semibold text-sm text-gray-700">Assessment</h2>
-        <RatingIndicator label="Growth Impact" value={idea.growth_impact_rating} />
-        <RatingIndicator label="Feasibility" value={idea.feasibility_rating} />
+        {idea.growth_impact_rating != null && (
+          <RatingIndicator label="Growth Impact" value={idea.growth_impact_rating} />
+        )}
+        {idea.feasibility_rating != null && (
+          <RatingIndicator label="Feasibility" value={idea.feasibility_rating} />
+        )}
 
         {/* Quantified impact numbers */}
         {(idea.growth_impact_pct != null || idea.fiscal_impact_zar_bn != null) && (
@@ -362,10 +368,12 @@ export default async function IdeaDetailPage({
       )}
 
       {/* Description */}
-      <div>
-        <h2 className="font-semibold text-gray-900 mb-2">Description</h2>
-        <p className="text-gray-700 leading-relaxed">{idea.description}</p>
-      </div>
+      {idea.description && (
+        <div>
+          <h2 className="font-semibold text-gray-900 mb-2">Description</h2>
+          <p className="text-gray-700 leading-relaxed">{idea.description}</p>
+        </div>
+      )}
 
       {/* Key Quotes (array) */}
       {keyQuotes && keyQuotes.length > 0 && (
@@ -398,7 +406,7 @@ export default async function IdeaDetailPage({
             <p className="text-sm text-gray-700">{plan.roadmap_summary}</p>
           )}
 
-          {plan.implementation_steps?.length > 0 && (
+          {Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0 && (
             <div className="space-y-4 pt-2">
               {plan.implementation_steps.map((step, i) => (
                 <ImplementationStep key={i} step={step} index={i} />

@@ -229,7 +229,7 @@ export default async function WhitePaperPage({
 
   // Generate KPIs from implementation steps, or use defaults
   const kpis: Array<{ kpi: string; target: string; timeline: string; lead: string }> = [];
-  if (plan?.implementation_steps && plan.implementation_steps.length > 0) {
+  if (plan && Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0) {
     plan.implementation_steps.forEach((step, i) => {
       kpis.push({
         kpi: `Phase ${i + 1} completed: ${step.step}`,
@@ -326,11 +326,11 @@ export default async function WhitePaperPage({
               <div>Status</div>
             </div>
             <div>
-              <div className="font-bold text-gray-800 text-sm">{idea.growth_impact_rating}/5</div>
+              <div className="font-bold text-gray-800 text-sm">{idea.growth_impact_rating ?? "—"}/5</div>
               <div>Growth impact</div>
             </div>
             <div>
-              <div className="font-bold text-gray-800 text-sm">{idea.feasibility_rating}/5</div>
+              <div className="font-bold text-gray-800 text-sm">{idea.feasibility_rating ?? "—"}/5</div>
               <div>Feasibility</div>
             </div>
             <div>
@@ -350,7 +350,7 @@ export default async function WhitePaperPage({
               This White Paper represents the Government&apos;s definitive statement of policy
               on <em>{idea.title}</em>. It follows a consultative process informed by
               parliamentary committee deliberations spanning{" "}
-              {idea.times_raised} recorded instance{idea.times_raised !== 1 ? "s" : ""} of
+              {idea.times_raised ?? 0} recorded instance{(idea.times_raised ?? 0) !== 1 ? "s" : ""} of
               discussion, international evidence, and technical analysis.
             </DocPara>
             <DocPara>
@@ -484,7 +484,7 @@ export default async function WhitePaperPage({
           {/* Chapter 3 */}
           <div className="page-break" />
           <DocSection number="Chapter 3" title="Implementation Strategy">
-            {plan?.implementation_steps && plan.implementation_steps.length > 0 ? (
+            {plan && Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0 ? (
               <>
                 <DocPara>
                   Government will implement this policy through a phased approach, as
