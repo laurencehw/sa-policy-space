@@ -61,6 +61,9 @@ export default function MobileNav() {
             {/* Analyse */}
             <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Analyse</p>
             <Link href="/analytics" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Analytics</Link>
+            <Link href="/progress" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Reform Progress</Link>
+            <Link href="/matrix" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Feasibility Matrix</Link>
+            <Link href="/compare" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Compare Ideas</Link>
             <Link href="/timeline" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Parliamentary Timeline</Link>
             <Link href="/dependencies" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Dependencies</Link>
             <Link href="/stakeholders" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Stakeholders</Link>

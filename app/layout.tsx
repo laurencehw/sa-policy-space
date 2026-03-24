@@ -47,6 +47,15 @@ export default function RootLayout({
                 <Link href="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Analytics
                 </Link>
+                <Link href="/progress" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Reform Progress
+                </Link>
+                <Link href="/matrix" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Feasibility Matrix
+                </Link>
+                <Link href="/compare" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Compare Ideas
+                </Link>
                 <Link href="/timeline" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Parliamentary Timeline
                 </Link>
