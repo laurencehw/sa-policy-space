@@ -556,7 +556,7 @@ export default async function IdeaDetailPage({
             {meetings.map((meeting) => (
               <a
                 key={meeting.id}
-                href={meeting.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/")}
+                href={meeting.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card flex items-center justify-between group"

@@ -289,7 +289,7 @@ export async function getIdeaMeetings(ideaId: number) {
     .sort((a: any, b: any) => (b.date > a.date ? 1 : -1))
     .map((m: any) => ({
       ...m,
-      pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+      pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
     }));
 }
 
@@ -451,7 +451,7 @@ export async function getTimelineData() {
       date: m.date,
       committee_name: m.committee_name,
       title: m.title,
-      pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+      pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
       ideas: ideasByMeeting.get(m.id) ?? [],
     }));
 }

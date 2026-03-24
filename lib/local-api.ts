@@ -275,7 +275,7 @@ export function getIdeaMeetings(ideaId: number): unknown[] {
       .all(ideaId) as any[])
       .map((m: any) => ({
         ...m,
-        pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+        pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
       }));
   } finally {
     db.close();
@@ -530,7 +530,7 @@ export function getTimelineData(): TimelineMeeting[] {
 
     return meetings.map((m) => ({
       ...m,
-      pmg_url: m.pmg_url?.replace("https://api.pmg.org.za/", "https://pmg.org.za/"),
+      pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
       ideas: ideasByMeeting.get(m.id) ?? [],
     }));
   } finally {
