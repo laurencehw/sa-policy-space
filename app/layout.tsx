@@ -140,6 +140,9 @@ export default function RootLayout({
                 <Link href="/api-docs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   API Docs
                 </Link>
+                <Link href="/glossary" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Glossary
+                </Link>
                 <Link href="/methodology" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Methodology
                 </Link>
