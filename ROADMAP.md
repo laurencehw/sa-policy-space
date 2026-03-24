@@ -1,6 +1,6 @@
 # SA Policy Space — Roadmap
 
-*Last updated: 2026-03-22*
+*Last updated: 2026-03-23*
 
 ---
 
@@ -263,6 +263,50 @@ A chronological view of reform activity: a chart showing meetings per committee 
 - Update `last_scraped` metadata in the database
 - Email/webhook notification when new high-relevance meetings are detected
 
+#### 2.9 International Comparisons Database
+**Effort:** 3–4 days | **Impact:** Medium-High (credibility + benchmarking)
+
+A structured database benchmarking SA policy ideas and reform outcomes against peer countries. This is the data infrastructure that underpins the interactive comparisons view in Phase 3.7. Currently mentioned in the methodology but entirely absent from the data.
+
+**Peer country set:** Brazil, Turkey, Malaysia, Kenya, Chile, Indonesia, Colombia, Botswana, Mauritius, Rwanda — selected to span income levels, institutional contexts, and constraint profiles similar to SA.
+
+**Data model:** Create a `country_comparisons` table with:
+- `constraint_type` (links to SA binding constraints taxonomy)
+- `country` and `iso3` code
+- `reform_approach` (free text: what did they do?)
+- `outcome_summary` (what happened? growth impact, implementation timeline, degree of success)
+- `implementation_year` / `year_range`
+- `source_type` (IMF Article IV, World Bank, academic paper, government report)
+- `source_reference` (citation string)
+- `relevance_to_sa` (short note on applicability/transferability)
+- Optional `idea_id` FK for direct linkage to a SA policy idea
+
+**Comparative policy databases to draw from:**
+- World Bank Doing Business / Business Ready (now deprecated but historical data is valuable)
+- IMF Structural Reform Database (covers 90+ countries, 1970–2015)
+- OECD PMR (Product Market Regulation) indicators for comparator countries
+- World Bank SABER (education/skills reform tracking)
+- IEA/IRENA transition data for energy reforms
+- ILO STAT for labour market reform benchmarks
+
+**Cross-country indicators to populate per constraint:**
+- Energy: electricity access rate, SAIDI (outage hours), tariff levels, IPP share
+- Logistics: LPI score, port dwell time, rail freight cost per tonne-km
+- Labour: hiring/firing cost, EPRC index, informal employment share
+- Finance: credit-to-GDP, SME loan access, cost of capital
+- Education/skills: tertiary enrolment, PISA scores (where available), TVET completion
+
+**Case study format (target: 2–3 per constraint):**
+1. Country and constraint addressed
+2. Reform approach (regulatory, institutional, investment)
+3. Implementation timeline and key actors
+4. Measurable outcome with source
+5. SA applicability note — what would need to be different given SA's political economy?
+
+**Curation approach:** Start with 10 high-priority SA ideas (growth_impact ≥ 4, feasibility ≥ 3) and add 3–5 comparators per idea. Prioritise constraints where peer-country evidence is strongest: energy (Chile, Kenya), logistics (Malaysia, Rwanda), labour market flexibility (Colombia, Turkey), trade/competition (Mexico, India). This gives ~40–50 structured comparison entries — enough to populate the Phase 3.7 frontend meaningfully.
+
+**Integration with Phase 3.7:** Once this database is populated, the Interactive International Comparisons page (Phase 3.7) can be data-driven rather than static. The API endpoint `/api/v1/comparisons` should return comparators by constraint or by idea_id.
+
 ---
 
 ### Phase 3: Policy Output & Ecosystem (Months 4–12)
@@ -386,6 +430,7 @@ The NYU Wagner connection and textbook project create a natural teaching deploym
 | Committee coverage expansion | 2 | Medium | Medium-High |
 | Parliamentary timeline view | 2 | Medium | Medium |
 | Automated PMG refresh pipeline | 2 | Medium | Medium |
+| International Comparisons Database | 2 | Medium | Medium-High |
 | Policy brief generator | 3 | Medium | High |
 | Textbook integration | 3 | Low | Medium-High |
 | Public API + documentation | 3 | Low | Medium |
