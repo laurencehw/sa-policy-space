@@ -50,7 +50,7 @@ export default function MobileNav() {
       </button>
 
       {open && (
-        <div className="absolute top-14 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-50 py-3">
+        <div className="absolute top-14 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-50 py-3 max-h-[calc(100vh-3.5rem)] overflow-y-auto">
           <nav className="flex flex-col px-4 gap-0.5 text-sm text-gray-700">
             {/* Primary — visually prominent */}
             <Link href="/ideas" onClick={close} className="px-3 py-2.5 rounded-md font-medium text-gray-900 hover:bg-sa-green/10 active:bg-sa-green/15">Ideas</Link>
