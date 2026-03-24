@@ -15,9 +15,8 @@ interface ConstraintSummary {
 
 // ── Data fetching ──────────────────────────────────────────────────────────
 
-const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-
 async function getConstraintSummaries(): Promise<ConstraintSummary[]> {
+  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (isLocal) {
     const { getConstraintSummaries: localSummaries } = await import("@/lib/local-api");
     const rows = localSummaries();

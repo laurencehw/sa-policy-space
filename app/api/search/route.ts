@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
+
 import stakeholdersData from "@/data/stakeholders.json";
 import comparisonsData from "@/data/international_comparisons.json";
 import textbookChapters from "@/data/textbook_chapters.json";

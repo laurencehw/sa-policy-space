@@ -444,7 +444,7 @@ function IdeaCard({ idea }: { idea: IdeaRow }) {
     ?? "bg-gray-50 text-gray-600 ring-gray-500/20";
 
   return (
-    <Link href={`/ideas/${idea.id}`} className="card block space-y-2 hover:shadow-sm transition-shadow">
+    <Link href={`/ideas/${idea.slug || idea.id}`} className="card block space-y-2 hover:shadow-sm transition-shadow">
       <div className="flex flex-wrap gap-1.5">
         <span className={`badge ring-1 ${statusColor}`}>{idea.current_status.replace(/_/g, " ")}</span>
         {idea.feasibility_rating == null && (
