@@ -136,7 +136,7 @@ function ImplementationStep({
   step,
   index,
 }: {
-  step: { step: string; description: string; timeline: string; responsible_party: string };
+  step: { step: string | number; description: string; timeline: string; responsible_party: string };
   index: number;
 }) {
   return (

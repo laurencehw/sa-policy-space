@@ -81,7 +81,7 @@ export interface ImplementationPlan {
   idea_id: number;
   roadmap_summary: string;
   implementation_steps: Array<{
-    step: string;
+    step: string | number;  // stored as integer (1,2,3…) in DB
     description: string;
     timeline: string;
     responsible_party: string;
