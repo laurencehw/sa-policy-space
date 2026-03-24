@@ -16,7 +16,9 @@ export type PolicyStatus =
   | "drafted"
   | "stalled"
   | "implemented"
-  | "abandoned";
+  | "abandoned"
+  | "under_review"
+  | "partially_implemented";
 
 export type BindingConstraint =
   | "energy"
@@ -127,4 +129,6 @@ export const STATUS_COLORS: Record<PolicyStatus, string> = {
   stalled: "bg-red-50 text-red-700 ring-red-600/20",
   implemented: "bg-green-50 text-green-700 ring-green-600/20",
   abandoned: "bg-gray-50 text-gray-600 ring-gray-500/20",
+  under_review: "bg-amber-50 text-amber-700 ring-amber-600/20",
+  partially_implemented: "bg-teal-50 text-teal-700 ring-teal-600/20",
 };

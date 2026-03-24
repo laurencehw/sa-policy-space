@@ -200,8 +200,8 @@ export default async function IdeaDetailPage({
           <span className={`badge ${CONSTRAINT_COLORS[idea.binding_constraint]}`}>
             {CONSTRAINT_LABELS[idea.binding_constraint]}
           </span>
-          <span className={`badge ring-1 ${STATUS_COLORS[idea.current_status]}`}>
-            {idea.current_status}
+          <span className={`badge ring-1 ${(STATUS_COLORS as Record<string, string>)[idea.current_status] ?? "bg-gray-50 text-gray-600 ring-gray-500/20"}`}>
+            {idea.current_status?.replace(/_/g, " ")}
           </span>
           <TimeHorizonBadge horizon={idea.time_horizon} />
           {idea.times_raised > 1 && (

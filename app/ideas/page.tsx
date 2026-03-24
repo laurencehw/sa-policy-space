@@ -15,7 +15,8 @@ import { slugify } from "@/lib/utils";
 
 const ALL_CONSTRAINTS = Object.keys(CONSTRAINT_LABELS) as BindingConstraint[];
 const ALL_STATUSES: PolicyStatus[] = [
-  "proposed", "debated", "drafted", "stalled", "implemented", "abandoned",
+  "proposed", "debated", "drafted", "under_review", "stalled",
+  "partially_implemented", "implemented", "abandoned",
 ];
 
 const PACKAGE_NAMES: Record<number, string> = {
