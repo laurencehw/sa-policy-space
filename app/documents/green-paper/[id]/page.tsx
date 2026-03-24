@@ -291,15 +291,17 @@ export default async function GreenPaperPage({
 
           <div className="mt-8 grid grid-cols-3 gap-4 text-center text-xs text-gray-500 border-t pt-6" style={{ borderColor: "#e5e7eb" }}>
             <div>
-              <div className="font-bold text-gray-800 text-sm">{idea.times_raised}×</div>
+              <div className="font-bold text-gray-800 text-sm">{idea.times_raised ?? "—"}×</div>
               <div>Raised in committee</div>
             </div>
             <div>
-              <div className="font-bold text-gray-800 text-sm">{ratingStars(idea.growth_impact_rating)}</div>
+              <div className="font-bold text-gray-800 text-sm">
+                {idea.growth_impact_rating != null ? ratingStars(idea.growth_impact_rating) : "—"}
+              </div>
               <div>Growth impact</div>
             </div>
             <div>
-              <div className="font-bold text-gray-800 text-sm">{idea.current_status?.replace(/_/g, " ")}</div>
+              <div className="font-bold text-gray-800 text-sm">{idea.current_status?.replace(/_/g, " ") ?? "—"}</div>
               <div>Current status</div>
             </div>
           </div>
@@ -325,7 +327,7 @@ export default async function GreenPaperPage({
                 Preliminary economic analysis suggests a potential growth impact of{" "}
                 {idea.growth_impact_pct != null
                   ? `+${idea.growth_impact_pct.toFixed(1)}% of GDP`
-                  : `${idea.growth_impact_rating}/5 on a standardised impact scale`}
+                  : `${idea.growth_impact_rating ?? "—"}/5 on a standardised impact scale`}
                 {idea.fiscal_impact_zar_bn != null
                   ? ` and a fiscal impact of R${Math.abs(idea.fiscal_impact_zar_bn).toFixed(1)} billion`
                   : ""}
@@ -373,7 +375,7 @@ export default async function GreenPaperPage({
                 <h3 className="text-sm font-bold text-gray-800 mb-2 mt-4">1.4 Parliamentary Record</h3>
                 <DocPara>
                   This reform has been raised in parliamentary committee proceedings on{" "}
-                  {idea.times_raised} occasion{idea.times_raised !== 1 ? "s" : ""}.
+                  {idea.times_raised ?? 0} occasion{(idea.times_raised ?? 0) !== 1 ? "s" : ""}.
                   The following extract from committee proceedings illustrates the nature of
                   the policy discussion:
                 </DocPara>
@@ -492,7 +494,7 @@ export default async function GreenPaperPage({
               impact, feasibility, cost, and implementation timeline.
             </DocPara>
 
-            {plan?.implementation_steps && plan.implementation_steps.length > 0 ? (
+            {plan && Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0 ? (
               <>
                 <h3 className="text-sm font-bold text-gray-800 mb-2 mt-4">3.1 Preferred Policy Option: Phased Implementation Approach</h3>
                 <DocPara>
@@ -569,11 +571,11 @@ export default async function GreenPaperPage({
             <h3 className="text-sm font-bold text-gray-800 mb-2">4.1 Growth Impact Assessment</h3>
             <DocPara>
               This reform has been assessed at a growth impact rating of{" "}
-              <strong>{idea.growth_impact_rating}/5</strong>{" "}
-              ({ratingStars(idea.growth_impact_rating)}) on the standardised SA Policy Space
-              impact scale, and a feasibility rating of{" "}
-              <strong>{idea.feasibility_rating}/5</strong>{" "}
-              ({ratingStars(idea.feasibility_rating)}).
+              <strong>{idea.growth_impact_rating ?? "—"}/5</strong>{" "}
+              {idea.growth_impact_rating != null && <>({ratingStars(idea.growth_impact_rating)})</>}{" "}
+              on the standardised SA Policy Space impact scale, and a feasibility rating of{" "}
+              <strong>{idea.feasibility_rating ?? "—"}/5</strong>{" "}
+              {idea.feasibility_rating != null && <>({ratingStars(idea.feasibility_rating)})</>}.
             </DocPara>
 
             {idea.growth_impact_pct != null && (

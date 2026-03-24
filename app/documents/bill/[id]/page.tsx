@@ -201,7 +201,7 @@ export default async function BillPage({
 
   // Derive objects of Act from implementation steps
   const objects: string[] = [];
-  if (plan?.implementation_steps && plan.implementation_steps.length > 0) {
+  if (plan && Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0) {
     plan.implementation_steps.slice(0, 5).forEach((step) => {
       // step.step is a sequence number (1,2,3…); use step.description for the text
       const text = String(step.description || "").trim();
@@ -224,7 +224,7 @@ export default async function BillPage({
 
   // Powers derived from implementation steps
   const powers: string[] = [];
-  if (plan?.implementation_steps && plan.implementation_steps.length > 0) {
+  if (plan && Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0) {
     plan.implementation_steps.forEach((step) => {
       const desc = String(step.description || "").trim();
       if (desc) powers.push(desc);
