@@ -1,4 +1,4 @@
-export const revalidate = 300; // Ideas data changes infrequently — cache for 5 min
+export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import type { IdeaRow } from "@/lib/local-api";
