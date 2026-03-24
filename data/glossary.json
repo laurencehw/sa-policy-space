@@ -1,0 +1,560 @@
+[
+  {
+    "id": "act",
+    "term": "Act",
+    "category": "policy",
+    "definition": "A piece of legislation that has been passed by parliament and signed into law by the President. Acts of Parliament are the primary source of statutory law in South Africa.",
+    "translations": {
+      "af": { "text": "Wet" },
+      "zu": { "text": "Umthetho osemthethweni" },
+      "xh": { "text": "Umthetho" }
+    }
+  },
+  {
+    "id": "bbbee",
+    "term": "BBBEE",
+    "fullTerm": "Broad-Based Black Economic Empowerment",
+    "category": "sa-specific",
+    "definition": "A South African government policy designed to redress apartheid-era inequalities by promoting black participation in the mainstream economy through ownership, management, employment equity, and skills development.",
+    "translations": {
+      "af": { "text": "Breë-Gebaseerde Swart Ekonomiese Bemagtiging (BBBEE)" },
+      "zu": { "text": "BBBEE", "note": "commonly used in English" },
+      "xh": { "text": "BBBEE", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "bill",
+    "term": "Bill",
+    "category": "policy",
+    "definition": "A proposed law introduced in parliament for consideration and debate. A Bill must pass through the National Assembly and, where required, the National Council of Provinces before it can be signed into law as an Act.",
+    "translations": {
+      "af": { "text": "Wetsontwerp" },
+      "zu": { "text": "I-bill yomthetho", "note": "commonly used in English" },
+      "xh": { "text": "I-bill yomthetho", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "binding-constraint",
+    "term": "Binding Constraint",
+    "category": "policy",
+    "definition": "The most critical bottleneck limiting economic growth in a given context, as identified by the Hausmann-Rodrik-Velasco growth diagnostics framework. Addressing binding constraints yields the highest growth dividend relative to other reforms.",
+    "translations": {
+      "af": { "text": "Bindende beperking" },
+      "zu": { "text": "I-binding constraint", "note": "commonly used in English" },
+      "xh": { "text": "I-binding constraint", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "budget-deficit",
+    "term": "Budget Deficit",
+    "category": "economic",
+    "definition": "When government spending exceeds revenue in a given period, requiring borrowing to cover the gap. South Africa has run persistent budget deficits, contributing to rising sovereign debt levels.",
+    "translations": {
+      "af": { "text": "Begrotingstekort" },
+      "zu": { "text": "I-budget deficit", "note": "commonly used in English" },
+      "xh": { "text": "I-budget deficit", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "competition-commission",
+    "term": "Competition Commission",
+    "category": "sa-specific",
+    "definition": "An independent statutory body that investigates, controls, and evaluates restrictive business practices, abuse of dominant positions, and mergers. Established under the Competition Act 89 of 1998.",
+    "translations": {
+      "af": { "text": "Mededingingskommissie" },
+      "zu": { "text": "I-Competition Commission", "note": "commonly used in English" },
+      "xh": { "text": "I-Competition Commission", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "credit-rating",
+    "term": "Credit Rating",
+    "category": "economic",
+    "definition": "An assessment of a government's or entity's ability to repay debt, issued by agencies such as Moody's, S&P, and Fitch. South Africa's sovereign credit rating has been at sub-investment grade (junk) since 2020.",
+    "translations": {
+      "af": { "text": "Kredietgradering" },
+      "zu": { "text": "I-credit rating", "note": "commonly used in English" },
+      "xh": { "text": "I-credit rating", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "deregulation",
+    "term": "Deregulation",
+    "category": "economic",
+    "definition": "The reduction or removal of government rules and restrictions on industries or markets, intended to promote competition, lower costs, and improve efficiency.",
+    "translations": {
+      "af": { "text": "Deregulering" },
+      "zu": { "text": "I-deregulation", "note": "commonly used in English" },
+      "xh": { "text": "I-deregulation", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "economic-growth",
+    "term": "Economic Growth",
+    "category": "economic",
+    "definition": "An increase in the production of goods and services in an economy over time, typically measured by the real GDP growth rate. South Africa has averaged below 2% annual growth since 2010.",
+    "translations": {
+      "af": { "text": "Ekonomiese groei" },
+      "zu": { "text": "Ukukhula komnotho" },
+      "xh": { "text": "Ukukhula koqoqosho" }
+    }
+  },
+  {
+    "id": "eskom",
+    "term": "Eskom",
+    "category": "sa-specific",
+    "definition": "South Africa's national electricity utility and dominant power producer, transmitter, and distributor. Eskom's debt crisis and maintenance failures have been a primary cause of load shedding and a binding constraint on economic growth.",
+    "translations": {
+      "af": { "text": "Eskom" },
+      "zu": { "text": "Eskom" },
+      "xh": { "text": "Eskom" }
+    }
+  },
+  {
+    "id": "exchange-rate",
+    "term": "Exchange Rate",
+    "category": "economic",
+    "definition": "The value of one currency expressed in terms of another, determining the cost of international transactions. The rand exchange rate affects export competitiveness and import prices.",
+    "translations": {
+      "af": { "text": "Wisselkoers" },
+      "zu": { "text": "I-exchange rate", "note": "commonly used in English" },
+      "xh": { "text": "I-exchange rate", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "expenditure",
+    "term": "Expenditure",
+    "category": "economic",
+    "definition": "Money spent by government on public services, infrastructure, social grants, and administration. The composition of government expenditure — how much goes to wages versus capital investment — significantly affects growth outcomes.",
+    "translations": {
+      "af": { "text": "Uitgawes" },
+      "zu": { "text": "Izindleko" },
+      "xh": { "text": "Iindleko" }
+    }
+  },
+  {
+    "id": "feasibility",
+    "term": "Feasibility",
+    "category": "policy",
+    "definition": "The degree to which a reform can realistically be implemented given political, technical, and financial constraints. Feasibility assessments consider stakeholder opposition, institutional capacity, and resource availability.",
+    "translations": {
+      "af": { "text": "Uitvoerbaarheid" },
+      "zu": { "text": "I-feasibility", "note": "commonly used in English" },
+      "xh": { "text": "I-feasibility", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "fiscal-policy",
+    "term": "Fiscal Policy",
+    "category": "economic",
+    "definition": "Government decisions on taxation and public spending to influence the economy. Expansionary fiscal policy increases spending or cuts taxes to stimulate growth; contractionary policy reduces the deficit.",
+    "translations": {
+      "af": { "text": "Fiskale beleid" },
+      "zu": { "text": "I-fiscal policy", "note": "commonly used in English" },
+      "xh": { "text": "I-fiscal policy", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "gazette",
+    "term": "Gazette",
+    "category": "policy",
+    "definition": "The Government Gazette is the official journal of record for South African government notices, regulations, and legal documents. Draft regulations are published in the Gazette for public comment before finalisation.",
+    "translations": {
+      "af": { "text": "Staatskoerant" },
+      "zu": { "text": "I-Government Gazette", "note": "commonly used in English" },
+      "xh": { "text": "I-Government Gazette", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "gdp",
+    "term": "GDP",
+    "fullTerm": "Gross Domestic Product",
+    "category": "economic",
+    "definition": "The total monetary value of all goods and services produced within a country's borders in a given period. The primary measure of an economy's size and overall output.",
+    "translations": {
+      "af": { "text": "Bruto Binnelandse Produk (BBP)" },
+      "zu": { "text": "GDP", "note": "commonly used in English" },
+      "xh": { "text": "GDP", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "gini-coefficient",
+    "term": "Gini Coefficient",
+    "category": "economic",
+    "definition": "A statistical measure of income or wealth inequality, ranging from 0 (perfect equality) to 1 (maximum inequality). South Africa's Gini coefficient is among the highest in the world at approximately 0.63.",
+    "translations": {
+      "af": { "text": "Gini-koëffisiënt" },
+      "zu": { "text": "I-Gini coefficient", "note": "commonly used in English" },
+      "xh": { "text": "I-Gini coefficient", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "green-paper",
+    "term": "Green Paper",
+    "category": "policy",
+    "definition": "A consultative document published by government to invite public discussion on a proposed policy before it is finalised. A green paper typically precedes a white paper and signals that policy is still under consideration.",
+    "translations": {
+      "af": { "text": "Groenskrif" },
+      "zu": { "text": "I-green paper", "note": "commonly used in English" },
+      "xh": { "text": "I-green paper", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "growth-diagnostics",
+    "term": "Growth Diagnostics",
+    "category": "policy",
+    "definition": "An analytical framework developed by Ricardo Hausmann, Dani Rodrik, and Andrés Velasco to identify the most binding constraint on economic growth in a specific country, allowing policymakers to prioritise high-return interventions.",
+    "translations": {
+      "af": { "text": "Groei-diagnostiek" },
+      "zu": { "text": "I-growth diagnostics", "note": "commonly used in English" },
+      "xh": { "text": "I-growth diagnostics", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "implementation",
+    "term": "Implementation",
+    "category": "policy",
+    "definition": "The process of putting a policy, law, or programme into effect. Poor implementation capacity is identified across the literature as a persistent constraint on South Africa's reform outcomes.",
+    "translations": {
+      "af": { "text": "Implementering" },
+      "zu": { "text": "Ukwenziwa kwenqubomgomo" },
+      "xh": { "text": "Ukuphunyezwa" }
+    }
+  },
+  {
+    "id": "inequality",
+    "term": "Inequality",
+    "category": "economic",
+    "definition": "Unequal distribution of income, wealth, or opportunities among a population. Structural inequality rooted in apartheid-era policies remains one of South Africa's most acute social and economic challenges.",
+    "translations": {
+      "af": { "text": "Ongelykheid" },
+      "zu": { "text": "Ukungalingani" },
+      "xh": { "text": "Ukungalingani" }
+    }
+  },
+  {
+    "id": "inflation",
+    "term": "Inflation",
+    "category": "economic",
+    "definition": "A sustained general increase in prices over time, reducing the purchasing power of money. The South African Reserve Bank targets consumer price inflation within a band of 3–6% per annum.",
+    "translations": {
+      "af": { "text": "Inflasie" },
+      "zu": { "text": "I-inflation", "note": "commonly used in English" },
+      "xh": { "text": "I-inflation", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "infrastructure",
+    "term": "Infrastructure",
+    "category": "economic",
+    "definition": "The basic physical systems required for the operation of a society and economy, including roads, ports, rail, electricity networks, water systems, and digital connectivity.",
+    "translations": {
+      "af": { "text": "Infrastruktuur" },
+      "zu": { "text": "I-infrastructure", "note": "commonly used in English" },
+      "xh": { "text": "Iziseko / i-infrastructure", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "interest-rate",
+    "term": "Interest Rate",
+    "category": "economic",
+    "definition": "The cost of borrowing money, expressed as a percentage per period. The SARB's Monetary Policy Committee sets the repo rate, which anchors commercial borrowing rates and influences investment and consumption.",
+    "translations": {
+      "af": { "text": "Rentekoers" },
+      "zu": { "text": "I-interest rate", "note": "commonly used in English" },
+      "xh": { "text": "I-interest rate", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "investment",
+    "term": "Investment",
+    "category": "economic",
+    "definition": "Expenditure on capital goods, infrastructure, or financial assets with the expectation of future returns. Gross fixed capital formation as a share of GDP is a key indicator of an economy's productive capacity.",
+    "translations": {
+      "af": { "text": "Belegging" },
+      "zu": { "text": "Ukutshala imali" },
+      "xh": { "text": "Ukutshala imali" }
+    }
+  },
+  {
+    "id": "legislation",
+    "term": "Legislation",
+    "category": "policy",
+    "definition": "Laws enacted by a parliament or legislature. In South Africa, legislation originates as Bills introduced to the National Assembly, passes through committee scrutiny, and requires presidential assent.",
+    "translations": {
+      "af": { "text": "Wetgewing" },
+      "zu": { "text": "Umthetho wezwe" },
+      "xh": { "text": "Umthetho" }
+    }
+  },
+  {
+    "id": "load-shedding",
+    "term": "Load Shedding",
+    "category": "sa-specific",
+    "definition": "The scheduled and controlled interruption of electricity supply to prevent total grid collapse, managed by Eskom when generation capacity falls short of demand. Load shedding has imposed severe costs on South African businesses and households since 2007.",
+    "translations": {
+      "af": { "text": "Beurtkrag" },
+      "zu": { "text": "Ukucinywa kukagesi ohlelelwe" },
+      "xh": { "text": "Ukukhutshelwa kombane" }
+    }
+  },
+  {
+    "id": "mandate",
+    "term": "Mandate",
+    "category": "policy",
+    "definition": "The authority or legal power granted to an institution to carry out specific functions. Regulatory mandates define the scope of a body's jurisdiction and the limits of its intervention powers.",
+    "translations": {
+      "af": { "text": "Mandaat" },
+      "zu": { "text": "Igunya / i-mandate" },
+      "xh": { "text": "Igunya / i-mandate" }
+    }
+  },
+  {
+    "id": "monetary-policy",
+    "term": "Monetary Policy",
+    "category": "economic",
+    "definition": "Central bank decisions on interest rates and money supply to achieve price stability and support sustainable economic growth. In South Africa, monetary policy is set by the SARB's Monetary Policy Committee.",
+    "translations": {
+      "af": { "text": "Monetêre beleid" },
+      "zu": { "text": "I-monetary policy", "note": "commonly used in English" },
+      "xh": { "text": "I-monetary policy", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "national-treasury",
+    "term": "National Treasury",
+    "category": "sa-specific",
+    "definition": "The South African government department responsible for managing national finances, coordinating macroeconomic policy, and preparing the annual national budget. Treasury sets the fiscal framework that constrains departmental spending.",
+    "translations": {
+      "af": { "text": "Nasionale Tesourie" },
+      "zu": { "text": "I-National Treasury", "note": "commonly used in English" },
+      "xh": { "text": "I-National Treasury", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "ndp",
+    "term": "NDP",
+    "fullTerm": "National Development Plan",
+    "category": "sa-specific",
+    "definition": "South Africa's long-term development blueprint adopted in 2012, setting out targets for 2030 to eliminate poverty, reduce inequality, and grow the economy to create 11 million jobs. Produced by the National Planning Commission.",
+    "translations": {
+      "af": { "text": "Nasionale Ontwikkelingsplan (NOP)" },
+      "zu": { "text": "NDP", "note": "commonly used in English" },
+      "xh": { "text": "NDP", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "nersa",
+    "term": "NERSA",
+    "fullTerm": "National Energy Regulator of South Africa",
+    "category": "sa-specific",
+    "definition": "The regulatory authority for the electricity, piped-gas, and petroleum pipelines industries in South Africa. NERSA approves Eskom's tariff applications and licenses new electricity generators.",
+    "translations": {
+      "af": { "text": "Nasionale Energiereguleerder van Suid-Afrika" },
+      "zu": { "text": "NERSA", "note": "commonly used in English" },
+      "xh": { "text": "NERSA", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "pmg",
+    "term": "PMG",
+    "fullTerm": "Parliamentary Monitoring Group",
+    "category": "sa-specific",
+    "definition": "An independent, non-governmental organisation that monitors and publishes information about South Africa's parliamentary activities, providing free public access to committee meeting minutes, agendas, and reports.",
+    "translations": {
+      "af": { "text": "Parlementêre Moniteringsgroep" },
+      "zu": { "text": "PMG", "note": "commonly used in English" },
+      "xh": { "text": "PMG", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "poverty",
+    "term": "Poverty",
+    "category": "economic",
+    "definition": "A state in which individuals lack sufficient resources to meet basic needs including food, shelter, healthcare, and education. Statistics South Africa defines multiple poverty lines; over half of South Africans live below the upper-bound poverty line.",
+    "translations": {
+      "af": { "text": "Armoede" },
+      "zu": { "text": "Ubuphofu" },
+      "xh": { "text": "Intlupheko" }
+    }
+  },
+  {
+    "id": "privatisation",
+    "term": "Privatisation",
+    "category": "economic",
+    "definition": "Transfer of ownership or control of a state-owned enterprise or public service to private entities. Privatisation debates in South Africa centre on the trade-off between efficiency gains and equity of access.",
+    "translations": {
+      "af": { "text": "Privatisering" },
+      "zu": { "text": "I-privatisation", "note": "commonly used in English" },
+      "xh": { "text": "I-privatisation", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "public-comment",
+    "term": "Public Comment",
+    "category": "policy",
+    "definition": "A formal process allowing citizens and organisations to submit written responses to proposed laws, regulations, or policies published in the Government Gazette. Public comment periods typically run 30–60 days.",
+    "translations": {
+      "af": { "text": "Openbare kommentaar" },
+      "zu": { "text": "I-public comment", "note": "commonly used in English" },
+      "xh": { "text": "I-public comment", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "public-sector",
+    "term": "Public Sector",
+    "category": "policy",
+    "definition": "The part of the economy controlled or operated by government, including national and provincial departments, municipalities, state-owned enterprises, and development finance institutions.",
+    "translations": {
+      "af": { "text": "Openbare sektor" },
+      "zu": { "text": "Umkhakha kahulumeni" },
+      "xh": { "text": "Icandelo likarhulumente" }
+    }
+  },
+  {
+    "id": "reform",
+    "term": "Reform",
+    "category": "policy",
+    "definition": "Deliberate changes to policies, institutions, or practices aimed at improving economic or social outcomes. The pace and depth of structural reform is a central debate in South African economic policy.",
+    "translations": {
+      "af": { "text": "Hervorming" },
+      "zu": { "text": "Uguquko lwenqubomgomo" },
+      "xh": { "text": "Utshintsho lwepolisi" }
+    }
+  },
+  {
+    "id": "regulation",
+    "term": "Regulation",
+    "category": "policy",
+    "definition": "Rules issued by government or regulatory bodies to control economic or social activity, set standards, and protect public interests. Regulatory burden and uncertainty are frequently cited as constraints on private investment.",
+    "translations": {
+      "af": { "text": "Regulering" },
+      "zu": { "text": "I-regulation", "note": "commonly used in English" },
+      "xh": { "text": "I-regulation", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "revenue",
+    "term": "Revenue",
+    "category": "economic",
+    "definition": "Income generated by government primarily through taxes (personal income tax, VAT, corporate tax) and non-tax sources. SARS is responsible for collecting the revenue needed to fund public expenditure.",
+    "translations": {
+      "af": { "text": "Inkomste" },
+      "zu": { "text": "Imali engenayo" },
+      "xh": { "text": "Ingeniso" }
+    }
+  },
+  {
+    "id": "sarb",
+    "term": "SARB",
+    "fullTerm": "South African Reserve Bank",
+    "category": "sa-specific",
+    "definition": "The central bank of South Africa, responsible for monetary policy, financial stability, and currency issuance. Its primary mandate, protected by the Constitution, is to achieve and maintain price stability in the interest of balanced and sustainable economic growth.",
+    "translations": {
+      "af": { "text": "Suid-Afrikaanse Reserwebank" },
+      "zu": { "text": "SARB", "note": "commonly used in English" },
+      "xh": { "text": "SARB", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "seta",
+    "term": "SETA",
+    "fullTerm": "Sector Education and Training Authority",
+    "category": "sa-specific",
+    "definition": "Statutory bodies responsible for facilitating skills development and training within specific economic sectors. There are 21 SETAs in South Africa, funded through a levy on payroll. Their effectiveness in addressing skills gaps has been widely questioned.",
+    "translations": {
+      "af": { "text": "Sektorale Onderwys- en Opleidingsowerheid (SOTA)" },
+      "zu": { "text": "SETA", "note": "commonly used in English" },
+      "xh": { "text": "SETA", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "soe",
+    "term": "SOE",
+    "fullTerm": "State-Owned Enterprise",
+    "category": "sa-specific",
+    "definition": "A company owned wholly or partially by the South African government. Key SOEs include Eskom (electricity), Transnet (rail and ports), SAA (aviation), and SABC (broadcasting). SOE reform is a central plank of South Africa's structural reform agenda.",
+    "translations": {
+      "af": { "text": "Staatsbesitte Onderneming (SBO)" },
+      "zu": { "text": "I-State-Owned Enterprise", "note": "commonly used in English" },
+      "xh": { "text": "I-State-Owned Enterprise", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "sovereign-debt",
+    "term": "Sovereign Debt",
+    "category": "economic",
+    "definition": "Money borrowed by a national government, typically through bond issuance. South Africa's gross government debt has risen sharply, exceeding 70% of GDP, increasing vulnerability to refinancing risk and rating downgrades.",
+    "translations": {
+      "af": { "text": "Staatskuld" },
+      "zu": { "text": "I-sovereign debt", "note": "commonly used in English" },
+      "xh": { "text": "I-sovereign debt", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "stakeholder",
+    "term": "Stakeholder",
+    "category": "policy",
+    "definition": "Any individual, group, or organisation with an interest in or affected by a policy decision. Effective stakeholder engagement is a prerequisite for building the political economy conditions needed to implement contentious reforms.",
+    "translations": {
+      "af": { "text": "Belanghebbende" },
+      "zu": { "text": "Ozohlukumezekayo / i-stakeholder" },
+      "xh": { "text": "Inxaxheba / i-stakeholder" }
+    }
+  },
+  {
+    "id": "subsidy",
+    "term": "Subsidy",
+    "category": "economic",
+    "definition": "Government financial support provided to businesses, industries, households, or public entities to reduce costs, encourage production, or promote equity. Subsidies to SOEs account for a significant share of South African fiscal expenditure.",
+    "translations": {
+      "af": { "text": "Subsidie" },
+      "zu": { "text": "I-subsidy", "note": "commonly used in English" },
+      "xh": { "text": "I-subsidi", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "tariff",
+    "term": "Tariff",
+    "category": "economic",
+    "definition": "A tax imposed on imported goods, used to protect domestic industries, raise revenue, or as a bargaining tool in trade negotiations. Tariff policy in South Africa is administered by ITAC.",
+    "translations": {
+      "af": { "text": "Tarief / Invoerbelasting" },
+      "zu": { "text": "I-tariff", "note": "commonly used in English" },
+      "xh": { "text": "I-tariff", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "trade-deficit",
+    "term": "Trade Deficit",
+    "category": "economic",
+    "definition": "When a country imports more goods and services than it exports, resulting in a negative trade balance. A persistent trade deficit can put pressure on the currency and increase external financing needs.",
+    "translations": {
+      "af": { "text": "Handelstekort" },
+      "zu": { "text": "I-trade deficit", "note": "commonly used in English" },
+      "xh": { "text": "I-trade deficit", "note": "commonly used in English" }
+    }
+  },
+  {
+    "id": "unemployment",
+    "term": "Unemployment",
+    "category": "economic",
+    "definition": "The share of the labour force that is actively seeking work but unable to find it. South Africa's official unemployment rate exceeds 32%, and the expanded definition — including discouraged work-seekers — exceeds 40%.",
+    "translations": {
+      "af": { "text": "Werkloosheid" },
+      "zu": { "text": "Ukuntuleka kwemisebenzi" },
+      "xh": { "text": "Ukuntuleka kwemisebenzi" }
+    }
+  },
+  {
+    "id": "white-paper",
+    "term": "White Paper",
+    "category": "policy",
+    "definition": "A government policy document setting out official plans and proposals, typically following a green paper consultation. A white paper signals firm policy intent and often precedes the drafting of legislation.",
+    "translations": {
+      "af": { "text": "Witskrif" },
+      "zu": { "text": "I-white paper", "note": "commonly used in English" },
+      "xh": { "text": "I-white paper", "note": "commonly used in English" }
+    }
+  }
+]
