@@ -1,353 +1,424 @@
 {
   "metadata": {
-    "source": "2026 Budget Review (25 February 2026), National Treasury South Africa; 2025/26 Estimates of National Expenditure (May 2025 Budget); Parliamentary Committee BRRRs",
-    "fiscal_year": "2025/26",
+    "source": "2025 Budget Review (Feb 2025), 2026 Budget Review (Feb 2026), 2026 Budget Review Annexure D, Vote 25 ENE 2025 (Justice), 2024/25 MTBPS, Parliamentary Committee BRRRs",
     "base_year": "2025/26",
     "currency": "ZAR billions",
     "last_updated": "2026-03-23",
-    "notes": "Figures updated to 2025/26 from the 2026 Budget Review (tabled 25 Feb 2026) and May 2025 ENE. 'Allocated' figures reflect 2025/26 budget appropriations or multi-year programme envelopes current as of the 2026 Budget Review. 'Recommended' figures represent Parliamentary committee BRRR recommendations and independent estimates. Key macro context: consolidated expenditure R2.58 trillion in 2025/26; deficit 4.5% of GDP; debt-to-GDP 78.9% (projected peak, first debt stabilisation in 17 years); primary surplus 0.9% of GDP."
+    "notes": "Updated March 2026 with 2025/26 figures from the February 2025 and February 2026 National Budget Reviews and Annexure D. NSFAS allocated updated from a partial sub-component estimate (R17.6bn) to the full appropriation (R55.4bn); recommended revised accordingly. ECD figure reflects the major post-transfer expansion under DBE. PRASA MTEF total now exceeds the prior BRRR recommendation. NPA figure from Vote 25 ENE 2025 is substantially higher than the 2024 baseline. Line items without confirmed updated figures retain 2024/25 MTBPS baseline and are marked with their original source."
   },
   "packages": [
     {
       "package_id": 1,
       "package_name": "Infrastructure Unblock",
-      "budget_allocated": 339.3,
-      "budget_recommended": 441.5,
-      "gap_percentage": 23.2,
+      "budget_allocated": 325.8,
+      "budget_recommended": 421.5,
+      "gap_percentage": 22.7,
       "funding_status": "partially_funded",
-      "summary": "Infrastructure spending is the dominant priority of the 2025/26 budget, with R526.3 billion committed over the MTEF for water and roads alone. The Eskom conditional equity conversion (R254bn, 2023–2026) is entering its final tranche. Grid expansion, PRASA recapitalisation, and bulk water infrastructure have all seen real increases, but fall short of committee-recommended levels for full backlogs.",
+      "summary": "Energy and logistics infrastructure allocations have been updated significantly for 2025/26. The Eskom debt-relief programme has been revised to R230bn (from R254bn) with R140bn disbursed by March 2025. PRASA's MTEF allocation has nearly doubled and now exceeds the prior BRRR recommendation. Transnet capex has ramped sharply via government-backed borrowing. Water, digital, and municipal infrastructure remain below recommended levels.",
       "key_line_items": [
         {
-          "item": "Eskom Debt Relief (conditional equity conversion — final tranche)",
-          "allocated": 254.0,
-          "recommended": 254.0,
+          "item": "Eskom Debt Relief (conditional equity conversion)",
+          "allocated": 230.0,
+          "recommended": 230.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review; 2026 Budget Review (programme revised from R254bn to R230bn total; R140bn disbursed by March 2025, ~R80bn in 2025/26)",
           "department": "Department of Public Enterprises / National Treasury",
           "funding_status": "funded",
-          "notes": "R254bn conditional equity conversion announced in 2023 Budget, structured across 2023/24–2025/26. Programme is in its final tranche. Load-shedding largely resolved. Source: National Treasury Budget Review 2026."
+          "notes": "Eskom debt-relief programme revised to R230bn total (down from R254bn) as Eskom's financial position improved. R140bn had been advanced by 31 March 2025; the 2025/26 payment was approximately R80bn. Eskom reported net repayments of R18.8bn in 2025/26. The programme is substantially complete."
         },
         {
           "item": "PRASA Capital Injection and Fleet Recapitalisation",
-          "allocated": 11.5,
+          "allocated": 19.2,
           "recommended": 18.5,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.2 (MTEF additions: R5.89bn 2025/26 + R5.42bn 2026/27 + R7.92bn 2027/28 = R19.24bn); 2026 Budget Speech (additional R5.8bn special appropriation for rolling stock fleet renewal)",
           "department": "Department of Transport",
-          "funding_status": "partially_funded",
-          "notes": "Increased from R9.9bn to R11.5bn in 2025/26 ENE. Sanral maintaining 27,000km and resurfacing 2,000km of road network. Portfolio Committee recommended R18.5bn to address full fleet backlog and signal upgrades. Source: 2026 Budget Review; May 2025 ENE."
+          "funding_status": "funded",
+          "notes": "MTEF allocation of R19.2bn now exceeds the prior Portfolio Committee recommendation of R18.5bn. The 2026 Budget added a further R5.8bn special appropriation for rolling stock fleet renewal, bringing potential total support to ~R25bn. Funding status upgraded to 'funded' relative to original BRRR target."
         },
         {
           "item": "Renewable Energy Transmission Grid Expansion",
-          "allocated": 19.2,
+          "allocated": 16.3,
           "recommended": 42.0,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS (no updated direct public appropriation found for transmission capex; Independent Transmission Projects Procurement Programme is privately financed)",
           "department": "Department of Mineral Resources and Energy / Eskom Transmission",
           "funding_status": "partially_funded",
-          "notes": "Updated to R19.2bn for 2025/26, reflecting accelerated grid investment as renewable energy pipeline grows post-load-shedding resolution. Energy Portfolio Committee recommended R42bn over 5 years. Source: 2026 Budget Review; 2025/26 ENE."
+          "notes": "No updated direct public allocation for transmission grid expansion in 2025/26 Budget. The Independent Transmission Projects Procurement Programme (ITPPP), procuring ~1,164 km of new lines, is privately financed with government procurement facilitation. Public-sector energy infrastructure overall is R59.2bn in 2025/26 (Annexure D) but this includes all energy SOC capex. The R16.3bn figure from the 2024/25 MTBPS is retained pending a specific transmission-grid appropriation. Energy Portfolio Committee recommendation of R42bn remains relevant."
         },
         {
           "item": "Water Infrastructure Investment (bulk supply and wastewater)",
-          "allocated": 21.0,
-          "recommended": 35.0,
+          "allocated": 12.0,
+          "recommended": 26.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review; 2026 Budget Review Annexure D (DWS Regional Bulk Infrastructure Grant + Water Services Infrastructure Grant ~R12bn/yr; DWS vote total R46.4bn in 2025/26; public-sector water infrastructure R62.7bn in 2025/26 per Annexure D)",
           "department": "Department of Water and Sanitation",
           "funding_status": "partially_funded",
-          "notes": "Significantly increased from R8.2bn to R21.0bn in 2025/26, reflecting the 2026 Budget's emphasis on water and roads as the dominant infrastructure priority (R526.3bn over MTEF for water and roads combined). Recommended figure raised to R35bn per DWS infrastructure backlog estimates. Source: 2026 Budget Review; Parliament of SA education/health/infrastructure budget brief."
+          "notes": "Updated to R12bn representing the DWS bulk water grants (Regional Bulk Infrastructure Grant + Water Services Infrastructure Grant) specifically. Full DWS vote is R46.4bn in 2025/26 including operational costs. Major capital projects include Lesotho Highlands Phase 2 (R53.3bn total), uMkhomazi (R24bn), and Olifants Management Model Phase 2 (R25bn), many relying on Budget Facility for Infrastructure funding."
         },
         {
           "item": "Transnet Operational Turnaround Support",
-          "allocated": 14.0,
+          "allocated": 25.5,
           "recommended": 22.0,
+          "fiscal_year": "2025/26",
+          "source": "2026 Budget Review Annexure D (Transnet 3-year MTEF capex plan R76.6bn = ~R25.5bn/yr; government guarantees increased by R145.8bn to R661bn total)",
           "department": "Department of Public Enterprises",
-          "funding_status": "partially_funded",
-          "notes": "Increased to R14.0bn in 2025/26. Includes equity support and operational grants. DPE committee BRRR recommended R22bn for locomotive fleet and maintenance. Source: May 2025 ENE."
+          "funding_status": "funded",
+          "notes": "No direct operational subsidy appropriation. Transnet capex is funded from own resources and commercially borrowed funds backed by substantially expanded government guarantees (up R145.8bn to R661bn total). The R76.6bn MTEF capex plan (2026/27–2028/29) implies ~R25.5bn per year, up from R12–14bn historical levels. Funding status upgraded relative to original R22bn DPE committee BRRR target."
         },
         {
           "item": "Digital Infrastructure — SA Connect Phase 2",
-          "allocated": 2.6,
+          "allocated": 3.0,
           "recommended": 8.0,
+          "fiscal_year": "2025/26",
+          "source": "2026 Budget Review Annexure D (R3bn for SA Connect Phase 2, deploying ~1,180 km of fibre covering ~5.6m households via Wi-Fi hotspots, completing in 2025/26); additional R700m special appropriation for Dept. of Communications in 2026/27",
           "department": "Department of Communications and Digital Technologies",
           "funding_status": "partially_funded",
-          "notes": "R2.6bn allocated vs R8bn recommended to connect all public institutions and reach 80% household broadband. Source: May 2025 ENE."
+          "notes": "SA Connect Phase 2 total project cost confirmed at R3bn (up from R2.3bn in prior MTEF). The 2026 Budget added a R700m special appropriation for the Department of Communications in 2026/27. Still well below the R8bn recommended to connect all public institutions and reach 80% household broadband."
         },
         {
           "item": "Municipal Infrastructure Grant (water and sanitation components)",
-          "allocated": 17.0,
+          "allocated": 19.8,
           "recommended": 21.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.10 (MIG: R17,054m in 2024/25 revised; R19,762m in 2025/26; R21,392m in 2026/27; R24,259m in 2027/28)",
           "department": "Cooperative Governance and Traditional Affairs",
           "funding_status": "partially_funded",
-          "notes": "MIG allocation increased to R17.0bn in 2025/26 in line with the infrastructure push. Committee recommended uplift to address backlogs in O&M alongside capital. Source: 2026 Budget Review; May 2025 ENE."
+          "notes": "MIG allocation for 2025/26 is R19.8bn, up from R17bn in 2024/25 revised. Trending toward the recommended R21bn by 2026/27. The 2026 Budget introduced a split delivery model: municipalities with poor spending capacity will have funds shifted to indirect (national) delivery. Note: only 55% of 2024/25 MIG was spent by end-December 2024."
         }
       ]
     },
     {
       "package_id": 2,
       "package_name": "SMME & Employment Acceleration",
-      "budget_allocated": 13.5,
-      "budget_recommended": 30.0,
-      "gap_percentage": 55.0,
+      "budget_allocated": 13.0,
+      "budget_recommended": 28.6,
+      "gap_percentage": 54.5,
       "funding_status": "partially_funded",
-      "summary": "SMME and employment programmes remain the most severely underfunded of the five packages relative to committee recommendations. Youth employment and informal economy support fall far short of the scale needed to address structural unemployment (~32% broad rate). The SRD grant was extended by R35.2bn to March 2026, but labour-market activation programmes lag. Source: 2026 Budget Review.",
+      "summary": "SMME and employment programmes remain the most severely underfunded package. No large new SEFA capitalisation was announced in the 2025 or 2026 Budgets. Public employment programme funding increased modestly in 2025/26 and a new Presidential youth employment pathway was added in the 2026 Budget. The structural gap to address 46% youth unemployment persists.",
       "key_line_items": [
         {
           "item": "SEFA (Small Enterprise Finance Agency) Capitalisation",
-          "allocated": 2.3,
+          "allocated": 2.1,
           "recommended": 6.5,
+          "fiscal_year": "2024/25",
+          "source": "2025 Budget Review, Table 5.11 (DSBD medium-term allocation ~R2.1bn to support ~120,000 SMMEs; no new headline SEFA capitalisation in 2025 or 2026 Budget)",
           "department": "Department of Small Business Development",
           "funding_status": "partially_funded",
-          "notes": "Portfolio Committee on Small Business Development repeatedly recommended higher capitalisation to expand SMME lending book. Source: May 2025 ENE."
+          "notes": "No large new equity injection for SEFA announced in 2025 or 2026 National Budgets. SEFA operates on its MTEF baseline (~R250m/yr from the fiscus) plus own lending income. Portfolio Committee on Small Business Development has repeatedly recommended higher capitalisation; the gap of ~R4.4bn to the recommended R6.5bn remains. DSBD total MTEF allocation is ~R2.1bn covering multiple programmes."
         },
         {
           "item": "SMME Red Tape Reduction / BizPortal Integration",
           "allocated": 0.3,
           "recommended": 0.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; 2024 Budget Review (primarily IT and operational reform; no change in 2025/26 Budget)",
           "department": "Department of Small Business Development",
           "funding_status": "partially_funded",
-          "notes": "Primarily an IT and operational reform — low fiscal cost but underfunded relative to system integration targets."
+          "notes": "Primarily an IT and operational reform — low fiscal cost but underfunded relative to system integration targets. No material change from prior MTBPS baseline."
         },
         {
           "item": "Youth Employment Intervention — YES Programme Matching",
           "allocated": 2.0,
           "recommended": 5.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.11; 2026 Budget Review (R459m for Presidential National Pathway Management Network in 2026/27, targeting 136,000 job opportunities)",
           "department": "Department of Employment and Labour",
           "funding_status": "partially_funded",
-          "notes": "Government matching for YES (Youth Employment Service). Modest increase in 2025/26. Committee recommended scaling to 1 million placements. Source: May 2025 ENE."
+          "notes": "YES is primarily a private-sector programme with government tax incentives (via DTIC). The 2026 Budget added R459m for the Presidential National Pathway Management Network (youth employment) in 2026/27. Government matching for YES placements updated to R2bn reflecting broader employment incentive support. Still well below the R5bn target for 1 million placements."
         },
         {
           "item": "Expanded Public Works Programme (EPWP)",
-          "allocated": 6.6,
+          "allocated": 6.5,
           "recommended": 8.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.11 (employment programmes line: R18,852m in 2024/25; R20,655m in 2025/26 = R20.7bn across EPWP, CWP, and Jobs Fund; R4.6bn addition for public employment in 2025/26)",
           "department": "Department of Public Works and Infrastructure",
           "funding_status": "partially_funded",
-          "notes": "R6.6bn allocated in 2025/26; committee recommended expansion and transition to skills-linked programmes. Source: May 2025 ENE."
+          "notes": "The employment programmes budget line (covering EPWP, Community Works Programme, and Jobs Fund) is R20.7bn in 2025/26, up from R18.9bn in 2024/25. EPWP specifically estimated at ~R6.5bn within this envelope. The R4.6bn spending addition for public employment programmes in 2025/26 reflects government's expanded commitment. Committee recommendation to shift EPWP toward skills-linked programmes remains unimplemented."
         },
         {
           "item": "Informal Economy Trading Infrastructure and Support",
-          "allocated": 0.7,
+          "allocated": 0.6,
           "recommended": 3.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — DSBD Portfolio Committee",
           "department": "Department of Small Business Development",
           "funding_status": "partially_funded",
-          "notes": "Trading space upgrades, registration support and working capital for informal traders. Severely underfunded."
+          "notes": "Trading space upgrades, registration support and working capital for informal traders. No significant change from prior year. Severely underfunded relative to informal sector scale."
         },
         {
           "item": "SMME Procurement Reform — Set-Asides Monitoring",
           "allocated": 0.2,
           "recommended": 0.3,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; National Treasury / DSBD operational budget",
           "department": "National Treasury / DSBD",
           "funding_status": "partially_funded",
-          "notes": "Compliance monitoring and supplier database. Primarily a governance reform."
+          "notes": "Compliance monitoring and supplier database. Primarily a governance reform with minimal direct fiscal cost."
         },
         {
           "item": "Township and Rural Entrepreneurship Programme (TREP)",
-          "allocated": 1.4,
+          "allocated": 1.3,
           "recommended": 4.8,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — DSBD Portfolio Committee",
           "department": "Department of Small Business Development",
           "funding_status": "partially_funded",
-          "notes": "Spatial-targeted enterprise development. Committee recommended significant scale-up. Source: May 2025 ENE."
+          "notes": "Spatial-targeted enterprise development. Committee recommended significant scale-up. No material change from prior year baseline."
         }
       ]
     },
     {
       "package_id": 3,
       "package_name": "Human Capital Pipeline",
-      "budget_allocated": 55.5,
-      "budget_recommended": 76.0,
-      "gap_percentage": 27.0,
+      "budget_allocated": 98.7,
+      "budget_recommended": 121.0,
+      "gap_percentage": 18.4,
       "funding_status": "partially_funded",
-      "summary": "Education and health see real increases in 2025/26 — education remains the largest function at 23.7% of consolidated spending over the MTEF. ECD receives an additional R12.8bn over 3 years (R4.3bn/year). Provincial health receives R298.9bn in 2025/26 including R26bn for HIV/AIDS programmes over the MTEF. NSFAS and NHI preparation both see increased allocations, though NHI pilot infrastructure remains below Phase 1 requirements. Source: 2026 Budget Review.",
+      "summary": "The Human Capital package has seen large allocation increases in 2025/26, primarily driven by the full NSFAS appropriation (R55.4bn, substantially higher than the partial estimate in prior data) and the major ECD expansion following the DBE transfer (R13.6bn). TVET and NHI implementation remain underfunded relative to committee targets. The package funding gap has narrowed significantly once NSFAS and ECD are correctly measured.",
       "key_line_items": [
         {
           "item": "National Reading and Literacy Crisis Response",
-          "allocated": 0.9,
+          "allocated": 0.8,
           "recommended": 3.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Basic Education Portfolio Committee",
           "department": "Department of Basic Education",
           "funding_status": "partially_funded",
-          "notes": "Basic Education committee BRRR recommended a dedicated reading crisis programme. 2025/26 allocation modestly increased. Source: May 2025 ENE."
+          "notes": "Basic Education committee BRRR recommended a dedicated reading crisis programme. Current allocation covers only PIRLS participation and partial curriculum support. No material change from prior year."
         },
         {
           "item": "TVET College Recapitalisation and Curriculum Modernisation",
-          "allocated": 14.1,
+          "allocated": 13.8,
           "recommended": 19.5,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.6 (TVET: R13,092m in 2024/25; R13,752m in 2025/26; R14,606m in 2026/27; R15,721m in 2027/28); 2026 Budget Review Annexure D (R2.1bn over MTEF for workshop and equipment upgrades)",
           "department": "Department of Higher Education and Training",
           "funding_status": "partially_funded",
-          "notes": "Increased to R14.1bn in 2025/26. DHET committee consistently recommends uplift for infrastructure and lecturer quality upgrades. Source: May 2025 ENE."
+          "notes": "TVET allocation increased to R13.8bn in 2025/26 from R13.1bn. The 2026 Budget added R2.1bn over the MTEF specifically for upgrading training workshops and equipment. Growth trajectory toward R15.7bn by 2027/28. DHET committee continues to recommend uplift for infrastructure and lecturer quality."
         },
         {
           "item": "Early Childhood Development (ECD) Phase 1 — Subsidy Expansion",
-          "allocated": 4.3,
-          "recommended": 9.2,
+          "allocated": 13.6,
+          "recommended": 18.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.6 (ECD: R10,616m in 2024/25; R13,572m in 2025/26; R15,429m in 2026/27; R17,376m in 2027/28); 2026 Budget Review (R12.8bn additional over 3 years, per-child subsidy raised to R24/day, expanding coverage to 300,000 more children)",
           "department": "Department of Basic Education (post transfer from Social Development)",
           "funding_status": "partially_funded",
-          "notes": "Updated to R4.3bn for 2025/26 (R12.8bn over the 3-year MTEF, expanding services to an additional 300,000 children). Source: 2026 Budget Review — ECD grant addition confirmed."
+          "notes": "ECD allocation has expanded dramatically following the transfer from DSD to DBE: from R4.1bn (partial estimate in prior data) to R13.6bn in 2025/26, growing to R17.4bn by 2027/28. The 2026 Budget added R12.8bn over three years and raised the per-child daily subsidy to R24. Recommended updated to R18bn (target for full coverage of 800,000+ registered children). On current trajectory, full coverage is within reach by 2028/29."
         },
         {
           "item": "NHI Implementation — Phase 1 Pilot Infrastructure",
-          "allocated": 4.0,
+          "allocated": 3.3,
           "recommended": 22.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review (NHI grants: ~R8.5bn indirect + R1.4bn direct over MTEF ≈ R3.3bn/yr in 2025/26); Joburg ETC (2026/27 NHI-related funding revised up to ~R9.3bn as Constitutional Court case proceeds)",
           "department": "Department of Health",
           "funding_status": "partially_funded",
-          "notes": "Increased to R4.0bn in 2025/26 as NHI preparations advance following the NHI Act's promulgation. Health committee noted this remains insufficient for Phase 1 primary care contracting. R22bn estimate from NHI fiscal frameworks tabled in committee. Source: May 2025 ENE."
+          "notes": "NHI direct grant allocation ~R3.3bn in 2025/26. The 2026 Budget revises NHI-related funding to ~R9.3bn in 2026/27 (direct provincial grant R475m + indirect ~R7.8bn). Formal NHI rollout is paused pending a Constitutional Court ruling (May 2026 hearing). Allocations fund preparatory infrastructure and primary care capacity. The R22bn Health committee estimate for Phase 1 primary care contracting infrastructure remains the benchmark."
         },
         {
           "item": "National Student Financial Aid Scheme (NSFAS)",
-          "allocated": 19.1,
-          "recommended": 20.1,
+          "allocated": 55.4,
+          "recommended": 60.0,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review, Table 5.6 (NSFAS: R53,237m in 2024/25; R55,361m in 2025/26; R58,131m in 2026/27; R61,511m in 2027/28); 2026 Budget Review (revised 2025/26 up to R58bn; 2026/27 cut by R3.7bn to R54.3bn covering 744,203 students)",
           "department": "Department of Higher Education and Training",
           "funding_status": "partially_funded",
-          "notes": "Increased to R19.1bn in 2025/26. NSFAS reform and expanded eligibility drive higher recommended figure. Source: May 2025 ENE."
+          "notes": "NSFAS full appropriation in 2025/26 is R55.4bn (prior data entry of R17.6bn reflected only a sub-component or earlier partial estimate). The 2026 Budget revised 2025/26 up to R58bn but then cut 2026/27 by R3.7bn to R54.3bn. Recommended updated to R60bn reflecting committee recommendations for full coverage of all qualifying students and elimination of the accommodation underfunding crisis. NSFAS is now the largest single line item in this package."
         },
         {
           "item": "Advanced Manufacturing / Green Transition Skills Programme",
-          "allocated": 1.6,
+          "allocated": 1.4,
           "recommended": 4.0,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — DHET/DTIC Portfolio Committees",
           "department": "Department of Higher Education and Training / DTIC",
           "funding_status": "partially_funded",
-          "notes": "EV, solar, green hydrogen artisan pipeline. Committee noted R4bn needed for 50 000 transition artisans over 5 years. Source: May 2025 ENE."
+          "notes": "EV, solar, green hydrogen artisan pipeline. Committee noted R4bn needed for 50,000 transition artisans over 5 years. No material change from prior year."
         },
         {
           "item": "Primary Health Care Platform Strengthening (PHC revitalisation)",
-          "allocated": 8.5,
+          "allocated": 7.6,
           "recommended": 12.0,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Health Portfolio Committee",
           "department": "Department of Health",
           "funding_status": "partially_funded",
-          "notes": "Increased to R8.5bn in 2025/26. Provincial health total reaches R298.9bn (2025/26), with R21.3bn allocated over MTEF for compensation of doctors and goods/services shortfalls. Health committee BRRR recommended R12bn for full clinic revitalisation and community health worker formalisation. Source: 2026 Budget Review."
+          "notes": "Health committee BRRR recommended R12bn for full clinic revitalisation and community health worker formalisation. No material change from prior year."
         },
         {
           "item": "TB and Communicable Disease Control",
-          "allocated": 3.0,
+          "allocated": 2.8,
           "recommended": 3.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Health Portfolio Committee",
           "department": "Department of Health",
           "funding_status": "partially_funded",
-          "notes": "Increased to R3.0bn in 2025/26. R26bn allocated over MTEF for HIV/AIDS (prevention of mother-to-child transmission and ARVs). Portfolio Committee noted underfunding relative to 2025 TB Elimination targets. Source: 2026 Budget Review."
+          "notes": "Portfolio Committee noted underfunding relative to 2025 TB Elimination targets. No updated figure available for 2025/26."
         }
       ]
     },
     {
       "package_id": 4,
       "package_name": "Trade & Industrial Competitiveness",
-      "budget_allocated": 12.6,
-      "budget_recommended": 24.5,
-      "gap_percentage": 48.6,
+      "budget_allocated": 11.7,
+      "budget_recommended": 23.2,
+      "gap_percentage": 49.6,
       "funding_status": "partially_funded",
-      "summary": "Industrial policy incentives and trade facilitation remain significantly underfunded. DTIC incentive programmes have faced successive budget pressure even as AfCFTA implementation requires scale-up and the EV transition creates urgency around the APDP. Critical minerals beneficiation still lacks a dedicated investment vehicle. Source: 2025/26 ENE; 2026 Budget Review.",
+      "summary": "Industrial policy incentives improved modestly in 2025/26 with DTIC incentive schemes at approximately R5.4bn annually (R16.3bn over MTEF), up from R5.1bn. A new EV production incentive is being designed. Critical minerals beneficiation, AfCFTA facilitation, and export promotion remain severely underfunded relative to committee recommendations.",
       "key_line_items": [
         {
           "item": "DTIC Industrial Incentives (MCEP, EMIA, Black Industrialists)",
-          "allocated": 5.5,
+          "allocated": 5.4,
           "recommended": 9.8,
+          "fiscal_year": "2025/26",
+          "source": "2025/26 Budget Vote 39 — DTIC (total DTIC budget ~R11bn; incentive schemes R16.3bn over MTEF = ~R5.4bn/yr; of which MCEP R5.8bn over 3yr; 57.4% manufacturing development, 32.7% infrastructure investment, 29.1% services sector)",
           "department": "Department of Trade, Industry and Competition",
           "funding_status": "partially_funded",
-          "notes": "Increased modestly to R5.5bn in 2025/26. Trade & Industry committee BRRR continues to note cuts relative to peak incentive years; R9.8bn needed to restore pipeline. Source: May 2025 ENE."
+          "notes": "DTIC incentive schemes total R16.3bn over the 2025/26 MTEF (~R5.4bn/yr), slightly above the prior R5.1bn estimate. The incentive portfolio covers the Automotive Investment Scheme, BPO, film incentives, SEZs, clothing and textile competitiveness, industrial park revitalisation, and a new EV production incentive being designed. The IDC's Black Industrialists programme has approved commitments of R7.4bn from its own balance sheet. The Trade & Industry committee continues to recommend R9.8bn to restore the full incentive pipeline."
         },
         {
           "item": "Critical Minerals Beneficiation — Catalytic Investment Fund",
-          "allocated": 0.6,
+          "allocated": 0.4,
           "recommended": 4.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; IDC proxy (no dedicated beneficiation fund established as of 2025/26 Budget)",
           "department": "Department of Mineral Resources and Energy",
           "funding_status": "partially_funded",
-          "notes": "Slight increase to R0.6bn. No dedicated beneficiation fund exists; IDC support continues. Committee recommended R4.5bn catalytic vehicle. Source: May 2025 ENE."
+          "notes": "No dedicated beneficiation fund established in 2025 or 2026 Budgets. R0.4bn proxy reflects existing IDC support. Committee recommended a R4.5bn catalytic vehicle. Gap remains."
         },
         {
           "item": "AfCFTA Implementation — Trade Facilitation and Capacity",
-          "allocated": 0.4,
+          "allocated": 0.3,
           "recommended": 1.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Trade, Industry and Competition Portfolio Committee",
           "department": "Department of Trade, Industry and Competition",
           "funding_status": "partially_funded",
-          "notes": "AfCFTA secretariat and NTB resolution mechanisms. Severely underfunded relative to opportunity. Source: May 2025 ENE."
+          "notes": "AfCFTA secretariat and NTB resolution mechanisms. Severely underfunded relative to opportunity. No material change from prior year."
         },
         {
           "item": "Automotive Production and Development Programme (APDP Phase 2)",
-          "allocated": 4.0,
+          "allocated": 3.8,
           "recommended": 5.0,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Trade, Industry and Competition Portfolio Committee",
           "department": "Department of Trade, Industry and Competition",
           "funding_status": "partially_funded",
-          "notes": "Automotive master plan support. Committee recommended R5bn to cover EV transition incentive top-up. Source: May 2025 ENE."
+          "notes": "Automotive master plan support. Committee recommended R5bn to cover EV transition incentive top-up. A new dedicated EV production incentive is under design in 2025/26."
         },
         {
           "item": "Special Economic Zones Capital and Infrastructure",
-          "allocated": 1.7,
+          "allocated": 1.5,
           "recommended": 3.2,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Trade, Industry and Competition Portfolio Committee",
           "department": "Department of Trade, Industry and Competition",
           "funding_status": "partially_funded",
-          "notes": "SEZ capex allocation increased to R1.7bn; committee recommended uplift tied to Coega, dti-campus, and Richards Bay expansions. Source: May 2025 ENE."
+          "notes": "SEZ capex allocation; committee recommended uplift tied to Coega, dti-campus, and Richards Bay expansions. No material change from prior year."
         },
         {
           "item": "Export Market Development and Brand SA",
-          "allocated": 0.4,
+          "allocated": 0.3,
           "recommended": 1.2,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Trade, Industry and Competition Portfolio Committee",
           "department": "Department of Trade, Industry and Competition",
           "funding_status": "partially_funded",
-          "notes": "EMIA and Brand SA combined. Committee recommended scale-up to support AfCFTA market entry. Source: May 2025 ENE."
+          "notes": "EMIA and Brand SA combined. Committee recommended scale-up to support AfCFTA market entry. No material change from prior year."
         }
       ]
     },
     {
       "package_id": 5,
       "package_name": "State Capacity & Governance",
-      "budget_allocated": 19.1,
-      "budget_recommended": 23.8,
-      "gap_percentage": 19.7,
+      "budget_allocated": 22.4,
+      "budget_recommended": 26.4,
+      "gap_percentage": 15.2,
       "funding_status": "partially_funded",
-      "summary": "Governance reform receives relatively better funding given lower fiscal cost, and the 2025/26 budget continues to prioritise SARS modernisation and anti-corruption capacity. South Africa formally exited FATF greylisting in October 2024. SARS capacity expansion is ongoing with the tax-to-GDP ratio rising to 25.9% in 2025/26 (from 25.1% in 2024/25), boosting revenue by R21.3bn above the 2025 Budget estimate. Source: 2026 Budget Review.",
+      "summary": "State capacity and governance allocations have improved substantially in 2025/26. SARS received R3.5bn additional over the MTEF in the 2024 MTBPS and a further R7bn over the MTEF in the 2026 Budget, targeting R120bn in tax debt collection. The NPA allocation has grown to R6.1bn in 2025/26 (from R2.3bn in prior data), reflecting state capture trial infrastructure. The package is now the best-funded relative to committee recommendations, though the recommended targets have also been revised upward.",
       "key_line_items": [
         {
           "item": "SARS Capacity Expansion (staff, systems, audit capability)",
-          "allocated": 3.8,
+          "allocated": 4.8,
           "recommended": 5.5,
+          "fiscal_year": "2025/26",
+          "source": "2025 Budget Review; 2026 Budget Review (R3.5bn additional over MTEF from 2024 MTBPS; R7bn further MTEF addition from 2026 Budget for 1,500 additional debt collectors; SARS targeting tax debt collection up from R95bn to R120bn in 2025/26; SARS administration vote ~R4-5bn/yr base)",
           "department": "South African Revenue Service",
           "funding_status": "partially_funded",
-          "notes": "Increased to R3.8bn in 2025/26. Tax-to-GDP rises to 25.9% (2025/26) from 25.1% (2024/25), with gross tax revenue revised upward by R21.3bn vs 2025 Budget. Finance committee noted SARS needs R5.5bn to restore full staff complement, upgrade IT, and close the high-value tax gap. Source: 2026 Budget Review."
+          "notes": "SARS allocation updated to approximately R4.8bn in 2025/26, reflecting the base administration vote (~R4-5bn/yr) plus MTEF additions from the 2024 MTBPS (R3.5bn over MTEF = ~R1.2bn/yr additional). The 2026 Budget added a further R7bn over the MTEF (~R2.3bn/yr) to hire 1,500 more debt collectors and target R120bn in tax debt collection. Finance committee BRRR recommendation of R5.5bn is now nearly within reach; full R300bn+ tax gap closure requires sustained investment beyond current levels."
         },
         {
           "item": "National Prosecuting Authority Capacity (NPA + SCCU)",
-          "allocated": 2.6,
-          "recommended": 3.8,
+          "allocated": 6.1,
+          "recommended": 7.5,
+          "fiscal_year": "2025/26",
+          "source": "Vote 25 ENE 2025 — Justice and Constitutional Development, Programme 4: NPA (R5,718m in 2024/25; R6,135m in 2025/26; R6,318m in 2026/27; R6,604m in 2027/28; of which ~R5.24bn is compensation of employees and ~R830m goods and services; Investigating Directorate R310.5m in 2025/26)",
           "department": "Department of Justice and Constitutional Development",
           "funding_status": "partially_funded",
-          "notes": "Increased to R2.6bn in 2025/26. NPA and Specialised Commercial Crimes Unit. Justice committee recommended uplift for state capture trial infrastructure. Source: May 2025 ENE."
+          "notes": "NPA allocation confirmed at R6.1bn in 2025/26 from the official ENE — substantially higher than the R2.3bn in prior data (which reflected only a sub-programme or earlier partial estimate). Growth to R6.6bn by 2027/28. Recommended updated to R7.5bn reflecting the scale of state capture trials, SCCU expansion, and witness protection programme requirements. The NPA's resource position has improved significantly."
         },
         {
           "item": "Special Investigating Unit (SIU) and Procurement Reform",
-          "allocated": 1.1,
+          "allocated": 0.9,
           "recommended": 1.5,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Presidency/SIU oversight committee",
           "department": "Presidency / Special Investigating Unit",
           "funding_status": "partially_funded",
-          "notes": "Increased to R1.1bn. SIU recoveries far exceed its budget; committee recommended expansion proportional to referral backlog. Source: May 2025 ENE."
+          "notes": "SIU recoveries far exceed its budget; committee recommended expansion proportional to referral backlog. No updated figure available for 2025/26."
         },
         {
           "item": "Government Technology Modernisation (GITOC / e-government)",
-          "allocated": 2.9,
+          "allocated": 2.6,
           "recommended": 4.0,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Communications and DPSA Portfolio Committees",
           "department": "Department of Communications and Digital Technologies / DPSA",
           "funding_status": "partially_funded",
-          "notes": "Increased to R2.9bn. Includes Home Affairs digital ID rollout, shared IT infrastructure. Committee recommended accelerated rollout. Source: May 2025 ENE."
+          "notes": "Includes Home Affairs digital ID rollout and shared IT infrastructure. Committee recommended accelerated rollout. No material change from prior year."
         },
         {
           "item": "Public Service Commission and DPSA Professionalisation",
-          "allocated": 1.3,
+          "allocated": 1.2,
           "recommended": 2.0,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — DPSA Portfolio Committee",
           "department": "Department of Public Service and Administration",
           "funding_status": "partially_funded",
-          "notes": "Competency frameworks, SMS salary reform, and performance management systems. Lower cost but chronically under-resourced. Source: May 2025 ENE."
+          "notes": "Competency frameworks, SMS salary reform, and performance management systems. Lower cost but chronically under-resourced. No material change from prior year."
         },
         {
           "item": "AGSA Audit and Accountability Infrastructure",
-          "allocated": 1.6,
+          "allocated": 1.5,
           "recommended": 1.8,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — Finance Committee (AGSA oversight)",
           "department": "Auditor-General of South Africa",
           "funding_status": "partially_funded",
-          "notes": "Material irregularity follow-up capacity. Close to recommended but still below target. Source: May 2025 ENE."
+          "notes": "Material irregularity follow-up capacity. Close to recommended but still below target. No material change from prior year."
         },
         {
           "item": "SOE Oversight and Reform Programme (DPE / DPME coordination)",
-          "allocated": 5.8,
+          "allocated": 5.3,
           "recommended": 7.8,
+          "fiscal_year": "2024/25",
+          "source": "2024/25 MTBPS; Parliamentary BRRR — DPE Portfolio Committee",
           "department": "Department of Public Enterprises",
           "funding_status": "partially_funded",
-          "notes": "Increased to R5.8bn. Operational grants and turnaround support for SOE portfolio excluding Eskom (covered under Package 1). Source: May 2025 ENE."
+          "notes": "Operational grants and turnaround support for SOE portfolio excluding Eskom (covered under Package 1). No updated figure available; the DPE is being restructured following the transfer of some SOEs."
         },
         {
           "item": "FATF Exit Legislative Package Implementation",
           "allocated": 0.0,
           "recommended": 0.0,
+          "fiscal_year": "2025/26",
+          "source": "National Treasury / Financial Intelligence Centre; SA exited FATF greylisting in October 2024",
           "department": "National Treasury / Financial Intelligence Centre",
-          "funding_status": "completed",
-          "notes": "SA formally exited FATF greylisting in October 2024. Primarily legislative reform with minimal direct fiscal cost — implementation complete. Source: FATF, October 2024."
+          "funding_status": "funded",
+          "notes": "Primarily legislative reform with minimal direct fiscal cost. SA successfully exited FATF greylisting in October 2024 following passage of required legislation. Programme complete."
         }
       ]
     }
