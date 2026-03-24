@@ -81,9 +81,10 @@ export async function getIdeas(opts?: {
   timeHorizon?: string;
 }) {
   // Fetch matching ideas — select only columns needed for list/filter views
+  // Note: slug is NOT a DB column — it is computed locally via slugify(title)
   let query = supabase.from("policy_ideas").select(
     "id, title, description, binding_constraint, current_status, time_horizon, " +
-    "growth_impact_rating, feasibility_rating, times_raised, reform_package, source_committee, slug"
+    "growth_impact_rating, feasibility_rating, times_raised, reform_package, source_committee"
   );
 
   if (opts?.constraint) query = query.eq("binding_constraint", opts.constraint);
