@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -33,6 +35,37 @@ const TIME_HORIZON_LABELS: Record<string, string> = {
   long_term:   "Long Term",
 };
 
+type SortKey = "combined" | "growth" | "feasibility" | "last_discussed" | "alpha";
+
+const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+  { value: "combined",      label: "Combined Score" },
+  { value: "growth",        label: "Growth Impact" },
+  { value: "feasibility",   label: "Feasibility" },
+  { value: "last_discussed", label: "Last Discussed" },
+  { value: "alpha",         label: "A–Z" },
+];
+
+function sortIdeas(ideas: PolicyIdea[], sortBy: SortKey): PolicyIdea[] {
+  return [...ideas].sort((a, b) => {
+    switch (sortBy) {
+      case "growth":
+        return b.growth_impact_rating - a.growth_impact_rating;
+      case "feasibility":
+        return b.feasibility_rating - a.feasibility_rating;
+      case "last_discussed": {
+        const aT = a.last_discussed ? new Date(a.last_discussed).getTime() : 0;
+        const bT = b.last_discussed ? new Date(b.last_discussed).getTime() : 0;
+        return bT - aT;
+      }
+      case "alpha":
+        return a.title.localeCompare(b.title);
+      default: // "combined"
+        return (b.growth_impact_rating + b.feasibility_rating) -
+               (a.growth_impact_rating + a.feasibility_rating);
+    }
+  });
+}
+
 function fmtMonthYear(iso: string | null | undefined): string | null {
   if (!iso) return null;
   const d = new Date(iso);
@@ -65,6 +98,7 @@ function IdeasContent() {
   const [filterPackage, setFilterPackage] = useState<string>(initialPackage);
   const [filterHorizon, setFilterHorizon] = useState<string>("");
   const [filterCommittee, setFilterCommittee] = useState<string>("");
+  const [sortBy, setSortBy] = useState<SortKey>("combined");
 
   // Fetch once on mount; client-side filtering handles search/filter
   useEffect(() => {
@@ -89,22 +123,30 @@ function IdeasContent() {
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   }, [allIdeas]);
 
-  const filtered = useMemo(() => allIdeas.filter((idea) => {
-    const matchesSearch =
-      !search ||
-      idea.title.toLowerCase().includes(search.toLowerCase()) ||
-      idea.description?.toLowerCase().includes(search.toLowerCase());
-    const matchesConstraint =
-      !filterConstraint || idea.binding_constraint === filterConstraint;
-    const matchesStatus = !filterStatus || idea.current_status === filterStatus;
-    const matchesPackage =
-      !filterPackage || String(idea.reform_package) === filterPackage;
-    const matchesHorizon =
-      !filterHorizon || idea.time_horizon === filterHorizon;
-    const matchesCommittee =
-      !filterCommittee || idea.source_committee === filterCommittee;
-    return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon && matchesCommittee;
-  }), [allIdeas, search, filterConstraint, filterStatus, filterPackage, filterHorizon, filterCommittee]);
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase();
+    const base = allIdeas.filter((idea) => {
+      const matchesSearch =
+        !search ||
+        idea.title.toLowerCase().includes(q) ||
+        idea.description?.toLowerCase().includes(q) ||
+        idea.binding_constraint?.toLowerCase().includes(q) ||
+        CONSTRAINT_LABELS[idea.binding_constraint]?.toLowerCase().includes(q) ||
+        idea.source_committee?.toLowerCase().includes(q) ||
+        idea.responsible_department?.toLowerCase().includes(q);
+      const matchesConstraint =
+        !filterConstraint || idea.binding_constraint === filterConstraint;
+      const matchesStatus = !filterStatus || idea.current_status === filterStatus;
+      const matchesPackage =
+        !filterPackage || String(idea.reform_package) === filterPackage;
+      const matchesHorizon =
+        !filterHorizon || idea.time_horizon === filterHorizon;
+      const matchesCommittee =
+        !filterCommittee || idea.source_committee === filterCommittee;
+      return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon && matchesCommittee;
+    });
+    return sortIdeas(base, sortBy);
+  }, [allIdeas, search, filterConstraint, filterStatus, filterPackage, filterHorizon, filterCommittee, sortBy]);
 
   return (
     <div className="space-y-6">
@@ -180,6 +222,19 @@ function IdeasContent() {
             <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
           ))}
         </select>
+        {/* Sort control */}
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as SortKey)}
+          className="rounded-lg border border-[#007A4D] px-3 py-2 text-sm bg-white
+                     text-[#007A4D] font-medium
+                     focus:outline-none focus:ring-2 focus:ring-sa-green"
+          aria-label="Sort ideas by"
+        >
+          {SORT_OPTIONS.map(({ value, label }) => (
+            <option key={value} value={value}>Sort: {label}</option>
+          ))}
+        </select>
       </div>
 
       {/* Active filter banners */}
@@ -219,6 +274,17 @@ function IdeasContent() {
             </div>
           )}
         </div>
+      )}
+
+      {/* Results count + sort label */}
+      {!loading && allIdeas.length > 0 && (
+        <p className="text-xs text-gray-400">
+          {filtered.length} idea{filtered.length !== 1 ? "s" : ""}
+          {" · "}sorted by{" "}
+          <span className="font-medium text-gray-500">
+            {SORT_OPTIONS.find((o) => o.value === sortBy)?.label}
+          </span>
+        </p>
       )}
 
       {/* Results */}
