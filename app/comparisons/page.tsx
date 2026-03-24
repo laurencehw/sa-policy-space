@@ -16,6 +16,11 @@ interface ComparisonRow {
   iso3: string | null;
   reform_year: number | null;
   outcome_summary: string;
+  approach: string | null;
+  gdp_impact: string | null;
+  timeline: string | null;
+  lessons_for_sa: string | null;
+  sources: string[] | null;
   source_url: string | null;
   source_label: string | null;
   created_at: string;
@@ -305,7 +310,47 @@ export default function ComparisonsPage() {
 
                         {/* Expanded detail */}
                         {isOpen && (
-                          <div className="mt-4 pt-4 border-t border-gray-100 space-y-3">
+                          <div className="mt-4 pt-4 border-t border-gray-100 space-y-4">
+
+                            {/* GDP Impact + Timeline pills */}
+                            {(c.gdp_impact || c.timeline) && (
+                              <div className="flex flex-wrap gap-2">
+                                {c.gdp_impact && (
+                                  <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium bg-green-50 text-green-800 ring-1 ring-green-200">
+                                    <span>📈</span> {c.gdp_impact}
+                                  </span>
+                                )}
+                                {c.timeline && (
+                                  <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-800 ring-1 ring-blue-200">
+                                    <span>⏱</span> {c.timeline}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Approach */}
+                            {c.approach && (
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 mb-1">
+                                  Approach
+                                </p>
+                                <p className="text-sm text-gray-700 leading-relaxed">{c.approach}</p>
+                              </div>
+                            )}
+
+                            {/* Lessons for SA */}
+                            {c.lessons_for_sa && (
+                              <div
+                                className="rounded-lg p-3"
+                                style={{ backgroundColor: "#fffbeb", borderLeft: "3px solid #FFB612" }}
+                              >
+                                <p className="text-[11px] font-semibold uppercase tracking-wide mb-1" style={{ color: "#92600a" }}>
+                                  Lessons for South Africa
+                                </p>
+                                <p className="text-sm text-gray-700 leading-relaxed">{c.lessons_for_sa}</p>
+                              </div>
+                            )}
+
                             {/* Link to the related SA policy idea */}
                             {c.idea_title && (
                               <div
@@ -325,13 +370,19 @@ export default function ComparisonsPage() {
                               </div>
                             )}
 
-                            {/* Source */}
-                            {c.source_label && (
-                              <div className="flex items-start gap-2">
-                                <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide flex-shrink-0 mt-0.5">
-                                  Source
-                                </span>
-                                {c.source_url ? (
+                            {/* Sources (rich array) or fallback source_label */}
+                            {(c.sources?.length || c.source_label) && (
+                              <div>
+                                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-1">
+                                  Sources
+                                </p>
+                                {c.sources?.length ? (
+                                  <ul className="space-y-0.5">
+                                    {c.sources.map((s, i) => (
+                                      <li key={i} className="text-xs text-gray-500">· {s}</li>
+                                    ))}
+                                  </ul>
+                                ) : c.source_url ? (
                                   <a
                                     href={c.source_url}
                                     target="_blank"

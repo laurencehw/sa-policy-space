@@ -427,9 +427,10 @@ export default async function IdeaDetailPage({
               View all →
             </Link>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {comparisons.map((c: any) => (
-              <div key={c.id} className="card space-y-2">
+              <div key={c.id} className="card space-y-3">
+                {/* Header */}
                 <div className="flex items-center gap-2">
                   {c.iso3 && ISO3_FLAG[c.iso3] && (
                     <span className="text-lg leading-none">{ISO3_FLAG[c.iso3]}</span>
@@ -438,11 +439,51 @@ export default async function IdeaDetailPage({
                   {c.reform_year && (
                     <span className="text-xs text-gray-400">{c.reform_year}</span>
                   )}
+                  {/* GDP impact pill */}
+                  {c.gdp_impact && (
+                    <span className="ml-auto text-[11px] font-medium rounded-full px-2 py-0.5 bg-green-50 text-green-800 ring-1 ring-green-200 flex-shrink-0">
+                      📈 {c.gdp_impact}
+                    </span>
+                  )}
                 </div>
+
+                {/* Outcome summary */}
                 <p className="text-sm text-gray-700 leading-relaxed">{c.outcome_summary}</p>
-                {c.source_label && (
-                  <p className="text-xs text-gray-400">
-                    {c.source_url ? (
+
+                {/* Approach (shown when rich data available) */}
+                {c.approach && (
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 mb-1">Approach</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{c.approach}</p>
+                  </div>
+                )}
+
+                {/* Timeline */}
+                {c.timeline && (
+                  <p className="text-xs text-gray-500">
+                    <span className="font-medium text-gray-600">Timeline: </span>{c.timeline}
+                  </p>
+                )}
+
+                {/* Lessons for SA */}
+                {c.lessons_for_sa && (
+                  <div
+                    className="rounded-lg p-3"
+                    style={{ backgroundColor: "#fffbeb", borderLeft: "3px solid #FFB612" }}
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-wide mb-1" style={{ color: "#92600a" }}>
+                      Lessons for South Africa
+                    </p>
+                    <p className="text-sm text-gray-700 leading-relaxed">{c.lessons_for_sa}</p>
+                  </div>
+                )}
+
+                {/* Sources */}
+                {(c.sources?.length || c.source_label) && (
+                  <div className="text-xs text-gray-400 space-y-0.5">
+                    {c.sources?.length ? (
+                      c.sources.map((s: string, i: number) => <p key={i}>· {s}</p>)
+                    ) : c.source_url ? (
                       <a
                         href={c.source_url}
                         target="_blank"
@@ -452,9 +493,9 @@ export default async function IdeaDetailPage({
                         {c.source_label}
                       </a>
                     ) : (
-                      c.source_label
+                      <span>{c.source_label}</span>
                     )}
-                  </p>
+                  </div>
                 )}
               </div>
             ))}

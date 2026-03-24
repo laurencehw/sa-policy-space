@@ -414,6 +414,11 @@ export interface ComparisonRow {
   iso3: string | null;
   reform_year: number | null;
   outcome_summary: string;
+  approach: string | null;
+  gdp_impact: string | null;
+  timeline: string | null;
+  lessons_for_sa: string | null;
+  sources: string[] | null;
   source_url: string | null;
   source_label: string | null;
   created_at: string;
