@@ -298,7 +298,7 @@ export default async function IdeaDetailPage({
       </div>
 
       {/* Feasibility Assessment callout */}
-      {idea.feasibility_note && (
+      {idea.feasibility_notes && (
         <div
           className="rounded-lg border-l-4 p-4"
           style={{ backgroundColor: "#f0faf4", borderColor: "#007A4D" }}
@@ -306,7 +306,7 @@ export default async function IdeaDetailPage({
           <h2 className="font-semibold text-sm mb-1" style={{ color: "#007A4D" }}>
             Feasibility Assessment
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">{idea.feasibility_note}</p>
+          <p className="text-sm text-gray-700 leading-relaxed">{idea.feasibility_notes}</p>
         </div>
       )}
 
@@ -403,7 +403,7 @@ export default async function IdeaDetailPage({
         <div>
           <h2 className="font-semibold text-gray-900 mb-3">Related Reforms in Package</h2>
           <div className="space-y-2">
-            {relatedIdeas.map((related: any) => (
+            {relatedIdeas.slice(0, 6).map((related: any) => (
               <Link
                 key={related.id}
                 href={`/ideas/${related.slug}`}
@@ -426,15 +426,13 @@ export default async function IdeaDetailPage({
               </Link>
             ))}
           </div>
-          {idea.reform_package && (
-            <div className="mt-3 text-right">
-              <Link
-                href={`/packages/${idea.reform_package}`}
-                className="text-sm text-sa-green hover:underline"
-              >
-                View all reforms in this package →
-              </Link>
-            </div>
+          {relatedIdeas.length > 6 && idea.reform_package && (
+            <Link
+              href={`/ideas?package=${idea.reform_package}`}
+              className="mt-3 inline-block text-sm text-sa-green hover:underline"
+            >
+              View all {relatedIdeas.length + 1} reforms in this package →
+            </Link>
           )}
         </div>
       )}
