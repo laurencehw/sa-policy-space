@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import PrintButton from "@/components/PrintButton";
 import { CONSTRAINT_LABELS } from "@/lib/supabase";
@@ -23,6 +24,24 @@ async function fetchPlan(ideaId: number): Promise<ImplementationPlan | null> {
   }
   const { getImplementationPlan } = await import("@/lib/supabase-api");
   return await getImplementationPlan(ideaId) as ImplementationPlan | null;
+}
+
+// ── Metadata ───────────────────────────────────────────────────────────────
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const id = Number(params.id);
+  const idea = await fetchIdea(id);
+  if (!idea) return {};
+  const description = `Draft legislative bill for ${idea.title}. ${(idea.description ?? "").slice(0, 120)}`;
+  return {
+    title: `Bill: ${idea.title}`,
+    description,
+    alternates: { canonical: `https://sa-policy-space.vercel.app/documents/bill/${id}` },
+  };
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────

@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
@@ -67,6 +68,46 @@ async function fetchIdeaComparisons(ideaId: number): Promise<any[]> {
   }
   const { getIdeaComparisons } = await import("@/lib/supabase-api");
   return await getIdeaComparisons(ideaId) as any[];
+}
+
+// ── Metadata ───────────────────────────────────────────────────────────────
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const slugOrId = params.id;
+  let idea: PolicyIdea | null = null;
+  if (/^\d+$/.test(slugOrId)) {
+    idea = await fetchIdeaById(parseInt(slugOrId, 10));
+  } else {
+    idea = await fetchIdeaBySlug(slugOrId);
+  }
+  if (!idea) return {};
+
+  const description = idea.description
+    ? idea.description.slice(0, 160)
+    : `Policy reform idea: ${idea.title}`;
+  const slug = idea.slug || slugify(idea.title);
+  const url = `https://sa-policy-space.vercel.app/ideas/${slug}`;
+
+  return {
+    title: idea.title,
+    description,
+    openGraph: {
+      title: `${idea.title} — SA Policy Space`,
+      description,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${idea.title} — SA Policy Space`,
+      description,
+    },
+    alternates: { canonical: url },
+  };
 }
 
 function fmtMonthYear(iso: string | null | undefined): string | null {

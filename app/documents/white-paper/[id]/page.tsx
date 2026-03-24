@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import PrintButton from "@/components/PrintButton";
 import { CONSTRAINT_LABELS } from "@/lib/supabase";
@@ -41,6 +42,24 @@ async function fetchComparisons(ideaId: number): Promise<any[]> {
   }
   const { getIdeaComparisons } = await import("@/lib/supabase-api");
   return await getIdeaComparisons(ideaId) as any[];
+}
+
+// ── Metadata ───────────────────────────────────────────────────────────────
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const id = Number(params.id);
+  const idea = await fetchIdea(id);
+  if (!idea) return {};
+  const description = `White Paper policy framework for ${idea.title}. ${(idea.description ?? "").slice(0, 120)}`;
+  return {
+    title: `White Paper: ${idea.title}`,
+    description,
+    alternates: { canonical: `https://sa-policy-space.vercel.app/documents/white-paper/${id}` },
+  };
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
