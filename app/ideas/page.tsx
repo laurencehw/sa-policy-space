@@ -66,6 +66,41 @@ function sortIdeas(ideas: PolicyIdea[], sortBy: SortKey): PolicyIdea[] {
   });
 }
 
+function escapeCSV(val: string | number | null | undefined): string {
+  if (val == null) return "";
+  const s = String(val).replace(/"/g, '""');
+  return /[",\n\r]/.test(s) ? `"${s}"` : s;
+}
+
+function downloadIdeasCSV(ideas: PolicyIdea[]) {
+  const headers = [
+    "id", "title", "binding_constraint", "current_status", "time_horizon",
+    "growth_impact_rating", "feasibility_rating", "reform_package",
+    "source_committee", "responsible_department", "description",
+  ];
+  const rows = ideas.map((idea) => [
+    idea.id,
+    idea.title,
+    CONSTRAINT_LABELS[idea.binding_constraint] ?? idea.binding_constraint,
+    idea.current_status,
+    idea.time_horizon ?? "",
+    idea.growth_impact_rating,
+    idea.feasibility_rating,
+    idea.reform_package ?? "",
+    idea.source_committee ?? "",
+    idea.responsible_department ?? "",
+    idea.description ? idea.description.slice(0, 500) : "",
+  ]);
+  const csv = [headers, ...rows].map((r) => r.map(escapeCSV).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "sa-policy-ideas.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function fmtMonthYear(iso: string | null | undefined): string | null {
   if (!iso) return null;
   const d = new Date(iso);
@@ -276,15 +311,26 @@ function IdeasContent() {
         </div>
       )}
 
-      {/* Results count + sort label */}
+      {/* Results count + sort label + download */}
       {!loading && allIdeas.length > 0 && (
-        <p className="text-xs text-gray-400">
-          {filtered.length} idea{filtered.length !== 1 ? "s" : ""}
-          {" · "}sorted by{" "}
-          <span className="font-medium text-gray-500">
-            {SORT_OPTIONS.find((o) => o.value === sortBy)?.label}
-          </span>
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-gray-400">
+            {filtered.length} idea{filtered.length !== 1 ? "s" : ""}
+            {" · "}sorted by{" "}
+            <span className="font-medium text-gray-500">
+              {SORT_OPTIONS.find((o) => o.value === sortBy)?.label}
+            </span>
+          </p>
+          <button
+            onClick={() => downloadIdeasCSV(filtered)}
+            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-[#FFB612] text-[#92600a] hover:bg-[#FFB612]/10 transition-colors font-medium"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download CSV
+          </button>
+        </div>
       )}
 
       {/* Results */}

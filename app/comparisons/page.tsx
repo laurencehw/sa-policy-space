@@ -30,6 +30,32 @@ const FLAG: Record<string, string> = {
   TUR: "🇹🇷", MEX: "🇲🇽", POL: "🇵🇱",
 };
 
+function escapeCSV(val: string | number | null | undefined): string {
+  if (val == null) return "";
+  const s = String(val).replace(/"/g, '""');
+  return /[",\n\r]/.test(s) ? `"${s}"` : s;
+}
+
+function downloadComparisonsCSV(rows: ComparisonRow[]) {
+  const headers = [
+    "id", "country", "iso3", "reform_year", "binding_constraint",
+    "idea_title", "outcome_summary", "source_label", "source_url",
+  ];
+  const data = rows.map((r) => [
+    r.id, r.country, r.iso3 ?? "", r.reform_year ?? "",
+    r.binding_constraint, r.idea_title,
+    r.outcome_summary, r.source_label ?? "", r.source_url ?? "",
+  ]);
+  const csv = [headers, ...data].map((row) => row.map(escapeCSV).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "sa-international-comparisons.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function countryFlag(row: ComparisonRow): string {
   if (row.iso3 && FLAG[row.iso3]) return FLAG[row.iso3];
   return "";
@@ -208,12 +234,23 @@ export default function ComparisonsPage() {
         </div>
       )}
 
-      {/* Results count */}
+      {/* Results count + download */}
       {!loading && filtered.length > 0 && (
-        <p className="text-xs text-gray-500">
-          Showing {filtered.length} case {filtered.length !== 1 ? "studies" : "study"}
-          {countryFilter || constraintFilter ? " (filtered)" : ""}
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-gray-500">
+            Showing {filtered.length} case {filtered.length !== 1 ? "studies" : "study"}
+            {countryFilter || constraintFilter ? " (filtered)" : ""}
+          </p>
+          <button
+            onClick={() => downloadComparisonsCSV(filtered)}
+            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-[#FFB612] text-[#92600a] hover:bg-[#FFB612]/10 transition-colors font-medium"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download CSV
+          </button>
+        </div>
       )}
 
       {/* Case studies — grouped by policy area */}

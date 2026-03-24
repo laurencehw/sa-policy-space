@@ -21,6 +21,20 @@ async function getHomepageData() {
     stats = await getStats();
   }
 
+  // Dynamic counts from JSON seed files
+  let packageCount = 5;
+  let stakeholderCount = 38;
+  try {
+    const pkgPath = path.resolve(process.cwd(), "data", "reform_packages.json");
+    const pkgData = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+    packageCount = Object.keys(pkgData).length;
+  } catch { /* keep default */ }
+  try {
+    const stakeholderPath = path.resolve(process.cwd(), "data", "stakeholders.json");
+    const stakeholderData = JSON.parse(fs.readFileSync(stakeholderPath, "utf-8"));
+    stakeholderCount = Array.isArray(stakeholderData) ? stakeholderData.length : stakeholderCount;
+  } catch { /* keep default */ }
+
   const reformIndex = computeReformIndex();
 
   let keystones: { id: number; title: string; keystoneScore: number }[] = [];
@@ -51,7 +65,7 @@ async function getHomepageData() {
     // budget data unavailable
   }
 
-  return { stats, reformIndex, keystones, totalGap };
+  return { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount };
 }
 
 // ── Static content ───────────────────────────────────────────────────────────
@@ -126,7 +140,7 @@ const AUDIENCE_PATHWAYS = [
 // ── Page ────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const { stats, reformIndex, keystones, totalGap } = await getHomepageData();
+  const { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount } = await getHomepageData();
 
   const trendArrow =
     reformIndex.trend === "up" ? "↑" : reformIndex.trend === "down" ? "↓" : "→";
@@ -167,10 +181,10 @@ export default async function HomePage() {
           {/* Key stats */}
           <div className="flex flex-wrap gap-3 mb-8">
             {[
-              { value: stats.totalIdeas, label: "Policy Ideas" },
-              { value: 5,               label: "Reform Packages" },
-              { value: 10,              label: "Binding Constraints" },
-              { value: 38,              label: "Stakeholders Mapped" },
+              { value: stats.totalIdeas,         label: "Policy Ideas" },
+              { value: packageCount,             label: "Reform Packages" },
+              { value: stats.constraintsCovered, label: "Binding Constraints" },
+              { value: stakeholderCount,         label: "Stakeholders Mapped" },
             ].map((s) => (
               <div
                 key={s.label}
@@ -237,7 +251,7 @@ export default async function HomePage() {
           {/* Binding constraints grid */}
           <div>
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-              10 Binding Constraints Covered
+              {stats.constraintsCovered} Binding Constraints Covered
             </h3>
             <div className="grid grid-cols-2 gap-2">
               {BINDING_CONSTRAINTS.map((c) => (
