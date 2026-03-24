@@ -54,11 +54,12 @@ function RatingBar({ value, max = 5 }: { value: number; max?: number }) {
 function IdeasContent() {
   const searchParams = useSearchParams();
   const initialPackage = searchParams.get("package") ?? "";
+  const initialConstraint = (searchParams.get("constraint") ?? "") as BindingConstraint | "";
 
   const [allIdeas, setAllIdeas] = useState<PolicyIdea[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filterConstraint, setFilterConstraint] = useState<BindingConstraint | "">("");
+  const [filterConstraint, setFilterConstraint] = useState<BindingConstraint | "">(initialConstraint);
   const [filterStatus, setFilterStatus] = useState<PolicyStatus | "">("");
   const [filterPackage, setFilterPackage] = useState<string>(initialPackage);
   const [filterHorizon, setFilterHorizon] = useState<string>("");
@@ -181,8 +182,19 @@ function IdeasContent() {
       </div>
 
       {/* Active filter banners */}
-      {(filterPackage || filterCommittee) && (
+      {(filterPackage || filterCommittee || filterConstraint) && (
         <div className="flex flex-wrap gap-2">
+          {filterConstraint && (
+            <div className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span>Constraint: <strong>{CONSTRAINT_LABELS[filterConstraint]}</strong></span>
+              <button
+                onClick={() => setFilterConstraint("")}
+                className="ml-1 text-gray-400 hover:text-gray-600"
+              >
+                ×
+              </button>
+            </div>
+          )}
           {filterPackage && (
             <div className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
               <span>Package: <strong>{PACKAGE_NAMES[Number(filterPackage)]}</strong></span>
