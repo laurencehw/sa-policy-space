@@ -80,8 +80,11 @@ export async function getIdeas(opts?: {
   packageId?: number;
   timeHorizon?: string;
 }) {
-  // Fetch matching ideas
-  let query = supabase.from("policy_ideas").select("*");
+  // Fetch matching ideas — select only columns needed for list/filter views
+  let query = supabase.from("policy_ideas").select(
+    "id, title, description, binding_constraint, current_status, time_horizon, " +
+    "growth_impact_rating, feasibility_rating, times_raised, reform_package, source_committee, slug"
+  );
 
   if (opts?.constraint) query = query.eq("binding_constraint", opts.constraint);
   if (opts?.status) query = query.eq("current_status", opts.status);

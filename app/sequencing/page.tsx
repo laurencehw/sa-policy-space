@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // Recomputes from static JSON — cache for 1 hour
 
 import type { Metadata } from "next";
 import dependencyGraphData from "@/data/dependency_graph.json";

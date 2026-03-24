@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 import Link from "next/link";
 import type { PackageSummary, TimeHorizonCounts } from "@/lib/local-api";

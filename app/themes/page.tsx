@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 import Link from "next/link";
 import { CONSTRAINT_LABELS, CONSTRAINT_COLORS, type BindingConstraint } from "@/lib/supabase";

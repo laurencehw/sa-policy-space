@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // Revalidate stats from Supabase every 60 s
 
 import Link from "next/link";
 import fs from "fs";

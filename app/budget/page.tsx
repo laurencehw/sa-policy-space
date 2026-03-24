@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = false; // Pure static JSON — build-time only
 
 import budgetData from "@/data/budget_alignment.json";
 

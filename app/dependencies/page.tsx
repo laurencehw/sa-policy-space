@@ -1,7 +1,24 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import DiagramViewer from '@/components/DiagramViewer'
-import DependencyGraph from '@/components/DependencyGraph'
+import dynamic from 'next/dynamic'
+
+const DependencyGraph = dynamic(() => import('@/components/DependencyGraph'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[600px] rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-400 text-sm">
+      Loading dependency graph…
+    </div>
+  ),
+})
+
+const DiagramViewer = dynamic(() => import('@/components/DiagramViewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-48 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 text-sm">
+      Loading diagram…
+    </div>
+  ),
+})
 
 export const metadata: Metadata = {
   title: 'Reform Dependencies — SA Policy Space',
