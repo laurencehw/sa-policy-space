@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
+import CitationWidget from "@/components/CitationWidget";
 import {
   CONSTRAINT_LABELS,
   CONSTRAINT_COLORS,
@@ -499,6 +500,9 @@ export default async function IdeaDetailPage({
           )}
         </div>
       )}
+
+      {/* Citation */}
+      <CitationWidget title={idea.title} slug={idea.slug || slugify(idea.title)} />
 
       {/* Source Meetings / Timeline */}
       {meetings.length > 0 && (
