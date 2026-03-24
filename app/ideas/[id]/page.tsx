@@ -298,7 +298,7 @@ export default async function IdeaDetailPage({
       </div>
 
       {/* Feasibility Assessment callout */}
-      {idea.feasibility_notes && (
+      {idea.feasibility_note && (
         <div
           className="rounded-lg border-l-4 p-4"
           style={{ backgroundColor: "#f0faf4", borderColor: "#007A4D" }}
@@ -306,7 +306,7 @@ export default async function IdeaDetailPage({
           <h2 className="font-semibold text-sm mb-1" style={{ color: "#007A4D" }}>
             Feasibility Assessment
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">{idea.feasibility_notes}</p>
+          <p className="text-sm text-gray-700 leading-relaxed">{idea.feasibility_note}</p>
         </div>
       )}
 
