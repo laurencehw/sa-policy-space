@@ -59,6 +59,15 @@ async function fetchRelatedIdeas(packageId: number, currentId: number): Promise<
   return await getRelatedIdeas(packageId, currentId) as any[];
 }
 
+async function fetchIdeaComparisons(ideaId: number): Promise<any[]> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    const { getIdeaComparisons } = await import("@/lib/local-api");
+    return getIdeaComparisons(ideaId) as any[];
+  }
+  const { getIdeaComparisons } = await import("@/lib/supabase-api");
+  return await getIdeaComparisons(ideaId) as any[];
+}
+
 function fmtMonthYear(iso: string | null | undefined): string | null {
   if (!iso) return null;
   const d = new Date(iso);
@@ -74,6 +83,15 @@ function parseArrayField(value: unknown): string[] | null {
   }
   return null;
 }
+
+// ISO 3166-1 alpha-3 → flag emoji (flags use alpha-2 regional indicators)
+const ISO3_FLAG: Record<string, string> = {
+  CHL: "🇨🇱", IND: "🇮🇳", VNM: "🇻🇳", BRA: "🇧🇷",
+  KOR: "🇰🇷", EST: "🇪🇪", BWA: "🇧🇼", RWA: "🇷🇼",
+  GEO: "🇬🇪", PER: "🇵🇪", COL: "🇨🇴", SLV: "🇸🇻",
+  KEN: "🇰🇪", MUS: "🇲🇺", IDN: "🇮🇩", MYS: "🇲🇾",
+  TUR: "🇹🇷", MEX: "🇲🇽", POL: "🇵🇱",
+};
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
@@ -172,10 +190,11 @@ export default async function IdeaDetailPage({
   const idea = await fetchIdeaBySlug(slugOrId);
   if (!idea) return <NoData />;
 
-  const [plan, meetings, relatedIdeas] = await Promise.all([
+  const [plan, meetings, relatedIdeas, comparisons] = await Promise.all([
     getImplementationPlan(idea.id),
     getSourceMeetings(idea.id),
     idea.reform_package ? fetchRelatedIdeas(idea.reform_package, idea.id) : Promise.resolve([]),
+    fetchIdeaComparisons(idea.id),
   ]);
 
   // Parse enriched array fields (may arrive as JSON strings from SQLite)
@@ -395,6 +414,50 @@ export default async function IdeaDetailPage({
               <p className="text-sm mt-0.5">{plan.international_precedents}</p>
             </div>
           )}
+        </div>
+      )}
+
+      {/* International Comparisons */}
+      {comparisons.length > 0 && (
+        <div>
+          <div className="flex items-baseline justify-between mb-3">
+            <h2 className="font-semibold text-gray-900">International Comparisons</h2>
+            <Link href="/comparisons" className="text-xs text-sa-green hover:underline">
+              View all →
+            </Link>
+          </div>
+          <div className="space-y-3">
+            {comparisons.map((c: any) => (
+              <div key={c.id} className="card space-y-2">
+                <div className="flex items-center gap-2">
+                  {c.iso3 && ISO3_FLAG[c.iso3] && (
+                    <span className="text-lg leading-none">{ISO3_FLAG[c.iso3]}</span>
+                  )}
+                  <span className="font-semibold text-sm text-gray-900">{c.country}</span>
+                  {c.reform_year && (
+                    <span className="text-xs text-gray-400">{c.reform_year}</span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-700 leading-relaxed">{c.outcome_summary}</p>
+                {c.source_label && (
+                  <p className="text-xs text-gray-400">
+                    {c.source_url ? (
+                      <a
+                        href={c.source_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-sa-green hover:underline"
+                      >
+                        {c.source_label}
+                      </a>
+                    ) : (
+                      c.source_label
+                    )}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

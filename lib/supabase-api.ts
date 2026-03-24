@@ -19,6 +19,7 @@ export type {
   PackageDetail,
   TopPriorityIdea,
   TimeHorizonCounts,
+  ComparisonRow,
 } from "@/lib/local-api";
 
 // Supabase client — env vars are guaranteed present when this module is used
@@ -359,6 +360,57 @@ export async function getPackageDetail(packageId: number) {
   }
 
   return { ...summary, ideas_by_horizon, dependencies };
+}
+
+// ── International comparisons ─────────────────────────────────────────────
+
+export async function getComparisons(opts?: { country?: string; constraint?: string }) {
+  let query = supabase
+    .from("international_comparisons")
+    .select("*, policy_ideas(id, title, binding_constraint)")
+    .order("country");
+
+  if (opts?.country) query = query.eq("country", opts.country);
+
+  const { data, error } = await query;
+  if (error) {
+    console.error("[supabase] getComparisons error:", error);
+    return [];
+  }
+  if (!data?.length) return [];
+
+  return (data as any[])
+    .map((r) => ({
+      ...r,
+      idea_id: r.policy_ideas?.id ?? r.idea_id,
+      idea_title: r.policy_ideas?.title ?? null,
+      idea_slug: slugify(r.policy_ideas?.title ?? ""),
+      binding_constraint: r.policy_ideas?.binding_constraint ?? null,
+      policy_ideas: undefined,
+    }))
+    .filter((r) => !opts?.constraint || r.binding_constraint === opts.constraint);
+}
+
+export async function getIdeaComparisons(ideaId: number) {
+  const { data, error } = await supabase
+    .from("international_comparisons")
+    .select("*, policy_ideas(id, title, binding_constraint)")
+    .eq("idea_id", ideaId)
+    .order("country");
+
+  if (error) {
+    console.error("[supabase] getIdeaComparisons error:", error);
+    return [];
+  }
+  if (!data?.length) return [];
+
+  return (data as any[]).map((r) => ({
+    ...r,
+    idea_title: r.policy_ideas?.title ?? null,
+    idea_slug: slugify(r.policy_ideas?.title ?? ""),
+    binding_constraint: r.policy_ideas?.binding_constraint ?? null,
+    policy_ideas: undefined,
+  }));
 }
 
 // ── Timeline data ────────────────────────────────────────────────────────

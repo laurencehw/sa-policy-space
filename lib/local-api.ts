@@ -402,6 +402,71 @@ export function getPackageDetail(packageId: number): PackageDetail | null {
   return { ...summary, ideas_by_horizon, dependencies };
 }
 
+// ── International comparisons ─────────────────────────────────────────────
+
+export interface ComparisonRow {
+  id: number;
+  idea_id: number;
+  idea_title: string;
+  idea_slug: string;
+  binding_constraint: string;
+  country: string;
+  iso3: string | null;
+  reform_year: number | null;
+  outcome_summary: string;
+  source_url: string | null;
+  source_label: string | null;
+  created_at: string;
+}
+
+export function getComparisons(opts?: { country?: string; constraint?: string }): ComparisonRow[] {
+  const db = getDb();
+  try {
+    const conditions: string[] = [];
+    const params: unknown[] = [];
+    if (opts?.country) {
+      conditions.push("ic.country = ?");
+      params.push(opts.country);
+    }
+    if (opts?.constraint) {
+      conditions.push("p.binding_constraint = ?");
+      params.push(opts.constraint);
+    }
+    const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
+    const rows = (db.prepare(`
+      SELECT ic.*, p.title AS idea_title, p.binding_constraint
+      FROM international_comparisons ic
+      JOIN policy_ideas p ON p.id = ic.idea_id
+      ${where}
+      ORDER BY p.binding_constraint, ic.country
+    `).all(...params) as any[]);
+    return rows.map((r) => ({ ...r, idea_slug: slugify(r.idea_title) }));
+  } catch {
+    // Table may not exist if migration hasn't been run locally
+    return [];
+  } finally {
+    db.close();
+  }
+}
+
+export function getIdeaComparisons(ideaId: number): ComparisonRow[] {
+  const db = getDb();
+  try {
+    const rows = (db.prepare(`
+      SELECT ic.*, p.title AS idea_title, p.binding_constraint
+      FROM international_comparisons ic
+      JOIN policy_ideas p ON p.id = ic.idea_id
+      WHERE ic.idea_id = ?
+      ORDER BY ic.country
+    `).all(ideaId) as any[]);
+    return rows.map((r) => ({ ...r, idea_slug: slugify(r.idea_title) }));
+  } catch {
+    return [];
+  } finally {
+    db.close();
+  }
+}
+
 // ── Timeline data ────────────────────────────────────────────────────────
 
 export interface TimelineMeeting {
