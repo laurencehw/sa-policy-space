@@ -2,7 +2,8 @@
 
 export const dynamic = "force-dynamic";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 // ── Types & Data ───────────────────────────────────────────────────────────
 
@@ -104,10 +105,21 @@ function renderMarkdown(text: string): React.ReactNode[] {
   });
 }
 
-// ── Component ─────────────────────────────────────────────────────────────
+// ── Inner Component ────────────────────────────────────────────────────────
 
-export default function BriefsPage() {
-  const [selectedIdea, setSelectedIdea] = useState("");
+function BriefsContent() {
+  const searchParams = useSearchParams();
+  const titleParam = searchParams.get("title") ?? "";
+
+  // Build options: prepend a custom option if titleParam not in the hardcoded list
+  const customOption = titleParam && !REFORM_OPTIONS.some((o) => o.label.includes(titleParam))
+    ? { value: `custom_${titleParam}`, label: `Idea: ${titleParam}` }
+    : null;
+  const allOptions = customOption ? [REFORM_OPTIONS[0], customOption, ...REFORM_OPTIONS.slice(1)] : REFORM_OPTIONS;
+
+  const [selectedIdea, setSelectedIdea] = useState(
+    customOption ? customOption.value : ""
+  );
   const [audience, setAudience] = useState<Audience>("policymaker");
   const [generating, setGenerating] = useState(false);
   const [briefContent, setBriefContent] = useState("");
@@ -119,7 +131,7 @@ export default function BriefsPage() {
     setBriefContent("");
     setError(null);
 
-    const reformLabel = REFORM_OPTIONS.find((o) => o.value === selectedIdea)?.label ?? "";
+    const reformLabel = allOptions.find((o) => o.value === selectedIdea)?.label ?? "";
 
     try {
       const res = await fetch("/api/generate-brief", {
@@ -151,7 +163,7 @@ export default function BriefsPage() {
   const canGenerate = !!selectedIdea;
   const sections = BRIEF_SECTIONS[audience];
   const audienceCfg = AUDIENCE_CONFIG[audience];
-  const reformLabel = REFORM_OPTIONS.find((o) => o.value === selectedIdea)?.label ?? "";
+  const reformLabel = allOptions.find((o) => o.value === selectedIdea)?.label ?? "";
   const reformTitle = reformLabel.replace(/^(Idea|Package \d): /, "") || "Reform Title";
 
   return (
@@ -180,7 +192,7 @@ export default function BriefsPage() {
               onChange={(e) => { setSelectedIdea(e.target.value); setBriefContent(""); setError(null); }}
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-sa-green/30"
             >
-              {REFORM_OPTIONS.map((opt) => (
+              {allOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
@@ -399,5 +411,15 @@ export default function BriefsPage() {
       </div>
 
     </div>
+  );
+}
+
+// ── Page export ─────────────────────────────────────────────────────────────
+
+export default function BriefsPage() {
+  return (
+    <Suspense fallback={<div className="card text-center py-12 text-gray-400"><p className="text-sm">Loading…</p></div>}>
+      <BriefsContent />
+    </Suspense>
   );
 }

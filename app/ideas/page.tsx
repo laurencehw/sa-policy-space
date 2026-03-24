@@ -45,6 +45,15 @@ const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "alpha",         label: "A–Z" },
 ];
 
+const RATING_OPTIONS = [
+  { value: "", label: "Any" },
+  { value: "1", label: "1+" },
+  { value: "2", label: "2+" },
+  { value: "3", label: "3+" },
+  { value: "4", label: "4+" },
+  { value: "5", label: "5" },
+];
+
 function sortIdeas(ideas: PolicyIdea[], sortBy: SortKey): PolicyIdea[] {
   return [...ideas].sort((a, b) => {
     switch (sortBy) {
@@ -133,6 +142,8 @@ function IdeasContent() {
   const [filterPackage, setFilterPackage] = useState<string>(initialPackage);
   const [filterHorizon, setFilterHorizon] = useState<string>("");
   const [filterCommittee, setFilterCommittee] = useState<string>("");
+  const [filterMinFeasibility, setFilterMinFeasibility] = useState<string>("");
+  const [filterMinGrowth, setFilterMinGrowth] = useState<string>("");
   const [sortBy, setSortBy] = useState<SortKey>("combined");
 
   // Fetch once on mount; client-side filtering handles search/filter
@@ -178,10 +189,14 @@ function IdeasContent() {
         !filterHorizon || idea.time_horizon === filterHorizon;
       const matchesCommittee =
         !filterCommittee || idea.source_committee === filterCommittee;
-      return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon && matchesCommittee;
+      const matchesMinFeasibility =
+        !filterMinFeasibility || idea.feasibility_rating >= Number(filterMinFeasibility);
+      const matchesMinGrowth =
+        !filterMinGrowth || idea.growth_impact_rating >= Number(filterMinGrowth);
+      return matchesSearch && matchesConstraint && matchesStatus && matchesPackage && matchesHorizon && matchesCommittee && matchesMinFeasibility && matchesMinGrowth;
     });
     return sortIdeas(base, sortBy);
-  }, [allIdeas, search, filterConstraint, filterStatus, filterPackage, filterHorizon, filterCommittee, sortBy]);
+  }, [allIdeas, search, filterConstraint, filterStatus, filterPackage, filterHorizon, filterCommittee, filterMinFeasibility, filterMinGrowth, sortBy]);
 
   return (
     <div className="space-y-6">
@@ -257,6 +272,36 @@ function IdeasContent() {
             <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
           ))}
         </select>
+        {/* Min feasibility */}
+        <div className="flex items-center gap-1">
+          <label className="text-xs text-gray-400 whitespace-nowrap">Feasibility ≥</label>
+          <select
+            value={filterMinFeasibility}
+            onChange={(e) => setFilterMinFeasibility(e.target.value)}
+            className="rounded-lg border border-gray-300 px-2 py-2 text-sm bg-white
+                       focus:outline-none focus:ring-2 focus:ring-sa-green"
+            aria-label="Minimum feasibility"
+          >
+            {RATING_OPTIONS.map(({ value, label }) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+        {/* Min growth */}
+        <div className="flex items-center gap-1">
+          <label className="text-xs text-gray-400 whitespace-nowrap">Growth ≥</label>
+          <select
+            value={filterMinGrowth}
+            onChange={(e) => setFilterMinGrowth(e.target.value)}
+            className="rounded-lg border border-gray-300 px-2 py-2 text-sm bg-white
+                       focus:outline-none focus:ring-2 focus:ring-sa-green"
+            aria-label="Minimum growth impact"
+          >
+            {RATING_OPTIONS.map(({ value, label }) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
         {/* Sort control */}
         <select
           value={sortBy}
