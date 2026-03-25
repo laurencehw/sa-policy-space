@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import type { Metadata } from "next";
 import IndicatorsClient from "./IndicatorsClient";
 import indicatorsFull from "@/data/indicators_full.json";

@@ -162,6 +162,34 @@ export default function AboutPage() {
         </Link>
       </section>
 
+      {/* How to Cite */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-bold text-gray-900">How to Cite</h2>
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-700 font-mono leading-relaxed">
+          Wilse-Samson, L. (2026). <em>SA Policy Space: A Database of South African Reform Ideas</em>.
+          NYU Wagner School of Public Policy. Available at:{" "}
+          <a href="https://sa-policy-space.vercel.app" className="text-sa-green hover:underline">
+            sa-policy-space.vercel.app
+          </a>
+        </div>
+        <p className="text-xs text-gray-500">
+          For individual policy ideas, use the citation widget on each idea detail page.
+          For the underlying textbook, cite:{" "}
+          <em>
+            Wilse-Samson, L. (2026). The South African Economy: A Contemporary Analysis.
+          </em>{" "}
+          Available at{" "}
+          <a
+            href="https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy"
+            className="text-sa-green hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitBook
+          </a>.
+        </p>
+      </section>
+
       <div className="pt-4 border-t border-gray-200 flex flex-wrap gap-3">
         <Link href="/ideas" className="btn-primary inline-block">
           Browse Policy Ideas

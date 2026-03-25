@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -42,22 +42,17 @@ interface FiscalEstimate {
 // ── Data fetching ──────────────────────────────────────────────────────────
 
 async function getAnalyticsData() {
-  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-  let ideas: IdeaRow[];
-  if (isLocal) {
-    const { getIdeas } = await import("@/lib/local-api");
-    ideas = getIdeas();
-  } else {
-    const { getIdeas } = await import("@/lib/supabase-api");
-    ideas = (await getIdeas()) as IdeaRow[];
+  try {
+    const { getIdeas } = await import("@/lib/api");
+    const ideas = await getIdeas() as IdeaRow[];
+    const centralityRankings = computeNetworkCentrality(dependencyGraphData as any);
+    const momentumScores = computeMomentumScores(ideas);
+    const fiscalEstimates = Object.values(fiscalEstimatesRaw) as FiscalEstimate[];
+    return { centralityRankings, momentumScores, fiscalEstimates };
+  } catch (e) {
+    console.error("[analytics] data fetch failed (build-time?):", e);
+    return { centralityRankings: [] as any[], momentumScores: [] as any[], fiscalEstimates: [] as FiscalEstimate[] };
   }
-
-  const centralityRankings = computeNetworkCentrality(dependencyGraphData as any);
-  const momentumScores = computeMomentumScores(ideas);
-  const fiscalEstimates = Object.values(fiscalEstimatesRaw) as FiscalEstimate[];
-
-  return { centralityRankings, momentumScores, fiscalEstimates };
 }
 
 // ── Style constants ────────────────────────────────────────────────────────
