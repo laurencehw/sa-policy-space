@@ -23,33 +23,28 @@ const PACKAGE_NAMES: Record<number, string> = {
 };
 
 async function getProgressData(): Promise<ProgressStats> {
-  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-  let ideas: IdeaRow[];
+  let ideas: IdeaRow[] = [];
   let ideasWithPlans = 0;
 
-  if (isLocal) {
-    const { getIdeas } = await import("@/lib/local-api");
-    ideas = getIdeas() as IdeaRow[];
-    // Count ideas that have implementation plans via direct DB query
-    try {
+  try {
+    const { getIdeas } = await import("@/lib/api");
+    ideas = (await getIdeas()) as IdeaRow[];
+  } catch (e) {
+    console.error("[progress] getIdeas failed:", e);
+  }
+
+  try {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
       const { DatabaseSync } = await import("node:sqlite" as any);
-      const path = await import("path");
+      const pathMod = await import("path");
       const dbPath = process.env.SQLITE_DB_PATH ||
-        path.resolve(process.cwd(), "../data/dev.sqlite3");
+        pathMod.resolve(process.cwd(), "../data/dev.sqlite3");
       const db = new DatabaseSync(dbPath);
       ideasWithPlans = (db.prepare(
         "SELECT COUNT(DISTINCT idea_id) as n FROM implementation_plans"
       ).get() as any)?.n ?? 0;
       db.close();
-    } catch {
-      ideasWithPlans = 0;
-    }
-  } else {
-    const { getIdeas } = await import("@/lib/supabase-api");
-    ideas = (await getIdeas()) as IdeaRow[];
-    // Count via Supabase
-    try {
+    } else {
       const { supabase } = await import("@/lib/supabase");
       if (supabase) {
         const { count } = await supabase
@@ -57,9 +52,9 @@ async function getProgressData(): Promise<ProgressStats> {
           .select("idea_id", { count: "exact", head: true });
         ideasWithPlans = count ?? 0;
       }
-    } catch {
-      ideasWithPlans = 0;
     }
+  } catch {
+    ideasWithPlans = 0;
   }
 
   const totalIdeas = ideas.length;
@@ -179,6 +174,9 @@ export default async function ProgressPage() {
           Coverage and progress statistics across all {stats.totalIdeas} policy ideas — showing
           implementation plan coverage, parliamentary status, and distribution by binding constraint,
           reform package, and time horizon.
+        </p>
+        <p className="text-[10px] text-gray-400 mt-2">
+          Data refreshed hourly via ISR. Status classifications based on most recent parliamentary committee proceedings.
         </p>
         <div className="flex gap-3 mt-3">
           <Link href="/ideas" className="text-xs text-[#007A4D] hover:underline">

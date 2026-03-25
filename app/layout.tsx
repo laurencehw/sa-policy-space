@@ -49,6 +49,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
+        {/* Skip to main content — screen reader / keyboard nav */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sa-green focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm"
+        >
+          Skip to main content
+        </a>
         <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
@@ -176,7 +183,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
+        <main id="main-content" className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
           {children}
         </main>
 
