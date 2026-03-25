@@ -101,76 +101,70 @@ export default async function ThemesPage() {
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Browse by Binding Constraint</h1>
         <p className="text-gray-500 text-sm mt-1">
-          South Africa&apos;s growth constraints cluster into ten areas. Each captures
+          South Africa&apos;s growth constraints cluster into distinct areas. Each captures
           a recurring bottleneck identified across parliamentary committees.
         </p>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        {summaries.map((s) => (
-          <Link
-            key={s.binding_constraint}
-            href={`/ideas?constraint=${s.binding_constraint}`}
-            className="card block space-y-3 group"
-          >
-            <div className="flex items-start justify-between">
-              <span className={`badge ${CONSTRAINT_COLORS[s.binding_constraint]}`}>
-                {CONSTRAINT_LABELS[s.binding_constraint]}
-              </span>
-              {s.total_ideas > 0 && (
-                <span className="text-xs text-gray-400">{s.total_ideas} ideas</span>
+        {summaries.filter((s) => s.total_ideas > 0).map((s) => {
+          const chapter = chaptersByConstraint.get(s.binding_constraint)?.[0];
+          return (
+            <div key={s.binding_constraint} className="card space-y-3">
+              <Link
+                href={`/ideas?constraint=${s.binding_constraint}`}
+                className="block space-y-3 group"
+              >
+                <div className="flex items-start justify-between">
+                  <span className={`badge ${CONSTRAINT_COLORS[s.binding_constraint]}`}>
+                    {CONSTRAINT_LABELS[s.binding_constraint]}
+                  </span>
+                  <span className="text-xs text-gray-400">{s.total_ideas} ideas</span>
+                </div>
+
+                {CONSTRAINT_DESCRIPTIONS[s.binding_constraint] && (
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    {CONSTRAINT_DESCRIPTIONS[s.binding_constraint]}
+                  </p>
+                )}
+
+                <div className="flex gap-3 text-xs">
+                  {s.stalled_count > 0 && (
+                    <span className="text-red-600">
+                      {s.stalled_count} stalled
+                    </span>
+                  )}
+                  {s.implemented_count > 0 && (
+                    <span className="text-green-600">
+                      {s.implemented_count} implemented
+                    </span>
+                  )}
+                  {s.avg_growth_impact > 0 && (
+                    <span className="text-gray-400">
+                      avg impact {s.avg_growth_impact}/5
+                    </span>
+                  )}
+                </div>
+
+                <span className="text-xs text-sa-green group-hover:underline">
+                  View ideas →
+                </span>
+              </Link>
+
+              {chapter?.gitbook_url && (
+                <a
+                  href={chapter.gitbook_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-[10px] text-gray-300 hover:text-sa-green transition-colors border-t border-gray-50 pt-2"
+                  title={`Read: ${chapter.title}`}
+                >
+                  Background reading: Ch. {chapter.number} ↗
+                </a>
               )}
             </div>
-
-            <p className="text-xs text-gray-600 leading-relaxed">
-              {CONSTRAINT_DESCRIPTIONS[s.binding_constraint]}
-            </p>
-
-            {s.total_ideas > 0 && (
-              <div className="flex gap-3 text-xs">
-                {s.stalled_count > 0 && (
-                  <span className="text-red-600">
-                    {s.stalled_count} stalled
-                  </span>
-                )}
-                {s.implemented_count > 0 && (
-                  <span className="text-green-600">
-                    {s.implemented_count} implemented
-                  </span>
-                )}
-                {s.avg_growth_impact > 0 && (
-                  <span className="text-gray-400">
-                    avg impact {s.avg_growth_impact}/5
-                  </span>
-                )}
-              </div>
-            )}
-
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-sa-green group-hover:underline">
-                View ideas →
-              </span>
-              {chaptersByConstraint.get(s.binding_constraint)?.slice(0, 1).map((ch) => (
-                ch.gitbook_url ? (
-                  <a
-                    key={ch.number}
-                    href={ch.gitbook_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] text-gray-300 hover:text-sa-green transition-colors"
-                    title={`Read: ${ch.title}`}
-                  >
-                    Ch. {ch.number} ↗
-                  </a>
-                ) : (
-                  <span key={ch.number} className="text-[10px] text-gray-300" title={ch.title}>
-                    Ch. {ch.number}
-                  </span>
-                )
-              ))}
-            </div>
-          </Link>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
