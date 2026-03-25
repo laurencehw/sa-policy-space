@@ -61,6 +61,10 @@ export default function MobileNav() {
 
             {/* Tools — featured new dashboards first */}
             <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Tools</p>
+            <Link href="/indicators" onClick={close} className="flex items-center gap-2 px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">
+              <span className="w-1.5 h-1.5 rounded-full bg-sa-green flex-shrink-0" />
+              Economic Indicators
+            </Link>
             <Link href="/progress" onClick={close} className="flex items-center gap-2 px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">
               <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
               Progress Dashboard
