@@ -68,11 +68,11 @@ const CONSTRAINT_DESCRIPTIONS: Record<BindingConstraint, string> = {
 
 // ── Chapter lookup ─────────────────────────────────────────────────────────
 
-const chaptersByConstraint = new Map<string, { number: number; title: string }[]>();
-for (const ch of textbookChapters) {
+const chaptersByConstraint = new Map<string, { number: number; title: string; gitbook_url: string | null }[]>();
+for (const ch of textbookChapters as Array<{ number: number; title: string; binding_constraints: string[]; gitbook_url: string | null }>) {
   for (const c of ch.binding_constraints) {
     if (!chaptersByConstraint.has(c)) chaptersByConstraint.set(c, []);
-    chaptersByConstraint.get(c)!.push({ number: ch.number, title: ch.title });
+    chaptersByConstraint.get(c)!.push({ number: ch.number, title: ch.title, gitbook_url: ch.gitbook_url });
   }
 }
 
@@ -136,9 +136,22 @@ export default async function ThemesPage() {
                 View ideas →
               </span>
               {chaptersByConstraint.get(s.binding_constraint)?.slice(0, 1).map((ch) => (
-                <span key={ch.number} className="text-[10px] text-gray-300" title={ch.title}>
-                  Ch. {ch.number}
-                </span>
+                ch.gitbook_url ? (
+                  <a
+                    key={ch.number}
+                    href={ch.gitbook_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] text-gray-300 hover:text-sa-green transition-colors"
+                    title={`Read: ${ch.title}`}
+                  >
+                    Ch. {ch.number} ↗
+                  </a>
+                ) : (
+                  <span key={ch.number} className="text-[10px] text-gray-300" title={ch.title}>
+                    Ch. {ch.number}
+                  </span>
+                )
               ))}
             </div>
           </Link>
