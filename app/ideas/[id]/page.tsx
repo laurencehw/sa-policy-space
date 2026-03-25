@@ -559,9 +559,9 @@ export default async function IdeaDetailPage({
                 )}
 
                 {/* Sources */}
-                {(c.sources?.length || c.source_label) && (
+                {(Array.isArray(c.sources) && c.sources.length || c.source_label) && (
                   <div className="text-xs text-gray-400 space-y-0.5">
-                    {c.sources?.length ? (
+                    {Array.isArray(c.sources) && c.sources.length ? (
                       c.sources.map((s: string, i: number) => <p key={i}>· {s}</p>)
                     ) : c.source_url ? (
                       <a
