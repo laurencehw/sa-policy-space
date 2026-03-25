@@ -10,7 +10,7 @@
       "Per capita GDP growth has averaged below 1% annually since 2012, placing South Africa at risk of a middle-income trap relative to peer economies.",
       "Apartheid-era spatial planning continues to impose daily commuting costs equivalent to 30-40% of low-wage workers' earnings, functioning as a persistent tax on labour market participation."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-1",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-1",
     "binding_constraints": [
       "government_capacity",
       "corruption"
@@ -36,7 +36,7 @@
       "The estimated growth dividend from resolving the energy constraint alone is 1.5-2 percentage points of GDP, suggesting infrastructure reform should be sequenced before labour market or trade reforms.",
       "Reform complementarities mean that addressing skills shortages without fixing energy and logistics yields diminishing returns, as firms cannot expand even when appropriately skilled workers are available."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-2",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-2",
     "binding_constraints": [
       "energy",
       "logistics",
@@ -74,7 +74,7 @@
       "Youth NEET rates of 33% represent a generational crisis, with each year of unemployment reducing lifetime earnings potential by an estimated 5-8% through scarring effects.",
       "The informal sector employs only about 18% of workers — far below the 50-70% typical of peer economies — suggesting that regulatory barriers and market structure actively suppress informal employment creation."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-8",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-8",
     "binding_constraints": [
       "labor_market",
       "regulation"
@@ -100,7 +100,7 @@
       "South Africa spends approximately 6.5% of GDP on education — above the OECD average — yet achieves learning outcomes comparable to countries spending less than 3%, indicating a severe efficiency rather than resource problem.",
       "TVET colleges operate at roughly 60% of their enrolment capacity with completion rates below 30%, representing a critical bottleneck in the skills pipeline between basic education and employment."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-9",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-9",
     "binding_constraints": [
       "skills"
     ],
@@ -125,7 +125,7 @@
       "Eskom's energy availability factor of 58% in 2023 meant that over 20 GW of installed capacity was effectively offline, with maintenance backlogs and design defects at Medupi and Kusile accounting for a significant share.",
       "Transnet's container handling efficiency at the port of Durban has declined to roughly 60% of the global benchmark, adding an estimated 5-10% to the logistics costs of South African exporters."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-3",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-3",
     "binding_constraints": [
       "energy",
       "logistics"
@@ -151,7 +151,7 @@
       "State capture at Eskom and Transnet during 2012-2018 resulted in estimated procurement irregularities of R50-100 billion, as documented by the Zondo Commission.",
       "Denel's workforce declined from over 10,000 to under 3,000 employees as the entity became financially unviable, representing the effective destruction of South Africa's defence-industrial capability."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-3",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-3",
     "binding_constraints": [
       "government_capacity",
       "energy",
@@ -179,7 +179,7 @@
       "The automotive master plan has sustained approximately 110,000 direct jobs and achieved export values exceeding R200 billion annually, making it arguably South Africa's most successful industrial policy programme.",
       "South Africa holds over 70% of global platinum group metal reserves and significant shares of manganese and vanadium, positioning it as a critical minerals supplier in the energy transition — but beneficiation remains minimal due to energy costs and logistics constraints."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-6",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-6",
     "binding_constraints": [
       "regulation",
       "logistics"
@@ -205,7 +205,7 @@
       "The Competition Commission's data services market inquiry led to mobile data price reductions of 30-50% for entry-level bundles, demonstrating that regulatory intervention can produce significant consumer welfare gains in concentrated markets.",
       "Business extortion at construction sites has spread to an estimated 30-40% of major projects in KwaZulu-Natal and Gauteng, imposing costs of 5-15% of project value and deterring fixed investment in affected areas."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-6",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-6",
     "binding_constraints": [
       "regulation",
       "crime"
@@ -232,7 +232,7 @@
       "The public sector wage bill absorbs approximately 35% of consolidated government expenditure, and above-inflation wage settlements between 2008 and 2020 were a primary driver of fiscal deterioration.",
       "Roughly 25% of municipalities are considered financially distressed, with persistent audit qualifications and service delivery failures that undermine the effectiveness of intergovernmental transfers."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-2",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-2",
     "binding_constraints": [
       "government_capacity",
       "corruption"
@@ -258,7 +258,7 @@
       "With the repo rate at 7.5% and inflation near the midpoint of the target band, the real policy rate of approximately 3% is restrictive relative to South Africa's growth performance, fuelling debate about whether the SARB's mandate should incorporate employment objectives.",
       "The rand's average annual volatility of 15-20% against the dollar imposes hedging costs on importers and exporters estimated at 1-2% of trade value, functioning as an implicit tax on openness."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-2",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-2",
     "binding_constraints": [
       "regulation"
     ],
@@ -283,7 +283,7 @@
       "The four largest banks hold over 85% of banking sector assets, and SMME lending comprises less than 5% of total private credit, indicating that financial sector sophistication has not translated into broad-based productive credit allocation.",
       "First-year withdrawals under the two-pot pension system were estimated at R40-50 billion, providing short-term household liquidity relief but raising concerns about retirement adequacy for the 60% of workers with pension fund coverage."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-7",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-7",
     "binding_constraints": [
       "regulation",
       "digital"
@@ -310,7 +310,7 @@
       "An estimated 60% of redistributed farms have experienced significant declines in productivity within five years of transfer, primarily due to inadequate post-settlement support rather than inherent incapacity of beneficiaries.",
       "Tenure insecurity affects roughly 17 million people in former homeland areas and on farms, suppressing investment in land improvements and agricultural productivity in precisely the areas where rural poverty is most concentrated."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-4",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-4",
     "binding_constraints": [
       "land"
     ],
@@ -336,7 +336,7 @@
       "With 7.8 million people living with HIV and the world's highest TB incidence rate, the communicable disease burden alone reduces effective labour supply and imposes estimated productivity losses of 1-2% of GDP annually.",
       "The NHI as currently designed would require an estimated additional R200-300 billion annually in public funding, equivalent to a 3-4 percentage point increase in the effective tax burden, in an economy where tax revenue is already near its practical ceiling."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-9",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-9",
     "binding_constraints": [
       "skills",
       "government_capacity"
@@ -363,7 +363,7 @@
       "The SRD grant of R370 per month reaches over 8 million unemployed adults but at a value well below the food poverty line of approximately R760, raising fundamental questions about adequacy.",
       "A universal Basic Income Grant at the SRD level would cost an estimated R120-150 billion annually, equivalent to approximately 2% of GDP, and would require explicit new revenue sources given the current fiscal trajectory."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-10",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-10",
     "binding_constraints": [
       "government_capacity"
     ],
@@ -388,7 +388,7 @@
       "Over 60% of municipalities received qualified, adverse, or disclaimed audit opinions in the most recent audit cycle, indicating systemic governance failure at the level of government closest to service delivery.",
       "Non-revenue water losses of approximately 46% — compared to a global best-practice benchmark of 15-20% — represent both a governance failure and an infrastructure crisis, costing municipalities billions in lost revenue annually."
     ],
-    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/chapter-3",
+    "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-3",
     "binding_constraints": [
       "government_capacity",
       "corruption",
