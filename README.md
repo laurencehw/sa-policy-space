@@ -8,7 +8,7 @@ A research database of 132 South African policy reform ideas extracted from parl
 
 South Africa's economy has grown at under 2% per year for more than a decade — not for want of policy ideas, but because of chronic implementation failure. This project surfaces, organises, and analyses reform proposals from over 5,000 parliamentary committee meetings across 19 committees, sourced via the [Parliamentary Monitoring Group](https://pmg.org.za) (PMG) API.
 
-Ideas are grouped into **5 reform packages** and classified by **18+ binding constraint types** following the Hausmann-Rodrik-Velasco growth diagnostics framework. A dependency graph (228 edges, 162 nodes) captures sequencing logic between reforms.
+Ideas are grouped into **5 reform packages** and classified by **18 binding constraint types** following the Hausmann-Rodrik-Velasco growth diagnostics framework. A dependency graph (228 edges, 162 nodes) captures sequencing logic between reforms.
 
 **Policy ideas are original synthesis, not PMG verbatim text.** Meeting records link back to PMG as the authoritative source.
 

@@ -6,6 +6,19 @@ not code changes (see git history for those).
 
 ## March 2026
 
+### 2026-03-25 (data quality fixes)
+- **Constraint normalization**: Merged duplicate constraint values (corruption→
+  corruption_governance, digital→digital_infrastructure, land/land_reform→land_housing,
+  regulation→regulatory_burden). Now exactly 18 distinct constraints.
+- **Comparison mapping fix**: Reassigned 11 mismatched international comparisons
+  where case study topics didn't match linked policy ideas (e.g., Colombia homicide
+  reduction was linked to Fiscal Consolidation instead of Community Policing).
+- **Idea enrichment**: All 39 new ideas expanded to 500-700 char descriptions
+  with specific March 2026 data points and institutional references.
+- **Mobile responsiveness**: Fixed search overflow, stats grid, graph panel,
+  touch targets, table scroll on narrow screens.
+- **Component tests**: 7 new React component smoke tests (total: 90 tests).
+
 ### 2026-03-25 (continued)
 - **5 new committees scraped**: Employment & Labour (751 meetings), Police (933),
   Justice (1,563), Water & Sanitation (706), Environment (382). Total: 4,335 new

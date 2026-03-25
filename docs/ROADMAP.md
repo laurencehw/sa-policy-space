@@ -23,14 +23,14 @@ A deployed web application tracking 132 South African policy reform ideas extrac
 | Policy ideas | 177 |
 | Parliamentary committees covered | 19 |
 | Committee meetings indexed | 5,000+ |
-| Binding constraints covered | 18+ distinct types (all populated) |
+| Binding constraints covered | 18 (normalized, all populated) |
 | Reform packages | 5 |
 | Dependency graph | 162 nodes, 228 edges |
 | Stakeholders mapped | 38 (+ 458 idea-level stances) |
 | International comparisons | 59 peer country cases |
 | Economic indicators | 16 time-series (GDP, unemployment, Gini, etc.) |
 | Textbook chapters linked | 15 (with GitBook URLs) |
-| Tests | 83 (API routes, data validation, utilities) |
+| Tests | 90 (API routes, data validation, utilities, component smoke tests) |
 | Deployment status | **Live** — [sa-policy-space.vercel.app](https://sa-policy-space.vercel.app) |
 
 ### What Works Well
