@@ -107,7 +107,7 @@ export default function AboutPage() {
       <section className="space-y-3">
         <h2 className="font-semibold text-gray-900">Binding Constraints Framework</h2>
         <p className="text-sm text-gray-700 leading-relaxed">
-          We organise ideas around ten binding constraints on South African growth, drawing on
+          We organise ideas around structural binding constraints on South African growth, drawing on
           the World Bank, NPC, and academic literature (Hausmann, Rodrik, Velasco diagnostic
           framework). These are: energy, logistics, skills, regulation, crime, labour market,
           land, digital infrastructure, government capacity, and corruption.

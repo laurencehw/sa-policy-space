@@ -16,13 +16,18 @@ Ideas are grouped into **5 reform packages** and classified by **18 binding cons
 
 - **132 policy ideas** with descriptions, feasibility ratings, growth impact scores, and fiscal estimates
 - **5 reform packages** with theories of change, implementation plans, and dependency diagrams
+- **Economic indicators** — 16 SA time-series (GDP, unemployment, load shedding, Gini, etc.) mapped to binding constraints
 - **Analytics dashboard** — keystone reform scoring (PageRank + betweenness centrality), parliamentary momentum tracking
-- **International comparisons** — peer country reform outcomes mapped to SA ideas
-- **Stakeholder mapping** — 38 actors with influence scores and stance analysis
+- **Interactive dependency graph** — D3 force-directed network with filtering, search, and SVG export
+- **International comparisons** — 59 peer country reform outcomes mapped to SA ideas
+- **Stakeholder mapping** — 38 actors with influence scores, plus idea-level political stance analysis
 - **Policy brief generator** — AI-generated briefs tailored to policymakers, researchers, or civil society
-- **Budget alignment analysis** — reform costs vs. current budget allocations
-- **Teaching materials** — case studies and exercises for economics courses
-- **Public API** — JSON endpoints for researchers (`/api/v1/`)
+- **Budget alignment analysis** — reform costs vs. current MTBPS allocations
+- **Timeline with indicator overlays** — parliamentary activity overlaid with economic data
+- **Reform progress index** — synthetic 0–100 score tracking implementation across packages
+- **Legislation generator** — template Green Papers, White Papers, and Bills
+- **Teaching materials** — case studies, exercises, and links to the companion textbook
+- **Public API** — versioned JSON endpoints for researchers (`/api/v1/`)
 
 ## Tech stack
 
@@ -33,15 +38,17 @@ Ideas are grouped into **5 reform packages** and classified by **18 binding cons
 | Styling | Tailwind CSS |
 | Database (local) | SQLite via Node.js `node:sqlite` |
 | Database (prod) | Supabase (PostgreSQL) |
+| Charts | Recharts |
+| Graph | D3.js (force-directed dependency network) |
 | AI | Anthropic Claude API (brief generator) |
-| Deployment | Vercel |
+| Deployment | Vercel (ISR caching) |
 | CI | GitHub Actions (build + test + data validation) |
 
 ## Getting started
 
 ### Prerequisites
 
-- **Node.js >= 22** (required for `node:sqlite` built-in)
+- **Node.js >= 22.5** (required for `node:sqlite` built-in)
 - Python 3.11+ (for data scripts and validation)
 
 ### Setup
@@ -78,21 +85,26 @@ See [`.env.example`](.env.example) for the full list. Key variables:
 ## Project structure
 
 ```
-app/                   → Next.js pages and API routes (30 pages, 14 API routes)
-components/            → Shared React components
+app/                   → Next.js pages and API routes (31 pages, 14 API routes)
+components/            → Shared React components (DependencyGraph, SearchModal, etc.)
 lib/
-  local-api.ts         → SQLite data access layer
-  supabase-api.ts      → Supabase data access layer
-  supabase.ts          → Types, UI constants, Supabase client
-  analytics.ts         → Keystone scoring, momentum calculations
-  sequencing.ts        → Reform dependency analysis
+  api.ts               → Unified data dispatcher (resolves to local or Supabase)
+  local-api.ts          → SQLite data access layer
+  supabase-api.ts       → Supabase data access layer
+  supabase.ts           → Types, UI constants, Supabase client
+  analytics.ts          → Keystone scoring, momentum calculations
+  reform-index.ts       → Reform progress index computation
+  sequencing.ts         → Reform dependency analysis
 data/
-  migrations/          → Numbered SQL migrations (applied sequentially)
-  archive/             → One-off SQL scripts already applied (reference only)
-  *.json               → Derived data files (reform packages, fiscal estimates, etc.)
-scripts/               → Python data collection, enrichment, and validation
-__tests__/             → Jest test suite
-schema.sql             → Full PostgreSQL schema
+  migrations/           → Numbered SQL migrations (001–016)
+  archive/              → One-off SQL scripts already applied (reference only)
+  indicators_*.json     → Economic indicator time-series (16 indicators)
+  *.json                → Derived data (reform packages, fiscal estimates, stakeholders, etc.)
+  CHANGELOG.md          → Dataset version history
+scripts/                → Python data collection, enrichment, and validation
+docs/                   → ROADMAP.md, PROJECT_AUDIT.md
+__tests__/              → Jest test suite (API routes, data validation, utilities)
+schema.sql              → Full PostgreSQL schema
 ```
 
 ## Scripts
@@ -109,7 +121,22 @@ schema.sql             → Full PostgreSQL schema
 
 ## Data sources
 
-All parliamentary data is sourced from the [PMG API](https://api.pmg.org.za). Policy ideas, reform packages, dependency relationships, and assessments are original research.
+All parliamentary data is sourced from the [PMG API](https://api.pmg.org.za). Economic indicators come from Stats SA, SARB, IMF, and World Bank. Policy ideas, reform packages, dependency relationships, and assessments are original research. See [`data/CHANGELOG.md`](data/CHANGELOG.md) for dataset version history.
+
+## Companion textbook
+
+This project is paired with [The South African Economy: A Contemporary Analysis](https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy), an open textbook covering the same themes in depth. Chapter references appear on constraint and idea pages.
+
+## How to cite
+
+```
+Wilse-Samson, L. (2026). SA Policy Space: A Database of South African Reform Ideas.
+NYU Wagner School of Public Policy. https://sa-policy-space.vercel.app
+```
+
+## License
+
+[MIT](LICENSE)
 
 ## Author
 

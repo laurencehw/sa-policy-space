@@ -264,7 +264,7 @@ export default async function HomePage() {
               </p>
               <p>
                 SA Policy Space systematically catalogues these reform proposals, organised around
-                ten structural{" "}
+                structural{" "}
                 <strong className="text-gray-800">binding constraints</strong> — the core barriers
                 that economists identify as blocking sustained, inclusive growth: energy, logistics,
                 skills, regulation, crime, labour market rigidity, land access, digital infrastructure,

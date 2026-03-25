@@ -7,7 +7,7 @@ import textbookChapters from "@/data/textbook_chapters.json";
 export const metadata: Metadata = {
   title: "Browse by Binding Constraint",
   description:
-    "Explore South Africa's ten structural binding constraints — energy, logistics, skills, regulation, crime, labour market, land, digital, government capacity, and corruption — and the policy ideas addressing each.",
+    "Explore South Africa's structural binding constraints — energy, logistics, skills, regulation, fiscal space, health systems, government capacity, and more — and the policy ideas addressing each.",
 };
 import { CONSTRAINT_LABELS, CONSTRAINT_COLORS, type BindingConstraint } from "@/lib/supabase";
 

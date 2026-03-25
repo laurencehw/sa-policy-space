@@ -14,7 +14,7 @@ A deployed web application tracking 132 South African policy reform ideas extrac
 
 **Deployed at:** [sa-policy-space.vercel.app](https://sa-policy-space.vercel.app)
 
-**Pages live (30):** Home dashboard, Ideas list (with filtering), Idea detail, Packages grid, Package detail (with SVG dependency diagrams), Themes by constraint, Dependencies view, Analytics, Stakeholders, Compare, Feasibility Matrix, Progress Dashboard, Timeline, Simulator, Reform Index, BRRR Recommendations, Sequencing, Budget Alignment, Accountability, Document Generator (Green Paper / White Paper / Template Bill), Brief Generator, Teaching, API Docs, Glossary, Methodology, About.
+**Pages live (31):** Home dashboard, Ideas list (with filtering/pagination), Idea detail, Packages grid, Package detail (with dependency diagrams), Themes by constraint, Dependencies (interactive D3 graph), Analytics, Stakeholders, Compare, Feasibility Matrix, Progress Dashboard, Timeline (with indicator overlays), Simulator, Reform Index, BRRR Recommendations, Sequencing, Budget Alignment, Accountability, Legislation Generator (Green Paper / White Paper / Template Bill), Brief Generator, Economic Indicators, Teaching, API Docs, Glossary, Methodology, About.
 
 ### Key Stats
 
@@ -28,8 +28,11 @@ A deployed web application tracking 132 South African policy reform ideas extrac
 | Dependency edges (graph) | ~400 |
 | Ideas with full descriptions | Most enriched (multiple batches applied) |
 | Implementation plans | Populated (multiple batches applied) |
-| Stakeholders mapped | 38 |
-| International comparisons | Populated with peer country data |
+| Stakeholders mapped | 38 (+ 256 idea-level stances) |
+| International comparisons | 59 peer country cases |
+| Economic indicators | 16 time-series (GDP, unemployment, Gini, etc.) |
+| Textbook chapters linked | 15 (with GitBook URLs) |
+| Tests | 83 (API routes, data validation, utilities) |
 | Deployment status | **Live** — [sa-policy-space.vercel.app](https://sa-policy-space.vercel.app) |
 
 ### What Works Well
@@ -42,7 +45,19 @@ A deployed web application tracking 132 South African policy reform ideas extrac
 
 ---
 
-## 2. Identified Gaps
+## 2. Identified Gaps (from initial audit — March 2026)
+
+> **Note:** Most gaps identified in this section have been **resolved** as of March 25, 2026.
+> Kept for historical reference. See `data/CHANGELOG.md` for what was added.
+>
+> **Resolved:** Idea descriptions enriched (multiple migration batches), implementation plans populated,
+> fiscal estimates added, stakeholder mapping (38 actors + 256 idea-level stances), international
+> comparisons (59 cases), interactive D3 dependency graph with SVG export, economic indicators dashboard
+> (16 time-series), textbook chapter integration, search expanded to full-text, committee filter added,
+> reform momentum scoring, budget/BRRR alignment analysis, ISR caching for performance.
+>
+> **Remaining:** Committee coverage gaps (Health, Housing, Police partially addressed but could be deeper),
+> historical PMG data pre-2021, temporal status tracking (status change history per idea).
 
 ### 2a. Content & Data Quality (Critical)
 

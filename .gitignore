@@ -30,6 +30,13 @@ Thumbs.db
 *.tsbuildinfo
 
 .vercel
+.migrations_state.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
 
 # Claude Code infrastructure
 .claude/

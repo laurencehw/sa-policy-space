@@ -249,7 +249,7 @@ export default function MethodologyPage() {
         </div>
         <div className="ml-11 space-y-4">
           <p className="text-sm text-gray-700 leading-relaxed">
-            Policy ideas are organised around ten binding constraints on South African growth.
+            Policy ideas are organised around structural binding constraints on South African growth.
             The conceptual foundation is the Hausmann–Rodrik–Velasco (HRV) growth diagnostics
             framework, which holds that growth is best accelerated by removing the <em>most
             binding</em> constraint rather than attempting comprehensive reform across all fronts
