@@ -1,4 +1,4 @@
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
