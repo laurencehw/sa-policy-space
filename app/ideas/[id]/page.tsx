@@ -16,61 +16,24 @@ import {
   type Meeting,
 } from "@/lib/supabase";
 
-// ── Data fetching ──────────────────────────────────────────────────────────
+// ── Data fetching (via unified API dispatcher) ───────────────────────────
 
-async function fetchIdeaById(id: number): Promise<PolicyIdea | null> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    const { getIdeaById } = await import("@/lib/local-api");
-    return getIdeaById(id) as PolicyIdea | null;
-  }
-  const { getIdeaById } = await import("@/lib/supabase-api");
-  return await getIdeaById(id) as PolicyIdea | null;
-}
+import {
+  getIdeaById as _getIdeaById,
+  getIdeaBySlug as _getIdeaBySlug,
+  getImplementationPlan as _getImplementationPlan,
+  getIdeaMeetings as _getIdeaMeetings,
+  getRelatedIdeas as _getRelatedIdeas,
+  getIdeaComparisons as _getIdeaComparisons,
+} from "@/lib/api";
+import { cache } from "react";
 
-async function fetchIdeaBySlug(slug: string): Promise<PolicyIdea | null> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    const { getIdeaBySlug } = await import("@/lib/local-api");
-    return getIdeaBySlug(slug) as PolicyIdea | null;
-  }
-  const { getIdeaBySlug } = await import("@/lib/supabase-api");
-  return await getIdeaBySlug(slug) as PolicyIdea | null;
-}
-
-async function getImplementationPlan(ideaId: number): Promise<ImplementationPlan | null> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    const { getImplementationPlan: localPlan } = await import("@/lib/local-api");
-    return localPlan(ideaId) as ImplementationPlan | null;
-  }
-  const { getImplementationPlan: supabasePlan } = await import("@/lib/supabase-api");
-  return await supabasePlan(ideaId) as ImplementationPlan | null;
-}
-
-async function getSourceMeetings(ideaId: number): Promise<Meeting[]> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    const { getIdeaMeetings } = await import("@/lib/local-api");
-    return getIdeaMeetings(ideaId) as Meeting[];
-  }
-  const { getIdeaMeetings } = await import("@/lib/supabase-api");
-  return await getIdeaMeetings(ideaId) as Meeting[];
-}
-
-async function fetchRelatedIdeas(packageId: number, currentId: number): Promise<any[]> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    const { getRelatedIdeas } = await import("@/lib/local-api");
-    return getRelatedIdeas(packageId, currentId) as any[];
-  }
-  const { getRelatedIdeas } = await import("@/lib/supabase-api");
-  return await getRelatedIdeas(packageId, currentId) as any[];
-}
-
-async function fetchIdeaComparisons(ideaId: number): Promise<any[]> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    const { getIdeaComparisons } = await import("@/lib/local-api");
-    return getIdeaComparisons(ideaId) as any[];
-  }
-  const { getIdeaComparisons } = await import("@/lib/supabase-api");
-  return await getIdeaComparisons(ideaId) as any[];
-}
+const fetchIdeaById = cache((id: number) => _getIdeaById(id) as Promise<PolicyIdea | null>);
+const fetchIdeaBySlug = cache((slug: string) => _getIdeaBySlug(slug) as Promise<PolicyIdea | null>);
+const getImplementationPlan = cache((id: number) => _getImplementationPlan(id));
+const getSourceMeetings = cache((id: number) => _getIdeaMeetings(id) as Promise<Meeting[]>);
+const fetchRelatedIdeas = cache((pkgId: number, excludeId: number) => _getRelatedIdeas(pkgId, excludeId));
+const fetchIdeaComparisons = cache((id: number) => _getIdeaComparisons(id));
 
 // ── Metadata ───────────────────────────────────────────────────────────────
 
@@ -510,7 +473,7 @@ export default async function IdeaDetailPage({
 
           {Array.isArray(plan.implementation_steps) && plan.implementation_steps.length > 0 && (
             <div className="space-y-4 pt-2">
-              {plan.implementation_steps.map((step, i) => (
+              {plan.implementation_steps.map((step: { step: string | number; description: string; timeline: string; responsible_party: string }, i: number) => (
                 <ImplementationStep key={i} step={step} index={i} />
               ))}
             </div>
