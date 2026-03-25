@@ -416,6 +416,29 @@ export default async function IdeaDetailPage({
         </div>
       )}
 
+      {/* OECD Economic Survey Reference */}
+      {idea.oecd_references && (
+        <div
+          className="rounded-lg border p-4 flex gap-3"
+          style={{ backgroundColor: "#f0f4ff", borderColor: "#c7d4f0" }}
+        >
+          <div className="flex-shrink-0 mt-0.5">
+            <span
+              className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-bold tracking-wide"
+              style={{ backgroundColor: "#003189", color: "#ffffff" }}
+            >
+              OECD
+            </span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-gray-600 mb-1">
+              Referenced in OECD Economic Surveys: South Africa
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">{idea.oecd_references}</p>
+          </div>
+        </div>
+      )}
+
       {/* Key Quotes (array) */}
       {keyQuotes && keyQuotes.length > 0 && (
         <div className="space-y-3">
