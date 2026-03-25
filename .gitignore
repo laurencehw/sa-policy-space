@@ -40,3 +40,4 @@ __pycache__/
 
 # Claude Code infrastructure
 .claude/
+*.collect_state.json
