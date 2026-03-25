@@ -1,0 +1,27 @@
+{
+  "Employment and Labour": {
+    "committee_id": 62,
+    "total_meetings": 200,
+    "date_range": "2019-03-13 to 2026-03-18"
+  },
+  "Police": {
+    "committee_id": 86,
+    "total_meetings": 200,
+    "date_range": "2019-07-03 to 2026-03-04"
+  },
+  "Justice and Constitutional Development": {
+    "committee_id": 38,
+    "total_meetings": 200,
+    "date_range": "2021-12-08 to 2026-02-25"
+  },
+  "Water and Sanitation": {
+    "committee_id": 111,
+    "total_meetings": 200,
+    "date_range": "2017-02-15 to 2026-03-24"
+  },
+  "Forestry, Fisheries and the Environment": {
+    "committee_id": 108,
+    "total_meetings": 200,
+    "date_range": "2019-09-13 to 2026-03-24"
+  }
+}

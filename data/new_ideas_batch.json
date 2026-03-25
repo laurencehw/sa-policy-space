@@ -1,0 +1,1999 @@
+[
+  {
+    "id": 140,
+    "title": "National Minimum Wage Review and Adjustment Mechanism",
+    "description": "Reform of the National Minimum Wage Commission's review methodology to better balance employment creation with worker protection. Parliamentary hearings have repeatedly examined the NMW's impact on employment in vulnerable sectors (agriculture, domestic work) and the adequacy of the annual adjustment formula.",
+    "binding_constraint": "labour_market",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "national-minimum-wage-review-and-adjustment-mechanism",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 88,
+        "date": "2022-11-09T07:29:00+00:00",
+        "title": "Proposed introduction of legislation in the form of a Fair Remuneration Draft Bill: Department briefing",
+        "pmg_url": "https://pmg.org.za/committee-meeting/35964/"
+      },
+      {
+        "meeting_id": 144,
+        "date": "2021-02-24T08:17:00+00:00",
+        "title": "National Minimum Wage Regulations & Development: DEL briefing; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/32352/"
+      },
+      {
+        "meeting_id": 151,
+        "date": "2020-11-25T08:06:00+00:00",
+        "title": "Employment and Labour Budgetary Review and Recommendation Report (BRRR)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/31593/"
+      },
+      {
+        "meeting_id": 199,
+        "date": "2019-03-18T12:17:00+00:00",
+        "title": "National Minimum Wage Amendment Bill: finalisation",
+        "pmg_url": "https://pmg.org.za/committee-meeting/28168/"
+      },
+      {
+        "meeting_id": 200,
+        "date": "2019-03-13T10:52:00+00:00",
+        "title": "Labour Portfolio Committee Legacy Report & Committee Report on DOL Quarter 2 & 3 performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/28114/"
+      }
+    ],
+    "keywords": [
+      "minimum wage",
+      "NMW",
+      "wage",
+      "remuneration"
+    ]
+  },
+  {
+    "id": 141,
+    "title": "CCMA Capacity and Case Resolution Reform",
+    "description": "Expansion of CCMA commissioner capacity and digitisation of dispute resolution to reduce case backlogs. The committee has tracked CCMA performance quarterly, noting rising caseloads, understaffing, and delays in conciliation and arbitration outcomes.",
+    "binding_constraint": "labour_market",
+    "current_status": "debated",
+    "feasibility_rating": 4,
+    "growth_impact_rating": 3,
+    "time_horizon": "quick_win",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "ccma-capacity-and-case-resolution-reform",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 2,
+        "date": "2026-03-11T09:44:00+00:00",
+        "title": "CCMA, Nedlac and Productivity SA Q3 2025/26 Performance; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42570/"
+      },
+      {
+        "meeting_id": 6,
+        "date": "2026-01-28T10:10:00+00:00",
+        "title": "CCMA, NEDLAC & Productivity SA Q1 and Q2 2025/26 Performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42302/"
+      },
+      {
+        "meeting_id": 24,
+        "date": "2025-06-18T10:48:00+00:00",
+        "title": "DEL, CCMA, Nedlac, SEE, and PSA 2025/26 Annual Performance Plans; with Minister & Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41022/"
+      },
+      {
+        "meeting_id": 32,
+        "date": "2025-04-02T09:48:00+00:00",
+        "title": "CCMA, Nedlac and Productivity SA Q3 2024/25 Performance and implementation of AGSA remedial action; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40516/"
+      },
+      {
+        "meeting_id": 41,
+        "date": "2024-11-20T11:24:00+00:00",
+        "title": "CCMA, Nedlac, PSA, CF, and UIF Q1 & Q2 2024/25 Performance; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39916/"
+      }
+    ],
+    "keywords": [
+      "CCMA",
+      "dispute",
+      "conciliation",
+      "arbitration"
+    ]
+  },
+  {
+    "id": 142,
+    "title": "Employment Tax Incentive (ETI) Extension and Expansion",
+    "description": "Extension and broadening of the ETI youth wage subsidy to increase youth employment absorption. Committee has examined ETI take-up rates, deadweight losses, and proposals to expand beyond the current age and wage thresholds.",
+    "binding_constraint": "labour_market",
+    "current_status": "debated",
+    "feasibility_rating": 4,
+    "growth_impact_rating": 4,
+    "time_horizon": "quick_win",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "employment-tax-incentive-eti-extension-and-expansion",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 10,
+        "date": "2025-11-12T10:02:00+00:00",
+        "title": "Unemployment in South Africa: Stats SA; DEL projects targeting youth unemployment",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42036/"
+      },
+      {
+        "meeting_id": 11,
+        "date": "2025-11-05T10:58:00+00:00",
+        "title": "Elder Care Leave Petition; CGE on Women Farm Workers and CEDAW Article 11 Compliance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41982/"
+      },
+      {
+        "meeting_id": 39,
+        "date": "2024-12-04T09:34:00+00:00",
+        "title": "Committee Reports on DEL and entities Quarterly Performance; Gauteng Oversight Visit Report",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40056/"
+      },
+      {
+        "meeting_id": 44,
+        "date": "2024-10-23T08:42:00+00:00",
+        "title": "Committee Report on DEL Quarter 3 Performance 2024/25 & BRRR",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39714/"
+      },
+      {
+        "meeting_id": 45,
+        "date": "2024-10-23T08:35:00+00:00",
+        "title": "Employment & Labour Budgetary Review & Recommendations Report 2024",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39715/"
+      }
+    ],
+    "keywords": [
+      "ETI",
+      "tax incentive",
+      "youth employment",
+      "wage subsidy"
+    ]
+  },
+  {
+    "id": 143,
+    "title": "Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+    "description": "Overhaul of UIF benefit structure, claims processing, and investment governance following audit findings of mismanagement. The committee has scrutinised UIF quarterly performance, investment losses, and the gap between contribution income and benefit payouts.",
+    "binding_constraint": "labour_market",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "unemployment-insurance-fund-uif-governance-and-benefit-reform",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1,
+        "date": "2026-03-18T10:04:00+00:00",
+        "title": "Compensation Fund and UIF Q3 2025/26 Performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42648/"
+      },
+      {
+        "meeting_id": 5,
+        "date": "2026-02-18T10:08:00+00:00",
+        "title": "UIF & Compensation Fund Q1 & 2 2025/26 performance; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42392/"
+      },
+      {
+        "meeting_id": 16,
+        "date": "2025-09-17T09:46:00+00:00",
+        "title": "Consequence management in cases that were noted by AGSA and reviewed by DEL and the two Funds; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41635/"
+      },
+      {
+        "meeting_id": 23,
+        "date": "2025-06-25T10:18:00+00:00",
+        "title": "Compensation Fund and UIF 2025/26 Annual Performance Plan; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41093/"
+      },
+      {
+        "meeting_id": 25,
+        "date": "2025-06-11T10:24:00+00:00",
+        "title": "Reconfiguration of DEL and Repositioning of the UIF & CF; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40959/"
+      }
+    ],
+    "keywords": [
+      "UIF",
+      "unemployment insurance",
+      "fund",
+      "benefit"
+    ]
+  },
+  {
+    "id": 144,
+    "title": "Compensation Fund Turnaround and Claims Backlog",
+    "description": "Clearance of the Compensation Fund's multi-year claims backlog and modernisation of the occupational injury claims system. Parliamentary oversight has documented systemic processing failures, IT system deficiencies, and employer non-compliance.",
+    "binding_constraint": "labour_market",
+    "current_status": "stalled",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "compensation-fund-turnaround-and-claims-backlog",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1,
+        "date": "2026-03-18T10:04:00+00:00",
+        "title": "Compensation Fund and UIF Q3 2025/26 Performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42648/"
+      },
+      {
+        "meeting_id": 5,
+        "date": "2026-02-18T10:08:00+00:00",
+        "title": "UIF & Compensation Fund Q1 & 2 2025/26 performance; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42392/"
+      },
+      {
+        "meeting_id": 23,
+        "date": "2025-06-25T10:18:00+00:00",
+        "title": "Compensation Fund and UIF 2025/26 Annual Performance Plan; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41093/"
+      },
+      {
+        "meeting_id": 40,
+        "date": "2024-11-27T10:20:00+00:00",
+        "title": "UIF & Compensation Fund repositioning, with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39992/"
+      },
+      {
+        "meeting_id": 47,
+        "date": "2024-09-18T08:15:00+00:00",
+        "title": "CCMA, Nedlac, UIF and Compensation Fund Q3 2023/24 Performance; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39521/"
+      }
+    ],
+    "keywords": [
+      "compensation fund",
+      "claims",
+      "occupational",
+      "injury"
+    ]
+  },
+  {
+    "id": 145,
+    "title": "Labour Activation Programme for Long-Term Unemployed",
+    "description": "Active labour market programme combining skills training, work experience, and placement services targeting the long-term unemployed and discouraged work-seekers. The committee has held dedicated workshops on activation strategies and examined international models.",
+    "binding_constraint": "labour_market",
+    "current_status": "proposed",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 4,
+    "time_horizon": "medium_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "labour-activation-programme-for-long-term-unemployed",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 10,
+        "date": "2025-11-12T10:02:00+00:00",
+        "title": "Unemployment in South Africa: Stats SA; DEL projects targeting youth unemployment",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42036/"
+      },
+      {
+        "meeting_id": 12,
+        "date": "2025-10-29T10:52:00+00:00",
+        "title": "Workshop: Labour Activation Programme (with Deputy Minister)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41914/"
+      },
+      {
+        "meeting_id": 26,
+        "date": "2025-06-04T10:39:00+00:00",
+        "title": "Labour Activation Programme (LAP); with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40881/"
+      },
+      {
+        "meeting_id": 34,
+        "date": "2025-03-12T08:39:00+00:00",
+        "title": "Labour Activation Programme (LAP);with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40367/"
+      },
+      {
+        "meeting_id": 40,
+        "date": "2024-11-27T10:20:00+00:00",
+        "title": "UIF & Compensation Fund repositioning, with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39992/"
+      }
+    ],
+    "keywords": [
+      "labour activation",
+      "unemployment",
+      "placement",
+      "activation"
+    ]
+  },
+  {
+    "id": 146,
+    "title": "Section 189 Retrenchment Process Reform",
+    "description": "Amendments to Labour Relations Act sections 189 and 189A governing large-scale retrenchments, including enhanced consultation requirements, mandatory social plans, and improved severance frameworks. Committee workshops have examined the retrenchment process following major job losses.",
+    "binding_constraint": "labour_market",
+    "current_status": "debated",
+    "feasibility_rating": 2,
+    "growth_impact_rating": 3,
+    "time_horizon": "long_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "section-189-retrenchment-process-reform",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 9,
+        "date": "2025-11-19T10:58:00+00:00",
+        "title": "Workshop on Section 189 and 189A Labour Relations Act Retrenchments; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42087/"
+      },
+      {
+        "meeting_id": 38,
+        "date": "2025-02-12T10:11:00+00:00",
+        "title": "Registrar of Labour Relations briefing",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40214/"
+      },
+      {
+        "meeting_id": 65,
+        "date": "2023-11-08T07:22:00+00:00",
+        "title": "Briefing by Registry of Trade Unions on Labour Relations; CGE Reports on Gender Transformation",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37928/"
+      },
+      {
+        "meeting_id": 97,
+        "date": "2022-08-24T07:27:00+00:00",
+        "title": "Compensation for Occupational Injuries and Diseases Amendment Bill: NCOP Amendments; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/35358/"
+      },
+      {
+        "meeting_id": 98,
+        "date": "2022-06-15T07:53:00+00:00",
+        "title": "Essential Services Committee proposals for improving essential services legislation",
+        "pmg_url": "https://pmg.org.za/committee-meeting/35224/"
+      }
+    ],
+    "keywords": [
+      "section 189",
+      "retrenchment",
+      "labour relations",
+      "dismissal"
+    ]
+  },
+  {
+    "id": 147,
+    "title": "Productivity SA and Workplace Competitiveness Support",
+    "description": "Strengthening Productivity SA's capacity to provide turnaround assistance to distressed companies and sectors, preventing unnecessary job losses through workplace restructuring rather than retrenchment.",
+    "binding_constraint": "labour_market",
+    "current_status": "debated",
+    "feasibility_rating": 4,
+    "growth_impact_rating": 3,
+    "time_horizon": "quick_win",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "productivity-sa-and-workplace-competitiveness-support",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 2,
+        "date": "2026-03-11T09:44:00+00:00",
+        "title": "CCMA, Nedlac and Productivity SA Q3 2025/26 Performance; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42570/"
+      },
+      {
+        "meeting_id": 6,
+        "date": "2026-01-28T10:10:00+00:00",
+        "title": "CCMA, NEDLAC & Productivity SA Q1 and Q2 2025/26 Performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42302/"
+      },
+      {
+        "meeting_id": 29,
+        "date": "2025-05-14T10:05:00+00:00",
+        "title": "Advancement of equity in workplaces: Commission for Employment Equity briefing; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40695/"
+      },
+      {
+        "meeting_id": 32,
+        "date": "2025-04-02T09:48:00+00:00",
+        "title": "CCMA, Nedlac and Productivity SA Q3 2024/25 Performance and implementation of AGSA remedial action; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40516/"
+      },
+      {
+        "meeting_id": 46,
+        "date": "2024-10-16T08:22:00+00:00",
+        "title": "Nedlac and Productivity SA 2023/24 Annual Reports, with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39652/"
+      }
+    ],
+    "keywords": [
+      "productivity",
+      "turnaround",
+      "workplace",
+      "competitiveness"
+    ]
+  },
+  {
+    "id": 148,
+    "title": "Informal Economy Integration and Worker Protection",
+    "description": "Extension of basic labour protections and social security coverage to informal economy workers, including street traders, domestic workers, and platform gig workers. Committee hearings have examined the gap between formal labour law and the reality of informally employed South Africans.",
+    "binding_constraint": "labour_market",
+    "current_status": "proposed",
+    "feasibility_rating": 2,
+    "growth_impact_rating": 3,
+    "time_horizon": "long_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "informal-economy-integration-and-worker-protection",
+    "times_raised": 1,
+    "matching_meetings": [
+      {
+        "meeting_id": 58,
+        "date": "2024-03-06T08:13:00+00:00",
+        "title": "Briefing by Department of Employment and Labour on issues re Labour Activation Programme; petition by Solidarity and Cape Forum; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/38521/"
+      }
+    ],
+    "keywords": [
+      "informal",
+      "domestic worker",
+      "gig",
+      "platform"
+    ]
+  },
+  {
+    "id": 149,
+    "title": "NEDLAC Social Compact on Employment and Growth",
+    "description": "Strengthening NEDLAC's capacity to broker binding social compacts between government, business, and labour on key reform areas — particularly around wage moderation, investment commitments, and structural reform sequencing.",
+    "binding_constraint": "labour_market",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 2,
+    "source_committee": "Employment and Labour",
+    "responsible_department": "Department of Employment and Labour",
+    "slug": "nedlac-social-compact-on-employment-and-growth",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 2,
+        "date": "2026-03-11T09:44:00+00:00",
+        "title": "CCMA, Nedlac and Productivity SA Q3 2025/26 Performance; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42570/"
+      },
+      {
+        "meeting_id": 6,
+        "date": "2026-01-28T10:10:00+00:00",
+        "title": "CCMA, NEDLAC & Productivity SA Q1 and Q2 2025/26 Performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42302/"
+      },
+      {
+        "meeting_id": 24,
+        "date": "2025-06-18T10:48:00+00:00",
+        "title": "DEL, CCMA, Nedlac, SEE, and PSA 2025/26 Annual Performance Plans; with Minister & Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41022/"
+      },
+      {
+        "meeting_id": 32,
+        "date": "2025-04-02T09:48:00+00:00",
+        "title": "CCMA, Nedlac and Productivity SA Q3 2024/25 Performance and implementation of AGSA remedial action; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40516/"
+      },
+      {
+        "meeting_id": 41,
+        "date": "2024-11-20T11:24:00+00:00",
+        "title": "CCMA, Nedlac, PSA, CF, and UIF Q1 & Q2 2024/25 Performance; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39916/"
+      }
+    ],
+    "keywords": [
+      "NEDLAC",
+      "social compact",
+      "tripartite",
+      "dialogue"
+    ]
+  },
+  {
+    "id": 150,
+    "title": "SAPS Detective Service Capacity and Case Clearance",
+    "description": "Expansion of SAPS detective capacity to improve case clearance rates, particularly for serious and violent crimes. Committee oversight has documented critical shortages in detective-to-case ratios, forensic backlogs, and the impact on prosecution success rates.",
+    "binding_constraint": "crime_safety",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 4,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "saps-detective-service-capacity-and-case-clearance",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 762,
+        "date": "2025-06-25T10:11:00+00:00",
+        "title": "Progress report by SAPS on cases of violence against children; Presentation by Women Empowerment Platform on violence against children; Budget Vote reports; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41079/"
+      },
+      {
+        "meeting_id": 774,
+        "date": "2025-04-15T11:40:00+00:00",
+        "title": "SAPS investigation and response to alleged Cwecwe rape case; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40549/"
+      },
+      {
+        "meeting_id": 778,
+        "date": "2025-03-05T10:03:00+00:00",
+        "title": "Instability of the Crime Intelligence Division; Political Killings Task Team; VIP Protection Officers Disciplinary Case (with Ministry)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40308/"
+      },
+      {
+        "meeting_id": 780,
+        "date": "2025-02-19T09:00:00+00:00",
+        "title": "Outcomes of 2024/25 Safer Festive Season Operations; Update on Extortion related crimes; Capacitation to the Detective services (with Ministry)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40253/"
+      },
+      {
+        "meeting_id": 782,
+        "date": "2024-11-27T10:30:00+00:00",
+        "title": "SAPS Q2 2024/25 Crime Statistics; Extortion; Safer Festive Season Operations; Intervention Plan to capacitate the Detective Services Division; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39978/"
+      }
+    ],
+    "keywords": [
+      "detective",
+      "investigation",
+      "case",
+      "clearance"
+    ]
+  },
+  {
+    "id": 151,
+    "title": "Anti-Extortion and Construction Mafia Task Force",
+    "description": "Establishment of dedicated anti-extortion units targeting construction site extortion, business protection rackets, and organised criminal syndicates disrupting infrastructure development and private investment.",
+    "binding_constraint": "crime_safety",
+    "current_status": "proposed",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 5,
+    "time_horizon": "quick_win",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "anti-extortion-and-construction-mafia-task-force",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 780,
+        "date": "2025-02-19T09:00:00+00:00",
+        "title": "Outcomes of 2024/25 Safer Festive Season Operations; Update on Extortion related crimes; Capacitation to the Detective services (with Ministry)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40253/"
+      },
+      {
+        "meeting_id": 782,
+        "date": "2024-11-27T10:30:00+00:00",
+        "title": "SAPS Q2 2024/25 Crime Statistics; Extortion; Safer Festive Season Operations; Intervention Plan to capacitate the Detective Services Division; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39978/"
+      },
+      {
+        "meeting_id": 783,
+        "date": "2024-11-20T10:49:00+00:00",
+        "title": "SAPS Capacitation of Specialised Units; Capital Works Project in the policing portfolio; Extortion Hotline; Follow-up on Phillippi Training Academy visit; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39907/"
+      },
+      {
+        "meeting_id": 786,
+        "date": "2024-10-23T09:31:00+00:00",
+        "title": "Oversight Framework to combat Extortion; SAPS, IPID, CSPS and PSIRA BRRRs, Philippi Training Academy Oversight Visit Report",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39704/"
+      },
+      {
+        "meeting_id": 789,
+        "date": "2024-09-18T08:17:00+00:00",
+        "title": "Intervention Plan to Combat Extortion; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39515/"
+      }
+    ],
+    "keywords": [
+      "extortion",
+      "construction mafia",
+      "organised crime",
+      "business"
+    ]
+  },
+  {
+    "id": 152,
+    "title": "Gender-Based Violence Prevention and Response Strategy",
+    "description": "Implementation of the National Strategic Plan on GBV including dedicated SAPS Family Violence, Child Protection and Sexual Offences (FCS) units, Thuthuzela Care Centres, and the National Register for Sex Offenders.",
+    "binding_constraint": "crime_safety",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "gender-based-violence-prevention-and-response-strategy",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 765,
+        "date": "2025-06-11T10:19:00+00:00",
+        "title": "Combatting GBVF & crimes against children & implementation of Domestic Violence Act (with Deputy Ministers)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40949/"
+      },
+      {
+        "meeting_id": 785,
+        "date": "2024-10-30T08:48:00+00:00",
+        "title": "Compliance to the Domestic Violence and Police Station Census: CSPS briefing; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39769/"
+      },
+      {
+        "meeting_id": 798,
+        "date": "2024-03-13T07:24:00+00:00",
+        "title": "Domestic Violence Act implementation & compliance; SAPS safer festive season operations",
+        "pmg_url": "https://pmg.org.za/committee-meeting/38592/"
+      },
+      {
+        "meeting_id": 833,
+        "date": "2023-03-08T07:50:00+00:00",
+        "title": "Police Recruitment and Training; Committee Report on Petitions with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36497/"
+      },
+      {
+        "meeting_id": 855,
+        "date": "2022-06-03T07:34:00+00:00",
+        "title": "SAPS Crime Statistics Quarter 4 2021/22; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/35122/"
+      }
+    ],
+    "keywords": [
+      "GBV",
+      "gender-based violence",
+      "domestic violence",
+      "sexual offence"
+    ]
+  },
+  {
+    "id": 153,
+    "title": "IPID Independence and Police Accountability",
+    "description": "Strengthening the Independent Police Investigative Directorate's operational independence, investigative capacity, and prosecution referral effectiveness to ensure meaningful accountability for police misconduct.",
+    "binding_constraint": "crime_safety",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "ipid-independence-and-police-accountability",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 753,
+        "date": "2026-02-25T08:32:00+00:00",
+        "title": "Extension of IPID Executive Director’s Appointment; Impact of Mkhwanazi Committee on Committee’s work; SANDF deployment & Inquiry into Gang-Related Violence in Cape Town",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42441/"
+      },
+      {
+        "meeting_id": 754,
+        "date": "2025-11-11T09:45:00+00:00",
+        "title": "SAPS, IPID and CSPS BRRR",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42025/"
+      },
+      {
+        "meeting_id": 755,
+        "date": "2025-11-03T10:35:00+00:00",
+        "title": "Police Portfolio Audit Outcomes; Trade Union input on SAPS Performance; SAPS, CSPS & IPID 2024/25 Annual Reports (with Ministry)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41941/"
+      },
+      {
+        "meeting_id": 758,
+        "date": "2025-09-10T09:42:00+00:00",
+        "title": "Committee Strategic Planning Workshop Report; SAPS, IPID and CSPS Quarter One Performance; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41569/"
+      },
+      {
+        "meeting_id": 764,
+        "date": "2025-06-18T10:41:00+00:00",
+        "title": "IPID and PSIRA Revised 2025/26 Annual Performance Plans; with Minister & Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41009/"
+      }
+    ],
+    "keywords": [
+      "IPID",
+      "police oversight",
+      "accountability",
+      "misconduct"
+    ]
+  },
+  {
+    "id": 154,
+    "title": "Private Security Industry Regulation (PSIRA) Reform",
+    "description": "Reform of PSIRA's regulatory framework to address the growing private security sector (larger than SAPS), including ownership rules, training standards, and coordination with public policing.",
+    "binding_constraint": "crime_safety",
+    "current_status": "debated",
+    "feasibility_rating": 4,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "private-security-industry-regulation-psira-reform",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 764,
+        "date": "2025-06-18T10:41:00+00:00",
+        "title": "IPID and PSIRA Revised 2025/26 Annual Performance Plans; with Minister & Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41009/"
+      },
+      {
+        "meeting_id": 766,
+        "date": "2025-06-04T10:35:00+00:00",
+        "title": "PSIRA Material Irregularity; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40870/"
+      },
+      {
+        "meeting_id": 777,
+        "date": "2025-03-12T08:28:00+00:00",
+        "title": "Briefing by SAPS, IPID, CSPS, PSIRA, Office of the DPCI Judge and DNA Board on implementing Committee recommendations in BRRRs; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40361/"
+      },
+      {
+        "meeting_id": 781,
+        "date": "2025-02-12T11:06:00+00:00",
+        "title": "SAPS and PSiRA on Post Audit Action Plans; SAPS rationale for closing Inspectorate Component (with Deputy Minister)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40213/"
+      },
+      {
+        "meeting_id": 786,
+        "date": "2024-10-23T09:31:00+00:00",
+        "title": "Oversight Framework to combat Extortion; SAPS, IPID, CSPS and PSIRA BRRRs, Philippi Training Academy Oversight Visit Report",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39704/"
+      }
+    ],
+    "keywords": [
+      "PSIRA",
+      "private security",
+      "security industry",
+      "regulation"
+    ]
+  },
+  {
+    "id": 155,
+    "title": "Illegal Mining and Resource Crime Combatting",
+    "description": "Coordinated strategy to combat illegal mining (zama-zama operations), including inter-departmental coordination between SAPS, DMRE, and immigration authorities, and addressing the environmental and safety hazards of abandoned mines.",
+    "binding_constraint": "crime_safety",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "illegal-mining-and-resource-crime-combatting",
+    "times_raised": 4,
+    "matching_meetings": [
+      {
+        "meeting_id": 757,
+        "date": "2025-09-17T09:48:00+00:00",
+        "title": "Illegal Mining Petition",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41639/"
+      },
+      {
+        "meeting_id": 826,
+        "date": "2023-05-17T09:13:00+00:00",
+        "title": "SAPS, IPID, CSPS and PSIRA Budgets: Committee Reports",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36952/"
+      },
+      {
+        "meeting_id": 869,
+        "date": "2022-03-02T06:41:00+00:00",
+        "title": "Appointment of Critical Infrastructure Council, with Minister of Police",
+        "pmg_url": "https://pmg.org.za/committee-meeting/34465/"
+      },
+      {
+        "meeting_id": 900,
+        "date": "2021-02-24T08:41:00+00:00",
+        "title": "SAPS & IPID BRRR recommendations: progress; SAPS Amendment Draft Bill; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/32323/"
+      }
+    ],
+    "keywords": [
+      "illegal mining",
+      "zama-zama",
+      "mine",
+      "resource crime"
+    ]
+  },
+  {
+    "id": 156,
+    "title": "Community Policing Forum Revitalisation",
+    "description": "Revitalisation of Community Policing Forums (CPFs) as a mechanism for civilian oversight and community safety partnerships, including sustainable funding models and integration with municipal safety plans.",
+    "binding_constraint": "crime_safety",
+    "current_status": "stalled",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "community-policing-forum-revitalisation",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 776,
+        "date": "2025-03-19T09:47:00+00:00",
+        "title": "Implementation of the National Rural Safety Strategy; PPS STOP (NPC) Farm killing and AGRI Alert Petition; with Minister and Deputies",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40419/"
+      },
+      {
+        "meeting_id": 791,
+        "date": "2024-09-04T09:06:00+00:00",
+        "title": "SAPS Quarter 4 (2023/24) & Q1 (2024/25) Crime Statistics; with Minister & Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39411/"
+      },
+      {
+        "meeting_id": 800,
+        "date": "2024-02-28T07:54:00+00:00",
+        "title": "SAPS 2023/24 Q3 Crime Statistics; SAPS Support for CPFs & Boards",
+        "pmg_url": "https://pmg.org.za/committee-meeting/38447/"
+      },
+      {
+        "meeting_id": 805,
+        "date": "2023-11-22T07:43:00+00:00",
+        "title": "IPID A/Bill: consideration; Department responses emanating from Annual Report briefings; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/38045/"
+      },
+      {
+        "meeting_id": 829,
+        "date": "2023-05-03T07:49:00+00:00",
+        "title": "DPCI 2023/24 Annual Performance Plan, discussion on challenges at Central Firearms Registry and CPFs; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36805/"
+      }
+    ],
+    "keywords": [
+      "community policing",
+      "CPF",
+      "neighbourhood",
+      "safety"
+    ]
+  },
+  {
+    "id": 157,
+    "title": "SANDF Deployment in Support of SAPS Border Security",
+    "description": "Rationalisation of SANDF deployment for internal policing support, border security, and cross-border crime prevention, including cost-effectiveness evaluation and exit strategy development.",
+    "binding_constraint": "crime_safety",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "quick_win",
+    "reform_package": 5,
+    "source_committee": "Police",
+    "responsible_department": "Department of Police",
+    "slug": "sandf-deployment-in-support-of-saps-border-security",
+    "times_raised": 4,
+    "matching_meetings": [
+      {
+        "meeting_id": 752,
+        "date": "2026-03-04T10:36:00+00:00",
+        "title": "Deployment of SANDF in support of SAPS operations; with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42496/"
+      },
+      {
+        "meeting_id": 753,
+        "date": "2026-02-25T08:32:00+00:00",
+        "title": "Extension of IPID Executive Director’s Appointment; Impact of Mkhwanazi Committee on Committee’s work; SANDF deployment & Inquiry into Gang-Related Violence in Cape Town",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42441/"
+      },
+      {
+        "meeting_id": 835,
+        "date": "2023-02-22T05:05:00+00:00",
+        "title": "Quarter 3 Crime Statistics: responses; Data-driven Evidence-based Policing: ISS briefing",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36368/"
+      },
+      {
+        "meeting_id": 927,
+        "date": "2020-04-29T06:35:00+00:00",
+        "title": "Police management of COVID-19 lockdown: SAPS briefing; with Minister & Deputy Minister present",
+        "pmg_url": "https://pmg.org.za/committee-meeting/30117/"
+      }
+    ],
+    "keywords": [
+      "SANDF",
+      "deployment",
+      "border",
+      "military"
+    ]
+  },
+  {
+    "id": 158,
+    "title": "NPA Prosecution Capacity and Independence",
+    "description": "Rebuilding NPA prosecution capacity, particularly for complex commercial crime, corruption, and organised crime cases. Committee has tracked NPA vacancy rates, conviction rates, and the implementation of Zondo Commission referrals.",
+    "binding_constraint": "corruption_governance",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 4,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Justice and Constitutional Development",
+    "responsible_department": "Department of Justice and Constitutional Development",
+    "slug": "npa-prosecution-capacity-and-independence",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1695,
+        "date": "2025-06-17T10:37:00+00:00",
+        "title": "DoJ&CD and NPA 2025/26 Annual Performance Plans (with Ministry)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40977/"
+      },
+      {
+        "meeting_id": 1699,
+        "date": "2025-05-16T09:25:00+00:00",
+        "title": "Omotoso Case: DoJ&CD and NPA briefing",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40712/"
+      },
+      {
+        "meeting_id": 1707,
+        "date": "2025-02-19T09:29:00+00:00",
+        "title": "NPA & FHR on TRC Matters; Engagement with JOASA & ARMSA",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40247/"
+      },
+      {
+        "meeting_id": 1709,
+        "date": "2025-02-12T09:43:00+00:00",
+        "title": "Constitution 20th A/B & Constitution 21st A/B: DoJ&CD, NPA & IR Input (with Deputy Minister)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40206/"
+      },
+      {
+        "meeting_id": 1724,
+        "date": "2024-10-11T09:24:00+00:00",
+        "title": "NPA 2023/24 Annual Report & Quarter 1 & 2 performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39608/"
+      }
+    ],
+    "keywords": [
+      "NPA",
+      "prosecution",
+      "national prosecuting",
+      "conviction"
+    ]
+  },
+  {
+    "id": 159,
+    "title": "Court Case Backlog and Judicial Efficiency",
+    "description": "Reduction of the court case backlog through additional judicial officers, court modernisation, and case flow management. The committee has examined delays in criminal and civil proceedings that undermine access to justice and investor confidence.",
+    "binding_constraint": "crime_safety",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Justice and Constitutional Development",
+    "responsible_department": "Department of Justice and Constitutional Development",
+    "slug": "court-case-backlog-and-judicial-efficiency",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1685,
+        "date": "2026-02-25T08:31:00+00:00",
+        "title": "Salaries of judges and magistrates; Information Regulator & SAHRC vacancies; Judges misconduct; Study Tour",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42436/"
+      },
+      {
+        "meeting_id": 1696,
+        "date": "2025-06-03T10:28:00+00:00",
+        "title": "Constitution Nineteenth Amendment Bill: Mr Michalakis briefing; Reports on Suspension of Magistrates",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40860/"
+      },
+      {
+        "meeting_id": 1700,
+        "date": "2025-05-14T10:00:00+00:00",
+        "title": "Constitution 21st A/B: National Anti-Corruption Advisory Council; Suspension of magistrates",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40684/"
+      },
+      {
+        "meeting_id": 1701,
+        "date": "2025-05-07T09:47:00+00:00",
+        "title": "Judicial Matters A/B: Department briefing; Protection of State Information Bill: CLSO briefing (with Minister)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40642/"
+      },
+      {
+        "meeting_id": 1716,
+        "date": "2024-11-13T08:10:00+00:00",
+        "title": "Suspension of Magistrates: Magistrates Commission briefing; Approval of Judges salary increase",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39847/"
+      }
+    ],
+    "keywords": [
+      "court backlog",
+      "case backlog",
+      "judicial",
+      "magistrate"
+    ]
+  },
+  {
+    "id": 160,
+    "title": "SIU Special Tribunal and Asset Recovery Acceleration",
+    "description": "Strengthening the SIU's Special Tribunal for civil recovery of state losses from corruption and fraud. The committee has monitored SIU investigation outcomes, recovery rates, and the pipeline of matters referred from the Zondo Commission.",
+    "binding_constraint": "corruption_governance",
+    "current_status": "under_review",
+    "feasibility_rating": 4,
+    "growth_impact_rating": 3,
+    "time_horizon": "quick_win",
+    "reform_package": 5,
+    "source_committee": "Justice and Constitutional Development",
+    "responsible_department": "Department of Justice and Constitutional Development",
+    "slug": "siu-special-tribunal-and-asset-recovery-acceleration",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1693,
+        "date": "2025-06-24T10:38:00+00:00",
+        "title": "SIU & Legal Aid SA 2025/26 Annual Performance Plans; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41052/"
+      },
+      {
+        "meeting_id": 1700,
+        "date": "2025-05-14T10:00:00+00:00",
+        "title": "Constitution 21st A/B: National Anti-Corruption Advisory Council; Suspension of magistrates",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40684/"
+      },
+      {
+        "meeting_id": 1712,
+        "date": "2024-11-26T08:42:00+00:00",
+        "title": "Constitution 20th Amendment Bill & Constitution 21st Amendment Bill",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39953/"
+      },
+      {
+        "meeting_id": 1714,
+        "date": "2024-11-20T10:43:00+00:00",
+        "title": "Deputy Public Protector Interviews",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39901/"
+      },
+      {
+        "meeting_id": 1719,
+        "date": "2024-10-29T09:10:00+00:00",
+        "title": "SIU investigations in the Departments of Justice and Constitutional Development & Health; DoJ&CD BRRR",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39745/"
+      }
+    ],
+    "keywords": [
+      "SIU",
+      "special tribunal",
+      "asset recovery",
+      "corruption"
+    ]
+  },
+  {
+    "id": 161,
+    "title": "Legal Aid South Africa Capacity and Access to Justice",
+    "description": "Expansion of Legal Aid SA's capacity to provide legal representation in civil and criminal matters, particularly for vulnerable populations and in rural areas where access to legal services is limited.",
+    "binding_constraint": "crime_safety",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Justice and Constitutional Development",
+    "responsible_department": "Department of Justice and Constitutional Development",
+    "slug": "legal-aid-south-africa-capacity-and-access-to-justice",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1693,
+        "date": "2025-06-24T10:38:00+00:00",
+        "title": "SIU & Legal Aid SA 2025/26 Annual Performance Plans; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41052/"
+      },
+      {
+        "meeting_id": 1762,
+        "date": "2023-10-24T07:25:00+00:00",
+        "title": "Removal of Judges from Office: Legal Services briefing; Cannabis for Private Purposes Bill & Divorce A/B: deliberations",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37776/"
+      },
+      {
+        "meeting_id": 1769,
+        "date": "2023-10-10T07:14:00+00:00",
+        "title": "Overview of Department's Annual Reports (with Ministry); Legal Aid South Africa 2022/23 Annual Report",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37626/"
+      },
+      {
+        "meeting_id": 1772,
+        "date": "2023-09-12T07:07:00+00:00",
+        "title": "Cannabis for Private Purposes Bill: proposed amendment; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37472/"
+      },
+      {
+        "meeting_id": 1790,
+        "date": "2023-05-10T08:10:00+00:00",
+        "title": "SAHRC, Legal Aid SA & Information Regulator 2023/24 Annual Performance Plans",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36875/"
+      }
+    ],
+    "keywords": [
+      "legal aid",
+      "access to justice",
+      "representation",
+      "legal services"
+    ]
+  },
+  {
+    "id": 162,
+    "title": "TRC Recommendations Implementation",
+    "description": "Implementation of outstanding Truth and Reconciliation Commission recommendations, including reparations, prosecutions of apartheid-era crimes, and institutional memory preservation. The committee has held dedicated stakeholder engagements on implementation progress.",
+    "binding_constraint": "government_capacity",
+    "current_status": "stalled",
+    "feasibility_rating": 2,
+    "growth_impact_rating": 1,
+    "time_horizon": "long_term",
+    "reform_package": 5,
+    "source_committee": "Justice and Constitutional Development",
+    "responsible_department": "Department of Justice and Constitutional Development",
+    "slug": "trc-recommendations-implementation",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 1698,
+        "date": "2025-05-20T10:19:00+00:00",
+        "title": "Implementation of TRC recommendations: stakeholder engagement; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40722/"
+      },
+      {
+        "meeting_id": 1707,
+        "date": "2025-02-19T09:29:00+00:00",
+        "title": "NPA & FHR on TRC Matters; Engagement with JOASA & ARMSA",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40247/"
+      },
+      {
+        "meeting_id": 1730,
+        "date": "2024-09-17T09:21:00+00:00",
+        "title": "TRC matters update: DoJ&CD and NPA briefing (with Deputy Minister)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39501/"
+      },
+      {
+        "meeting_id": 1752,
+        "date": "2023-11-21T07:38:00+00:00",
+        "title": "NPA implementation of Zondo Commission recommendations; Update on TRC matters",
+        "pmg_url": "https://pmg.org.za/committee-meeting/38029/"
+      },
+      {
+        "meeting_id": 1817,
+        "date": "2022-11-25T08:35:00+00:00",
+        "title": "TRC prosecutions: NPA progress; Prevention & Combating of Hate Crimes & Hate Speech Bill; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36134/"
+      }
+    ],
+    "keywords": [
+      "TRC",
+      "truth and reconciliation",
+      "reparation",
+      "transitional justice"
+    ]
+  },
+  {
+    "id": 163,
+    "title": "Cybercrime and Digital Evidence Legislation",
+    "description": "Implementation of the Cybercrimes Act including establishment of designated cybercrime courts, digital forensic capacity in SAPS, and international cooperation frameworks for cross-border digital crime.",
+    "binding_constraint": "crime_safety",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 5,
+    "source_committee": "Justice and Constitutional Development",
+    "responsible_department": "Department of Justice and Constitutional Development",
+    "slug": "cybercrime-and-digital-evidence-legislation",
+    "times_raised": 1,
+    "matching_meetings": [
+      {
+        "meeting_id": 1712,
+        "date": "2024-11-26T08:42:00+00:00",
+        "title": "Constitution 20th Amendment Bill & Constitution 21st Amendment Bill",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39953/"
+      }
+    ],
+    "keywords": [
+      "cybercrime",
+      "cyber",
+      "digital evidence",
+      "electronic"
+    ]
+  },
+  {
+    "id": 164,
+    "title": "Bulk Water Infrastructure Investment Programme",
+    "description": "Accelerated investment in bulk water supply infrastructure including new dams, inter-basin transfers, and treatment works to address growing demand-supply gaps. The committee has examined the national water infrastructure programme's implementation delays and cost overruns.",
+    "binding_constraint": "water",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 4,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "bulk-water-infrastructure-investment-programme",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3249,
+        "date": "2026-03-17T10:07:00+00:00",
+        "title": "uMngeni – uThukela, Overberg Water and Rand Water 2024/25 Annual Reports; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42625/"
+      },
+      {
+        "meeting_id": 3265,
+        "date": "2025-09-09T09:43:00+00:00",
+        "title": "Ministerial Support Programme to 105 Critical Municipalities; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41556/"
+      },
+      {
+        "meeting_id": 3267,
+        "date": "2025-07-24T09:24:00+00:00",
+        "title": "National Water Resources Infrastructure Agency SOC Limited Amendment Bill: finalisation",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41382/"
+      },
+      {
+        "meeting_id": 3269,
+        "date": "2025-07-01T10:15:00+00:00",
+        "title": "Trans-Caledon Tunnel Authority disestablishment and transfer to National Water Resources Infrastructure Agency; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41136/"
+      },
+      {
+        "meeting_id": 3275,
+        "date": "2025-05-27T10:36:00+00:00",
+        "title": "Briefing on Lesotho Highlands Water Project Phase 2; Briefing on SA National Water Resources Infrastructure Agency SOC Limited A/Bill; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40788/"
+      }
+    ],
+    "keywords": [
+      "bulk water",
+      "infrastructure",
+      "dam",
+      "water supply"
+    ]
+  },
+  {
+    "id": 165,
+    "title": "Municipal Water Loss Reduction (Non-Revenue Water)",
+    "description": "National programme to reduce municipal non-revenue water losses from the current ~40% average to below 25%, through leak detection, meter replacement, pipe rehabilitation, and pressure management. Committee oversight has documented massive water losses in municipalities.",
+    "binding_constraint": "water",
+    "current_status": "debated",
+    "feasibility_rating": 4,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "municipal-water-loss-reduction-non-revenue-water",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3250,
+        "date": "2026-03-10T09:59:00+00:00",
+        "title": "Lepelle Northern Water and Amatola Water Boards 2024/25 Annual Reports; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42550/"
+      },
+      {
+        "meeting_id": 3265,
+        "date": "2025-09-09T09:43:00+00:00",
+        "title": "Ministerial Support Programme to 105 Critical Municipalities; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41556/"
+      },
+      {
+        "meeting_id": 3266,
+        "date": "2025-09-02T10:51:00+00:00",
+        "title": "Committee Strategic Planning Workshop; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41480/"
+      },
+      {
+        "meeting_id": 3284,
+        "date": "2025-02-18T10:29:00+00:00",
+        "title": "City of Cape Town sewage disposal and wastewater treatment; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40240/"
+      },
+      {
+        "meeting_id": 3296,
+        "date": "2024-09-17T14:43:00+00:00",
+        "title": "Water Boards governance; Metro Trading Services Reform for Municipal Water Debt; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39550/"
+      }
+    ],
+    "keywords": [
+      "water loss",
+      "non-revenue",
+      "leak",
+      "municipal water"
+    ]
+  },
+  {
+    "id": 166,
+    "title": "Water Services Amendment Bill Implementation",
+    "description": "Implementation of the Water Services Amendment Bill to strengthen regulation of water service authorities, improve water quality standards enforcement, and address the decline in Blue Drop and Green Drop audit scores.",
+    "binding_constraint": "water",
+    "current_status": "drafted",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "water-services-amendment-bill-implementation",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3252,
+        "date": "2026-02-24T10:41:00+00:00",
+        "title": "Parliamentary Water Caucus; Water Services Amendment Bill",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42420/"
+      },
+      {
+        "meeting_id": 3258,
+        "date": "2025-11-11T09:41:00+00:00",
+        "title": "Briefing by the Department of Water and Sanitation on the Water Services Amendment Bill; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42017/"
+      },
+      {
+        "meeting_id": 3266,
+        "date": "2025-09-02T10:51:00+00:00",
+        "title": "Committee Strategic Planning Workshop; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41480/"
+      },
+      {
+        "meeting_id": 3267,
+        "date": "2025-07-24T09:24:00+00:00",
+        "title": "National Water Resources Infrastructure Agency SOC Limited Amendment Bill: finalisation",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41382/"
+      },
+      {
+        "meeting_id": 3335,
+        "date": "2023-02-21T06:44:00+00:00",
+        "title": "Impact of SONA on Water & Sanitation Sector, with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36359/"
+      }
+    ],
+    "keywords": [
+      "water services",
+      "amendment bill",
+      "blue drop",
+      "green drop"
+    ]
+  },
+  {
+    "id": 167,
+    "title": "Water Board Governance and Financial Sustainability",
+    "description": "Reform of water board governance structures, financial sustainability models, and accountability frameworks. Committee has scrutinised annual reports of Rand Water, Umgeni, Lepelle Northern, and other boards documenting governance failures and debt accumulation.",
+    "binding_constraint": "water",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "water-board-governance-and-financial-sustainability",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3249,
+        "date": "2026-03-17T10:07:00+00:00",
+        "title": "uMngeni – uThukela, Overberg Water and Rand Water 2024/25 Annual Reports; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42625/"
+      },
+      {
+        "meeting_id": 3250,
+        "date": "2026-03-10T09:59:00+00:00",
+        "title": "Lepelle Northern Water and Amatola Water Boards 2024/25 Annual Reports; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42550/"
+      },
+      {
+        "meeting_id": 3251,
+        "date": "2026-03-03T10:44:00+00:00",
+        "title": "Vaal Central & Magalies Water Boards 2024/25 Annual Reports",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42479/"
+      },
+      {
+        "meeting_id": 3255,
+        "date": "2025-11-25T10:35:00+00:00",
+        "title": "Corporate Plan Briefings: Water Boards (Lepelle Northern Water; Overberg Water; uMngeni-uThukela Water; Magalies Water); with Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42121/"
+      },
+      {
+        "meeting_id": 3257,
+        "date": "2025-11-18T10:06:00+00:00",
+        "title": "Water Boards (Vaal Central, Rand Water and Amatola) Business Plans; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42067/"
+      }
+    ],
+    "keywords": [
+      "water board",
+      "rand water",
+      "umgeni",
+      "governance"
+    ]
+  },
+  {
+    "id": 168,
+    "title": "Water Use Licensing and Allocation Reform",
+    "description": "Reform of the water use licensing system to accelerate processing of water use licence applications, address the backlog, and ensure equitable allocation between agricultural, industrial, and domestic users including historically disadvantaged communities.",
+    "binding_constraint": "water",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "water-use-licensing-and-allocation-reform",
+    "times_raised": 4,
+    "matching_meetings": [
+      {
+        "meeting_id": 3253,
+        "date": "2026-02-03T09:12:00+00:00",
+        "title": "Water Use transformation and related matters DWS briefing; with the Minister and Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42310/"
+      },
+      {
+        "meeting_id": 3283,
+        "date": "2025-03-11T12:46:00+00:00",
+        "title": "SONA Impact on Water sector; DWS Q2 & 3 2024/25 Performance; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40350/"
+      },
+      {
+        "meeting_id": 3335,
+        "date": "2023-02-21T06:44:00+00:00",
+        "title": "Impact of SONA on Water & Sanitation Sector, with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36359/"
+      },
+      {
+        "meeting_id": 3432,
+        "date": "2017-05-24T13:06:00+00:00",
+        "title": "Committee Report on Water and Sanitation Budget",
+        "pmg_url": "https://pmg.org.za/committee-meeting/24460/"
+      }
+    ],
+    "keywords": [
+      "water licence",
+      "allocation",
+      "water use",
+      "transformation"
+    ]
+  },
+  {
+    "id": 169,
+    "title": "Catchment Management Agency Establishment",
+    "description": "Establishment of the remaining Catchment Management Agencies (CMAs) to decentralise water resource management and improve local stakeholder participation in water allocation and protection decisions.",
+    "binding_constraint": "water",
+    "current_status": "stalled",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "catchment-management-agency-establishment",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3261,
+        "date": "2025-10-21T09:59:00+00:00",
+        "title": "Catchment Management Agencies 2024/25 Annual Reports; with Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41812/"
+      },
+      {
+        "meeting_id": 3267,
+        "date": "2025-07-24T09:24:00+00:00",
+        "title": "National Water Resources Infrastructure Agency SOC Limited Amendment Bill: finalisation",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41382/"
+      },
+      {
+        "meeting_id": 3269,
+        "date": "2025-07-01T10:15:00+00:00",
+        "title": "Trans-Caledon Tunnel Authority disestablishment and transfer to National Water Resources Infrastructure Agency; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41136/"
+      },
+      {
+        "meeting_id": 3271,
+        "date": "2025-06-17T10:57:00+00:00",
+        "title": "Mzimvubu-Tsitsikamma CMA, Pongola-uMzimkulu CMA & Vaal-Orange CMA 2025/26 Annual Performance Plans (with Deputy Ministers)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41003/"
+      },
+      {
+        "meeting_id": 3272,
+        "date": "2025-06-17T10:56:00+00:00",
+        "title": "Breede Olifants CMA, Inkomati-Usuthu CMA & Limpopo- Olifants CMA 2025/26 Annual Performance Plans (with Deputy Minister)",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41002/"
+      }
+    ],
+    "keywords": [
+      "catchment management",
+      "CMA",
+      "water resource",
+      "decentralis"
+    ]
+  },
+  {
+    "id": 170,
+    "title": "Johannesburg Water and Municipal Water Utility Reform",
+    "description": "Restructuring of failing municipal water utilities, particularly Johannesburg Water, to restore service delivery, address infrastructure decay, and ensure financial sustainability. Committee has examined the crisis in metropolitan water services.",
+    "binding_constraint": "water",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "johannesburg-water-and-municipal-water-utility-reform",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3249,
+        "date": "2026-03-17T10:07:00+00:00",
+        "title": "uMngeni – uThukela, Overberg Water and Rand Water 2024/25 Annual Reports; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42625/"
+      },
+      {
+        "meeting_id": 3256,
+        "date": "2025-11-18T10:06:00+00:00",
+        "title": "Briefing by National Treasury and AGSA on current financial position of Johannesburg Water and implications for water security; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42068/"
+      },
+      {
+        "meeting_id": 3263,
+        "date": "2025-09-19T09:43:00+00:00",
+        "title": "Water challenges faced by Gauteng residents: DWS, Rand Water & CoJ; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41656/"
+      },
+      {
+        "meeting_id": 3264,
+        "date": "2025-09-16T10:04:00+00:00",
+        "title": "Equitable share withholding intervention from defaulting municipalities: National Treasury & DWS briefing; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41603/"
+      },
+      {
+        "meeting_id": 3265,
+        "date": "2025-09-09T09:43:00+00:00",
+        "title": "Ministerial Support Programme to 105 Critical Municipalities; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41556/"
+      }
+    ],
+    "keywords": [
+      "johannesburg water",
+      "municipal",
+      "utility",
+      "service delivery"
+    ]
+  },
+  {
+    "id": 171,
+    "title": "Sanitation Infrastructure and Bucket Eradication",
+    "description": "Completion of the bucket sanitation eradication programme and upgrading of wastewater treatment works to reduce pollution of water sources. Committee has tracked the slow progress of sanitation infrastructure delivery.",
+    "binding_constraint": "water",
+    "current_status": "stalled",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Water and Sanitation",
+    "responsible_department": "Department of Water and Sanitation",
+    "slug": "sanitation-infrastructure-and-bucket-eradication",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3248,
+        "date": "2026-03-24T10:06:00+00:00",
+        "title": "Department of Water and Sanitation Q3 2025/26 Performance",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42686/"
+      },
+      {
+        "meeting_id": 3249,
+        "date": "2026-03-17T10:07:00+00:00",
+        "title": "uMngeni – uThukela, Overberg Water and Rand Water 2024/25 Annual Reports; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42625/"
+      },
+      {
+        "meeting_id": 3250,
+        "date": "2026-03-10T09:59:00+00:00",
+        "title": "Lepelle Northern Water and Amatola Water Boards 2024/25 Annual Reports; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42550/"
+      },
+      {
+        "meeting_id": 3252,
+        "date": "2026-02-24T10:41:00+00:00",
+        "title": "Parliamentary Water Caucus; Water Services Amendment Bill",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42420/"
+      },
+      {
+        "meeting_id": 3254,
+        "date": "2025-12-02T10:06:00+00:00",
+        "title": "Water Sector Report: AGSA briefing",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42181/"
+      }
+    ],
+    "keywords": [
+      "sanitation",
+      "bucket",
+      "wastewater",
+      "sewage"
+    ]
+  },
+  {
+    "id": 172,
+    "title": "Just Energy Transition Implementation Plan (JET-IP)",
+    "description": "Implementation of the Just Energy Transition Investment Plan including coal plant decommissioning timelines, renewable energy deployment, worker transition support, and community economic diversification in coal-dependent regions like Mpumalanga.",
+    "binding_constraint": "climate_environment",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 4,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "just-energy-transition-implementation-plan-jet-ip",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3995,
+        "date": "2024-08-22T08:25:00+00:00",
+        "title": "Presidential Climate Commission mandate & function; Constitutional and Legal Services Office support to Committee",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39321/"
+      },
+      {
+        "meeting_id": 4042,
+        "date": "2023-01-27T08:19:00+00:00",
+        "title": "Report back on outcomes of UNFCCC COP27; Just Transition Energy Investment Plan; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36281/"
+      },
+      {
+        "meeting_id": 4061,
+        "date": "2022-05-10T08:13:00+00:00",
+        "title": "Report on Outcomes of COP26, Implications for SA & COP27 Preparation; Climate Partnership Fund for just energy transition in South Africa; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/34854/"
+      },
+      {
+        "meeting_id": 4072,
+        "date": "2022-02-25T09:03:00+00:00",
+        "title": "Global Protected Areas & Operation Phakisa Programmes: follow-up briefing; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/34431/"
+      },
+      {
+        "meeting_id": 4095,
+        "date": "2021-08-18T08:41:00+00:00",
+        "title": "National Treasury on cost of ‘Just Transition’; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/33400/"
+      }
+    ],
+    "keywords": [
+      "just transition",
+      "JET",
+      "coal",
+      "energy transition",
+      "decommission"
+    ]
+  },
+  {
+    "id": 173,
+    "title": "Carbon Tax Rate Escalation and Revenue Recycling",
+    "description": "Phased escalation of the carbon tax rate from the current low base, with clear revenue recycling mechanisms to fund climate adaptation, renewable energy, and just transition programmes. South Africa's carbon tax has been too low to drive meaningful emissions reduction.",
+    "binding_constraint": "climate_environment",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "carbon-tax-rate-escalation-and-revenue-recycling",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3959,
+        "date": "2026-02-03T09:15:00+00:00",
+        "title": "SAWS & SANParks Q1 and Q2 2025/26 Performance; with the Minister and Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42316/"
+      },
+      {
+        "meeting_id": 3987,
+        "date": "2024-12-06T08:51:00+00:00",
+        "title": "Mpumalanga and Gauteng Oversight Visit Report",
+        "pmg_url": "https://pmg.org.za/committee-meeting/40078/"
+      },
+      {
+        "meeting_id": 4001,
+        "date": "2024-07-09T08:26:00+00:00",
+        "title": "Election of Chairperson; Briefings by DFFE and the Marine Living Resources Fund on Annual Performance Plans and Budgets; with Ministry",
+        "pmg_url": "https://pmg.org.za/committee-meeting/38998/"
+      },
+      {
+        "meeting_id": 4012,
+        "date": "2023-10-31T08:28:00+00:00",
+        "title": "DFFE BRRR; DFFE Q1 2023/24 Performance; Status of State Nurseries in SA",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37840/"
+      },
+      {
+        "meeting_id": 4016,
+        "date": "2023-09-20T08:21:00+00:00",
+        "title": "Climate Change Bill: finalisation & adoption",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37558/"
+      }
+    ],
+    "keywords": [
+      "carbon tax",
+      "emissions",
+      "carbon",
+      "climate change"
+    ]
+  },
+  {
+    "id": 174,
+    "title": "Climate Change Adaptation Infrastructure",
+    "description": "Investment in climate adaptation infrastructure including drought-resilient water systems, flood defences, fire management, and climate-smart agriculture. Committee has examined the increasing frequency of extreme weather events and their economic impact.",
+    "binding_constraint": "climate_environment",
+    "current_status": "proposed",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 3,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "climate-change-adaptation-infrastructure",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3959,
+        "date": "2026-02-03T09:15:00+00:00",
+        "title": "SAWS & SANParks Q1 and Q2 2025/26 Performance; with the Minister and Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42316/"
+      },
+      {
+        "meeting_id": 4022,
+        "date": "2023-08-22T07:23:00+00:00",
+        "title": "Climate Change Bill: deliberations & DFFE response to comments",
+        "pmg_url": "https://pmg.org.za/committee-meeting/37354/"
+      },
+      {
+        "meeting_id": 4054,
+        "date": "2022-09-07T07:45:00+00:00",
+        "title": "Climate Change Bill: public hearings; National Resource Management and Working on Fire Programme: DFFE briefing; Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/35483/"
+      },
+      {
+        "meeting_id": 4058,
+        "date": "2022-05-24T07:49:00+00:00",
+        "title": "DFFE on Transformation in the Forestry Sector & Challenges Facing the Department’s Forestry Branch; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/35024/"
+      },
+      {
+        "meeting_id": 4063,
+        "date": "2022-04-19T09:00:00+00:00",
+        "title": "iSimangaliso, SANBI, SANParks & SAWS 2022/23 Annual Performance Plans; DFFE briefing on Wildlife Welfare Forum; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/34731/"
+      }
+    ],
+    "keywords": [
+      "climate adaptation",
+      "drought",
+      "flood",
+      "extreme weather"
+    ]
+  },
+  {
+    "id": 175,
+    "title": "SANParks and Protected Area Expansion",
+    "description": "Expansion of the protected area network toward the 30x30 biodiversity target, including marine protected areas, community-based conservation, and addressing the funding gap for SANParks operations.",
+    "binding_constraint": "climate_environment",
+    "current_status": "debated",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "sanparks-and-protected-area-expansion",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3955,
+        "date": "2026-03-17T10:08:00+00:00",
+        "title": "Update on Marine Protection, Governance Phakisa; State of coastal water quality and compliance with coastal waters discharge permits in 2025/26; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42628/"
+      },
+      {
+        "meeting_id": 3956,
+        "date": "2026-02-24T10:46:00+00:00",
+        "title": "SANBI, SAFCOL & IWPA Q1 and 2 2025/26 Performance; with Minister and Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42432/"
+      },
+      {
+        "meeting_id": 3959,
+        "date": "2026-02-03T09:15:00+00:00",
+        "title": "SAWS & SANParks Q1 and Q2 2025/26 Performance; with the Minister and Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42316/"
+      },
+      {
+        "meeting_id": 3961,
+        "date": "2025-11-04T10:12:00+00:00",
+        "title": "National Elephant Heritage Strategy: DFFE briefing; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41950/"
+      },
+      {
+        "meeting_id": 3963,
+        "date": "2025-10-08T11:48:00+00:00",
+        "title": "SANParks, ISPA, and SANBI 2024/25 Annual Reports; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41722/"
+      }
+    ],
+    "keywords": [
+      "SANParks",
+      "protected area",
+      "biodiversity",
+      "conservation"
+    ]
+  },
+  {
+    "id": 176,
+    "title": "Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "description": "Reform of marine fisheries allocation to address historical inequities, support small-scale fishers, combat illegal fishing, and ensure sustainable stock management. The committee has examined the crisis in fishing rights allocation and sector transformation.",
+    "binding_constraint": "climate_environment",
+    "current_status": "under_review",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "marine-fisheries-reform-and-small-scale-fisher-rights",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3954,
+        "date": "2026-03-24T10:09:00+00:00",
+        "title": "Transformation status and performance of SA Marine Fisheries Sectors; State of Aquaculture & Aquaculture Phakisa; Status of Aquaculture Bill",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42690/"
+      },
+      {
+        "meeting_id": 3955,
+        "date": "2026-03-17T10:08:00+00:00",
+        "title": "Update on Marine Protection, Governance Phakisa; State of coastal water quality and compliance with coastal waters discharge permits in 2025/26; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42628/"
+      },
+      {
+        "meeting_id": 3960,
+        "date": "2025-12-09T09:31:00+00:00",
+        "title": "Adoption of the North West Province Oversight Report; Adoption of the Committee Programme",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42247/"
+      },
+      {
+        "meeting_id": 3961,
+        "date": "2025-11-04T10:12:00+00:00",
+        "title": "National Elephant Heritage Strategy: DFFE briefing; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41950/"
+      },
+      {
+        "meeting_id": 3964,
+        "date": "2025-10-07T11:10:00+00:00",
+        "title": "Environment Portfolio Audit Outcomes; DFFE, MLRF & SAWS 2024/25 Annual Reports; with the Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41695/"
+      }
+    ],
+    "keywords": [
+      "fisheries",
+      "fishing",
+      "marine",
+      "small-scale fisher"
+    ]
+  },
+  {
+    "id": 177,
+    "title": "Green Hydrogen and Critical Minerals Regulatory Framework",
+    "description": "Development of the regulatory and permitting framework for green hydrogen production and critical minerals processing, positioning South Africa to capture global demand for transition minerals (platinum group metals, manganese, vanadium).",
+    "binding_constraint": "climate_environment",
+    "current_status": "proposed",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 4,
+    "time_horizon": "long_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "green-hydrogen-and-critical-minerals-regulatory-framework",
+    "times_raised": 4,
+    "matching_meetings": [
+      {
+        "meeting_id": 3995,
+        "date": "2024-08-22T08:25:00+00:00",
+        "title": "Presidential Climate Commission mandate & function; Constitutional and Legal Services Office support to Committee",
+        "pmg_url": "https://pmg.org.za/committee-meeting/39321/"
+      },
+      {
+        "meeting_id": 4042,
+        "date": "2023-01-27T08:19:00+00:00",
+        "title": "Report back on outcomes of UNFCCC COP27; Just Transition Energy Investment Plan; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/36281/"
+      },
+      {
+        "meeting_id": 4061,
+        "date": "2022-05-10T08:13:00+00:00",
+        "title": "Report on Outcomes of COP26, Implications for SA & COP27 Preparation; Climate Partnership Fund for just energy transition in South Africa; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/34854/"
+      },
+      {
+        "meeting_id": 4095,
+        "date": "2021-08-18T08:41:00+00:00",
+        "title": "National Treasury on cost of ‘Just Transition’; with Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/33400/"
+      }
+    ],
+    "keywords": [
+      "green hydrogen",
+      "critical minerals",
+      "platinum",
+      "transition"
+    ]
+  },
+  {
+    "id": 178,
+    "title": "Forestry Sector Revitalisation and Timber Value Chain",
+    "description": "Revitalisation of the commercial forestry sector including SAFCOL restructuring, plantation expansion, fire management investment, and support for community forestry enterprises. Committee has tracked the decline of state forestry operations.",
+    "binding_constraint": "climate_environment",
+    "current_status": "stalled",
+    "feasibility_rating": 3,
+    "growth_impact_rating": 2,
+    "time_horizon": "medium_term",
+    "reform_package": 1,
+    "source_committee": "Forestry, Fisheries and the Environment",
+    "responsible_department": "Department of Forestry, Fisheries and the Environment",
+    "slug": "forestry-sector-revitalisation-and-timber-value-chain",
+    "times_raised": 5,
+    "matching_meetings": [
+      {
+        "meeting_id": 3956,
+        "date": "2026-02-24T10:46:00+00:00",
+        "title": "SANBI, SAFCOL & IWPA Q1 and 2 2025/26 Performance; with Minister and Deputy Ministers",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42432/"
+      },
+      {
+        "meeting_id": 3960,
+        "date": "2025-12-09T09:31:00+00:00",
+        "title": "Adoption of the North West Province Oversight Report; Adoption of the Committee Programme",
+        "pmg_url": "https://pmg.org.za/committee-meeting/42247/"
+      },
+      {
+        "meeting_id": 3961,
+        "date": "2025-11-04T10:12:00+00:00",
+        "title": "National Elephant Heritage Strategy: DFFE briefing; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41950/"
+      },
+      {
+        "meeting_id": 3964,
+        "date": "2025-10-07T11:10:00+00:00",
+        "title": "Environment Portfolio Audit Outcomes; DFFE, MLRF & SAWS 2024/25 Annual Reports; with the Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41695/"
+      },
+      {
+        "meeting_id": 3965,
+        "date": "2025-09-18T11:29:00+00:00",
+        "title": "Madikwe Game Reserve challenges & withdrawal of Environmental Monitoring Inspectors; with Deputy Minister",
+        "pmg_url": "https://pmg.org.za/committee-meeting/41646/"
+      }
+    ],
+    "keywords": [
+      "forestry",
+      "SAFCOL",
+      "timber",
+      "plantation",
+      "fire"
+    ]
+  }
+]
