@@ -1,4 +1,5 @@
-export const dynamic = "force-dynamic";
+// ISR: cache pages for 1 hour, then revalidate in background
+export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";

@@ -1,7 +1,8 @@
-export const dynamic = "force-dynamic";
+// ISR: cache pages for 1 hour, then revalidate in background
+export const revalidate = 3600;
 
 import type { Metadata } from "next";
-import { redirect, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import CitationWidget from "@/components/CitationWidget";
@@ -186,15 +187,13 @@ export default async function IdeaDetailPage({
 }) {
   const slugOrId = params.id;
 
-  // Numeric ID → look up and redirect to canonical slug URL
+  // Resolve idea by numeric ID or slug — no redirect, serve directly
+  let idea: PolicyIdea | null = null;
   if (/^\d+$/.test(slugOrId)) {
-    const idea = await fetchIdeaById(parseInt(slugOrId, 10));
-    if (!idea) notFound();
-    redirect(`/ideas/${idea.slug || slugify(idea.title)}`);
+    idea = await fetchIdeaById(parseInt(slugOrId, 10)) as PolicyIdea | null;
+  } else {
+    idea = await fetchIdeaBySlug(slugOrId) as PolicyIdea | null;
   }
-
-  // Slug lookup
-  const idea = await fetchIdeaBySlug(slugOrId);
   if (!idea) notFound();
 
   const [plan, meetings, relatedIdeas, comparisons] = await Promise.all([

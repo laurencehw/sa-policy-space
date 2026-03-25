@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getPackageDetail } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function GET(
   _request: Request,
