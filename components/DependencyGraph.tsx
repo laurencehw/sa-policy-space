@@ -442,13 +442,34 @@ export default function DependencyGraph() {
           ))}
         </div>
 
-        {/* Reset */}
-        <button
-          onClick={resetAll}
-          className="ml-auto px-3 py-1.5 text-xs text-gray-500 border border-gray-200 rounded-lg hover:bg-white transition-colors"
-        >
-          Reset view
-        </button>
+        {/* Reset + Export */}
+        <div className="ml-auto flex gap-2">
+          <button
+            onClick={() => {
+              if (!svgRef.current) return
+              const svgEl = svgRef.current
+              const serializer = new XMLSerializer()
+              const svgStr = serializer.serializeToString(svgEl)
+              const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' })
+              const url = URL.createObjectURL(blob)
+              const a = document.createElement('a')
+              a.href = url
+              a.download = 'sa-policy-dependency-graph.svg'
+              a.click()
+              URL.revokeObjectURL(url)
+            }}
+            className="px-3 py-1.5 text-xs text-gray-500 border border-gray-200 rounded-lg hover:bg-white transition-colors"
+            title="Download SVG for use in presentations or publications"
+          >
+            Export SVG
+          </button>
+          <button
+            onClick={resetAll}
+            className="px-3 py-1.5 text-xs text-gray-500 border border-gray-200 rounded-lg hover:bg-white transition-colors"
+          >
+            Reset view
+          </button>
+        </div>
       </div>
 
       {/* ── Graph + side panel ───────────────────────────────────────────── */}

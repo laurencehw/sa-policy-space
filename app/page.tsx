@@ -35,12 +35,12 @@ async function getHomepageData() {
     const pkgPath = path.resolve(process.cwd(), "data", "reform_packages.json");
     const pkgData = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
     packageCount = Object.keys(pkgData).length;
-  } catch { /* keep default */ }
+  } catch (e) { console.error("[home] reform_packages.json read failed:", e); }
   try {
     const stakeholderPath = path.resolve(process.cwd(), "data", "stakeholders.json");
     const stakeholderData = JSON.parse(fs.readFileSync(stakeholderPath, "utf-8"));
     stakeholderCount = Array.isArray(stakeholderData) ? stakeholderData.length : stakeholderCount;
-  } catch { /* keep default */ }
+  } catch (e) { console.error("[home] stakeholders.json read failed:", e); }
 
   const reformIndex = computeReformIndex();
 
@@ -51,8 +51,8 @@ async function getHomepageData() {
     keystones = computeNetworkCentrality(graph)
       .slice(0, 3)
       .map((k) => ({ id: k.id, title: k.title, keystoneScore: k.keystoneScore }));
-  } catch {
-    // dependency graph unavailable — skip keystone section
+  } catch (e) {
+    console.error("[home] dependency_graph.json read failed:", e);
   }
 
   let totalGap = 0;
@@ -68,8 +68,8 @@ async function getHomepageData() {
       0
     );
     totalGap = Math.round((recommended - allocated) * 10) / 10;
-  } catch {
-    // budget data unavailable
+  } catch (e) {
+    console.error("[home] budget_alignment.json read failed:", e);
   }
 
   return { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount };

@@ -1,0 +1,1794 @@
+[
+  {
+    "idea_id": 42,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela championed the Electricity Regulation Amendment Act as the centrepiece of energy reform.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Eskom unbundling is a flagship Operation Vulindlela reform with direct Presidential accountability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Transnet private sector participation is an Operation Vulindlela priority under the logistics reform track.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 35,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "The IRP 2024 update is a cross-departmental coordination priority for Operation Vulindlela.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 49,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Grid expansion and renewable integration are critical to ending load-shedding, the Presidency's top economic priority.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 40,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "NERSA independence is an Operation Vulindlela quick win to improve regulatory credibility.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 79,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Freight rail third-party access is a core logistics reform tracked by Operation Vulindlela.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 80,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Port productivity improvement is central to the Presidency's export competitiveness agenda.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 117,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "BizPortal and red tape reduction are Operation Vulindlela deliverables on SMME regulatory reform.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 21,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "FATF greylisting exit was a top Presidential priority, now implemented, with ongoing monitoring.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 24,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "SARS capacity expansion is backed by the Presidency as a fiscally positive governance reform.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 104,
+    "stakeholder_id": "presidency",
+    "stance": "conditional",
+    "note": "The Presidency supports NHI in principle but recognises phased implementation depends on fiscal space and provincial capacity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 4,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "AfCFTA implementation is a Presidential priority for South Africa's continental trade leadership.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 88,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "The reading crisis programme aligns with the Presidency's human capital agenda as a long-term growth enabler.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 23,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Fiscal consolidation and debt stabilisation is Treasury's core institutional mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 24,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury co-manages SARS capacity expansion, which yields R10-12 return per rand invested.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 25,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury's PPP Unit reform is an internally driven initiative to unlock infrastructure financing.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 21,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury co-led the FATF greylisting exit as a joint priority with the Presidency.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 61,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury designed the Eskom debt relief conditions framework to reduce contingent liabilities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "The competitive electricity market reduces Eskom's fiscal drain and crowds in private capital.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Eskom unbundling is essential to ending the cycle of bailouts and contingent liabilities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 104,
+    "stakeholder_id": "national-treasury",
+    "stance": "oppose",
+    "note": "Treasury has consistently flagged NHI as fiscally unsustainable without credible funding mechanisms beyond existing health budgets.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 26,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports expenditure reprioritisation but is cautious about political feasibility of redirecting grants toward employment programmes.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "national-treasury",
+    "stance": "oppose",
+    "note": "Treasury opposes new nuclear build due to massive upfront capital costs and long-term contingent liabilities given Eskom's fiscal history.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 62,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports the National Transmission Company in principle but requires a clear capitalisation plan that does not expand government guarantees.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 117,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "BizPortal integration is fiscally neutral and aligns with Treasury's preference for regulatory reform over spending programmes.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 50,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports NSFAS reform only if it reduces the unsustainable funding trajectory and introduces means-testing discipline.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Transnet private sector participation reduces contingent liabilities and brings private capital to infrastructure.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 28,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Carbon tax Phase 2 generates revenue while aligning with climate commitments and CBAM readiness.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU accepts Eskom unbundling only with just transition guarantees, skills retraining, and wage protections for affected workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU demands that Transnet concessioning include labour protections, minimum wage conditions, and transition support.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU conditionally supports the competitive electricity market if IPP contracts include decent work conditions and local content.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 11,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU supports SMME regulatory burden reduction but opposes any weakening of labour protections under the LRA or BCEA.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 117,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports BizPortal simplification as it does not threaten worker protections while reducing bureaucratic friction.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 23,
+    "stakeholder_id": "cosatu",
+    "stance": "oppose",
+    "note": "COSATU opposes fiscal consolidation that implies austerity cuts to public sector wages and social spending.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 26,
+    "stakeholder_id": "cosatu",
+    "stance": "oppose",
+    "note": "COSATU opposes redirecting social grants toward employment programmes, viewing grants as a constitutional safety net.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 104,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU is a strong NHI advocate, viewing universal healthcare as a fundamental worker right and ANC alliance commitment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 98,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports EPWP reform toward skills pathways as a mechanism for labour-intensive public employment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 115,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports the 30% SMME procurement set-aside as a tool for broad-based job creation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 79,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU accepts freight rail third-party access only with labour protections preventing a race to the bottom on wages.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 60,
+    "stakeholder_id": "cosatu",
+    "stance": "oppose",
+    "note": "COSATU opposes PFMA and procurement flexibility reforms that could weaken accountability and facilitate outsourcing.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 11,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "SMME regulatory burden reduction is a top BUSA priority as it directly improves the business environment for members.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 117,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BizPortal integration and compliance simplification are flagship BUSA advocacy items on red tape reduction.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA championed the Electricity Regulation Amendment Act as critical for energy security and investment certainty.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports Eskom unbundling as necessary for competitive energy markets and private sector participation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA advocates for Transnet private sector participation to restore logistics competitiveness.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 79,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Freight rail third-party access is a long-standing BUSA demand to break the Transnet monopoly.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 80,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Port productivity improvement is critical for BUSA members dependent on competitive export logistics.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 20,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial energy self-generation reforms were a direct BUSA campaign success, enabling businesses to bypass Eskom constraints.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 40,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA strongly supports NERSA independence to ensure predictable, rational energy regulation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 4,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports AfCFTA implementation as it opens a $3 trillion continental market for SA businesses.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 3,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "AGOA retention is critical for BUSA members in automotive, textiles, and agricultural exports.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 21,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supported the FATF exit as essential for financial system credibility and correspondent banking relationships.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 14,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA supports localisation in principle but opposes prescriptive designation policies that raise procurement costs without building domestic capacity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 104,
+    "stakeholder_id": "busa",
+    "stance": "oppose",
+    "note": "BUSA opposes the current NHI funding model, viewing the additional payroll tax as an employment-destroying burden on formal businesses.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 45,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "Critical minerals beneficiation is a core DTIC industrial policy objective for value-added manufacturing.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 18,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "APDP Phase 2 is a DTIC-designed programme and its flagship sectoral intervention.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 5,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "The EV White Paper is a DTIC-led initiative to manage the automotive transition and preserve manufacturing jobs.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 8,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "The R-CTFL Master Plan is a DTIC sectoral partnership maintaining 100,000+ jobs in clothing and textiles.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 7,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "The Steel and Metal Fabrication Master Plan is a DTIC-led intervention to protect and grow domestic metalworking.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 9,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "SEZ reform is a DTIC mandate, though the department acknowledges performance has been mixed.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 4,
+    "stakeholder_id": "dtic",
+    "stance": "conditional",
+    "note": "DTIC supports AfCFTA but insists on industrial policy safeguards to prevent premature liberalisation harming SA manufacturing.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 3,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC actively works on AGOA retention given its importance for SA automotive and textile exports.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 10,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "Poultry anti-dumping is a DTIC priority protecting local production and rural employment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 2,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "The Competition Commission Digital Markets Inquiry falls within DTIC's competition policy mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 15,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "BBBEE Equity Equivalent expansion is a DTIC transformation objective for multinational investment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 14,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "Localisation and designation policy is a core DTIC instrument for building domestic manufacturing capacity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "dtic",
+    "stance": "conditional",
+    "note": "DTIC supports Transnet reform only if logistics liberalisation includes local content protections preventing hollowing out of domestic manufacturing.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "nersa",
+    "stance": "conditional",
+    "note": "NERSA accepts the competitive electricity market but requires adequate capacity and clear mandate boundaries in the unbundled system.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 40,
+    "stakeholder_id": "nersa",
+    "stance": "conditional",
+    "note": "NERSA supports institutional independence in principle but is cautious about reform designs that reduce its statutory jurisdiction.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 38,
+    "stakeholder_id": "nersa",
+    "stance": "support",
+    "note": "Municipal tariff rationalisation and cost-reflective pricing is core NERSA regulatory mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 35,
+    "stakeholder_id": "nersa",
+    "stance": "conditional",
+    "note": "NERSA supports the IRP update but insists its tariff methodology must be respected in any revised electricity mix.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 20,
+    "stakeholder_id": "nersa",
+    "stance": "oppose",
+    "note": "NERSA resisted the self-generation registration framework as it bypasses NERSA's licensing jurisdiction.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 49,
+    "stakeholder_id": "nersa",
+    "stance": "conditional",
+    "note": "NERSA supports grid integration but requires adequate regulatory capacity to oversee an expanded multi-player transmission system.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "nersa",
+    "stance": "conditional",
+    "note": "NERSA accepts Eskom unbundling but requires clear regulatory boundaries with the new Eskom Transmission entity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Eskom accepts unbundling with a credible debt restructuring plan, adequate transition period, and ring-fenced grid investment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Eskom cautiously accepts the competitive market but warns rapid IPP integration risks grid instability without system operator investment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 49,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Eskom supports grid expansion but requires sufficient capitalisation of the transmission entity to manage high-renewables integration.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 62,
+    "stakeholder_id": "eskom",
+    "stance": "support",
+    "note": "Eskom supports National Transmission Company capitalisation as essential for grid reliability during the transition.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 61,
+    "stakeholder_id": "eskom",
+    "stance": "support",
+    "note": "Eskom supports the debt relief framework as existentially necessary for financial viability during restructuring.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 20,
+    "stakeholder_id": "eskom",
+    "stance": "oppose",
+    "note": "Eskom opposed self-generation liberalisation as it erodes its customer base and revenue without compensating grid cost allocation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 35,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Eskom supports the IRP update but advocates for a generation mix that preserves baseload capacity during the transition.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 38,
+    "stakeholder_id": "eskom",
+    "stance": "support",
+    "note": "Eskom supports cost-reflective municipal tariffs as non-cost-reflective tariffs create revenue shortfalls that undermine grid investment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "eskom",
+    "stance": "neutral",
+    "note": "Eskom is neutral on new nuclear build, recognising baseload value but focused on managing the current fleet and unbundling.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 36,
+    "stakeholder_id": "eskom",
+    "stance": "support",
+    "note": "Koeberg life extension is an Eskom operational priority maintaining 1,860 MW of baseload capacity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "transnet",
+    "stance": "conditional",
+    "note": "Transnet accepts private sector participation only with phased implementation, network obligation protections, and transition support.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 79,
+    "stakeholder_id": "transnet",
+    "stance": "oppose",
+    "note": "Transnet resists third-party rail access, fearing cherry-picking of profitable corridors while retaining uneconomic routes and legacy debt.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 80,
+    "stakeholder_id": "transnet",
+    "stance": "conditional",
+    "note": "Transnet supports port productivity improvement but insists on government capex support for the maintenance backlog before private participation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 77,
+    "stakeholder_id": "transnet",
+    "stance": "oppose",
+    "note": "Transnet opposes an independent Transport Economic Regulator that would impose external oversight on its pricing and access decisions.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 85,
+    "stakeholder_id": "transnet",
+    "stance": "neutral",
+    "note": "Transnet is neutral on maritime industry development, which falls partly outside its core port operations mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 4,
+    "stakeholder_id": "transnet",
+    "stance": "conditional",
+    "note": "Transnet supports AfCFTA logistics requirements but needs capital investment to restore export corridor capacity first.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 58,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "NUM opposes Eskom unbundling without comprehensive just transition guarantees for energy workers, including wage parity and retraining.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "NUM opposes the competitive electricity market, viewing IPP employment as inferior to Eskom jobs in wages, security, and benefits.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 49,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM conditionally supports renewable grid integration if coal community economic diversification plans are co-developed with measurable milestones.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 35,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM supports the IRP update only if the coal phase-down timeline matches just transition fund disbursement to affected communities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 20,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "NUM views industrial self-generation as undermining Eskom's revenue base and threatening energy worker employment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 45,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM supports minerals beneficiation if it creates downstream manufacturing jobs compensating for potential mining employment decline.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "NUM opposes Transnet privatisation without equivalent wage and job security guarantees for affected workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 6,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM conditionally supports green hydrogen if it includes job creation commitments and skills retraining for displaced fossil fuel workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 57,
+    "stakeholder_id": "num",
+    "stance": "support",
+    "note": "NUM supports energy transition manufacturing skills training as a concrete pathway for workers displaced by the coal transition.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 61,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM conditionally accepts Eskom debt relief conditions but opposes restructuring terms that result in involuntary retrenchments.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 2,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "The Digital Markets Inquiry is a Competition Commission-led initiative under its statutory mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 12,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "Digital Platforms Competition Framework is a direct extension of the Commission's market inquiry findings.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 59,
+    "stakeholder_id": "competition-commission",
+    "stance": "conditional",
+    "note": "The Commission supports Transnet reform only if concessioning creates competitive markets rather than transferring monopoly to private hands.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 79,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "Freight rail third-party access directly addresses market concentration that the Commission has identified as harmful.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 80,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "Port productivity improvement through competitive structures aligns with Commission findings on logistics market concentration.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 42,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "A competitive electricity market directly addresses the generation monopoly the Commission views as economically damaging.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 11,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "SMME regulatory burden reduction removes barriers to entry that entrench incumbent market power.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 1,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "Copyright reform and fair use provisions align with the Commission's digital competition objectives.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 21,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "SARB supported the FATF exit as essential for financial system integrity and correspondent banking relationships.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 29,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "SARB supports AML/CFT implementation monitoring as it strengthens the financial system's compliance framework.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 23,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "SARB strongly supports fiscal consolidation as necessary to prevent fiscal dominance undermining monetary policy effectiveness.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 22,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "SARB supported the two-pot pension system design within its financial stability oversight framework.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 33,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "Microinsurance reform falls within SARB's Twin Peaks prudential oversight mandate for financial inclusion.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 31,
+    "stakeholder_id": "sarb",
+    "stance": "conditional",
+    "note": "SARB supports cooperative bank development only within adequate prudential oversight frameworks to prevent systemic risk.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 19,
+    "stakeholder_id": "sarb",
+    "stance": "conditional",
+    "note": "SARB is cautious about BRICS+ alternative payment systems that could create unregulated channels outside NPS oversight.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 28,
+    "stakeholder_id": "sarb",
+    "stance": "neutral",
+    "note": "Carbon tax is a fiscal policy matter outside SARB's mandate, though its macroeconomic effects are monitored.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 104,
+    "stakeholder_id": "sarb",
+    "stance": "conditional",
+    "note": "SARB monitors NHI's fiscal implications for debt sustainability but takes no direct policy stance on healthcare reform.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 61,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "SARB supports Eskom debt relief conditions as they reduce contingent liabilities threatening sovereign credit and financial stability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 35,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports the IRP 2024 update for regulatory certainty on the generation mix underpinning energy investment decisions.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 49,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Grid expansion is essential for BUSA members investing in self-generation who need reliable transmission access.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 51,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports TVET quality reform as businesses face severe artisan shortages constraining growth and investment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 23,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports fiscal consolidation as it reduces borrowing costs and improves the sovereign credit rating for business investment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 9,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA supports SEZ reform but demands streamlined regulatory approval and functioning infrastructure before new designations.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 62,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "National Transmission Company capitalisation is an Operation Vulindlela tracked commitment for grid stability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 77,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operationalising the Transport Economic Regulator is a Presidency priority for logistics reform accountability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 51,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "TVET artisan pipeline reform is a Presidential priority for addressing structural unemployment through skills development.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 114,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports the SMME Ombud as it provides formal dispute resolution protecting businesses from regulatory overreach.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Eskom recognises baseload value of new nuclear but its institutional focus is on completing unbundling and debt restructuring first.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "num",
+    "stance": "support",
+    "note": "NUM supports new nuclear build as it creates long-term high-quality energy sector employment comparable to coal generation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports nuclear new build as it creates unionisable, well-paid energy jobs unlike IPP contract work.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "busa",
+    "stance": "oppose",
+    "note": "BUSA opposes nuclear new build due to massive cost overrun risk and the availability of cheaper renewable alternatives.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 37,
+    "stakeholder_id": "national-treasury",
+    "stance": "oppose",
+    "note": "Treasury opposes new nuclear given the R200bn+ estimated cost, long construction timelines, and fiscal space constraints.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 6,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Green hydrogen is a Presidential priority for SA's energy transition and industrial competitiveness strategy.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 6,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC views green hydrogen as a strategic industrial opportunity leveraging SA's renewable energy and PGM endowments.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 6,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports green hydrogen commercialisation if structured through blended finance, not large unfunded government commitments.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 5,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports the managed EV transition to preserve SA's automotive manufacturing export base.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 5,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM conditionally supports the EV transition if retraining programmes and employment guarantees are provided for ICE manufacturing workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 5,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU supports the EV White Paper only with just transition provisions for workers in affected automotive supply chains.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 3,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "AGOA retention is a Presidential diplomatic priority given its importance for manufacturing employment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 3,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC is actively engaged in AGOA negotiations to protect export-dependent manufacturing sectors.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 114,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "The SMME Ombud operationalisation is an Operation Vulindlela tracked reform for business environment improvement.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 115,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA supports the 30% SMME procurement set-aside in principle but demands implementation that does not compromise procurement efficiency.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 115,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports SMME procurement access but insists on value-for-money safeguards and payment timeline enforcement.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 116,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports SEFA mandate refocus only if recapitalisation is tied to measurable performance outcomes and reduced NPL ratios.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 121,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports informal economy integration as it extends labour protections and social security to vulnerable workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 121,
+    "stakeholder_id": "busa",
+    "stance": "neutral",
+    "note": "BUSA is neutral on informal economy integration, recognising its importance but focused on formal sector reform priorities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 103,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Urban land release for affordable housing is a Presidential priority for addressing spatial inequality and housing backlog.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 103,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports urban land release if structured to generate municipal revenue rather than requiring additional fiscal transfers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 88,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports the reading crisis programme as a high-return human capital investment with minimal fiscal cost relative to impact.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 88,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports the literacy programme as foundational to breaking the cycle of unemployment and inequality.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 51,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC supports TVET reform as industrial master plans depend on an adequate supply of skilled artisans.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 51,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports TVET quality reform as it creates decent employment pathways for working-class youth.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 51,
+    "stakeholder_id": "num",
+    "stance": "support",
+    "note": "NUM supports artisan pipeline expansion as it creates skilled employment in mining, energy, and construction sectors.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 60,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports SOE governance reform including PFMA and procurement flexibility to enable efficient restructuring.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 60,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "SOE policy reform is an Operation Vulindlela priority to remove legislative obstacles to restructuring.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 60,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports SOE governance reform as necessary for credible concessioning and private sector participation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 60,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "NUM opposes procurement flexibility reforms that could enable outsourcing and weaken SOE worker protections.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 28,
+    "stakeholder_id": "dtic",
+    "stance": "conditional",
+    "note": "DTIC supports carbon tax if revenue is recycled into industrial competitiveness measures and CBAM readiness for SA exporters.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 28,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA conditionally supports carbon tax Phase 2 if the tax rate trajectory is predictable and revenue supports green industrial transition.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 28,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "NUM opposes accelerated carbon taxation as it threatens coal-dependent employment without adequate transition funding.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 45,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Critical minerals beneficiation is a Presidential strategic priority given the global energy transition supply chain opportunity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 45,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA supports beneficiation if commercially viable and supported by energy and logistics reform, not imposed through export levies.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 45,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports the beneficiation strategy if it attracts private investment rather than requiring large public subsidies.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 52,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports SETA reform to improve skills levy efficiency, recovering billions in under-utilised training funds.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 52,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA strongly supports SETA reform, citing chronic levy-grant inefficiency that fails to deliver industry-relevant training.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 52,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU supports SETA reform only if worker representatives retain governance seats and training addresses worker advancement.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 24,
+    "stakeholder_id": "sarb",
+    "stance": "support",
+    "note": "SARB supports SARS capacity expansion as stronger revenue collection supports fiscal sustainability and monetary policy credibility.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 13,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "National Lotteries Commission governance reform aligns with the Presidency's anti-corruption and consequence management agenda.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 55,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports NSFAS fraud prevention as it recovers misallocated funds and improves expenditure efficiency.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 50,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports expanded NSFAS funding as essential for working-class access to post-school education.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 106,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports absorbing unemployed healthcare workers into the public health system as both a jobs and service delivery intervention.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 106,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports healthcare worker absorption only within the existing compensation of employees budget ceiling.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 107,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "TB elimination is a Presidential health priority given its direct impact on workforce productivity and health expenditure.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 83,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU conditionally supports taxi formalisation only with genuine consultation and transition support for taxi operators and workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 83,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports taxi formalisation as it improves urban mobility for workers and reduces transport costs for businesses.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 14,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports localisation only where cost premiums are transparent and the designation process does not create procurement bottlenecks.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 14,
+    "stakeholder_id": "competition-commission",
+    "stance": "conditional",
+    "note": "The Commission supports localisation but warns designation policies can shield inefficient incumbents from competitive pressure.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 10,
+    "stakeholder_id": "busa",
+    "stance": "neutral",
+    "note": "BUSA is split on poultry anti-dumping; importers and retailers oppose duties while producers support them.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 10,
+    "stakeholder_id": "competition-commission",
+    "stance": "conditional",
+    "note": "The Commission supports anti-dumping measures only where genuine predatory pricing is demonstrated, not as general protection.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 76,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU strongly supports PRASA rail recovery as affordable commuter transport directly benefits low-income workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 76,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "PRASA recovery is a Presidential infrastructure priority for urban mobility and spatial inequality reduction.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 84,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports integrated public transport as it reduces transport costs for workers commuting from townships.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 84,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports public transport scale-up only with sustainable operational funding models, not open-ended subsidies.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 9,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "SEZ reform is core DTIC mandate; the department is developing improved governance and incentive frameworks.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 9,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports SEZ reform only if tax incentive costs are justified by measurable investment and employment outcomes.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 105,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports PEPFAR funding transition planning as PEPFAR withdrawal requires domestic fiscal absorption of HIV programme costs.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 105,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "PEPFAR funding transition is a Presidential diplomatic and public health priority given US funding uncertainty.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 87,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "ECD migration to the Department of Basic Education is a structural reform the Presidency championed.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 87,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports ECD function shift but insists on credible costing for the additional DBE mandate and phased implementation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 123,
+    "stakeholder_id": "num",
+    "stance": "support",
+    "note": "NUM supports the Just Energy Transition SMME Finance Facility as it directly funds alternative livelihoods for coal communities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 123,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports the JET SMME facility only if funded through JETP mechanisms rather than additional fiscal commitments.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 47,
+    "stakeholder_id": "num",
+    "stance": "support",
+    "note": "NUM supports the derelict mines rehabilitation fund as it creates jobs in mine closure and addresses community health risks.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 47,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports mine rehabilitation but insists the fund be structured so mining companies bear costs rather than the fiscus.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 77,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports the Transport Economic Regulator to ensure transparent, cost-reflective pricing for freight and port services.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 77,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "The Commission supports economic regulation of transport as it addresses monopoly pricing in ports and rail.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 38,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports cost-reflective municipal tariffs as non-cost-reflective pricing creates hidden fiscal liabilities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 38,
+    "stakeholder_id": "cosatu",
+    "stance": "oppose",
+    "note": "COSATU opposes cost-reflective tariffs without stronger cross-subsidies, fearing electricity price increases for low-income households.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 30,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Municipal fiscal powers reform is a Treasury priority for improving local government revenue and infrastructure investment capacity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 34,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Equitable share formula review is an ongoing Treasury mandate to improve intergovernmental fiscal transfers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 112,
+    "stakeholder_id": "competition-commission",
+    "stance": "support",
+    "note": "Health Market Inquiry reforms are binding Commission recommendations on private healthcare market structure.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 112,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA's healthcare members conditionally accept Health Market Inquiry reforms if implementation preserves investment incentives.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 46,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Fuel price partial deregulation could reduce administered price distortions that Treasury views as economically inefficient.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 46,
+    "stakeholder_id": "cosatu",
+    "stance": "oppose",
+    "note": "COSATU opposes fuel price deregulation, fearing price increases in rural areas and for low-income commuters.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 46,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports fuel price deregulation as it removes inefficient administered pricing and enables market competition.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 39,
+    "stakeholder_id": "nersa",
+    "stance": "support",
+    "note": "Integrated Energy Plan gas diversification falls within NERSA's gas pipeline regulatory mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 39,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC supports energy diversification through gas as it provides reliable industrial energy reducing manufacturing costs.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 43,
+    "stakeholder_id": "nersa",
+    "stance": "support",
+    "note": "LNG import infrastructure falls within NERSA's gas regulatory jurisdiction and expands its mandate.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 57,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC supports advanced manufacturing skills for the energy transition as it builds the workforce for EV and green hydrogen sectors.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 57,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports energy transition manufacturing skills as industry faces severe shortages in solar, wind, and EV technicians.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 78,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports RAF structural reform as the fund's unfunded liability represents a major contingent fiscal risk.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 78,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU conditionally supports RAF reform only if accident victims retain access to adequate compensation without benefit cuts.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 65,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports ending ongoing state support for the SAA successor entity to eliminate a persistent contingent liability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 65,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU accepts SAA commercial viability but opposes full privatisation without worker equity participation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 63,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports Denel strategic equity partnership to end decades of bailouts and contingent liability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 63,
+    "stakeholder_id": "num",
+    "stance": "conditional",
+    "note": "NUM conditionally supports Denel restructuring with employment transition plans for affected workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 91,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports school nutrition procurement reform as it recovers funds lost to corruption and improves spending efficiency.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 89,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports STEM teacher development as STEM skill shortages constrain industry growth across multiple sectors.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 89,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports STEM teacher programmes only with credible retention mechanisms preventing costly training losses to private sector.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 70,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Green hydrogen R&D aligns with the Presidency's hydrogen economy strategy leveraging SA's renewable and PGM endowments.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 70,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC supports hydrogen R&D as it builds the industrial base for SA's green hydrogen export ambitions.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 8,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports the R-CTFL Master Plan as it protects 100,000+ jobs in a labour-intensive manufacturing sector.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 8,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "BUSA conditionally supports R-CTFL if the master plan includes realistic competitiveness targets alongside protection measures.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 7,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports the Steel Master Plan as it protects metalworking jobs and domestic manufacturing capability.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 7,
+    "stakeholder_id": "num",
+    "stance": "support",
+    "note": "NUM supports the Steel Master Plan as steel fabrication provides downstream employment for mining sector workers.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 18,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "BUSA supports APDP Phase 2 as automotive is SA's largest manufacturing export sector with 110,000+ direct jobs.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 18,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports APDP enhancement as it protects well-paid manufacturing jobs in the automotive sector.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 18,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports APDP but requires demonstrated ROI from incentives given the R2.5bn+ annual fiscal cost.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 36,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Koeberg life extension is supported by the Presidency as critical baseload capacity during the energy transition.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 36,
+    "stakeholder_id": "nersa",
+    "stance": "support",
+    "note": "NERSA supports Koeberg life extension through its licensing framework to maintain baseload generation capacity.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 110,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports the Tobacco Products Control Act as it protects sin tax revenue from illicit trade erosion.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 86,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports the BELA Act as it advances educational equity and extends compulsory schooling.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 108,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports primary healthcare strengthening as it improves healthcare access for workers and their families.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 108,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports PHC platform strengthening within existing health budgets through efficiency gains rather than additional allocations.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 111,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports provincial health department turnarounds as dysfunctional provinces waste allocated health budgets.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 111,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Provincial health turnarounds align with the Presidency's state capacity building agenda.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 96,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports PMTE property portfolio rationalisation as it generates revenue from under-utilised government assets.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 101,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports PPP regulatory reform for social infrastructure as it leverages private capital for public service delivery.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 101,
+    "stakeholder_id": "cosatu",
+    "stance": "oppose",
+    "note": "COSATU opposes PPPs for social infrastructure, viewing them as privatisation of public services that raises costs for communities.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 19,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "BRICS+ trade facilitation aligns with the Presidency's multi-lateral foreign policy and South-South economic cooperation.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 19,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC supports BRICS+ trade facilitation as it diversifies SA's export markets beyond Western economies.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 44,
+    "stakeholder_id": "dtic",
+    "stance": "conditional",
+    "note": "DTIC supports upstream petroleum development only with adequate local content and beneficiation requirements.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 44,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports the Petroleum Resources Development Bill as domestic oil and gas exploration could reduce import dependency and generate royalties.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 41,
+    "stakeholder_id": "eskom",
+    "stance": "support",
+    "note": "Eskom supports solar water heaters as they reduce peak demand pressure on the national grid.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 41,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports solar water heater rollout only through targeted subsidies with clear cost-benefit analysis, not open-ended programmes.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 17,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "Anti-dumping and import surveillance modernisation is a core DTIC trade remedy function.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 99,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports professional project management mandates as poor execution wastes billions in infrastructure budgets annually.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 99,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Infrastructure delivery management improvement is an Operation Vulindlela tracked commitment.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 109,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports mental health services expansion as workplace mental health directly affects worker productivity and wellbeing.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 92,
+    "stakeholder_id": "cosatu",
+    "stance": "support",
+    "note": "COSATU supports mother-tongue multilingual education as it improves learning outcomes for working-class children.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 118,
+    "stakeholder_id": "dtic",
+    "stance": "support",
+    "note": "DTIC supports cannabis industry rationalisation as it creates SMME opportunities in a new agricultural value chain.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 118,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Treasury supports cannabis licensing rationalisation as a revenue-generating regulatory reform at minimal fiscal cost.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 32,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Treasury supports the GEPF infrastructure mandate only with robust fiduciary safeguards protecting pension fund members' retirement savings.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 32,
+    "stakeholder_id": "sarb",
+    "stance": "conditional",
+    "note": "SARB supports GEPF infrastructure investment only within prudential frameworks ensuring pension fund solvency and fiduciary duty.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 32,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "COSATU supports directing GEPF funds to infrastructure only with ironclad guarantees protecting public sector workers' pension returns.",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 20,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Self-generation reform was a flagship Operation Vulindlela achievement, removing the 100MW licensing threshold.",
+    "is_human_reviewed": false
+  }
+]

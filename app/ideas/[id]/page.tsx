@@ -5,6 +5,8 @@ import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import CitationWidget from "@/components/CitationWidget";
+import stanceData from "@/data/idea_stakeholder_stances.json";
+import stakeholdersData from "@/data/stakeholders.json";
 import {
   CONSTRAINT_LABELS,
   CONSTRAINT_COLORS,
@@ -407,6 +409,42 @@ export default async function IdeaDetailPage({
           <p className="text-sm text-gray-700 leading-relaxed">{idea.feasibility_note}</p>
         </div>
       )}
+
+      {/* Stakeholder stances (compact) */}
+      {(() => {
+        const stances = (stanceData as Array<{idea_id: number; stakeholder_id: string; stance: string; note: string; is_human_reviewed: boolean}>)
+          .filter((s) => s.idea_id === idea.id);
+        if (!stances.length) return null;
+        const stakeholderMap = Object.fromEntries(
+          (stakeholdersData as Array<{id: string; name: string}>).map((s) => [s.id, s.name])
+        );
+        const stanceColors: Record<string, string> = {
+          support: "bg-green-50 text-green-700 ring-green-600/20",
+          oppose: "bg-red-50 text-red-700 ring-red-600/20",
+          conditional: "bg-amber-50 text-amber-700 ring-amber-600/20",
+          neutral: "bg-gray-50 text-gray-500 ring-gray-400/20",
+        };
+        return (
+          <div>
+            <h2 className="font-semibold text-gray-900 text-sm mb-2">Political Landscape</h2>
+            <div className="flex flex-wrap gap-1.5">
+              {stances.map((s) => (
+                <span
+                  key={s.stakeholder_id}
+                  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-medium ring-1 ${stanceColors[s.stance] ?? stanceColors.neutral}`}
+                  title={`${s.note}${s.is_human_reviewed ? "" : " (AI draft)"}`}
+                >
+                  {stakeholderMap[s.stakeholder_id] ?? s.stakeholder_id}
+                  {!s.is_human_reviewed && <span className="ml-1 opacity-40">*</span>}
+                </span>
+              ))}
+            </div>
+            <p className="text-[9px] text-gray-300 mt-1">
+              * AI-assessed stance — hover for detail
+            </p>
+          </div>
+        );
+      })()}
 
       {/* Description */}
       {idea.description && (

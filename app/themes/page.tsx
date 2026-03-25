@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import textbookChapters from "@/data/textbook_chapters.json";
 
 export const metadata: Metadata = {
   title: "Browse by Binding Constraint",
@@ -65,6 +66,16 @@ const CONSTRAINT_DESCRIPTIONS: Record<BindingConstraint, string> = {
   corruption: "Anti-corruption institutions, SIU capacity, procurement integrity.",
 };
 
+// ── Chapter lookup ─────────────────────────────────────────────────────────
+
+const chaptersByConstraint = new Map<string, { number: number; title: string }[]>();
+for (const ch of textbookChapters) {
+  for (const c of ch.binding_constraints) {
+    if (!chaptersByConstraint.has(c)) chaptersByConstraint.set(c, []);
+    chaptersByConstraint.get(c)!.push({ number: ch.number, title: ch.title });
+  }
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default async function ThemesPage() {
@@ -120,8 +131,15 @@ export default async function ThemesPage() {
               </div>
             )}
 
-            <div className="text-xs text-sa-green group-hover:underline">
-              View ideas →
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-sa-green group-hover:underline">
+                View ideas →
+              </span>
+              {chaptersByConstraint.get(s.binding_constraint)?.slice(0, 1).map((ch) => (
+                <span key={ch.number} className="text-[10px] text-gray-300" title={ch.title}>
+                  Ch. {ch.number}
+                </span>
+              ))}
             </div>
           </Link>
         ))}
