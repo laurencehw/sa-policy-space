@@ -12,8 +12,8 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-1",
     "binding_constraints": [
-      "government_capacity",
-      "corruption"
+      "corruption_governance",
+      "government_capacity"
     ],
     "reform_packages": [
       5
@@ -38,16 +38,16 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-2",
     "binding_constraints": [
+      "corruption_governance",
+      "crime_safety",
+      "digital_infrastructure",
       "energy",
-      "logistics",
-      "skills",
-      "regulation",
-      "crime",
-      "labor_market",
-      "land",
-      "digital",
       "government_capacity",
-      "corruption"
+      "labour_market",
+      "land_housing",
+      "regulatory_burden",
+      "skills_education",
+      "transport_logistics"
     ],
     "reform_packages": [
       1,
@@ -76,8 +76,8 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-8",
     "binding_constraints": [
-      "labor_market",
-      "regulation"
+      "labour_market",
+      "regulatory_burden"
     ],
     "reform_packages": [
       2
@@ -102,7 +102,7 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-9",
     "binding_constraints": [
-      "skills"
+      "skills_education"
     ],
     "reform_packages": [
       3
@@ -128,7 +128,7 @@
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-3",
     "binding_constraints": [
       "energy",
-      "logistics"
+      "transport_logistics"
     ],
     "reform_packages": [
       1
@@ -153,9 +153,9 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-3",
     "binding_constraints": [
-      "government_capacity",
       "energy",
-      "logistics"
+      "government_capacity",
+      "transport_logistics"
     ],
     "reform_packages": [
       1,
@@ -181,8 +181,9 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-6",
     "binding_constraints": [
-      "regulation",
-      "logistics"
+      "regulatory_burden",
+      "trade_openness",
+      "transport_logistics"
     ],
     "reform_packages": [
       4
@@ -207,8 +208,8 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-6",
     "binding_constraints": [
-      "regulation",
-      "crime"
+      "crime_safety",
+      "regulatory_burden"
     ],
     "reform_packages": [
       2,
@@ -234,8 +235,9 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-2",
     "binding_constraints": [
-      "government_capacity",
-      "corruption"
+      "corruption_governance",
+      "fiscal_space",
+      "government_capacity"
     ],
     "reform_packages": [
       5
@@ -260,7 +262,8 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-i-foundations/chapter-2",
     "binding_constraints": [
-      "regulation"
+      "financial_access",
+      "regulatory_burden"
     ],
     "reform_packages": [
       5
@@ -285,8 +288,9 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-7",
     "binding_constraints": [
-      "regulation",
-      "digital"
+      "digital_infrastructure",
+      "financial_access",
+      "regulatory_burden"
     ],
     "reform_packages": [
       4,
@@ -312,7 +316,7 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-4",
     "binding_constraints": [
-      "land"
+      "land_housing"
     ],
     "reform_packages": [
       2,
@@ -338,8 +342,9 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-9",
     "binding_constraints": [
-      "skills",
-      "government_capacity"
+      "government_capacity",
+      "health_systems",
+      "skills_education"
     ],
     "reform_packages": [
       3,
@@ -365,6 +370,7 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-iii-people/chapter-10",
     "binding_constraints": [
+      "fiscal_space",
       "government_capacity"
     ],
     "reform_packages": [
@@ -390,9 +396,9 @@
     ],
     "gitbook_url": "https://laurence-wilse-samson.gitbook.io/textbooks/the-south-african-economy/part-ii-sectors/chapter-3",
     "binding_constraints": [
-      "government_capacity",
-      "corruption",
-      "crime"
+      "corruption_governance",
+      "crime_safety",
+      "government_capacity"
     ],
     "reform_packages": [
       5

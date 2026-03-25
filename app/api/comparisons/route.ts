@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getIdeaComparisons, getComparisons } from "@/lib/api";
+import jsonComparisons from "@/data/international_comparisons.json";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,15 @@ export async function GET(request: Request) {
     if (ideaId) {
       return NextResponse.json(await getIdeaComparisons(ideaId));
     }
-    return NextResponse.json(await getComparisons({ country, constraint }));
+    const dbResults = await getComparisons({ country, constraint });
+    if (dbResults.length > 0) {
+      return NextResponse.json(dbResults);
+    }
+    // Fallback to JSON file if DB table is empty/missing
+    let fallback = (jsonComparisons as any).comparisons ?? jsonComparisons;
+    if (country) fallback = fallback.filter((c: any) => c.country === country);
+    if (constraint) fallback = fallback.filter((c: any) => c.binding_constraint === constraint);
+    return NextResponse.json(fallback);
   } catch {
     return NextResponse.json([]);
   }
