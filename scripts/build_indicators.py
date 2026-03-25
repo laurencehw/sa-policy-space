@@ -32,15 +32,25 @@ INDICATORS = [
     {
         "id": "real_gdp_growth",
         "name": "Real GDP Growth Rate",
-        "source": "Stats SA / SARB",
-        "source_code": "P0441",
+        "source": "IMF World Economic Outlook",
+        "source_code": "WEO NGDP_RPCH",
         "unit": "% year-on-year",
         "frequency": "annual",
         "binding_constraints": ["fiscal_space"],
-        "file": "national_gdp_annual.csv",
-        "period_col": "year",
-        "value_col": "gdp_rmillion",
-        "transform": "growth_rate",  # compute YoY growth from levels
+        "hardcoded": [
+            {"period": "2014", "value": 1.4},
+            {"period": "2015", "value": 1.3},
+            {"period": "2016", "value": 0.7},
+            {"period": "2017", "value": 1.2},
+            {"period": "2018", "value": 1.6},
+            {"period": "2019", "value": 0.3},
+            {"period": "2020", "value": -6.2},
+            {"period": "2021", "value": 4.9},
+            {"period": "2022", "value": 2.1},
+            {"period": "2023", "value": 0.8},
+            {"period": "2024", "value": 0.5},
+            {"period": "2025", "value": 1.1},
+        ],
     },
     {
         "id": "gfcf_gdp",
@@ -58,13 +68,14 @@ INDICATORS = [
         "id": "debt_gdp",
         "name": "Government Debt-to-GDP Ratio",
         "source": "National Treasury / IMF",
-        "source_code": "MTBPS",
+        "source_code": "WEO GGXWDG_NGDP",
         "unit": "% of GDP",
         "frequency": "annual",
         "binding_constraints": ["fiscal_space"],
         "file": "debt_gdp.csv",
         "period_col": "year",
         "value_col": "debt_pct",
+        "extra_points": [{"period": "2025", "value": 77.3}],
     },
     {
         "id": "repo_rate",
@@ -77,6 +88,7 @@ INDICATORS = [
         "file": "monetary_policy.csv",
         "period_col": "year",
         "value_col": "repo_rate",
+        "extra_points": [{"period": "2025", "value": 7.5}],  # SARB cut to 7.5% Jan 2025
     },
     {
         "id": "twin_deficits",
@@ -102,6 +114,7 @@ INDICATORS = [
         "file": "eskom_eaf.csv",
         "period_col": "year",
         "value_col": "eaf_pct",
+        "extra_points": [{"period": "2025", "value": 72.0}],  # Eskom reports improved EAF post load-shedding end
     },
     {
         "id": "load_shedding",
@@ -114,6 +127,7 @@ INDICATORS = [
         "file": "load_shedding_gwh.csv",
         "period_col": "year",
         "value_col": "gwh_shed",
+        "extra_points": [{"period": "2025", "value": 0.0}],  # Load shedding ended mid-2025
     },
     # ── Labour Market ──────────────────────────────────────────────────────
     {
@@ -273,6 +287,24 @@ def extract_period(row: dict, period_col: str) -> str | None:
 
 def process_indicator(spec: dict, source_dir: str) -> dict | None:
     """Process a single indicator spec into the output format."""
+    # Handle hardcoded data (e.g., IMF WEO directly)
+    if "hardcoded" in spec:
+        series = spec["hardcoded"]
+        latest = series[-1]
+        return {
+            "id": spec["id"],
+            "name": spec["name"],
+            "source": spec["source"],
+            "source_code": spec["source_code"],
+            "unit": spec["unit"],
+            "frequency": spec["frequency"],
+            "binding_constraints": spec["binding_constraints"],
+            "latest_value": latest["value"],
+            "latest_period": latest["period"],
+            "sparkline": series[-12:],
+            "values": series,
+        }
+
     filepath = os.path.join(source_dir, spec["file"])
     if not os.path.exists(filepath):
         print(f"  WARNING: {spec['file']} not found, skipping {spec['id']}")
@@ -342,6 +374,15 @@ def process_indicator(spec: dict, source_dir: str) -> dict | None:
     if not series:
         print(f"  WARNING: no data after transforms for {spec['id']}")
         return None
+
+    # Append extra data points (e.g., 2025 estimates from IMF/SARB)
+    extra = spec.get("extra_points", [])
+    if extra:
+        existing_periods = {pt["period"] for pt in series}
+        for pt in extra:
+            if pt["period"] not in existing_periods:
+                series.append(pt)
+        series.sort(key=lambda x: x["period"])
 
     latest = series[-1]
     # Sparkline: last 12 data points
