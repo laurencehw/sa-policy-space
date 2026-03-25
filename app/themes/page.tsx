@@ -94,7 +94,12 @@ for (const ch of textbookChapters as Array<{ number: number; title: string; bind
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default async function ThemesPage() {
-  const summaries = await getConstraintSummaries();
+  let summaries: ConstraintSummary[] = [];
+  try {
+    summaries = await getConstraintSummaries();
+  } catch (e) {
+    console.error("[themes] data fetch failed (build-time?):", e);
+  }
 
   return (
     <div className="space-y-6">

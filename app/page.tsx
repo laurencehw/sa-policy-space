@@ -17,15 +17,12 @@ import type { DependencyGraph } from "@/lib/analytics";
 // ── Data ────────────────────────────────────────────────────────────────────
 
 async function getHomepageData() {
-  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-  let stats: { totalIdeas: number; meetingsAnalyzed: number; constraintsCovered: number };
-  if (isLocal) {
-    const { getStats } = await import("@/lib/local-api");
-    stats = getStats();
-  } else {
-    const { getStats } = await import("@/lib/supabase-api");
-    stats = await getStats();
+  let stats = { totalIdeas: 0, meetingsAnalyzed: 0, constraintsCovered: 0, dormantIdeas: 0 };
+  try {
+    const api = await import("@/lib/api");
+    stats = await api.getStats();
+  } catch (e) {
+    console.error("[home] getStats failed (build-time?):", e);
   }
 
   // Dynamic counts from JSON seed files
@@ -42,7 +39,13 @@ async function getHomepageData() {
     stakeholderCount = Array.isArray(stakeholderData) ? stakeholderData.length : stakeholderCount;
   } catch (e) { console.error("[home] stakeholders.json read failed:", e); }
 
-  const reformIndex = computeReformIndex();
+  let reformIndex: ReturnType<typeof computeReformIndex>;
+  try {
+    reformIndex = computeReformIndex();
+  } catch (e) {
+    console.error("[home] computeReformIndex failed (build-time?):", e);
+    reformIndex = { current_score: 0, trend: "flat" as const, trend_delta: 0, package_sub_indices: [], quarterly_snapshots: [], scenarios: [], last_updated: "" };
+  }
 
   let keystones: { id: number; title: string; keystoneScore: number }[] = [];
   try {

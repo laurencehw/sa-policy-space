@@ -41,19 +41,15 @@ function firstParagraph(text: string): string {
 }
 
 export default async function PackagesPage() {
-  const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
+  let summaries: PackageSummary[] = [];
+  let horizonCounts: Record<number, TimeHorizonCounts> = {};
 
-  let summaries: PackageSummary[];
-  let horizonCounts: Record<number, TimeHorizonCounts>;
-
-  if (isLocal) {
-    const { getPackageSummaries, getPackageTimeHorizonCounts } = await import("@/lib/local-api");
-    summaries = getPackageSummaries();
-    horizonCounts = getPackageTimeHorizonCounts();
-  } else {
-    const { getPackageSummaries, getPackageTimeHorizonCounts } = await import("@/lib/supabase-api");
-    summaries = getPackageSummaries() as PackageSummary[];
-    horizonCounts = await getPackageTimeHorizonCounts();
+  try {
+    const api = await import("@/lib/api");
+    summaries = await api.getPackageSummaries();
+    horizonCounts = await api.getPackageTimeHorizonCounts();
+  } catch (e) {
+    console.error("[packages] data fetch failed (build-time?):", e);
   }
 
   return (
