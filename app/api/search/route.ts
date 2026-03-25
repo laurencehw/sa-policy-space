@@ -9,8 +9,8 @@ import reformPackagesData from "@/data/reform_packages.json";
 import { slugify } from "@/lib/utils";
 
 export async function GET(req: NextRequest) {
-  const q = req.nextUrl.searchParams.get("q")?.trim().toLowerCase() ?? "";
-  if (!q || q.length < 2) {
+  const raw = req.nextUrl.searchParams.get("q")?.trim() ?? "";
+  if (!raw || raw.length < 2) {
     return NextResponse.json({
       ideas: [],
       packages: [],
@@ -19,8 +19,10 @@ export async function GET(req: NextRequest) {
       chapters: [],
     });
   }
+  // Cap query length to prevent abuse
+  const q = raw.slice(0, 200).toLowerCase();
 
-  // ── Ideas (SQLite or Supabase) ────────────────────────────────────────────
+  // ── Ideas ────────────────────────────────────────────────────────────────
   let ideas: Array<{
     id: number;
     title: string;
@@ -29,27 +31,15 @@ export async function GET(req: NextRequest) {
     binding_constraint: string;
   }> = [];
   try {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      const { getIdeas } = await import("@/lib/local-api");
-      const rows = getIdeas({ search: q });
-      ideas = rows.slice(0, 6).map((r) => ({
-        id: r.id,
-        title: r.title,
-        description: r.description,
-        slug: r.slug,
-        binding_constraint: r.binding_constraint,
-      }));
-    } else {
-      const { getIdeas } = await import("@/lib/supabase-api");
-      const rows = await getIdeas({ search: q });
-      ideas = (rows as any[]).slice(0, 6).map((r: any) => ({
-        id: r.id,
-        title: r.title,
-        description: r.description,
-        slug: r.slug || slugify(r.title),
-        binding_constraint: r.binding_constraint,
-      }));
-    }
+    const { getIdeas } = await import("@/lib/api");
+    const rows = await getIdeas({ search: q });
+    ideas = rows.slice(0, 6).map((r) => ({
+      id: r.id,
+      title: r.title,
+      description: r.description,
+      slug: r.slug || slugify(r.title),
+      binding_constraint: r.binding_constraint,
+    }));
   } catch (e) {
     console.error("Search ideas error:", e);
   }

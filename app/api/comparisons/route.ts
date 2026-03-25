@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getIdeaComparisons, getComparisons } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -11,22 +12,9 @@ export async function GET(request: Request) {
 
   try {
     if (ideaId) {
-      if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-        const { getIdeaComparisons } = await import("@/lib/supabase-api");
-        return NextResponse.json(await getIdeaComparisons(ideaId));
-      } else {
-        const { getIdeaComparisons } = await import("@/lib/local-api");
-        return NextResponse.json(getIdeaComparisons(ideaId));
-      }
+      return NextResponse.json(await getIdeaComparisons(ideaId));
     }
-
-    if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      const { getComparisons } = await import("@/lib/supabase-api");
-      return NextResponse.json(await getComparisons({ country, constraint }));
-    } else {
-      const { getComparisons } = await import("@/lib/local-api");
-      return NextResponse.json(getComparisons({ country, constraint }));
-    }
+    return NextResponse.json(await getComparisons({ country, constraint }));
   } catch {
     return NextResponse.json([]);
   }

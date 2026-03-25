@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
+import { getIdeas } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
+
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
+};
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: CORS_HEADERS });
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -13,20 +23,9 @@ export async function GET(request: Request) {
   const timeHorizon = searchParams.get("timeHorizon") ?? undefined;
 
   try {
-    let data;
-    if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      const { getIdeas } = await import("@/lib/supabase-api");
-      data = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon });
-    } else {
-      const { getIdeas } = await import("@/lib/local-api");
-      data = getIdeas({ search, constraint, status, sort, packageId, timeHorizon });
-    }
-    return NextResponse.json({
-      version: "1",
-      data,
-      meta: { count: data.length },
-    });
+    const data = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon });
+    return NextResponse.json({ version: "1", data, meta: { count: data.length } }, { headers: CORS_HEADERS });
   } catch {
-    return NextResponse.json({ version: "1", data: [], meta: { count: 0 } });
+    return NextResponse.json({ version: "1", data: [], meta: { count: 0 } }, { headers: CORS_HEADERS });
   }
 }

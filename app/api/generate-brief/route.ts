@@ -151,34 +151,20 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  // Fetch context data server-side from local DB or Supabase
+  // Fetch context data server-side
   let context: unknown;
   try {
+    const { getPackageDetail, getIdeas } = await import("@/lib/api");
     if (reformId.startsWith("pkg_")) {
       const packageId = parseInt(reformId.replace("pkg_", ""), 10);
-      if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-        const { getPackageDetail } = await import("@/lib/supabase-api");
-        context = await getPackageDetail(packageId);
-      } else {
-        const { getPackageDetail } = await import("@/lib/local-api");
-        context = getPackageDetail(packageId);
-      }
+      context = await getPackageDetail(packageId);
     } else {
-      // Strip "Idea: " prefix to get the search term
       const searchTerm = reformLabel.replace(/^Idea:\s*/i, "");
-      if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-        const { getIdeas } = await import("@/lib/supabase-api");
-        const ideas = await getIdeas({ search: searchTerm });
-        context = ideas.slice(0, 5);
-      } else {
-        const { getIdeas } = await import("@/lib/local-api");
-        const ideas = getIdeas({ search: searchTerm });
-        context = ideas.slice(0, 5);
-      }
+      const ideas = await getIdeas({ search: searchTerm });
+      context = ideas.slice(0, 5);
     }
   } catch (err) {
     console.error("[generate-brief] Failed to fetch context:", err);
-    // Proceed with empty context so Claude can still generate using general knowledge
     context = { note: "Database context unavailable for this session." };
   }
 

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getIdeas } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -13,13 +14,7 @@ export async function GET(request: Request) {
   const timeHorizon = searchParams.get("timeHorizon") ?? undefined;
 
   try {
-    if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      const { getIdeas } = await import("@/lib/supabase-api");
-      return NextResponse.json(await getIdeas({ search, constraint, status, sort, packageId, timeHorizon }));
-    } else {
-      const { getIdeas } = await import("@/lib/local-api");
-      return NextResponse.json(getIdeas({ search, constraint, status, sort, packageId, timeHorizon }));
-    }
+    return NextResponse.json(await getIdeas({ search, constraint, status, sort, packageId, timeHorizon }));
   } catch {
     return NextResponse.json([]);
   }
