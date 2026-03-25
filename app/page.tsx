@@ -76,7 +76,26 @@ async function getHomepageData() {
     console.error("[home] budget_alignment.json read failed:", e);
   }
 
-  return { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount };
+  // Curated insight lists
+  let quickWins: { id: number; title: string; slug: string; feasibility_rating: number }[] = [];
+  let mostDebated: { id: number; title: string; slug: string; times_raised: number }[] = [];
+  try {
+    const api = await import("@/lib/api");
+    const allIdeas = await api.getIdeas();
+    quickWins = allIdeas
+      .filter((i) => i.time_horizon === "quick_win" && i.feasibility_rating >= 4)
+      .sort((a, b) => (b.growth_impact_rating + b.feasibility_rating) - (a.growth_impact_rating + a.feasibility_rating))
+      .slice(0, 5)
+      .map((i) => ({ id: i.id, title: i.title, slug: i.slug, feasibility_rating: i.feasibility_rating }));
+    mostDebated = [...allIdeas]
+      .sort((a, b) => (b.times_raised ?? 0) - (a.times_raised ?? 0))
+      .slice(0, 5)
+      .map((i) => ({ id: i.id, title: i.title, slug: i.slug, times_raised: i.times_raised ?? 0 }));
+  } catch (e) {
+    console.error("[home] curated insights fetch failed:", e);
+  }
+
+  return { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount, quickWins, mostDebated };
 }
 
 // ── Static content ───────────────────────────────────────────────────────────
@@ -151,7 +170,7 @@ const AUDIENCE_PATHWAYS = [
 // ── Page ────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount } = await getHomepageData();
+  const { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount, quickWins, mostDebated } = await getHomepageData();
 
   const trendArrow =
     reformIndex.trend === "up" ? "↑" : reformIndex.trend === "down" ? "↓" : "→";
@@ -220,6 +239,12 @@ export default async function HomePage() {
               className="bg-white/12 text-white px-6 py-2.5 rounded-lg font-medium text-sm border border-white/25 hover:bg-white/20 transition-colors"
             >
               View Reform Packages
+            </Link>
+            <Link
+              href="/dependencies"
+              className="bg-white/12 text-white px-6 py-2.5 rounded-lg font-medium text-sm border border-white/25 hover:bg-white/20 transition-colors"
+            >
+              Dependency Map
             </Link>
           </div>
         </div>
@@ -433,6 +458,61 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Curated Insights ─────────────────────────────────────────────────── */}
+      {(quickWins.length > 0 || mostDebated.length > 0) && (
+        <section className="py-10 border-b border-gray-100">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
+            Quick Insights
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {quickWins.length > 0 && (
+              <div className="card">
+                <h3 className="text-sm font-semibold text-gray-700 mb-3">Most Feasible Quick Wins</h3>
+                <p className="text-[10px] text-gray-400 mb-3">Short-term reforms with high feasibility ratings</p>
+                <ul className="space-y-2">
+                  {quickWins.map((idea) => (
+                    <li key={idea.id}>
+                      <Link
+                        href={`/ideas/${idea.slug || idea.id}`}
+                        className="flex items-center justify-between text-xs text-gray-700 hover:text-sa-green transition-colors"
+                      >
+                        <span className="truncate mr-2">{idea.title}</span>
+                        <span className="flex-shrink-0 text-[10px] text-gray-400">{idea.feasibility_rating}/5</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/ideas?timeHorizon=quick_win" className="block text-[10px] text-sa-green hover:underline mt-3">
+                  View all quick wins →
+                </Link>
+              </div>
+            )}
+            {mostDebated.length > 0 && (
+              <div className="card">
+                <h3 className="text-sm font-semibold text-gray-700 mb-3">Most Debated in Parliament</h3>
+                <p className="text-[10px] text-gray-400 mb-3">Reforms most frequently raised in committee proceedings</p>
+                <ul className="space-y-2">
+                  {mostDebated.map((idea) => (
+                    <li key={idea.id}>
+                      <Link
+                        href={`/ideas/${idea.slug || idea.id}`}
+                        className="flex items-center justify-between text-xs text-gray-700 hover:text-sa-green transition-colors"
+                      >
+                        <span className="truncate mr-2">{idea.title}</span>
+                        <span className="flex-shrink-0 text-[10px] text-gray-400">Raised {idea.times_raised}x</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/analytics" className="block text-[10px] text-sa-green hover:underline mt-3">
+                  View full analytics →
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ── Data Sources ────────────────────────────────────────────────────── */}
       <section className="py-10">
         <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
@@ -470,10 +550,20 @@ export default async function HomePage() {
             </p>
           </div>
         </div>
-        <div className="mt-5 pt-5 border-t border-gray-100">
+        <div className="mt-5 pt-5 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <Link href="/about" className="text-sm text-sa-green hover:underline font-medium">
             Full methodology and data documentation →
           </Link>
+          <div className="text-[10px] text-gray-400 space-y-0.5 sm:text-right">
+            <p>
+              Built by{" "}
+              <a href="https://github.com/laurencehw/" className="hover:text-gray-600" target="_blank" rel="noopener noreferrer">
+                Laurence Wilse-Samson
+              </a>
+              {" "}· NYU Wagner School of Public Policy
+            </p>
+            <p>Data last updated: March 2026 · Database refreshed hourly via ISR</p>
+          </div>
         </div>
       </section>
 
