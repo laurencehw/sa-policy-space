@@ -1,6 +1,13 @@
 export const revalidate = false; // Pure static JSON — build-time only
 
+import type { Metadata } from "next";
 import brrrData from "@/data/brrr_recommendations.json";
+
+export const metadata: Metadata = {
+  title: "BRRR Recommendations",
+  description:
+    "Budget Review and Recommendations Reports (BRRR) from South African parliamentary portfolio committees — tracking government spending recommendations and budget alignment.",
+};
 import budgetData from "@/data/budget_alignment.json";
 import Link from "next/link";
 

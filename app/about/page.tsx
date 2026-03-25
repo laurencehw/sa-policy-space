@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "About SA Policy Space — an independent research initiative mapping South Africa's path to reform through parliamentary data analysis and policy assessment.",
+};
 
 export default function AboutPage() {
   return (

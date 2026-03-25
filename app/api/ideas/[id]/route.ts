@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const id = parseInt(params.id, 10);

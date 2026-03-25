@@ -1,6 +1,13 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Progress Dashboard",
+  description:
+    "Track implementation progress across South Africa's five reform packages — status breakdowns, stalled ideas, and milestone tracking.",
+};
 import ProgressCharts, { type ProgressStats } from "./ProgressCharts";
 import type { IdeaRow } from "@/lib/local-api";
 import { CONSTRAINT_LABELS } from "@/lib/supabase";

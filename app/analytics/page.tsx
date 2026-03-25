@@ -1,6 +1,13 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Analytics",
+  description:
+    "Network centrality analysis, momentum scores, and fiscal impact estimates across SA's 49 policy reform ideas.",
+};
 import type { IdeaRow } from "@/lib/local-api";
 import {
   computeNetworkCentrality,

@@ -1,6 +1,13 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "SA Policy Space — South African Reform Database",
+  description:
+    "Mapping South Africa's path to reform: a comprehensive database of policy ideas from parliamentary committee deliberations, assessed for growth impact and tracked for accountability.",
+};
 import fs from "fs";
 import path from "path";
 import { computeReformIndex } from "@/lib/reform-index";

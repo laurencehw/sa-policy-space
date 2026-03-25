@@ -1,6 +1,13 @@
 export const revalidate = false; // Pure static JSON — build-time only
 
+import type { Metadata } from "next";
 import budgetData from "@/data/budget_alignment.json";
+
+export const metadata: Metadata = {
+  title: "Budget Alignment",
+  description:
+    "Analysis of budget allocation gaps between parliamentary committee recommendations and actual National Treasury allocations across South Africa's five reform packages.",
+};
 
 // ── Types ──────────────────────────────────────────────────────────────────
 

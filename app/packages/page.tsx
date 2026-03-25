@@ -1,6 +1,13 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Reform Packages",
+  description:
+    "Five coherent reform packages for South Africa — Infrastructure Unblock, SMME & Employment, Human Capital, Trade & Industry, and State Capacity — each with a theory of change and sequencing logic.",
+};
 import type { PackageSummary, TimeHorizonCounts } from "@/lib/local-api";
 
 // Per-package colour scheme

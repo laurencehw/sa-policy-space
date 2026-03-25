@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { computeReformIndex } from "@/lib/reform-index";
 import type { PackageSubIndex, QuarterlySnapshot } from "@/lib/reform-index";
 import Link from "next/link";
 
 export const revalidate = 3600; // Computed from static JSON
+
+export const metadata: Metadata = {
+  title: "Reform Progress Index",
+  description:
+    "A weighted composite index tracking South Africa's reform progress across five packages. Quarterly snapshots, trend analysis, and per-package scores.",
+};
 
 // SA flag palette used across the app
 const PACKAGE_COLORS: Record<number, { bar: string; text: string; bg: string }> = {

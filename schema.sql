@@ -4,6 +4,18 @@
 -- ============================================================
 -- SOURCE LAYER: Raw PMG records (reference, not reproduced)
 -- ============================================================
+--
+-- NOTE ON EMPTY TABLES (as of 2026 Q1):
+--   meetings            — defined but not yet populated; PMG data not ingested
+--   documents           — defined but not yet populated (depends on meetings)
+--   idea_meetings       — defined but not yet populated (depends on meetings)
+--   implementation_plans — defined but not yet populated; planned for Phase 2
+--
+-- NOTE ON EMPTY FIELDS:
+--   policy_ideas.key_quote — 100% null (138/138 rows); field reserved for future
+--     attribution of representative parliamentary quotes. Use key_quotes (JSONB
+--     array on the enriched schema) instead.
+--
 
 CREATE TABLE IF NOT EXISTS meetings (
     id                  SERIAL PRIMARY KEY,
