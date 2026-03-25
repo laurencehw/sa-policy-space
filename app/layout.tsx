@@ -84,55 +84,61 @@ export default function RootLayout({
 
               {/* Tools dropdown — analytical tools */}
               <NavDropdown label="Tools">
-                {/* Featured: new dashboard tools */}
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Dashboards</p>
                 <Link href="/indicators" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   <span className="w-1.5 h-1.5 rounded-full bg-sa-green flex-shrink-0" />
                   Economic Indicators
                 </Link>
-                <Link href="/progress" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
+                <Link href="/progress" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Progress Dashboard
                 </Link>
-                <Link href="/matrix" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
-                  Feasibility Matrix
-                </Link>
-                <Link href="/compare" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
-                  Compare Ideas
-                </Link>
-                <div className="my-1 border-t border-gray-100" />
                 <Link href="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Analytics
-                </Link>
-                <Link href="/timeline" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Parliamentary Timeline
-                </Link>
-                <Link href="/dependencies" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Dependencies
-                </Link>
-                <Link href="/stakeholders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Stakeholders
-                </Link>
-                <Link href="/simulator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Feasibility Simulator
                 </Link>
                 <Link href="/reform-index" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Reform Index
                 </Link>
-                <Link href="/brrr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  BRRR Recommendations
+                <div className="my-1 border-t border-gray-100" />
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Analysis</p>
+                <Link href="/dependencies" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Dependency Map
+                </Link>
+                <Link href="/matrix" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Feasibility Matrix
+                </Link>
+                <Link href="/compare" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Compare Ideas
+                </Link>
+                <Link href="/stakeholders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Stakeholders
+                </Link>
+                <Link href="/timeline" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Parliamentary Timeline
+                </Link>
+                <div className="my-1 border-t border-gray-100" />
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Advanced</p>
+                <Link href="/simulator" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Feasibility Simulator
                 </Link>
                 <Link href="/sequencing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Reform Sequencing
+                </Link>
+                <Link href="/brrr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  BRRR Recommendations
                 </Link>
               </NavDropdown>
 
               {/* Resources dropdown — reference & tools */}
               <NavDropdown label="Resources">
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Generate</p>
                 <Link href="/documents" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Legislation Generator
                 </Link>
+                <Link href="/briefs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Brief Generator
+                </Link>
+                <div className="my-1 border-t border-gray-100" />
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Data</p>
                 <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Budget Alignment
                 </Link>
@@ -140,19 +146,18 @@ export default function RootLayout({
                   International Comparisons
                 </Link>
                 <Link href="/accountability" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Accountability Dashboard
+                  Accountability
                 </Link>
-                <Link href="/briefs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Brief Generator
-                </Link>
+                <div className="my-1 border-t border-gray-100" />
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Reference</p>
                 <Link href="/teaching" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Teaching
                 </Link>
-                <Link href="/api-docs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  API Docs
-                </Link>
                 <Link href="/glossary" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Glossary
+                </Link>
+                <Link href="/api-docs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  API Docs
                 </Link>
                 <Link href="/methodology" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Methodology

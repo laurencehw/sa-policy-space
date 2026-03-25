@@ -31,12 +31,12 @@ async function getHomepageData() {
   let stakeholderCount = 38;
   try {
     const pkgPath = path.resolve(process.cwd(), "data", "reform_packages.json");
-    const pkgData = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+    const pkgData = JSON.parse(await fs.promises.readFile(pkgPath, "utf-8"));
     packageCount = Object.keys(pkgData).length;
   } catch (e) { console.error("[home] reform_packages.json read failed:", e); }
   try {
     const stakeholderPath = path.resolve(process.cwd(), "data", "stakeholders.json");
-    const stakeholderData = JSON.parse(fs.readFileSync(stakeholderPath, "utf-8"));
+    const stakeholderData = JSON.parse(await fs.promises.readFile(stakeholderPath, "utf-8"));
     stakeholderCount = Array.isArray(stakeholderData) ? stakeholderData.length : stakeholderCount;
   } catch (e) { console.error("[home] stakeholders.json read failed:", e); }
 
@@ -51,7 +51,7 @@ async function getHomepageData() {
   let keystones: { id: number; title: string; keystoneScore: number }[] = [];
   try {
     const graphPath = path.resolve(process.cwd(), "data", "dependency_graph.json");
-    const graph = JSON.parse(fs.readFileSync(graphPath, "utf-8")) as DependencyGraph;
+    const graph = JSON.parse(await fs.promises.readFile(graphPath, "utf-8")) as DependencyGraph;
     keystones = computeNetworkCentrality(graph)
       .slice(0, 3)
       .map((k) => ({ id: k.id, title: k.title, keystoneScore: k.keystoneScore }));
@@ -62,7 +62,7 @@ async function getHomepageData() {
   let totalGap = 0;
   try {
     const budgetPath = path.resolve(process.cwd(), "data", "budget_alignment.json");
-    const budgetData = JSON.parse(fs.readFileSync(budgetPath, "utf-8"));
+    const budgetData = JSON.parse(await fs.promises.readFile(budgetPath, "utf-8"));
     const allocated: number = budgetData.packages.reduce(
       (s: number, p: { budget_allocated: number }) => s + p.budget_allocated,
       0

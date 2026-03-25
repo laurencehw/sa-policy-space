@@ -80,6 +80,9 @@ export default function DependenciesPage() {
           Hover nodes to see connections, click for details, drag to rearrange, scroll to zoom.
           Filter by package or status, or search by idea name.
         </p>
+        <p className="mt-1 text-[10px] text-gray-400 md:hidden">
+          Best viewed on a larger screen for the full interactive experience.
+        </p>
       </div>
 
       {/* Interactive D3 graph */}
