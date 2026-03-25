@@ -1,6 +1,6 @@
 # SA Policy Space — Roadmap
 
-*Last updated: 2026-03-23*
+*Last updated: 2026-03-25*
 
 ---
 
@@ -8,11 +8,13 @@
 
 ### What Exists
 
-A functioning local-only web application tracking 132 South African policy reform ideas extracted from 1,061 parliamentary committee meetings sourced from the Parliamentary Monitoring Group (PMG) API. The project has a clear intellectual framework — five reform packages organised around binding growth constraints — and a rich dependency graph (~400 edges) capturing reform sequencing logic.
+A deployed web application tracking 132 South African policy reform ideas extracted from 1,061 parliamentary committee meetings sourced from the Parliamentary Monitoring Group (PMG) API. The project has a clear intellectual framework — five reform packages organised around binding growth constraints — and a rich dependency graph (~400 edges) capturing reform sequencing logic.
 
-**Technical stack:** Next.js 14, TypeScript, Tailwind CSS, SQLite (dev) / Supabase (prod schema designed but not deployed). Python scripts for data collection and analysis.
+**Technical stack:** Next.js 14, TypeScript, Tailwind CSS, SQLite (dev) / Supabase (prod). Python scripts for data collection and analysis.
 
-**Pages live:** Home dashboard, Ideas list (with filtering), Idea detail, Packages grid, Package detail (with SVG dependency diagrams), Themes by constraint, Dependencies view, About.
+**Deployed at:** [sa-policy-space.vercel.app](https://sa-policy-space.vercel.app)
+
+**Pages live (30):** Home dashboard, Ideas list (with filtering), Idea detail, Packages grid, Package detail (with SVG dependency diagrams), Themes by constraint, Dependencies view, Analytics, Stakeholders, Compare, Feasibility Matrix, Progress Dashboard, Timeline, Simulator, Reform Index, BRRR Recommendations, Sequencing, Budget Alignment, Accountability, Document Generator (Green Paper / White Paper / Template Bill), Brief Generator, Teaching, API Docs, Glossary, Methodology, About.
 
 ### Key Stats
 
@@ -24,9 +26,11 @@ A functioning local-only web application tracking 132 South African policy refor
 | Binding constraints covered | 18 distinct types |
 | Reform packages | 5 |
 | Dependency edges (graph) | ~400 |
-| **Ideas with full descriptions (>500 chars)** | **9 (6.8%)** |
-| **Ideas with implementation plans** | **0 (0%)** |
-| Deployment status | Local dev only |
+| Ideas with full descriptions | Most enriched (multiple batches applied) |
+| Implementation plans | Populated (multiple batches applied) |
+| Stakeholders mapped | 38 |
+| International comparisons | Populated with peer country data |
+| Deployment status | **Live** — [sa-policy-space.vercel.app](https://sa-policy-space.vercel.app) |
 
 ### What Works Well
 

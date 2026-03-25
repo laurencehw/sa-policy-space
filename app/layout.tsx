@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     template: "%s — SA Policy Space",
   },
   description:
-    "Comprehensive database of 49 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
+    "Comprehensive database of 132 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
   openGraph: {
     type: "website",
     siteName: "SA Policy Space",
     title: "SA Policy Space — South African Reform Database",
     description:
-      "Comprehensive database of 49 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
+      "Comprehensive database of 132 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
     url: "https://sa-policy-space.vercel.app",
     images: [
       {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SA Policy Space — South African Reform Database",
     description:
-      "Comprehensive database of 49 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
+      "Comprehensive database of 132 policy reform ideas for South Africa, with implementation plans, international comparisons, and economic impact analysis",
     images: ["/opengraph-image"],
   },
   alternates: {

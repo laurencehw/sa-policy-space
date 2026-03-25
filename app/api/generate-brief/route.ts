@@ -95,7 +95,26 @@ Rules:
 }
 
 export async function POST(request: NextRequest) {
-  // Rate limiting
+  // ── Origin validation ──────────────────────────────────────────────────────
+  // Reject requests not originating from the app itself. This prevents
+  // external scripts from burning Anthropic API credits via direct POST.
+  const origin = request.headers.get("origin");
+  const allowedOrigins = [
+    "https://sa-policy-space.vercel.app",
+    // Allow localhost during development
+    ...(process.env.NODE_ENV === "development"
+      ? ["http://localhost:3000", "http://localhost:3001"]
+      : []),
+  ];
+  if (!origin || !allowedOrigins.some((o) => origin.startsWith(o))) {
+    return Response.json(
+      { error: "Forbidden" },
+      { status: 403 }
+    );
+  }
+
+  // ── Rate limiting ──────────────────────────────────────────────────────────
+  // Note: in-memory map resets on cold start; this is a best-effort guard.
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     request.headers.get("x-real-ip") ??
