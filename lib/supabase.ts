@@ -76,6 +76,7 @@ export interface PolicyIdea {
   responsible_departments?: string[] | string | null;
   economic_impact_estimate?: string | null;
   source_url?: string | null;
+  oecd_references?: string | null;
 }
 
 export interface ImplementationPlan {
