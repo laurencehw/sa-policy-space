@@ -350,9 +350,19 @@ export default async function HomePage() {
               <span>Near-term target: 40</span>
               <span>100</span>
             </div>
-            <p className="text-xs text-gray-500 leading-snug">
+            <p className="text-xs text-gray-500 leading-snug mb-2">
               Weighted index across 5 reform packages. Advancing ~15–20 stalled ideas would reach the 40-point near-term target.
             </p>
+            <details className="text-[10px] text-gray-400">
+              <summary className="cursor-pointer hover:text-gray-600">Methodology</summary>
+              <p className="mt-1 leading-relaxed">
+                Each idea earns credit based on status: implemented (100%), partially implemented (60%),
+                under review (30%), drafted (25%), debated (20%), proposed (10%), stalled (5%).
+                Package scores are weighted by strategic importance: Infrastructure (28%),
+                Human Capital (22%), State Capacity (20%), SMME (16%), Trade (14%).
+                The composite score is the weighted average across all packages, scaled to 0–100.
+              </p>
+            </details>
           </div>
 
           {/* Keystone reforms */}

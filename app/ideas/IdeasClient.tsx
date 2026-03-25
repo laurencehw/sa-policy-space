@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, Suspense } from "react";
+import { useState, useMemo, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -142,6 +142,7 @@ function IdeasContent({ initialIdeas }: { initialIdeas: PolicyIdea[] }) {
   const [filterMinFeasibility, setFilterMinFeasibility] = useState<string>("");
   const [filterMinGrowth, setFilterMinGrowth] = useState<string>("");
   const [sortBy, setSortBy] = useState<SortKey>("combined");
+  const [visibleCount, setVisibleCount] = useState(24);
 
   const committees = useMemo(() => {
     const counts = new Map<string, number>();
@@ -153,6 +154,14 @@ function IdeasContent({ initialIdeas }: { initialIdeas: PolicyIdea[] }) {
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   }, [allIdeas]);
+
+  // Reset pagination when filters change
+  const filterKey = `${search}|${filterConstraint}|${filterStatus}|${filterPackage}|${filterHorizon}|${filterCommittee}|${filterMinFeasibility}|${filterMinGrowth}|${sortBy}`;
+  const prevFilterKey = useRef(filterKey);
+  if (prevFilterKey.current !== filterKey) {
+    prevFilterKey.current = filterKey;
+    if (visibleCount !== 24) setVisibleCount(24);
+  }
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -374,7 +383,7 @@ function IdeasContent({ initialIdeas }: { initialIdeas: PolicyIdea[] }) {
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((idea) => (
+          {filtered.slice(0, visibleCount).map((idea) => (
             <Link key={idea.id} href={`/ideas/${idea.slug || slugify(idea.title)}`} className="card block space-y-2">
               {/* Tags row */}
               <div className="flex flex-wrap gap-1.5">
@@ -444,6 +453,18 @@ function IdeasContent({ initialIdeas }: { initialIdeas: PolicyIdea[] }) {
               )}
             </Link>
           ))}
+        </div>
+      )}
+
+      {/* Show more */}
+      {filtered.length > visibleCount && (
+        <div className="text-center pt-2">
+          <button
+            onClick={() => setVisibleCount((v) => v + 24)}
+            className="text-sm text-sa-green hover:underline font-medium"
+          >
+            Show more ({filtered.length - visibleCount} remaining)
+          </button>
         </div>
       )}
     </div>
