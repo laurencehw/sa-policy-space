@@ -65,7 +65,9 @@ export async function GET(req: NextRequest) {
       (s) =>
         s.name?.toLowerCase().includes(q) ||
         s.primary_interests?.toLowerCase().includes(q) ||
-        s.category?.toLowerCase().includes(q)
+        s.category?.toLowerCase().includes(q) ||
+        s.key_concerns?.toLowerCase().includes(q) ||
+        s.reform_design_insights?.toLowerCase().includes(q)
     )
     .slice(0, 5)
     .map((s) => ({
@@ -98,7 +100,9 @@ export async function GET(req: NextRequest) {
     .filter(
       (c) =>
         c.title?.toLowerCase().includes(q) ||
-        c.description?.toLowerCase().includes(q)
+        c.description?.toLowerCase().includes(q) ||
+        c.abstract?.toLowerCase().includes(q) ||
+        (Array.isArray(c.key_findings) && c.key_findings.some((f: string) => f.toLowerCase().includes(q)))
     )
     .slice(0, 5)
     .map((c) => ({

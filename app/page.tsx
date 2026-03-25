@@ -13,6 +13,7 @@ import path from "path";
 import { computeReformIndex } from "@/lib/reform-index";
 import { computeNetworkCentrality } from "@/lib/analytics";
 import type { DependencyGraph } from "@/lib/analytics";
+import BudgetGapChart from "@/components/BudgetGapChart";
 
 // ── Data ────────────────────────────────────────────────────────────────────
 
@@ -422,24 +423,11 @@ export default async function HomePage() {
               Total gap between parliamentary committee recommendations and current budget allocations
               across all 5 reform packages.
             </p>
-            <div className="space-y-2">
-              {reformIndex.package_sub_indices.map((pkg) => (
-                <div key={pkg.package_id} className="flex items-center gap-2">
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs text-gray-600 truncate block">{pkg.name}</span>
-                  </div>
-                  <div className="h-1.5 w-14 bg-gray-100 rounded-full overflow-hidden flex-shrink-0">
-                    <div
-                      className="h-full bg-amber-400 rounded-full"
-                      style={{ width: `${pkg.score}%` }}
-                    />
-                  </div>
-                  <span className="text-xs text-gray-400 w-7 text-right flex-shrink-0">
-                    {pkg.score}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <BudgetGapChart packages={reformIndex.package_sub_indices.map((pkg) => ({
+              name: pkg.name,
+              score: pkg.score,
+              package_id: pkg.package_id,
+            }))} />
           </div>
 
         </div>
