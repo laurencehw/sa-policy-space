@@ -8,7 +8,7 @@ import IdeasClient from "./IdeasClient";
 export const metadata: Metadata = {
   title: "Policy Ideas",
   description:
-    "Browse 132 South African policy reform ideas with filtering by constraint, package, status, and more.",
+    "Browse 177 South African policy reform ideas with filtering by constraint, package, status, and more.",
 };
 
 export default async function IdeasPage() {

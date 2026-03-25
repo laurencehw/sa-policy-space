@@ -20,15 +20,13 @@ A deployed web application tracking 132 South African policy reform ideas extrac
 
 | Metric | Value |
 |--------|-------|
-| Policy ideas | 132 |
-| Committee meetings indexed | 1,061 |
-| Source documents | 3,318 |
-| Binding constraints covered | 18 distinct types |
+| Policy ideas | 177 |
+| Parliamentary committees covered | 19 |
+| Committee meetings indexed | 5,000+ |
+| Binding constraints covered | 18+ distinct types (all populated) |
 | Reform packages | 5 |
-| Dependency edges (graph) | ~400 |
-| Ideas with full descriptions | Most enriched (multiple batches applied) |
-| Implementation plans | Populated (multiple batches applied) |
-| Stakeholders mapped | 38 (+ 256 idea-level stances) |
+| Dependency graph | 162 nodes, 228 edges |
+| Stakeholders mapped | 38 (+ 458 idea-level stances) |
 | International comparisons | 59 peer country cases |
 | Economic indicators | 16 time-series (GDP, unemployment, Gini, etc.) |
 | Textbook chapters linked | 15 (with GitBook URLs) |

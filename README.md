@@ -6,21 +6,21 @@ A research database of 132 South African policy reform ideas extracted from parl
 
 ## What this is
 
-South Africa's economy has grown at under 2% per year for more than a decade — not for want of policy ideas, but because of chronic implementation failure. This project surfaces, organises, and analyses reform proposals from 1,061 parliamentary committee meetings sourced via the [Parliamentary Monitoring Group](https://pmg.org.za) (PMG) API.
+South Africa's economy has grown at under 2% per year for more than a decade — not for want of policy ideas, but because of chronic implementation failure. This project surfaces, organises, and analyses reform proposals from over 5,000 parliamentary committee meetings across 19 committees, sourced via the [Parliamentary Monitoring Group](https://pmg.org.za) (PMG) API.
 
-Ideas are grouped into **5 reform packages** and classified by **18 binding constraint types** following the Hausmann-Rodrik-Velasco growth diagnostics framework. A dependency graph (~400 edges) captures sequencing logic between reforms.
+Ideas are grouped into **5 reform packages** and classified by **18+ binding constraint types** following the Hausmann-Rodrik-Velasco growth diagnostics framework. A dependency graph (228 edges, 162 nodes) captures sequencing logic between reforms.
 
 **Policy ideas are original synthesis, not PMG verbatim text.** Meeting records link back to PMG as the authoritative source.
 
 ## Features
 
-- **132 policy ideas** with descriptions, feasibility ratings, growth impact scores, and fiscal estimates
+- **177 policy ideas** with descriptions, feasibility ratings, growth impact scores, and fiscal estimates
 - **5 reform packages** with theories of change, implementation plans, and dependency diagrams
 - **Economic indicators** — 16 SA time-series (GDP, unemployment, load shedding, Gini, etc.) mapped to binding constraints
 - **Analytics dashboard** — keystone reform scoring (PageRank + betweenness centrality), parliamentary momentum tracking
 - **Interactive dependency graph** — D3 force-directed network with filtering, search, and SVG export
 - **International comparisons** — 59 peer country reform outcomes mapped to SA ideas
-- **Stakeholder mapping** — 38 actors with influence scores, plus idea-level political stance analysis
+- **Stakeholder mapping** — 38 actors with influence scores, plus 458 idea-level political stance assessments
 - **Policy brief generator** — AI-generated briefs tailored to policymakers, researchers, or civil society
 - **Budget alignment analysis** — reform costs vs. current MTBPS allocations
 - **Timeline with indicator overlays** — parliamentary activity overlaid with economic data

@@ -65,7 +65,7 @@ export default function Image() {
             lineHeight: 1.5,
           }}
         >
-          132 policy reform ideas · implementation plans · international comparisons · economic impact analysis
+          177 policy reform ideas · implementation plans · international comparisons · economic impact analysis
         </div>
       </div>
     ),
