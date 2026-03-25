@@ -93,6 +93,7 @@ export default function DependencyGraph() {
 
   const [graphData,      setGraphData]      = useState<GraphData | null>(null)
   const [loading,        setLoading]        = useState(true)
+  const [error,          setError]          = useState<string | null>(null)
   const [activePackages, setActivePackages] = useState(new Set([1, 2, 3, 4, 5]))
   const [activeStatuses, setActiveStatuses] = useState(new Set(ALL_STATUSES))
   const [searchQuery,    setSearchQuery]    = useState('')
@@ -102,12 +103,19 @@ export default function DependencyGraph() {
   // ── Load data ──────────────────────────────────────────────────────────────
   useEffect(() => {
     fetch('/api/dependency-graph')
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`)
+        return r.json()
+      })
       .then((data: GraphData) => {
         setGraphData(data)
         setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch((err) => {
+        console.error('[DependencyGraph] Failed to load:', err)
+        setError('Failed to load dependency graph data.')
+        setLoading(false)
+      })
   }, [])
 
   // ── D3 initialisation (runs once when data arrives) ────────────────────────
@@ -375,8 +383,26 @@ export default function DependencyGraph() {
   // ── Loading state ────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64 text-gray-400 text-sm">
-        Loading dependency graph…
+      <div className="flex flex-col items-center justify-center h-64 gap-3">
+        <div
+          className="w-6 h-6 border-2 border-t-transparent rounded-full animate-spin"
+          style={{ borderColor: '#007A4D40', borderTopColor: '#007A4D' }}
+        />
+        <p className="text-gray-400 text-sm">Loading dependency graph…</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64 gap-2 text-gray-400">
+        <p className="text-sm font-medium text-gray-600">{error}</p>
+        <button
+          onClick={() => { setError(null); setLoading(true); window.location.reload() }}
+          className="text-xs text-sa-green hover:underline"
+        >
+          Try again
+        </button>
       </div>
     )
   }
