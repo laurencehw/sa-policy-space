@@ -168,6 +168,19 @@ export async function getIdeaById(id: number) {
 }
 
 export async function getIdeaBySlug(slug: string) {
+  // Fast path: query by DB slug column if it exists (indexed, O(1))
+  const { data: directMatch, error: directError } = await supabase
+    .from("policy_ideas")
+    .select("id")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (!directError && directMatch) {
+    return await getIdeaById(directMatch.id);
+  }
+
+  // Slow path: fetch all titles and compute slug client-side (fallback when
+  // slug column is absent or slug doesn't match the DB value)
   const { data: rows, error: slugError } = await supabase
     .from("policy_ideas")
     .select("id, title");
@@ -259,12 +272,14 @@ export async function getConstraintSummaries() {
 // ── Implementation plans ───────────────────────────────────────────────────
 
 export async function getImplementationPlan(ideaId: number) {
-  const { data } = await supabase
+  // maybeSingle() avoids PGRST116 error when no plan exists (returns null, not error)
+  const { data, error } = await supabase
     .from("implementation_plans")
     .select("*")
     .eq("idea_id", ideaId)
-    .single();
+    .maybeSingle();
 
+  if (error) console.error("[supabase] getImplementationPlan error:", error);
   if (!data) return null;
 
   // implementation_steps is JSONB in Postgres — already parsed by Supabase client
