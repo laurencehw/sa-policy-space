@@ -78,6 +78,10 @@ export default function RootLayout({
               {/* Tools dropdown — analytical tools */}
               <NavDropdown label="Tools">
                 {/* Featured: new dashboard tools */}
+                <Link href="/indicators" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sa-green flex-shrink-0" />
+                  Economic Indicators
+                </Link>
                 <Link href="/progress" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   <span className="w-1.5 h-1.5 rounded-full bg-sa-gold flex-shrink-0" />
                   Progress Dashboard

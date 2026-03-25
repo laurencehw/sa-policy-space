@@ -1,0 +1,986 @@
+[
+  {
+    "id": "real_gdp_growth",
+    "name": "Real GDP Growth Rate",
+    "source": "Stats SA / SARB",
+    "source_code": "P0441",
+    "unit": "% year-on-year",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space"
+    ],
+    "latest_value": 4.47,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2014",
+        "value": 6.86
+      },
+      {
+        "period": "2015",
+        "value": 6.94
+      },
+      {
+        "period": "2016",
+        "value": 7.66
+      },
+      {
+        "period": "2017",
+        "value": 6.69
+      },
+      {
+        "period": "2018",
+        "value": 5.61
+      },
+      {
+        "period": "2019",
+        "value": 4.89
+      },
+      {
+        "period": "2020",
+        "value": -1.11
+      },
+      {
+        "period": "2021",
+        "value": 11.58
+      },
+      {
+        "period": "2022",
+        "value": 7.41
+      },
+      {
+        "period": "2023",
+        "value": 5.57
+      },
+      {
+        "period": "2024",
+        "value": 4.47
+      }
+    ]
+  },
+  {
+    "id": "gfcf_gdp",
+    "name": "Gross Fixed Capital Formation (% of GDP)",
+    "source": "SARB / World Bank",
+    "source_code": "WDI NE.GDI.FTOT.ZS",
+    "unit": "% of GDP",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space",
+      "government_capacity"
+    ],
+    "latest_value": 14.93,
+    "latest_period": "2023",
+    "sparkline": [
+      {
+        "period": "2012",
+        "value": 17.93
+      },
+      {
+        "period": "2013",
+        "value": 18.58
+      },
+      {
+        "period": "2014",
+        "value": 18.3
+      },
+      {
+        "period": "2015",
+        "value": 18.01
+      },
+      {
+        "period": "2016",
+        "value": 17.44
+      },
+      {
+        "period": "2017",
+        "value": 16.4
+      },
+      {
+        "period": "2018",
+        "value": 15.85
+      },
+      {
+        "period": "2019",
+        "value": 15.35
+      },
+      {
+        "period": "2020",
+        "value": 13.72
+      },
+      {
+        "period": "2021",
+        "value": 13.2
+      },
+      {
+        "period": "2022",
+        "value": 14.1
+      },
+      {
+        "period": "2023",
+        "value": 14.93
+      }
+    ]
+  },
+  {
+    "id": "debt_gdp",
+    "name": "Government Debt-to-GDP Ratio",
+    "source": "National Treasury / IMF",
+    "source_code": "MTBPS",
+    "unit": "% of GDP",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space"
+    ],
+    "latest_value": 76.36,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2013",
+        "value": 40.36
+      },
+      {
+        "period": "2014",
+        "value": 43.25
+      },
+      {
+        "period": "2015",
+        "value": 45.2
+      },
+      {
+        "period": "2016",
+        "value": 47.13
+      },
+      {
+        "period": "2017",
+        "value": 48.59
+      },
+      {
+        "period": "2018",
+        "value": 51.54
+      },
+      {
+        "period": "2019",
+        "value": 56.1
+      },
+      {
+        "period": "2020",
+        "value": 68.93
+      },
+      {
+        "period": "2021",
+        "value": 68.67
+      },
+      {
+        "period": "2022",
+        "value": 70.83
+      },
+      {
+        "period": "2023",
+        "value": 73.36
+      },
+      {
+        "period": "2024",
+        "value": 76.36
+      }
+    ]
+  },
+  {
+    "id": "repo_rate",
+    "name": "SARB Repo Rate",
+    "source": "South African Reserve Bank",
+    "source_code": "SARB KBP1403M",
+    "unit": "%",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space",
+      "financial_access"
+    ],
+    "latest_value": 7.75,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2013",
+        "value": 5.0
+      },
+      {
+        "period": "2014",
+        "value": 5.75
+      },
+      {
+        "period": "2015",
+        "value": 6.25
+      },
+      {
+        "period": "2016",
+        "value": 7.0
+      },
+      {
+        "period": "2017",
+        "value": 6.75
+      },
+      {
+        "period": "2018",
+        "value": 6.75
+      },
+      {
+        "period": "2019",
+        "value": 6.5
+      },
+      {
+        "period": "2020",
+        "value": 3.5
+      },
+      {
+        "period": "2021",
+        "value": 3.75
+      },
+      {
+        "period": "2022",
+        "value": 7.0
+      },
+      {
+        "period": "2023",
+        "value": 8.25
+      },
+      {
+        "period": "2024",
+        "value": 7.75
+      }
+    ]
+  },
+  {
+    "id": "twin_deficits",
+    "name": "Fiscal Balance",
+    "source": "National Treasury / SARB",
+    "source_code": "Budget Review",
+    "unit": "% of GDP",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space"
+    ],
+    "latest_value": -6.05,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2013",
+        "value": -3.9
+      },
+      {
+        "period": "2014",
+        "value": -3.93
+      },
+      {
+        "period": "2015",
+        "value": -4.37
+      },
+      {
+        "period": "2016",
+        "value": -3.73
+      },
+      {
+        "period": "2017",
+        "value": -4.02
+      },
+      {
+        "period": "2018",
+        "value": -3.73
+      },
+      {
+        "period": "2019",
+        "value": -5.07
+      },
+      {
+        "period": "2020",
+        "value": -9.62
+      },
+      {
+        "period": "2021",
+        "value": -5.52
+      },
+      {
+        "period": "2022",
+        "value": -4.26
+      },
+      {
+        "period": "2023",
+        "value": -5.45
+      },
+      {
+        "period": "2024",
+        "value": -6.05
+      }
+    ]
+  },
+  {
+    "id": "eskom_eaf",
+    "name": "Eskom Energy Availability Factor",
+    "source": "Eskom Integrated Reports",
+    "source_code": "Eskom IR",
+    "unit": "%",
+    "frequency": "annual",
+    "binding_constraints": [
+      "energy"
+    ],
+    "latest_value": 64.0,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2013",
+        "value": 82.0
+      },
+      {
+        "period": "2014",
+        "value": 79.0
+      },
+      {
+        "period": "2015",
+        "value": 77.0
+      },
+      {
+        "period": "2016",
+        "value": 78.0
+      },
+      {
+        "period": "2017",
+        "value": 75.0
+      },
+      {
+        "period": "2018",
+        "value": 72.0
+      },
+      {
+        "period": "2019",
+        "value": 67.0
+      },
+      {
+        "period": "2020",
+        "value": 65.0
+      },
+      {
+        "period": "2021",
+        "value": 62.0
+      },
+      {
+        "period": "2022",
+        "value": 58.0
+      },
+      {
+        "period": "2023",
+        "value": 53.0
+      },
+      {
+        "period": "2024",
+        "value": 64.0
+      }
+    ]
+  },
+  {
+    "id": "load_shedding",
+    "name": "Load Shedding (Electricity Shed)",
+    "source": "CSIR / Eskom",
+    "source_code": "CSIR Energy",
+    "unit": "GWh",
+    "frequency": "annual",
+    "binding_constraints": [
+      "energy"
+    ],
+    "latest_value": 4100.0,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2013",
+        "value": 0.0
+      },
+      {
+        "period": "2014",
+        "value": 203.0
+      },
+      {
+        "period": "2015",
+        "value": 1325.0
+      },
+      {
+        "period": "2016",
+        "value": 0.0
+      },
+      {
+        "period": "2017",
+        "value": 0.0
+      },
+      {
+        "period": "2018",
+        "value": 192.0
+      },
+      {
+        "period": "2019",
+        "value": 1352.0
+      },
+      {
+        "period": "2020",
+        "value": 1798.0
+      },
+      {
+        "period": "2021",
+        "value": 2521.0
+      },
+      {
+        "period": "2022",
+        "value": 11529.0
+      },
+      {
+        "period": "2023",
+        "value": 16000.0
+      },
+      {
+        "period": "2024",
+        "value": 4100.0
+      }
+    ]
+  },
+  {
+    "id": "unemployment_rate",
+    "name": "Unemployment Rate (Strict Definition)",
+    "source": "Stats SA QLFS",
+    "source_code": "P0211",
+    "unit": "%",
+    "frequency": "quarterly",
+    "binding_constraints": [
+      "labour_market"
+    ],
+    "latest_value": 31.9,
+    "latest_period": "2024-Q4",
+    "sparkline": [
+      {
+        "period": "2022-Q1",
+        "value": 34.5
+      },
+      {
+        "period": "2022-Q2",
+        "value": 33.9
+      },
+      {
+        "period": "2022-Q3",
+        "value": 32.9
+      },
+      {
+        "period": "2022-Q4",
+        "value": 32.7
+      },
+      {
+        "period": "2023-Q1",
+        "value": 32.9
+      },
+      {
+        "period": "2023-Q2",
+        "value": 32.6
+      },
+      {
+        "period": "2023-Q3",
+        "value": 31.9
+      },
+      {
+        "period": "2023-Q4",
+        "value": 32.1
+      },
+      {
+        "period": "2024-Q1",
+        "value": 32.9
+      },
+      {
+        "period": "2024-Q2",
+        "value": 33.5
+      },
+      {
+        "period": "2024-Q3",
+        "value": 32.1
+      },
+      {
+        "period": "2024-Q4",
+        "value": 31.9
+      }
+    ]
+  },
+  {
+    "id": "neet_rate",
+    "name": "NEET Rate (Not in Employment, Education or Training)",
+    "source": "Stats SA QLFS / DE-LMIS",
+    "source_code": "P0211",
+    "unit": "%",
+    "frequency": "quarterly",
+    "binding_constraints": [
+      "labour_market",
+      "skills_education"
+    ],
+    "latest_value": 33.5,
+    "latest_period": "2024-Q4",
+    "sparkline": [
+      {
+        "period": "2022-Q1",
+        "value": 37.0
+      },
+      {
+        "period": "2022-Q2",
+        "value": 35.7
+      },
+      {
+        "period": "2022-Q3",
+        "value": 34.5
+      },
+      {
+        "period": "2022-Q4",
+        "value": 33.6
+      },
+      {
+        "period": "2023-Q1",
+        "value": 36.1
+      },
+      {
+        "period": "2023-Q2",
+        "value": 34.2
+      },
+      {
+        "period": "2023-Q3",
+        "value": 32.7
+      },
+      {
+        "period": "2023-Q4",
+        "value": 33.0
+      },
+      {
+        "period": "2024-Q1",
+        "value": 35.5
+      },
+      {
+        "period": "2024-Q2",
+        "value": 35.2
+      },
+      {
+        "period": "2024-Q3",
+        "value": 34.2
+      },
+      {
+        "period": "2024-Q4",
+        "value": 33.5
+      }
+    ]
+  },
+  {
+    "id": "gini_coefficient",
+    "name": "Gini Coefficient",
+    "source": "World Bank / Stats SA",
+    "source_code": "WDI SI.POV.GINI",
+    "unit": "index (0–100)",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space"
+    ],
+    "latest_value": 63.0,
+    "latest_period": "2022",
+    "sparkline": [
+      {
+        "period": "1996",
+        "value": 60.2
+      },
+      {
+        "period": "2000",
+        "value": 57.8
+      },
+      {
+        "period": "2005",
+        "value": 64.8
+      },
+      {
+        "period": "2006",
+        "value": 65.0
+      },
+      {
+        "period": "2008",
+        "value": 63.0
+      },
+      {
+        "period": "2010",
+        "value": 63.4
+      },
+      {
+        "period": "2011",
+        "value": 63.3
+      },
+      {
+        "period": "2014",
+        "value": 63.0
+      },
+      {
+        "period": "2015",
+        "value": 63.0
+      },
+      {
+        "period": "2018",
+        "value": 63.0
+      },
+      {
+        "period": "2019",
+        "value": 63.0
+      },
+      {
+        "period": "2022",
+        "value": 63.0
+      }
+    ]
+  },
+  {
+    "id": "poverty_headcount",
+    "name": "Poverty Headcount (Upper-Bound Poverty Line)",
+    "source": "Stats SA",
+    "source_code": "P0310",
+    "unit": "% of population",
+    "frequency": "annual",
+    "binding_constraints": [
+      "fiscal_space"
+    ],
+    "latest_value": 55.0,
+    "latest_period": "2022",
+    "sparkline": [
+      {
+        "period": "2006",
+        "value": 66.6
+      },
+      {
+        "period": "2009",
+        "value": 55.0
+      },
+      {
+        "period": "2011",
+        "value": 53.2
+      },
+      {
+        "period": "2015",
+        "value": 55.5
+      },
+      {
+        "period": "2019",
+        "value": 49.0
+      },
+      {
+        "period": "2022",
+        "value": 55.0
+      }
+    ]
+  },
+  {
+    "id": "manufacturing_index",
+    "name": "Manufacturing Production Index",
+    "source": "Stats SA",
+    "source_code": "P3041.2",
+    "unit": "index (2015=100)",
+    "frequency": "monthly",
+    "binding_constraints": [
+      "trade_openness",
+      "regulatory_burden"
+    ],
+    "latest_value": 90.6,
+    "latest_period": "2025",
+    "sparkline": [
+      {
+        "period": "2014",
+        "value": 100.1
+      },
+      {
+        "period": "2015",
+        "value": 100.1
+      },
+      {
+        "period": "2016",
+        "value": 100.8
+      },
+      {
+        "period": "2017",
+        "value": 100.1
+      },
+      {
+        "period": "2018",
+        "value": 101.1
+      },
+      {
+        "period": "2019",
+        "value": 100.0
+      },
+      {
+        "period": "2020",
+        "value": 87.7
+      },
+      {
+        "period": "2021",
+        "value": 93.1
+      },
+      {
+        "period": "2022",
+        "value": 93.1
+      },
+      {
+        "period": "2023",
+        "value": 93.7
+      },
+      {
+        "period": "2024",
+        "value": 93.3
+      },
+      {
+        "period": "2025",
+        "value": 90.6
+      }
+    ]
+  },
+  {
+    "id": "tariff_rate",
+    "name": "Average Applied Tariff Rate",
+    "source": "World Bank / WTO",
+    "source_code": "WITS",
+    "unit": "%",
+    "frequency": "annual",
+    "binding_constraints": [
+      "trade_openness"
+    ],
+    "latest_value": 6.8,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2005",
+        "value": 7.5
+      },
+      {
+        "period": "2010",
+        "value": 7.6
+      },
+      {
+        "period": "2012",
+        "value": 7.5
+      },
+      {
+        "period": "2014",
+        "value": 7.4
+      },
+      {
+        "period": "2016",
+        "value": 7.3
+      },
+      {
+        "period": "2018",
+        "value": 7.2
+      },
+      {
+        "period": "2019",
+        "value": 7.2
+      },
+      {
+        "period": "2020",
+        "value": 7.1
+      },
+      {
+        "period": "2021",
+        "value": 7.1
+      },
+      {
+        "period": "2022",
+        "value": 7.0
+      },
+      {
+        "period": "2023",
+        "value": 6.9
+      },
+      {
+        "period": "2024",
+        "value": 6.8
+      }
+    ]
+  },
+  {
+    "id": "transnet_freight",
+    "name": "Transnet Freight Volume",
+    "source": "Transnet Annual Reports",
+    "source_code": "Transnet IR",
+    "unit": "million tonnes",
+    "frequency": "annual",
+    "binding_constraints": [
+      "transport_logistics"
+    ],
+    "latest_value": 170.0,
+    "latest_period": "2024",
+    "sparkline": [
+      {
+        "period": "2013",
+        "value": 210.0
+      },
+      {
+        "period": "2014",
+        "value": 215.0
+      },
+      {
+        "period": "2015",
+        "value": 227.0
+      },
+      {
+        "period": "2016",
+        "value": 223.0
+      },
+      {
+        "period": "2017",
+        "value": 226.0
+      },
+      {
+        "period": "2018",
+        "value": 226.0
+      },
+      {
+        "period": "2019",
+        "value": 210.0
+      },
+      {
+        "period": "2020",
+        "value": 180.0
+      },
+      {
+        "period": "2021",
+        "value": 170.0
+      },
+      {
+        "period": "2022",
+        "value": 165.0
+      },
+      {
+        "period": "2023",
+        "value": 152.0
+      },
+      {
+        "period": "2024",
+        "value": 170.0
+      }
+    ]
+  },
+  {
+    "id": "life_expectancy",
+    "name": "Life Expectancy at Birth",
+    "source": "World Bank / Stats SA",
+    "source_code": "WDI SP.DYN.LE00.IN",
+    "unit": "years",
+    "frequency": "annual",
+    "binding_constraints": [
+      "health_systems"
+    ],
+    "latest_value": 66.1,
+    "latest_period": "2023",
+    "sparkline": [
+      {
+        "period": "2012",
+        "value": 61.7
+      },
+      {
+        "period": "2013",
+        "value": 62.4
+      },
+      {
+        "period": "2014",
+        "value": 63.2
+      },
+      {
+        "period": "2015",
+        "value": 64.1
+      },
+      {
+        "period": "2016",
+        "value": 64.7
+      },
+      {
+        "period": "2017",
+        "value": 65.4
+      },
+      {
+        "period": "2018",
+        "value": 65.7
+      },
+      {
+        "period": "2019",
+        "value": 66.1
+      },
+      {
+        "period": "2020",
+        "value": 65.2
+      },
+      {
+        "period": "2021",
+        "value": 62.0
+      },
+      {
+        "period": "2022",
+        "value": 65.5
+      },
+      {
+        "period": "2023",
+        "value": 66.1
+      }
+    ]
+  },
+  {
+    "id": "tertiary_enrolment",
+    "name": "Tertiary Education Enrolment",
+    "source": "DHET / Stats SA",
+    "source_code": "P9103",
+    "unit": "thousands",
+    "frequency": "annual",
+    "binding_constraints": [
+      "skills_education"
+    ],
+    "latest_value": 1280.0,
+    "latest_period": "2023",
+    "sparkline": [
+      {
+        "period": "2012",
+        "value": 1050.0
+      },
+      {
+        "period": "2013",
+        "value": 1080.0
+      },
+      {
+        "period": "2014",
+        "value": 1100.0
+      },
+      {
+        "period": "2015",
+        "value": 1110.0
+      },
+      {
+        "period": "2016",
+        "value": 1130.0
+      },
+      {
+        "period": "2017",
+        "value": 1150.0
+      },
+      {
+        "period": "2018",
+        "value": 1180.0
+      },
+      {
+        "period": "2019",
+        "value": 1200.0
+      },
+      {
+        "period": "2020",
+        "value": 1210.0
+      },
+      {
+        "period": "2021",
+        "value": 1230.0
+      },
+      {
+        "period": "2022",
+        "value": 1250.0
+      },
+      {
+        "period": "2023",
+        "value": 1280.0
+      }
+    ]
+  }
+]
