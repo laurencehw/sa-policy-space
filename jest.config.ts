@@ -11,6 +11,7 @@ const config: Config = {
           moduleResolution: "node",
           esModuleInterop: true,
           allowSyntheticDefaultImports: true,
+          jsx: "react-jsx",
         },
         // Skip type-checking for speed — tests are a safety net, not a type checker
         diagnostics: false,
@@ -20,7 +21,7 @@ const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },
-  testMatch: ["**/__tests__/**/*.test.ts"],
+  testMatch: ["**/__tests__/**/*.test.ts", "**/__tests__/**/*.test.tsx"],
   setupFiles: ["<rootDir>/__tests__/setup.ts"],
   // Verbose output shows each test name
   verbose: true,

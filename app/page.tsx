@@ -218,7 +218,7 @@ export default async function HomePage() {
             ].map((s) => (
               <div
                 key={s.label}
-                className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-lg px-4 py-3 text-center min-w-[90px]"
+                className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-3 text-center flex-1"
               >
                 <div className="text-2xl font-bold text-white">{s.value}</div>
                 <div className="text-white/60 text-xs mt-0.5">{s.label}</div>

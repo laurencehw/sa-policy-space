@@ -499,20 +499,20 @@ export default function DependencyGraph() {
       </div>
 
       {/* ── Graph + side panel ───────────────────────────────────────────── */}
-      <div className="flex gap-4 items-start">
+      <div className="flex flex-col md:flex-row gap-4 items-start">
 
         {/* SVG */}
         <div
           ref={containerRef}
-          className="flex-1 border border-gray-200 rounded-xl overflow-hidden bg-white relative"
-          style={{ minHeight: 600 }}
+          className="flex-1 w-full border border-gray-200 rounded-xl overflow-hidden bg-white relative"
+          style={{ minHeight: 'min(600px, 70vh)' }}
         >
           <svg ref={svgRef} className="w-full block" />
         </div>
 
         {/* Selected node panel */}
         {selectedNode && (
-          <div className="w-72 flex-shrink-0 border border-gray-200 rounded-xl bg-white p-4 space-y-3 self-start">
+          <div className="w-full md:w-72 flex-shrink-0 border border-gray-200 rounded-xl bg-white p-4 space-y-3 self-start">
             <div className="flex items-start justify-between gap-2">
               <h3 className="font-semibold text-gray-900 text-sm leading-snug">
                 {selectedNode.title}

@@ -204,7 +204,7 @@ export default function IndicatorsClient({
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {indicators.slice(0, 8).map((ind) => {
           const color = getChartColor(ind.binding_constraints);
           return (
