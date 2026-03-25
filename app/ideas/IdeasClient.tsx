@@ -13,7 +13,8 @@ import {
 } from "@/lib/supabase";
 import { slugify } from "@/lib/utils";
 
-const ALL_CONSTRAINTS = Object.keys(CONSTRAINT_LABELS) as BindingConstraint[];
+// Derived from actual data in the component below, not from the type system
+// (avoids showing duplicate/empty constraint labels in the filter)
 const ALL_STATUSES: PolicyStatus[] = [
   "proposed", "debated", "drafted", "under_review", "stalled",
   "partially_implemented", "implemented", "abandoned",
@@ -155,6 +156,18 @@ function IdeasContent({ initialIdeas }: { initialIdeas: PolicyIdea[] }) {
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   }, [allIdeas]);
 
+  // Derive constraints from actual data (not from type system)
+  const dataConstraints = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const idea of allIdeas) {
+      const c = idea.binding_constraint;
+      if (c) counts.set(c, (counts.get(c) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+      .map(([key, count]) => ({ key: key as BindingConstraint, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [allIdeas]);
+
   // Reset pagination when filters change
   const filterKey = `${search}|${filterConstraint}|${filterStatus}|${filterPackage}|${filterHorizon}|${filterCommittee}|${filterMinFeasibility}|${filterMinGrowth}|${sortBy}`;
   const prevFilterKey = useRef(filterKey);
@@ -251,8 +264,8 @@ function IdeasContent({ initialIdeas }: { initialIdeas: PolicyIdea[] }) {
                      focus:outline-none focus:ring-2 focus:ring-sa-green"
         >
           <option value="">All constraints</option>
-          {ALL_CONSTRAINTS.map((c) => (
-            <option key={c} value={c}>{CONSTRAINT_LABELS[c]}</option>
+          {dataConstraints.map(({ key, count }) => (
+            <option key={key} value={key}>{CONSTRAINT_LABELS[key] ?? key.replace(/_/g, " ")} ({count})</option>
           ))}
         </select>
         <select

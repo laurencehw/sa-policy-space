@@ -1790,5 +1790,1419 @@
     "stance": "support",
     "note": "Self-generation reform was a flagship Operation Vulindlela achievement, removing the 100MW licensing threshold.",
     "is_human_reviewed": false
+  },
+  {
+    "idea_id": 140,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: National Minimum Wage Review and Adjustment Mechanism",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 140,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: National Minimum Wage Review and Adjustment Mechanism",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 140,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: National Minimum Wage Review and Adjustment Mechanism",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 140,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: National Minimum Wage Review and Adjustment Mechanism",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 140,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: National Minimum Wage Review and Adjustment Mechanism",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 141,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: CCMA Capacity and Case Resolution Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 141,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: CCMA Capacity and Case Resolution Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 141,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: CCMA Capacity and Case Resolution Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 141,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: CCMA Capacity and Case Resolution Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 141,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: CCMA Capacity and Case Resolution Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 142,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Employment Tax Incentive (ETI) Extension and Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 142,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Employment Tax Incentive (ETI) Extension and Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 142,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Employment Tax Incentive (ETI) Extension and Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 142,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Employment Tax Incentive (ETI) Extension and Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 142,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Employment Tax Incentive (ETI) Extension and Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 143,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 143,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 143,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 143,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 143,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 144,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Compensation Fund Turnaround and Claims Backlog",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 144,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Compensation Fund Turnaround and Claims Backlog",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 144,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Compensation Fund Turnaround and Claims Backlog",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 144,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Compensation Fund Turnaround and Claims Backlog",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 144,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Compensation Fund Turnaround and Claims Backlog",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 145,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Labour Activation Programme for Long-Term Unemployed",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 145,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Labour Activation Programme for Long-Term Unemployed",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 145,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Labour Activation Programme for Long-Term Unemployed",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 145,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Labour Activation Programme for Long-Term Unemployed",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 145,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Labour Activation Programme for Long-Term Unemployed",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 146,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Section 189 Retrenchment Process Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 146,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Section 189 Retrenchment Process Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 146,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Section 189 Retrenchment Process Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 146,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Section 189 Retrenchment Process Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 146,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Section 189 Retrenchment Process Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 147,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Productivity SA and Workplace Competitiveness Support",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 147,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Productivity SA and Workplace Competitiveness Support",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 147,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Productivity SA and Workplace Competitiveness Support",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 147,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Productivity SA and Workplace Competitiveness Support",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 147,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Productivity SA and Workplace Competitiveness Support",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 148,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: Informal Economy Integration and Worker Protection",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 148,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: Informal Economy Integration and Worker Protection",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 148,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: Informal Economy Integration and Worker Protection",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 148,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: Informal Economy Integration and Worker Protection",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 148,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: Informal Economy Integration and Worker Protection",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 149,
+    "stakeholder_id": "cosatu",
+    "stance": "conditional",
+    "note": "Supports worker protection elements but opposes flexibility measures that weaken LRA protections — re: NEDLAC Social Compact on Employment and Growth",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 149,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Supports labour market reforms that reduce hiring costs and regulatory burden on employers — re: NEDLAC Social Compact on Employment and Growth",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 149,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Operation Vulindlela has prioritised employment-focused structural reforms — re: NEDLAC Social Compact on Employment and Growth",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 149,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports fiscally neutral employment reforms; cautious about expanding UIF/Compensation Fund liabilities — re: NEDLAC Social Compact on Employment and Growth",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 149,
+    "stakeholder_id": "saftu",
+    "stance": "oppose",
+    "note": "Opposes any weakening of collective bargaining rights or labour protections — re: NEDLAC Social Compact on Employment and Growth",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 150,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: SAPS Detective Service Capacity and Case Clearance",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 150,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: SAPS Detective Service Capacity and Case Clearance",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 150,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: SAPS Detective Service Capacity and Case Clearance",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 150,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: SAPS Detective Service Capacity and Case Clearance",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 151,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Anti-Extortion and Construction Mafia Task Force",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 151,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Anti-Extortion and Construction Mafia Task Force",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 151,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Anti-Extortion and Construction Mafia Task Force",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 151,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Anti-Extortion and Construction Mafia Task Force",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 152,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Gender-Based Violence Prevention and Response Strategy",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 152,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Gender-Based Violence Prevention and Response Strategy",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 152,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Gender-Based Violence Prevention and Response Strategy",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 152,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Gender-Based Violence Prevention and Response Strategy",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 153,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: IPID Independence and Police Accountability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 153,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: IPID Independence and Police Accountability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 153,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: IPID Independence and Police Accountability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 153,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: IPID Independence and Police Accountability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 154,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Private Security Industry Regulation (PSIRA) Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 154,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Private Security Industry Regulation (PSIRA) Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 154,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Private Security Industry Regulation (PSIRA) Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 154,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Private Security Industry Regulation (PSIRA) Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 155,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Illegal Mining and Resource Crime Combatting",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 155,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Illegal Mining and Resource Crime Combatting",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 155,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Illegal Mining and Resource Crime Combatting",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 155,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Illegal Mining and Resource Crime Combatting",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 156,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Community Policing Forum Revitalisation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 156,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Community Policing Forum Revitalisation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 156,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Community Policing Forum Revitalisation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 156,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Community Policing Forum Revitalisation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 157,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: SANDF Deployment in Support of SAPS Border Security",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 157,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: SANDF Deployment in Support of SAPS Border Security",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 157,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: SANDF Deployment in Support of SAPS Border Security",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 157,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: SANDF Deployment in Support of SAPS Border Security",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 158,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Zondo Commission follow-through and NPA strengthening are GNU commitments — re: NPA Prosecution Capacity and Independence",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 158,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Asset recovery from corruption directly benefits the fiscus — re: NPA Prosecution Capacity and Independence",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 158,
+    "stakeholder_id": "outa",
+    "stance": "support",
+    "note": "Civil society accountability organisations strongly support prosecution capacity building — re: NPA Prosecution Capacity and Independence",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 158,
+    "stakeholder_id": "parliament-pcoe",
+    "stance": "support",
+    "note": "Parliamentary oversight committee supports judicial efficiency reforms — re: NPA Prosecution Capacity and Independence",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 159,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Court Case Backlog and Judicial Efficiency",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 159,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Court Case Backlog and Judicial Efficiency",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 159,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Court Case Backlog and Judicial Efficiency",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 159,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Court Case Backlog and Judicial Efficiency",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 160,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Zondo Commission follow-through and NPA strengthening are GNU commitments — re: SIU Special Tribunal and Asset Recovery Acceleration",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 160,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Asset recovery from corruption directly benefits the fiscus — re: SIU Special Tribunal and Asset Recovery Acceleration",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 160,
+    "stakeholder_id": "outa",
+    "stance": "support",
+    "note": "Civil society accountability organisations strongly support prosecution capacity building — re: SIU Special Tribunal and Asset Recovery Acceleration",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 160,
+    "stakeholder_id": "parliament-pcoe",
+    "stance": "support",
+    "note": "Parliamentary oversight committee supports judicial efficiency reforms — re: SIU Special Tribunal and Asset Recovery Acceleration",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 161,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Legal Aid South Africa Capacity and Access to Justice",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 161,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Legal Aid South Africa Capacity and Access to Justice",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 161,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Legal Aid South Africa Capacity and Access to Justice",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 161,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Legal Aid South Africa Capacity and Access to Justice",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 162,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Zondo Commission follow-through and NPA strengthening are GNU commitments — re: TRC Recommendations Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 162,
+    "stakeholder_id": "national-treasury",
+    "stance": "support",
+    "note": "Asset recovery from corruption directly benefits the fiscus — re: TRC Recommendations Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 162,
+    "stakeholder_id": "outa",
+    "stance": "support",
+    "note": "Civil society accountability organisations strongly support prosecution capacity building — re: TRC Recommendations Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 162,
+    "stakeholder_id": "parliament-pcoe",
+    "stance": "support",
+    "note": "Parliamentary oversight committee supports judicial efficiency reforms — re: TRC Recommendations Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 163,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Anti-crime and anti-extortion measures are central to the investment climate agenda — re: Cybercrime and Digital Evidence Legislation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 163,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Business crime, extortion, and logistics theft are top concerns for private sector investment — re: Cybercrime and Digital Evidence Legislation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 163,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports in principle but concerned about fiscal cost of SAPS expansion — re: Cybercrime and Digital Evidence Legislation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 163,
+    "stakeholder_id": "blsa",
+    "stance": "support",
+    "note": "Organised crime and extortion directly threaten business operations and infrastructure projects — re: Cybercrime and Digital Evidence Legislation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 164,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Bulk Water Infrastructure Investment Programme",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 164,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Bulk Water Infrastructure Investment Programme",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 164,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Bulk Water Infrastructure Investment Programme",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 164,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Bulk Water Infrastructure Investment Programme",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 164,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Bulk Water Infrastructure Investment Programme",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 165,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Municipal Water Loss Reduction (Non-Revenue Water)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 165,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Municipal Water Loss Reduction (Non-Revenue Water)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 165,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Municipal Water Loss Reduction (Non-Revenue Water)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 165,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Municipal Water Loss Reduction (Non-Revenue Water)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 165,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Municipal Water Loss Reduction (Non-Revenue Water)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 166,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Water Services Amendment Bill Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 166,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Water Services Amendment Bill Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 166,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Water Services Amendment Bill Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 166,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Water Services Amendment Bill Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 166,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Water Services Amendment Bill Implementation",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 167,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Water Board Governance and Financial Sustainability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 167,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Water Board Governance and Financial Sustainability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 167,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Water Board Governance and Financial Sustainability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 167,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Water Board Governance and Financial Sustainability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 167,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Water Board Governance and Financial Sustainability",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 168,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Water Use Licensing and Allocation Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 168,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Water Use Licensing and Allocation Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 168,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Water Use Licensing and Allocation Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 168,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Water Use Licensing and Allocation Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 168,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Water Use Licensing and Allocation Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 169,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Catchment Management Agency Establishment",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 169,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Catchment Management Agency Establishment",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 169,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Catchment Management Agency Establishment",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 169,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Catchment Management Agency Establishment",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 169,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Catchment Management Agency Establishment",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 170,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Johannesburg Water and Municipal Water Utility Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 170,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Johannesburg Water and Municipal Water Utility Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 170,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Johannesburg Water and Municipal Water Utility Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 170,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Johannesburg Water and Municipal Water Utility Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 170,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Johannesburg Water and Municipal Water Utility Reform",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 171,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "Water security is a cross-cutting infrastructure priority — re: Sanitation Infrastructure and Bucket Eradication",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 171,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports infrastructure investment but requires credible cost-benefit and municipal co-funding — re: Sanitation Infrastructure and Bucket Eradication",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 171,
+    "stakeholder_id": "agrisa",
+    "stance": "support",
+    "note": "Agricultural sector critically dependent on water allocation and bulk infrastructure — re: Sanitation Infrastructure and Bucket Eradication",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 171,
+    "stakeholder_id": "busa",
+    "stance": "support",
+    "note": "Industrial water supply reliability affects manufacturing and mining operations — re: Sanitation Infrastructure and Bucket Eradication",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 171,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "DPL and infrastructure lending frameworks support water sector reform — re: Sanitation Infrastructure and Bucket Eradication",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 172,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: Just Energy Transition Implementation Plan (JET-IP)",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 173,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: Carbon Tax Rate Escalation and Revenue Recycling",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 174,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: Climate Change Adaptation Infrastructure",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 175,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: SANParks and Protected Area Expansion",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 176,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: Marine Fisheries Reform and Small-Scale Fisher Rights",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 177,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: Green Hydrogen and Critical Minerals Regulatory Framework",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "presidency",
+    "stance": "support",
+    "note": "JET-IP and climate commitments are central to international engagement — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "national-treasury",
+    "stance": "conditional",
+    "note": "Supports carbon tax escalation if revenue is recycled productively; cautious about JET-IP fiscal exposure — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "num",
+    "stance": "oppose",
+    "note": "Opposes rapid coal decommissioning without binding just transition commitments for coal workers — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "eskom",
+    "stance": "conditional",
+    "note": "Supports managed transition but needs clarity on decommissioning timelines and funding — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "busa",
+    "stance": "conditional",
+    "note": "Supports transition framework but needs regulatory certainty for green investment — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "renewable-ipps",
+    "stance": "support",
+    "note": "Renewable energy sector supports clear transition timelines and carbon pricing — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "world-bank",
+    "stance": "support",
+    "note": "Climate finance and JET partnership funding contingent on credible implementation — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
+  },
+  {
+    "idea_id": 178,
+    "stakeholder_id": "eu",
+    "stance": "support",
+    "note": "EU JETP funding committed to supporting South African just transition — re: Forestry Sector Revitalisation and Timber Value Chain",
+    "is_human_reviewed": false
   }
 ]

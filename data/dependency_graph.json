@@ -4,7 +4,7 @@
   "graph": {},
   "nodes": [
     {
-      "title": "Copyright Amendment Bill — Fair Use and Digital Access Reform",
+      "title": "Copyright Amendment Bill â€” Fair Use and Digital Access Reform",
       "source_committee": "Trade, Industry and Competition",
       "theme": "Intellectual property",
       "binding_constraint": "regulatory_burden",
@@ -56,7 +56,7 @@
       "id": 4
     },
     {
-      "title": "EV White Paper — Managed Automotive Transition",
+      "title": "EV White Paper â€” Managed Automotive Transition",
       "source_committee": "Trade, Industry and Competition",
       "theme": "Manufacturing/sector support",
       "binding_constraint": "energy",
@@ -264,7 +264,7 @@
       "id": 20
     },
     {
-      "title": "FATF Greylisting Exit — AML/CFT Legislative Package",
+      "title": "FATF Greylisting Exit â€” AML/CFT Legislative Package",
       "source_committee": "Finance Standing Committee",
       "theme": "Financial regulation / governance",
       "binding_constraint": "corruption_governance",
@@ -277,7 +277,7 @@
       "id": 21
     },
     {
-      "title": "Two-Pot Pension System — Retirement Savings Architecture Reform",
+      "title": "Two-Pot Pension System â€” Retirement Savings Architecture Reform",
       "source_committee": "Finance Standing Committee",
       "theme": "Pensions / financial security",
       "binding_constraint": "financial_access",
@@ -329,7 +329,7 @@
       "id": 25
     },
     {
-      "title": "Inclusive Growth Spending Review — Reprioritising Social Grants vs. Employment",
+      "title": "Inclusive Growth Spending Review â€” Reprioritising Social Grants vs. Employment",
       "source_committee": "Finance Standing Committee",
       "theme": "Fiscal policy / social expenditure",
       "binding_constraint": "government_capacity",
@@ -368,7 +368,7 @@
       "id": 28
     },
     {
-      "title": "AML/CFT Implementation Monitoring — NCOP and Provincial Layer",
+      "title": "AML/CFT Implementation Monitoring â€” NCOP and Provincial Layer",
       "source_committee": "Finance Select Committee (NCOP)",
       "theme": "Financial regulation / AML",
       "binding_constraint": "corruption_governance",
@@ -420,7 +420,7 @@
       "id": 32
     },
     {
-      "title": "Financial Matters Amendment — Insurance Sector and Microinsurance",
+      "title": "Financial Matters Amendment â€” Insurance Sector and Microinsurance",
       "source_committee": "Finance Select Committee (NCOP)",
       "theme": "Insurance regulation",
       "binding_constraint": "financial_access",
@@ -433,7 +433,7 @@
       "id": 33
     },
     {
-      "title": "Intergovernmental Fiscal Framework Review — Equitable Share Formula",
+      "title": "Intergovernmental Fiscal Framework Review â€” Equitable Share Formula",
       "source_committee": "Finance Select Committee (NCOP)",
       "theme": "Intergovernmental finance",
       "binding_constraint": "government_capacity",
@@ -446,7 +446,7 @@
       "id": 34
     },
     {
-      "title": "Integrated Resource Plan (IRP) 2024 Update — Revised Electricity Mix",
+      "title": "Integrated Resource Plan (IRP) 2024 Update â€” Revised Electricity Mix",
       "source_committee": "Energy",
       "theme": "Energy planning",
       "binding_constraint": "energy",
@@ -472,7 +472,7 @@
       "id": 36
     },
     {
-      "title": "Nuclear New Build Programme — 2,500 MW New Nuclear Sites",
+      "title": "Nuclear New Build Programme â€” 2,500 MW New Nuclear Sites",
       "source_committee": "Energy",
       "theme": "Nuclear energy",
       "binding_constraint": "energy",
@@ -498,7 +498,7 @@
       "id": 38
     },
     {
-      "title": "Integrated Energy Plan Update — Gas and Energy Diversification",
+      "title": "Integrated Energy Plan Update â€” Gas and Energy Diversification",
       "source_committee": "Energy",
       "theme": "Energy planning",
       "binding_constraint": "energy",
@@ -524,7 +524,7 @@
       "id": 40
     },
     {
-      "title": "Solar Water Heater Programme — Mass Residential Rollout",
+      "title": "Solar Water Heater Programme â€” Mass Residential Rollout",
       "source_committee": "Energy",
       "theme": "Demand-side energy management",
       "binding_constraint": "energy",
@@ -537,7 +537,7 @@
       "id": 41
     },
     {
-      "title": "Electricity Regulation Amendment Act — Competitive Electricity Market",
+      "title": "Electricity Regulation Amendment Act â€” Competitive Electricity Market",
       "source_committee": "Mineral Resources and Energy",
       "theme": "Electricity market reform",
       "binding_constraint": "energy",
@@ -550,7 +550,7 @@
       "id": 42
     },
     {
-      "title": "Gas Amendment Bill — LNG Import Infrastructure and City Gas",
+      "title": "Gas Amendment Bill â€” LNG Import Infrastructure and City Gas",
       "source_committee": "Mineral Resources and Energy",
       "theme": "Gas sector development",
       "binding_constraint": "energy",
@@ -589,7 +589,7 @@
       "id": 45
     },
     {
-      "title": "Fuel Price Regulation Reform — Partial Deregulation",
+      "title": "Fuel Price Regulation Reform â€” Partial Deregulation",
       "source_committee": "Mineral Resources and Energy",
       "theme": "Energy pricing",
       "binding_constraint": "regulatory_burden",
@@ -615,7 +615,7 @@
       "id": 47
     },
     {
-      "title": "National Nuclear Regulator — Capacity for New Build Oversight",
+      "title": "National Nuclear Regulator â€” Capacity for New Build Oversight",
       "source_committee": "Mineral Resources and Energy",
       "theme": "Nuclear regulation",
       "binding_constraint": "regulatory_burden",
@@ -641,7 +641,7 @@
       "id": 49
     },
     {
-      "title": "NSFAS Sustainable Funding Model — Comprehensive Post-School Student Finance",
+      "title": "NSFAS Sustainable Funding Model â€” Comprehensive Post-School Student Finance",
       "source_committee": "Higher Education and Training",
       "theme": "Student finance",
       "binding_constraint": "skills_education",
@@ -654,7 +654,7 @@
       "id": 50
     },
     {
-      "title": "TVET College Quality and Industry Relevance — Artisan Pipeline",
+      "title": "TVET College Quality and Industry Relevance â€” Artisan Pipeline",
       "source_committee": "Higher Education and Training",
       "theme": "Vocational education and training",
       "binding_constraint": "skills_education",
@@ -693,7 +693,7 @@
       "id": 53
     },
     {
-      "title": "R&D Investment Escalation — Reaching 1.5% of GDP",
+      "title": "R&D Investment Escalation â€” Reaching 1.5% of GDP",
       "source_committee": "Higher Education and Training",
       "theme": "Science, technology and innovation",
       "binding_constraint": "skills_education",
@@ -719,7 +719,7 @@
       "id": 55
     },
     {
-      "title": "Post-School Education Pathways — CET and Second-Chance Programme",
+      "title": "Post-School Education Pathways â€” CET and Second-Chance Programme",
       "source_committee": "Higher Education and Training",
       "theme": "Adult education and training",
       "binding_constraint": "skills_education",
@@ -745,7 +745,7 @@
       "id": 57
     },
     {
-      "title": "Eskom Restructuring — Generation, Transmission, and Distribution Unbundling",
+      "title": "Eskom Restructuring â€” Generation, Transmission, and Distribution Unbundling",
       "source_committee": "Public Enterprises",
       "theme": "SOE restructuring",
       "binding_constraint": "energy",
@@ -771,7 +771,7 @@
       "id": 59
     },
     {
-      "title": "SOE Policy Impediments Reform — PFMA, BBBEE, and Procurement Flexibility",
+      "title": "SOE Policy Impediments Reform â€” PFMA, BBBEE, and Procurement Flexibility",
       "source_committee": "Public Enterprises",
       "theme": "SOE governance / legislation",
       "binding_constraint": "regulatory_burden",
@@ -823,7 +823,7 @@
       "id": 63
     },
     {
-      "title": "Alexkor and Safcol Land Claims — Long-Delayed Resolution",
+      "title": "Alexkor and Safcol Land Claims â€” Long-Delayed Resolution",
       "source_committee": "Public Enterprises",
       "theme": "SOE land claims / property rights",
       "binding_constraint": "land_housing",
@@ -836,7 +836,7 @@
       "id": 64
     },
     {
-      "title": "SAA Successor Entity — Commercial Viability Without Ongoing State Support",
+      "title": "SAA Successor Entity â€” Commercial Viability Without Ongoing State Support",
       "source_committee": "Public Enterprises",
       "theme": "SOE rationalisation / aviation",
       "binding_constraint": "government_capacity",
@@ -888,7 +888,7 @@
       "id": 68
     },
     {
-      "title": "STI Decadal Plan 2022–2032: From Aspiration to Funded Mandate",
+      "title": "STI Decadal Plan 2022â€“2032: From Aspiration to Funded Mandate",
       "source_committee": "Science, Technology and Innovation",
       "theme": "research_and_development",
       "binding_constraint": "innovation_capacity",
@@ -1601,6 +1601,513 @@
       "package_name": "SMME & Employment Acceleration",
       "time_horizon": "medium_term",
       "id": 123
+    },
+    {
+      "id": 140,
+      "title": "National Minimum Wage Review and Adjustment Mechanism",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 141,
+      "title": "CCMA Capacity and Case Resolution Reform",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "debated",
+      "feasibility_rating": 4,
+      "growth_impact_rating": 3,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "quick_win"
+    },
+    {
+      "id": 142,
+      "title": "Employment Tax Incentive (ETI) Extension and Expansion",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "debated",
+      "feasibility_rating": 4,
+      "growth_impact_rating": 4,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "quick_win"
+    },
+    {
+      "id": 143,
+      "title": "Unemployment Insurance Fund (UIF) Governance and Benefit Reform",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 144,
+      "title": "Compensation Fund Turnaround and Claims Backlog",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "stalled",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 145,
+      "title": "Labour Activation Programme for Long-Term Unemployed",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "proposed",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 4,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 146,
+      "title": "Section 189 Retrenchment Process Reform",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "debated",
+      "feasibility_rating": 2,
+      "growth_impact_rating": 3,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 147,
+      "title": "Productivity SA and Workplace Competitiveness Support",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "debated",
+      "feasibility_rating": 4,
+      "growth_impact_rating": 3,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "quick_win"
+    },
+    {
+      "id": 148,
+      "title": "Informal Economy Integration and Worker Protection",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "proposed",
+      "feasibility_rating": 2,
+      "growth_impact_rating": 3,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 149,
+      "title": "NEDLAC Social Compact on Employment and Growth",
+      "source_committee": "Employment and Labour",
+      "theme": "labour_market",
+      "binding_constraint": "labour_market",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 2,
+      "package_name": "SMME & Employment Acceleration",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 150,
+      "title": "SAPS Detective Service Capacity and Case Clearance",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 4,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 151,
+      "title": "Anti-Extortion and Construction Mafia Task Force",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "proposed",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 5,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "quick_win"
+    },
+    {
+      "id": 152,
+      "title": "Gender-Based Violence Prevention and Response Strategy",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 153,
+      "title": "IPID Independence and Police Accountability",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 154,
+      "title": "Private Security Industry Regulation (PSIRA) Reform",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "debated",
+      "feasibility_rating": 4,
+      "growth_impact_rating": 2,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 155,
+      "title": "Illegal Mining and Resource Crime Combatting",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 156,
+      "title": "Community Policing Forum Revitalisation",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "stalled",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 157,
+      "title": "SANDF Deployment in Support of SAPS Border Security",
+      "source_committee": "Police",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "quick_win"
+    },
+    {
+      "id": 158,
+      "title": "NPA Prosecution Capacity and Independence",
+      "source_committee": "Justice and Constitutional Development",
+      "theme": "corruption_governance",
+      "binding_constraint": "corruption_governance",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 4,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 159,
+      "title": "Court Case Backlog and Judicial Efficiency",
+      "source_committee": "Justice and Constitutional Development",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 160,
+      "title": "SIU Special Tribunal and Asset Recovery Acceleration",
+      "source_committee": "Justice and Constitutional Development",
+      "theme": "corruption_governance",
+      "binding_constraint": "corruption_governance",
+      "current_status": "under_review",
+      "feasibility_rating": 4,
+      "growth_impact_rating": 3,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "quick_win"
+    },
+    {
+      "id": 161,
+      "title": "Legal Aid South Africa Capacity and Access to Justice",
+      "source_committee": "Justice and Constitutional Development",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 162,
+      "title": "TRC Recommendations Implementation",
+      "source_committee": "Justice and Constitutional Development",
+      "theme": "government_capacity",
+      "binding_constraint": "government_capacity",
+      "current_status": "stalled",
+      "feasibility_rating": 2,
+      "growth_impact_rating": 1,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 163,
+      "title": "Cybercrime and Digital Evidence Legislation",
+      "source_committee": "Justice and Constitutional Development",
+      "theme": "crime_safety",
+      "binding_constraint": "crime_safety",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 5,
+      "package_name": "State Capacity & Governance",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 164,
+      "title": "Bulk Water Infrastructure Investment Programme",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 4,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 165,
+      "title": "Municipal Water Loss Reduction (Non-Revenue Water)",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "debated",
+      "feasibility_rating": 4,
+      "growth_impact_rating": 3,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 166,
+      "title": "Water Services Amendment Bill Implementation",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "drafted",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 167,
+      "title": "Water Board Governance and Financial Sustainability",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 168,
+      "title": "Water Use Licensing and Allocation Reform",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 169,
+      "title": "Catchment Management Agency Establishment",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "stalled",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 170,
+      "title": "Johannesburg Water and Municipal Water Utility Reform",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 171,
+      "title": "Sanitation Infrastructure and Bucket Eradication",
+      "source_committee": "Water and Sanitation",
+      "theme": "water",
+      "binding_constraint": "water",
+      "current_status": "stalled",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 172,
+      "title": "Just Energy Transition Implementation Plan (JET-IP)",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 4,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 173,
+      "title": "Carbon Tax Rate Escalation and Revenue Recycling",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 174,
+      "title": "Climate Change Adaptation Infrastructure",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "proposed",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 3,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 175,
+      "title": "SANParks and Protected Area Expansion",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "debated",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 176,
+      "title": "Marine Fisheries Reform and Small-Scale Fisher Rights",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "under_review",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
+    },
+    {
+      "id": 177,
+      "title": "Green Hydrogen and Critical Minerals Regulatory Framework",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "proposed",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 4,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "long_term"
+    },
+    {
+      "id": 178,
+      "title": "Forestry Sector Revitalisation and Timber Value Chain",
+      "source_committee": "Forestry, Fisheries and the Environment",
+      "theme": "climate_environment",
+      "binding_constraint": "climate_environment",
+      "current_status": "stalled",
+      "feasibility_rating": 3,
+      "growth_impact_rating": 2,
+      "reform_package": 1,
+      "package_name": "Infrastructure Unblock",
+      "time_horizon": "medium_term"
     }
   ],
   "links": [
@@ -2834,6 +3341,71 @@
       "target": 26,
       "type": "tension",
       "label": "Fiscal consolidation creates tension with inclusive growth spending priorities"
+    },
+    {
+      "source": 142,
+      "target": 51,
+      "label": "ETI effectiveness depends on TVET skills pipeline"
+    },
+    {
+      "source": 145,
+      "target": 51,
+      "label": "Labour activation requires TVET training capacity"
+    },
+    {
+      "source": 151,
+      "target": 145,
+      "label": "Anti-extortion enables business hiring confidence"
+    },
+    {
+      "source": 164,
+      "target": 36,
+      "label": "Bulk water investment requires infrastructure procurement reform"
+    },
+    {
+      "source": 170,
+      "target": 164,
+      "label": "Municipal utility reform depends on bulk water supply"
+    },
+    {
+      "source": 172,
+      "target": 20,
+      "label": "JET-IP sequenced with Eskom unbundling"
+    },
+    {
+      "source": 173,
+      "target": 172,
+      "label": "Carbon tax funds JET transition programmes"
+    },
+    {
+      "source": 177,
+      "target": 6,
+      "label": "Green hydrogen requires green energy commercialisation"
+    },
+    {
+      "source": 158,
+      "target": 160,
+      "label": "NPA prosecution capacity enables SIU asset recovery"
+    },
+    {
+      "source": 150,
+      "target": 158,
+      "label": "Detective capacity feeds NPA prosecution pipeline"
+    },
+    {
+      "source": 174,
+      "target": 164,
+      "label": "Climate adaptation requires resilient water infrastructure"
+    },
+    {
+      "source": 140,
+      "target": 149,
+      "label": "Minimum wage review requires NEDLAC social compact"
+    },
+    {
+      "source": 143,
+      "target": 144,
+      "label": "UIF reform enables Compensation Fund turnaround"
     }
   ]
 }

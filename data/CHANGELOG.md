@@ -6,6 +6,20 @@ not code changes (see git history for those).
 
 ## March 2026
 
+### 2026-03-25 (continued)
+- **5 new committees scraped**: Employment & Labour (751 meetings), Police (933),
+  Justice (1,563), Water & Sanitation (706), Environment (382). Total: 4,335 new
+  meetings from the PMG API.
+- **39 new policy ideas** (IDs 140-178) extracted from the new committees:
+  labour_market (10), crime_safety (11), water (8), climate_environment (7),
+  corruption_governance (2), government_capacity (1).
+- **Trade openness**: 6 existing Trade committee ideas re-tagged from
+  regulatory_burden to trade_openness (migration 017).
+- **Stakeholder stances**: 202 new stances added for new ideas (total: 458).
+- **Dependency graph**: 39 new nodes + 13 cross-constraint edges added.
+- **Reform packages**: New idea IDs added to all 5 packages.
+- Total ideas: 132 → 177. All constraint categories now populated.
+
 ### 2026-03-25
 - **Economic indicators**: Added 16 time-series indicators from Stats SA, SARB,
   IMF, and World Bank. Includes GDP growth, unemployment, Eskom EAF, load
