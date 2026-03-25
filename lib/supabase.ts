@@ -74,6 +74,9 @@ export interface PolicyIdea {
   growth_impact_pct?: number | null;
   fiscal_impact_zar_bn?: number | null;
   responsible_departments?: string[] | string | null;
+  // Migration 010: economic impact and primary source link
+  economic_impact_estimate?: string | null;
+  source_url?: string | null;
 }
 
 export interface ImplementationPlan {
