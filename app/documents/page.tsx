@@ -119,7 +119,7 @@ export default function DocumentsPage() {
             <span className="w-1.5 h-6 rounded-sm" style={{ backgroundColor: "#FFB612" }} />
             <span className="w-1.5 h-6 rounded-sm" style={{ backgroundColor: "#DE3831" }} />
           </span>
-          <h1 className="text-2xl font-bold text-gray-900">Policy Document Generator</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Legislation Generator</h1>
         </div>
         <p className="text-gray-600 max-w-2xl">
           Generate formal SA government policy documents from any reform idea in the database.

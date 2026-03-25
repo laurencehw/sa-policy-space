@@ -2,6 +2,18 @@
 
 import { useEffect, useState, useMemo, useRef } from "react";
 import Link from "next/link";
+import {
+  ComposedChart,
+  Bar,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
+import indicatorsSummary from "@/data/indicators_summary.json";
 
 // ─── Types ────────────────────────────────────────────────────────────────
 
@@ -198,6 +210,114 @@ function MeetingCard({ meeting }: { meeting: TimelineMeeting }) {
   );
 }
 
+// ─── Indicator Overlay Types ──────────────────────────────────────────────
+
+interface IndicatorSummary {
+  id: string;
+  name: string;
+  unit: string;
+  frequency: string;
+  sparkline: { period: string; value: number }[];
+}
+
+const OVERLAY_INDICATORS = indicatorsSummary as IndicatorSummary[];
+
+/**
+ * Expand indicator sparkline to monthly resolution for alignment with
+ * monthly meeting buckets.
+ */
+function expandToMonthly(data: { period: string; value: number }[], freq: string): Map<string, number> {
+  const map = new Map<string, number>();
+  for (const pt of data) {
+    if (freq === "annual") {
+      for (let m = 1; m <= 12; m++) {
+        map.set(`${pt.period}-${String(m).padStart(2, "0")}`, pt.value);
+      }
+    } else if (freq === "quarterly") {
+      const match = pt.period.match(/^(\d{4})-Q(\d)$/);
+      if (match) {
+        const year = match[1];
+        const q = parseInt(match[2]);
+        const startMonth = (q - 1) * 3 + 1;
+        for (let m = startMonth; m < startMonth + 3; m++) {
+          map.set(`${year}-${String(m).padStart(2, "0")}`, pt.value);
+        }
+      }
+    } else {
+      map.set(pt.period, pt.value);
+    }
+  }
+  return map;
+}
+
+function IndicatorOverlayChart({
+  buckets,
+  indicator,
+}: {
+  buckets: Array<[string, number]>;
+  indicator: IndicatorSummary;
+}) {
+  const monthlyValues = useMemo(
+    () => expandToMonthly(indicator.sparkline, indicator.frequency),
+    [indicator]
+  );
+
+  const chartData = useMemo(() => {
+    return buckets.map(([key, count]) => ({
+      month: key,
+      meetings: count,
+      indicator: monthlyValues.get(key) ?? null,
+    }));
+  }, [buckets, monthlyValues]);
+
+  const hasOverlap = chartData.some((d) => d.indicator !== null);
+  if (!hasOverlap) return null;
+
+  return (
+    <div className="h-52 mt-3">
+      <ResponsiveContainer width="100%" height="100%">
+        <ComposedChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+          <XAxis
+            dataKey="month"
+            tick={{ fontSize: 9, fill: "#9ca3af" }}
+            tickLine={false}
+            interval="preserveStartEnd"
+            tickFormatter={(v: string) => v.endsWith("-01") ? v.slice(0, 4) : ""}
+          />
+          <YAxis
+            yAxisId="left"
+            tick={{ fontSize: 9, fill: "#9ca3af" }}
+            tickLine={false}
+            axisLine={false}
+            width={30}
+          />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            tick={{ fontSize: 9, fill: "#ca8a04" }}
+            tickLine={false}
+            axisLine={false}
+            width={50}
+          />
+          <Tooltip
+            contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e5e7eb" }}
+            labelFormatter={(label) => fmtMonthLabel(String(label))}
+          />
+          <Legend
+            wrapperStyle={{ fontSize: 10 }}
+            formatter={(value: string) =>
+              value === "meetings" ? "Committee Meetings" : indicator.name
+            }
+          />
+          <Bar yAxisId="left" dataKey="meetings" fill="rgba(0,122,77,0.25)" radius={[2, 2, 0, 0]} />
+          <Line yAxisId="right" type="stepAfter" dataKey="indicator" stroke="#ca8a04" strokeWidth={2} dot={false} connectNulls />
+        </ComposedChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────
 
 export default function TimelinePage() {
@@ -205,6 +325,7 @@ export default function TimelinePage() {
   const [loading, setLoading] = useState(true);
   const [selectedCommittee, setSelectedCommittee] = useState("all");
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+  const [overlayIndicator, setOverlayIndicator] = useState<string>("");
   const monthRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
@@ -404,6 +525,39 @@ export default function TimelinePage() {
                 <span>{fmtMonthLabel(buckets[buckets.length - 1][0])}</span>
               </div>
             )}
+
+            {/* Indicator overlay */}
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="flex items-center gap-3">
+                <label className="text-xs font-medium text-gray-500">
+                  Overlay economic indicator
+                </label>
+                <select
+                  value={overlayIndicator}
+                  onChange={(e) => setOverlayIndicator(e.target.value)}
+                  className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#007A4D]/30"
+                >
+                  <option value="">None</option>
+                  {OVERLAY_INDICATORS.map((ind) => (
+                    <option key={ind.id} value={ind.id}>
+                      {ind.name} ({ind.unit})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {overlayIndicator && (() => {
+                const ind = OVERLAY_INDICATORS.find((i) => i.id === overlayIndicator);
+                if (!ind) return null;
+                return (
+                  <>
+                    <IndicatorOverlayChart buckets={buckets} indicator={ind} />
+                    <p className="text-[9px] text-gray-400 mt-1">
+                      Source: {ind.name} — meetings (green bars, left axis) vs. {ind.unit} (gold line, right axis)
+                    </p>
+                  </>
+                );
+              })()}
+            </div>
           </div>
 
           {/* Timeline */}

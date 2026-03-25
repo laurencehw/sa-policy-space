@@ -124,7 +124,7 @@ export default function RootLayout({
               {/* Resources dropdown — reference & tools */}
               <NavDropdown label="Resources">
                 <Link href="/documents" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Document Generator
+                  Legislation Generator
                 </Link>
                 <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Budget Alignment
