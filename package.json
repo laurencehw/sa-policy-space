@@ -12,7 +12,9 @@
     "db:migrate": "python scripts/sync_to_supabase.py",
     "db:status": "python scripts/sync_to_supabase.py --list",
     "test": "node node_modules/jest/bin/jest.js --runInBand",
-    "test:ci": "node node_modules/jest/bin/jest.js --runInBand --ci"
+    "test:ci": "node node_modules/jest/bin/jest.js --runInBand --ci",
+    "test:e2e": "npx playwright test",
+    "test:e2e:ui": "npx playwright test --ui"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
@@ -28,6 +30,7 @@
     "node": ">=22.5.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/jest": "^30.0.0",

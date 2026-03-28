@@ -76,18 +76,21 @@ async function getHomepageData() {
     console.error("[home] budget_alignment.json read failed:", e);
   }
 
-  // Curated insight lists
+  // Curated insight lists — fetch only quick_win ideas instead of all ideas
   let quickWins: { id: number; title: string; slug: string; feasibility_rating: number }[] = [];
   let mostDebated: { id: number; title: string; slug: string; times_raised: number }[] = [];
   try {
     const api = await import("@/lib/api");
-    const allIdeas = await api.getIdeas();
-    quickWins = allIdeas
-      .filter((i) => i.time_horizon === "quick_win" && i.feasibility_rating >= 4)
+    const [qwIdeas, topIdeas] = await Promise.all([
+      api.getIdeas({ timeHorizon: "quick_win" }),
+      api.getIdeas({ sort: "impact" }),
+    ]);
+    quickWins = qwIdeas
+      .filter((i) => i.feasibility_rating >= 4)
       .sort((a, b) => (b.growth_impact_rating + b.feasibility_rating) - (a.growth_impact_rating + a.feasibility_rating))
       .slice(0, 5)
       .map((i) => ({ id: i.id, title: i.title, slug: i.slug, feasibility_rating: i.feasibility_rating }));
-    mostDebated = [...allIdeas]
+    mostDebated = topIdeas
       .sort((a, b) => (b.times_raised ?? 0) - (a.times_raised ?? 0))
       .slice(0, 5)
       .map((i) => ({ id: i.id, title: i.title, slug: i.slug, times_raised: i.times_raised ?? 0 }));

@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
   const allowedOrigins = [
     "https://sa-policy-space.vercel.app",
     // Allow localhost during development
-    ...(process.env.NODE_ENV === "development"
+    ...(process.env.NODE_ENV !== "production"
       ? ["http://localhost:3000", "http://localhost:3001"]
       : []),
   ];
