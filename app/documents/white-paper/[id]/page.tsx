@@ -35,13 +35,13 @@ async function fetchMeetings(ideaId: number): Promise<Meeting[]> {
   return await getIdeaMeetings(ideaId) as Meeting[];
 }
 
-async function fetchComparisons(ideaId: number): Promise<any[]> {
+async function fetchComparisons(ideaId: number) {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { getIdeaComparisons } = await import("@/lib/local-api");
-    return getIdeaComparisons(ideaId) as any[];
+    return getIdeaComparisons(ideaId);
   }
   const { getIdeaComparisons } = await import("@/lib/supabase-api");
-  return await getIdeaComparisons(ideaId) as any[];
+  return await getIdeaComparisons(ideaId);
 }
 
 // ── Metadata ───────────────────────────────────────────────────────────────

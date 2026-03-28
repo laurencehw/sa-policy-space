@@ -1,6 +1,6 @@
 # SA Policy Space
 
-A research database of 132 South African policy reform ideas extracted from parliamentary committee proceedings, organised around binding economic growth constraints.
+A research database of 177 South African policy reform ideas extracted from parliamentary committee proceedings, organised around binding economic growth constraints.
 
 **Live site:** [sa-policy-space.vercel.app](https://sa-policy-space.vercel.app)
 
@@ -33,7 +33,7 @@ Ideas are grouped into **5 reform packages** and classified by **18 binding cons
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 15 (App Router, React 19) |
 | Language | TypeScript (strict mode) |
 | Styling | Tailwind CSS |
 | Database (local) | SQLite via Node.js `node:sqlite` |
@@ -117,6 +117,7 @@ schema.sql              → Full PostgreSQL schema
 | `npm run validate` | Validate JSON data files |
 | `npm run db:init` | Initialise local SQLite database |
 | `npm run db:migrate` | Sync migrations to Supabase |
+| `npm run test:e2e` | Run Playwright E2E tests |
 | `npm run lint` | Run ESLint |
 
 ## Data sources

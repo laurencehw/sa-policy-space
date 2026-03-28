@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getIdeaComparisons, getComparisons } from "@/lib/api";
-import jsonComparisons from "@/data/international_comparisons.json";
+import jsonComparisonsRaw from "@/data/international_comparisons.json";
+
+const jsonComparisons = jsonComparisonsRaw as { comparisons: Array<{ country: string; binding_constraint: string; [k: string]: unknown }> };
 
 export const dynamic = "force-dynamic";
 
@@ -20,9 +22,9 @@ export async function GET(request: Request) {
       return NextResponse.json(dbResults);
     }
     // Fallback to JSON file if DB table is empty/missing
-    let fallback = (jsonComparisons as any).comparisons ?? jsonComparisons;
-    if (country) fallback = fallback.filter((c: any) => c.country === country);
-    if (constraint) fallback = fallback.filter((c: any) => c.binding_constraint === constraint);
+    let fallback = jsonComparisons.comparisons;
+    if (country) fallback = fallback.filter((c) => c.country === country);
+    if (constraint) fallback = fallback.filter((c) => c.binding_constraint === constraint);
     return NextResponse.json(fallback);
   } catch (err) {
     console.error("comparisons route error:", err);

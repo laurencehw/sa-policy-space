@@ -2,11 +2,21 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-import stakeholdersData from "@/data/stakeholders.json";
-import comparisonsData from "@/data/international_comparisons.json";
-import textbookChapters from "@/data/textbook_chapters.json";
-import reformPackagesData from "@/data/reform_packages.json";
+import stakeholdersRaw from "@/data/stakeholders.json";
+import comparisonsRaw from "@/data/international_comparisons.json";
+import textbookChaptersRaw from "@/data/textbook_chapters.json";
+import reformPackagesRaw from "@/data/reform_packages.json";
 import { slugify } from "@/lib/utils";
+
+interface Stakeholder { id: string | number; name: string; category: string; primary_interests: string; key_concerns?: string; reform_design_insights?: string }
+interface Comparison { id: string | number; title: string; country: string; flag?: string; approach?: string; constraint_label?: string; binding_constraint?: string }
+interface Chapter { id: string | number; number: number; title: string; description?: string; abstract?: string; key_findings?: string[] }
+interface PackageEntry { package_id: number; name: string; tagline: string; theory_of_change?: string }
+
+const stakeholdersData = stakeholdersRaw as Stakeholder[];
+const comparisonsData = comparisonsRaw as { comparisons: Comparison[] };
+const textbookChapters = textbookChaptersRaw as Chapter[];
+const reformPackagesData = reformPackagesRaw as Record<string, PackageEntry>;
 
 export async function GET(req: NextRequest) {
   const raw = req.nextUrl.searchParams.get("q")?.trim() ?? "";
@@ -45,7 +55,7 @@ export async function GET(req: NextRequest) {
   }
 
   // ── Packages (bundled JSON) ───────────────────────────────────────────────
-  const packages = (Object.values(reformPackagesData) as any[])
+  const packages = Object.values(reformPackagesData)
     .filter(
       (p) =>
         p.name?.toLowerCase().includes(q) ||
@@ -60,7 +70,7 @@ export async function GET(req: NextRequest) {
     }));
 
   // ── Stakeholders (bundled JSON) ───────────────────────────────────────────
-  const stakeholders = (stakeholdersData as any[])
+  const stakeholders = stakeholdersData
     .filter(
       (s) =>
         s.name?.toLowerCase().includes(q) ||
@@ -78,7 +88,7 @@ export async function GET(req: NextRequest) {
     }));
 
   // ── International Comparisons (bundled JSON) ──────────────────────────────
-  const comparisons = ((comparisonsData as any).comparisons as any[])
+  const comparisons = comparisonsData.comparisons
     .filter(
       (c) =>
         c.title?.toLowerCase().includes(q) ||
@@ -96,7 +106,7 @@ export async function GET(req: NextRequest) {
     }));
 
   // ── Textbook Chapters (bundled JSON) ─────────────────────────────────────
-  const chapters = (textbookChapters as any[])
+  const chapters = textbookChapters
     .filter(
       (c) =>
         c.title?.toLowerCase().includes(q) ||

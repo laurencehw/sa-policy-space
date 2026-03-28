@@ -36,14 +36,14 @@ async function getProgressData(): Promise<ProgressStats> {
 
   try {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      const { DatabaseSync } = await import("node:sqlite" as any);
+      const { DatabaseSync } = await import("node:sqlite");
       const pathMod = await import("path");
       const dbPath = process.env.SQLITE_DB_PATH ||
         pathMod.resolve(process.cwd(), "../data/dev.sqlite3");
       const db = new DatabaseSync(dbPath);
-      ideasWithPlans = (db.prepare(
+      ideasWithPlans = db.prepare<{ n: number }>(
         "SELECT COUNT(DISTINCT idea_id) as n FROM implementation_plans"
-      ).get() as any)?.n ?? 0;
+      ).get()?.n ?? 0;
       db.close();
     } else {
       const { supabase } = await import("@/lib/supabase");

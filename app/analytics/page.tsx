@@ -16,6 +16,7 @@ import {
   type MomentumScore,
 } from "@/lib/analytics";
 import dependencyGraphData from "@/data/dependency_graph.json";
+import type { DependencyGraph } from "@/lib/analytics";
 import fiscalEstimatesRaw from "@/data/fiscal_estimates.json";
 
 // ── Types ─────────────────────────────────────────────────────────────────
@@ -45,13 +46,13 @@ async function getAnalyticsData() {
   try {
     const { getIdeas } = await import("@/lib/api");
     const ideas = await getIdeas() as IdeaRow[];
-    const centralityRankings = computeNetworkCentrality(dependencyGraphData as any);
+    const centralityRankings = computeNetworkCentrality(dependencyGraphData as DependencyGraph);
     const momentumScores = computeMomentumScores(ideas);
     const fiscalEstimates = Object.values(fiscalEstimatesRaw) as FiscalEstimate[];
     return { centralityRankings, momentumScores, fiscalEstimates };
   } catch (e) {
     console.error("[analytics] data fetch failed (build-time?):", e);
-    return { centralityRankings: [] as any[], momentumScores: [] as any[], fiscalEstimates: [] as FiscalEstimate[] };
+    return { centralityRankings: [] as NodeCentrality[], momentumScores: [] as MomentumScore[], fiscalEstimates: [] as FiscalEstimate[] };
   }
 }
 
