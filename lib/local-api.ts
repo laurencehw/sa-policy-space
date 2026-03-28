@@ -19,8 +19,12 @@ const DB_PATH =
 // Data directory (parent of dev.sqlite3) — used to locate processed JSON files.
 const DATA_DIR = path.dirname(DB_PATH);
 
+// Singleton connection — reused for the lifetime of the process.
+// SQLite is single-writer; a long-lived connection is safe for read-heavy workloads.
+let _db: InstanceType<typeof DatabaseSync> | null = null;
 function getDb(): InstanceType<typeof DatabaseSync> {
-  return new DatabaseSync(DB_PATH);
+  if (!_db) _db = new DatabaseSync(DB_PATH);
+  return _db;
 }
 
 // SQL fragment for derived date fields on policy_ideas — used across multiple queries.
@@ -40,26 +44,22 @@ export interface StatsResult {
 
 export function getStats(): StatsResult {
   const db = getDb();
-  try {
-    const totalIdeas = (db.prepare("SELECT COUNT(*) as n FROM policy_ideas").get() as any).n as number;
-    const meetingsAnalyzed = (db.prepare("SELECT COUNT(*) as n FROM meetings").get() as any).n as number;
-    const constraintsCovered = (
-      db.prepare("SELECT COUNT(DISTINCT binding_constraint) as n FROM policy_ideas").get() as any
-    ).n as number;
-    const dormantIdeas = (db.prepare(`
-      SELECT COUNT(*) as n FROM (
-        SELECT p.id
-        FROM policy_ideas p
-        JOIN idea_meetings im ON im.idea_id = p.id
-        JOIN meetings m ON m.id = im.meeting_id
-        GROUP BY p.id
-        HAVING MAX(m.date) < date('now', '-12 months')
-      )
-    `).get() as any).n as number;
-    return { totalIdeas, meetingsAnalyzed, constraintsCovered, dormantIdeas };
-  } finally {
-    db.close();
-  }
+  const totalIdeas = (db.prepare("SELECT COUNT(*) as n FROM policy_ideas").get() as any).n as number;
+  const meetingsAnalyzed = (db.prepare("SELECT COUNT(*) as n FROM meetings").get() as any).n as number;
+  const constraintsCovered = (
+    db.prepare("SELECT COUNT(DISTINCT binding_constraint) as n FROM policy_ideas").get() as any
+  ).n as number;
+  const dormantIdeas = (db.prepare(`
+    SELECT COUNT(*) as n FROM (
+      SELECT p.id
+      FROM policy_ideas p
+      JOIN idea_meetings im ON im.idea_id = p.id
+      JOIN meetings m ON m.id = im.meeting_id
+      GROUP BY p.id
+      HAVING MAX(m.date) < date('now', '-12 months')
+    )
+  `).get() as any).n as number;
+  return { totalIdeas, meetingsAnalyzed, constraintsCovered, dormantIdeas };
 }
 
 // ── Ideas ──────────────────────────────────────────────────────────────────
@@ -98,9 +98,8 @@ export function getIdeas(opts?: {
   timeHorizon?: string;
 }): IdeaRow[] {
   const db = getDb();
-  try {
-    // node:sqlite uses positional ? params; build array
-    const conditions: string[] = [];
+  // node:sqlite uses positional ? params; build array
+  const conditions: string[] = [];
     const params: unknown[] = [];
 
     if (opts?.constraint) {
@@ -136,66 +135,51 @@ export function getIdeas(opts?: {
       FROM policy_ideas p ${where} ${order}
     `);
     const rows = (params.length ? stmt.all(...params) : stmt.all()) as IdeaRow[];
-    return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
-  } finally {
-    db.close();
-  }
+  return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
 }
 
 export function getIdeaById(id: number): IdeaRow | null {
   const db = getDb();
-  try {
-    const row = (db.prepare(`
-      SELECT p.*,
-        ${IDEA_DATE_FIELDS}
-      FROM policy_ideas p WHERE p.id = ?
-    `).get(id) as IdeaRow) ?? null;
-    return row ? { ...row, slug: slugify(row.title) } : null;
-  } finally {
-    db.close();
-  }
+  const row = (db.prepare(`
+    SELECT p.*,
+      ${IDEA_DATE_FIELDS}
+    FROM policy_ideas p WHERE p.id = ?
+  `).get(id) as IdeaRow) ?? null;
+  return row ? { ...row, slug: slugify(row.title) } : null;
 }
 
 export function getIdeaBySlug(slug: string): IdeaRow | null {
   const db = getDb();
-  try {
-    // Fast path: direct indexed lookup on slug column
-    const row = db.prepare(`
-      SELECT p.*,
-        ${IDEA_DATE_FIELDS}
-      FROM policy_ideas p WHERE p.slug = ?
-    `).get(slug) as IdeaRow | undefined;
-    if (row) return { ...row, slug };
+  // Fast path: direct indexed lookup on slug column
+  const row = db.prepare(`
+    SELECT p.*,
+      ${IDEA_DATE_FIELDS}
+    FROM policy_ideas p WHERE p.slug = ?
+  `).get(slug) as IdeaRow | undefined;
+  if (row) return { ...row, slug };
 
-    // Fallback: compute slug from title (handles rows where slug column doesn't match)
-    const rows = db.prepare(`
-      SELECT p.*,
-        ${IDEA_DATE_FIELDS}
-      FROM policy_ideas p
-    `).all() as IdeaRow[];
-    const match = rows.find((r) => slugify(r.title) === slug);
-    return match ? { ...match, slug: slugify(match.title) } : null;
-  } finally {
-    db.close();
-  }
+  // Fallback: compute slug from title (handles rows where slug column doesn't match)
+  const rows = db.prepare(`
+    SELECT p.*,
+      ${IDEA_DATE_FIELDS}
+    FROM policy_ideas p
+  `).all() as IdeaRow[];
+  const match = rows.find((r) => slugify(r.title) === slug);
+  return match ? { ...match, slug: slugify(match.title) } : null;
 }
 
 // ── Related ideas (same reform package) ───────────────────────────────────
 
 export function getRelatedIdeas(packageId: number, currentId: number): IdeaRow[] {
   const db = getDb();
-  try {
-    const rows = db.prepare(`
-      SELECT p.*,
-        ${IDEA_DATE_FIELDS}
-      FROM policy_ideas p
-      WHERE p.reform_package = ? AND p.id != ?
-      ORDER BY p.growth_impact_rating DESC, p.id
-    `).all(packageId, currentId) as IdeaRow[];
-    return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
-  } finally {
-    db.close();
-  }
+  const rows = db.prepare(`
+    SELECT p.*,
+      ${IDEA_DATE_FIELDS}
+    FROM policy_ideas p
+    WHERE p.reform_package = ? AND p.id != ?
+    ORDER BY p.growth_impact_rating DESC, p.id
+  `).all(packageId, currentId) as IdeaRow[];
+  return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
 }
 
 // ── Constraint summaries ───────────────────────────────────────────────────
@@ -210,83 +194,67 @@ export interface ConstraintSummaryRow {
 
 export function getConstraintSummaries(): ConstraintSummaryRow[] {
   const db = getDb();
-  try {
-    return db
-      .prepare(
-        `SELECT
-           binding_constraint,
-           COUNT(*) AS total_ideas,
-           ROUND(AVG(growth_impact_rating), 1) AS avg_growth_impact,
-           SUM(CASE WHEN current_status = 'stalled' THEN 1 ELSE 0 END) AS stalled_count,
-           SUM(CASE WHEN current_status = 'implemented' THEN 1 ELSE 0 END) AS implemented_count
-         FROM policy_ideas
-         GROUP BY binding_constraint
-         ORDER BY total_ideas DESC`
-      )
-      .all() as ConstraintSummaryRow[];
-  } finally {
-    db.close();
-  }
+  return db
+    .prepare(
+      `SELECT
+         binding_constraint,
+         COUNT(*) AS total_ideas,
+         ROUND(AVG(growth_impact_rating), 1) AS avg_growth_impact,
+         SUM(CASE WHEN current_status = 'stalled' THEN 1 ELSE 0 END) AS stalled_count,
+         SUM(CASE WHEN current_status = 'implemented' THEN 1 ELSE 0 END) AS implemented_count
+       FROM policy_ideas
+       GROUP BY binding_constraint
+       ORDER BY total_ideas DESC`
+    )
+    .all() as ConstraintSummaryRow[];
 }
 
 // ── Committees ─────────────────────────────────────────────────────────────
 
 export function getCommittees(): { name: string; count: number }[] {
   const db = getDb();
-  try {
-    return db.prepare(`
-      SELECT source_committee AS name, COUNT(*) AS count
-      FROM policy_ideas
-      WHERE source_committee IS NOT NULL AND source_committee != ''
-      GROUP BY source_committee
-      ORDER BY count DESC, name
-    `).all() as { name: string; count: number }[];
-  } finally {
-    db.close();
-  }
+  return db.prepare(`
+    SELECT source_committee AS name, COUNT(*) AS count
+    FROM policy_ideas
+    WHERE source_committee IS NOT NULL AND source_committee != ''
+    GROUP BY source_committee
+    ORDER BY count DESC, name
+  `).all() as { name: string; count: number }[];
 }
 
 // ── Implementation plans ───────────────────────────────────────────────────
 
 export function getImplementationPlan(ideaId: number): Record<string, unknown> | null {
   const db = getDb();
-  try {
-    const row = db
-      .prepare("SELECT * FROM implementation_plans WHERE idea_id = ?")
-      .get(ideaId) as Record<string, unknown> | undefined;
-    if (!row) return null;
-    if (typeof row.implementation_steps === "string") {
-      try {
-        row.implementation_steps = JSON.parse(row.implementation_steps);
-      } catch {}
-    }
-    return row;
-  } finally {
-    db.close();
+  const row = db
+    .prepare("SELECT * FROM implementation_plans WHERE idea_id = ?")
+    .get(ideaId) as Record<string, unknown> | undefined;
+  if (!row) return null;
+  if (typeof row.implementation_steps === "string") {
+    try {
+      row.implementation_steps = JSON.parse(row.implementation_steps);
+    } catch {}
   }
+  return row;
 }
 
 // ── Source meetings for an idea ────────────────────────────────────────────
 
 export function getIdeaMeetings(ideaId: number): unknown[] {
   const db = getDb();
-  try {
-    return (db
-      .prepare(
-        `SELECT m.*
-         FROM meetings m
-         JOIN idea_meetings im ON im.meeting_id = m.id
-         WHERE im.idea_id = ?
-         ORDER BY m.date DESC`
-      )
-      .all(ideaId) as any[])
-      .map((m: any) => ({
-        ...m,
-        pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
-      }));
-  } finally {
-    db.close();
-  }
+  return (db
+    .prepare(
+      `SELECT m.*
+       FROM meetings m
+       JOIN idea_meetings im ON im.meeting_id = m.id
+       WHERE im.idea_id = ?
+       ORDER BY m.date DESC`
+    )
+    .all(ideaId) as any[])
+    .map((m: any) => ({
+      ...m,
+      pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
+    }));
 }
 
 // ── Reform packages ────────────────────────────────────────────────────────
@@ -350,30 +318,26 @@ export function getPackageSummaries(): PackageSummary[] {
 
 export function getPackageTimeHorizonCounts(): Record<number, TimeHorizonCounts> {
   const db = getDb();
-  try {
-    const rows = db.prepare(`
-      SELECT
-        reform_package,
-        SUM(CASE WHEN time_horizon = 'quick_win' THEN 1 ELSE 0 END) AS quick_win,
-        SUM(CASE WHEN time_horizon = 'medium_term' THEN 1 ELSE 0 END) AS medium_term,
-        SUM(CASE WHEN time_horizon = 'long_term' THEN 1 ELSE 0 END) AS long_term
-      FROM policy_ideas
-      WHERE reform_package IS NOT NULL
-      GROUP BY reform_package
-    `).all() as Array<{ reform_package: number; quick_win: number; medium_term: number; long_term: number }>;
+  const rows = db.prepare(`
+    SELECT
+      reform_package,
+      SUM(CASE WHEN time_horizon = 'quick_win' THEN 1 ELSE 0 END) AS quick_win,
+      SUM(CASE WHEN time_horizon = 'medium_term' THEN 1 ELSE 0 END) AS medium_term,
+      SUM(CASE WHEN time_horizon = 'long_term' THEN 1 ELSE 0 END) AS long_term
+    FROM policy_ideas
+    WHERE reform_package IS NOT NULL
+    GROUP BY reform_package
+  `).all() as Array<{ reform_package: number; quick_win: number; medium_term: number; long_term: number }>;
 
-    const result: Record<number, TimeHorizonCounts> = {};
-    for (const row of rows) {
-      result[row.reform_package] = {
-        quick_win: row.quick_win,
-        medium_term: row.medium_term,
-        long_term: row.long_term,
-      };
-    }
-    return result;
-  } finally {
-    db.close();
+  const result: Record<number, TimeHorizonCounts> = {};
+  for (const row of rows) {
+    result[row.reform_package] = {
+      quick_win: row.quick_win,
+      medium_term: row.medium_term,
+      long_term: row.long_term,
+    };
   }
+  return result;
 }
 
 export function getPackageDetail(packageId: number): PackageDetail | null {
@@ -462,8 +426,6 @@ export function getComparisons(opts?: { country?: string; constraint?: string })
   } catch {
     // Table may not exist if migration hasn't been run locally
     return [];
-  } finally {
-    db.close();
   }
 }
 
@@ -480,8 +442,6 @@ export function getIdeaComparisons(ideaId: number): ComparisonRow[] {
     return rows.map((r) => ({ ...r, idea_slug: slugify(r.idea_title) }));
   } catch {
     return [];
-  } finally {
-    db.close();
   }
 }
 
@@ -504,8 +464,7 @@ export interface TimelineMeeting {
 
 export function getTimelineData(): TimelineMeeting[] {
   const db = getDb();
-  try {
-    const meetings = db.prepare(`
+  const meetings = db.prepare(`
       SELECT DISTINCT m.id, m.date, m.committee_name, m.title, m.pmg_url
       FROM meetings m
       INNER JOIN idea_meetings im ON im.meeting_id = m.id
@@ -546,7 +505,4 @@ export function getTimelineData(): TimelineMeeting[] {
       pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
       ideas: ideasByMeeting.get(m.id) ?? [],
     }));
-  } finally {
-    db.close();
-  }
 }

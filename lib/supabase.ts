@@ -22,23 +22,14 @@ export type PolicyStatus =
 
 export type BindingConstraint =
   | "energy"
-  | "logistics"
   | "transport_logistics"
-  | "skills"
   | "skills_education"
-  | "regulation"
   | "regulatory_burden"
-  | "crime"
   | "crime_safety"
-  | "labor_market"
   | "labour_market"
-  | "land"
   | "land_housing"
-  | "land_reform"
-  | "digital"
   | "digital_infrastructure"
   | "government_capacity"
-  | "corruption"
   | "corruption_governance"
   | "health_systems"
   | "fiscal_space"
@@ -119,23 +110,14 @@ export interface ImplementationPlan {
 
 export const CONSTRAINT_LABELS: Record<BindingConstraint, string> = {
   energy: "Energy",
-  logistics: "Logistics & Transport",
   transport_logistics: "Logistics & Transport",
-  skills: "Skills & Education",
   skills_education: "Skills & Education",
-  regulation: "Regulation",
   regulatory_burden: "Regulatory Burden",
-  crime: "Crime & Safety",
   crime_safety: "Crime & Safety",
-  labor_market: "Labour Market",
   labour_market: "Labour Market",
-  land: "Land & Property",
   land_housing: "Land & Housing",
-  land_reform: "Land Reform",
-  digital: "Digital Infrastructure",
   digital_infrastructure: "Digital Infrastructure",
   government_capacity: "Government Capacity",
-  corruption: "Corruption",
   corruption_governance: "Corruption & Governance",
   health_systems: "Health Systems",
   fiscal_space: "Fiscal Space",
@@ -149,23 +131,14 @@ export const CONSTRAINT_LABELS: Record<BindingConstraint, string> = {
 
 export const CONSTRAINT_COLORS: Record<BindingConstraint, string> = {
   energy: "bg-yellow-100 text-yellow-800",
-  logistics: "bg-blue-100 text-blue-800",
   transport_logistics: "bg-blue-100 text-blue-800",
-  skills: "bg-purple-100 text-purple-800",
   skills_education: "bg-purple-100 text-purple-800",
-  regulation: "bg-orange-100 text-orange-800",
   regulatory_burden: "bg-orange-100 text-orange-800",
-  crime: "bg-red-100 text-red-800",
   crime_safety: "bg-red-100 text-red-800",
-  labor_market: "bg-pink-100 text-pink-800",
   labour_market: "bg-pink-100 text-pink-800",
-  land: "bg-green-100 text-green-800",
   land_housing: "bg-green-100 text-green-800",
-  land_reform: "bg-green-100 text-green-800",
-  digital: "bg-cyan-100 text-cyan-800",
   digital_infrastructure: "bg-cyan-100 text-cyan-800",
   government_capacity: "bg-gray-100 text-gray-800",
-  corruption: "bg-rose-100 text-rose-800",
   corruption_governance: "bg-rose-100 text-rose-800",
   health_systems: "bg-teal-100 text-teal-800",
   fiscal_space: "bg-emerald-100 text-emerald-800",

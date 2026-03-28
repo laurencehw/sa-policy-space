@@ -101,16 +101,16 @@ async function getHomepageData() {
 // ── Static content ───────────────────────────────────────────────────────────
 
 const BINDING_CONSTRAINTS = [
-  { id: "energy",             label: "Energy & Electricity",   icon: "⚡" },
-  { id: "logistics",          label: "Logistics & Transport",  icon: "🚂" },
-  { id: "skills",             label: "Skills & Education",     icon: "🎓" },
-  { id: "regulation",         label: "Regulatory Burden",      icon: "📋" },
-  { id: "crime",              label: "Crime & Safety",         icon: "⚖️" },
-  { id: "labor_market",       label: "Labour Market",          icon: "👷" },
-  { id: "land",               label: "Land & Property",        icon: "🏗️" },
-  { id: "digital",            label: "Digital Infrastructure", icon: "💻" },
-  { id: "government_capacity",label: "Government Capacity",    icon: "🏛️" },
-  { id: "corruption",         label: "Corruption & Governance",icon: "🔍" },
+  { id: "energy",                label: "Energy & Electricity",   icon: "⚡" },
+  { id: "transport_logistics",   label: "Logistics & Transport",  icon: "🚂" },
+  { id: "skills_education",      label: "Skills & Education",     icon: "🎓" },
+  { id: "regulatory_burden",     label: "Regulatory Burden",      icon: "📋" },
+  { id: "crime_safety",          label: "Crime & Safety",         icon: "⚖️" },
+  { id: "labour_market",         label: "Labour Market",          icon: "👷" },
+  { id: "land_housing",          label: "Land & Housing",         icon: "🏗️" },
+  { id: "digital_infrastructure",label: "Digital Infrastructure", icon: "💻" },
+  { id: "government_capacity",   label: "Government Capacity",    icon: "🏛️" },
+  { id: "corruption_governance", label: "Corruption & Governance",icon: "🔍" },
 ];
 
 const AUDIENCE_PATHWAYS = [
