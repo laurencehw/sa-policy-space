@@ -21,7 +21,8 @@ const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },
-  testMatch: ["**/__tests__/**/*.test.ts", "**/__tests__/**/*.test.tsx"],
+  testMatch: ["<rootDir>/__tests__/**/*.test.ts", "<rootDir>/__tests__/**/*.test.tsx"],
+  testPathIgnorePatterns: ["/node_modules/", "/.claude/"],
   setupFiles: ["<rootDir>/__tests__/setup.ts"],
   // Verbose output shows each test name
   verbose: true,
