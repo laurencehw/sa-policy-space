@@ -3,8 +3,8 @@ import { getIdeaById, getImplementationPlan, getIdeaMeetings } from "@/lib/api";
 
 export const revalidate = 3600;
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
-  const id = parseInt(params.id, 10);
+export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const id = parseInt((await params).id, 10);
   if (isNaN(id)) return NextResponse.json(null, { status: 404 });
 
   try {

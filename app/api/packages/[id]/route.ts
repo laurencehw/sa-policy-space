@@ -5,9 +5,9 @@ export const revalidate = 3600;
 
 export async function GET(
   _request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const packageId = Number(params.id);
+  const packageId = Number((await params).id);
   if (isNaN(packageId)) {
     return NextResponse.json({ error: "Invalid package id" }, { status: 400 });
   }

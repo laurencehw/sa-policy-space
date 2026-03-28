@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -188,7 +189,9 @@ export default async function ProgressPage() {
         </div>
       </div>
 
-      <ProgressCharts stats={stats} />
+      <Suspense fallback={<div className="h-64 bg-gray-50 rounded-lg animate-pulse" />}>
+        <ProgressCharts stats={stats} />
+      </Suspense>
 
       {/* Caveats */}
       <p className="text-xs text-gray-400 border-t border-gray-100 pt-4">

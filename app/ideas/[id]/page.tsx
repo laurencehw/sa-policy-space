@@ -41,9 +41,9 @@ const fetchIdeaComparisons = cache((id: number) => _getIdeaComparisons(id));
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const slugOrId = params.id;
+  const slugOrId = (await params).id;
   let idea: PolicyIdea | null = null;
   if (/^\d+$/.test(slugOrId)) {
     idea = await fetchIdeaById(parseInt(slugOrId, 10));
@@ -183,9 +183,9 @@ function NoData() {
 export default async function IdeaDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const slugOrId = params.id;
+  const slugOrId = (await params).id;
 
   // Resolve idea by numeric ID or slug — no redirect, serve directly
   let idea: PolicyIdea | null = null;

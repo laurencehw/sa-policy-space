@@ -31,9 +31,9 @@ async function fetchPlan(ideaId: number): Promise<ImplementationPlan | null> {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const id = Number(params.id);
+  const id = Number((await params).id);
   const idea = await fetchIdea(id);
   if (!idea) return {};
   const description = `Draft legislative bill for ${idea.title}. ${(idea.description ?? "").slice(0, 120)}`;
@@ -175,9 +175,9 @@ function SubClause({ letter, children }: { letter: string; children: React.React
 export default async function BillPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const id = parseInt(params.id, 10);
+  const id = parseInt((await params).id, 10);
   if (isNaN(id)) {
     return (
       <div className="text-center py-16 text-gray-400">

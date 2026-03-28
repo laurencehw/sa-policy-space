@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import Link from "next/link";
 import NavDropdown from "@/components/NavDropdown";
@@ -182,8 +183,12 @@ export default function RootLayout({
 
             {/* Search always visible; MobileNav only on small screens */}
             <div className="flex items-center gap-1">
-              <SearchModal />
-              <MobileNav />
+              <Suspense fallback={<div className="w-8 h-8" />}>
+                <SearchModal />
+              </Suspense>
+              <Suspense fallback={<div className="w-8 h-8 md:hidden" />}>
+                <MobileNav />
+              </Suspense>
             </div>
           </div>
         </header>

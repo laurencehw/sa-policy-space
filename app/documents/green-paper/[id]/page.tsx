@@ -49,9 +49,9 @@ async function fetchComparisons(ideaId: number): Promise<any[]> {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const id = Number(params.id);
+  const id = Number((await params).id);
   const idea = await fetchIdea(id);
   if (!idea) return {};
   const description = `Green Paper consultation document for ${idea.title}. ${(idea.description ?? "").slice(0, 120)}`;
@@ -189,9 +189,9 @@ function DocPara({ children }: { children: React.ReactNode }) {
 export default async function GreenPaperPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const id = parseInt(params.id, 10);
+  const id = parseInt((await params).id, 10);
   if (isNaN(id)) {
     return (
       <div className="text-center py-16 text-gray-400">

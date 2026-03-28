@@ -1,6 +1,7 @@
 export const revalidate = 3600; // Recomputes from static JSON — cache for 1 hour
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import dependencyGraphData from "@/data/dependency_graph.json";
 import { computeNetworkCentrality } from "@/lib/analytics";
 import { computeSequencing } from "@/lib/sequencing";
@@ -46,14 +47,16 @@ export default function SequencingPage() {
         </p>
       </div>
 
-      <SequencingClient
-        waves={result.waves}
-        criticalPath={result.criticalPath}
-        bottlenecks={result.bottlenecks}
-        cycleNodeIds={result.cycleNodeIds}
-        directLinks={result.directLinks}
-        reformsById={reformsById}
-      />
+      <Suspense fallback={<div className="h-64 bg-gray-50 rounded-lg animate-pulse" />}>
+        <SequencingClient
+          waves={result.waves}
+          criticalPath={result.criticalPath}
+          bottlenecks={result.bottlenecks}
+          cycleNodeIds={result.cycleNodeIds}
+          directLinks={result.directLinks}
+          reformsById={reformsById}
+        />
+      </Suspense>
     </div>
   );
 }

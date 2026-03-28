@@ -1,0 +1,244 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "SA Policy Space API",
+    "version": "1.0.0",
+    "description": "Public API for South African policy reform data — 177 policy ideas from parliamentary committee proceedings, organised into 5 reform packages across 18 binding constraints.",
+    "contact": {
+      "name": "Laurence Wilse-Samson",
+      "url": "https://sa-policy-space.vercel.app"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sa-policy-space.vercel.app/api/v1",
+      "description": "Production"
+    },
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Local development"
+    }
+  ],
+  "paths": {
+    "/stats": {
+      "get": {
+        "summary": "Aggregate statistics",
+        "description": "Returns total idea count, meetings analysed, binding constraints covered, and dormant idea count.",
+        "operationId": "getStats",
+        "responses": {
+          "200": {
+            "description": "Statistics envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": { "type": "string", "example": "1" },
+                    "data": { "$ref": "#/components/schemas/Stats" }
+                  }
+                }
+              }
+            }
+          },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/ideas": {
+      "get": {
+        "summary": "List policy ideas",
+        "description": "Returns policy ideas with optional filtering by constraint, status, search term, reform package, and time horizon.",
+        "operationId": "getIdeas",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Full-text search on title and description",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "constraint",
+            "in": "query",
+            "description": "Filter by binding constraint",
+            "schema": { "$ref": "#/components/schemas/BindingConstraint" }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by policy status",
+            "schema": { "$ref": "#/components/schemas/PolicyStatus" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort order — 'impact' sorts by growth_impact_rating DESC",
+            "schema": { "type": "string", "enum": ["impact"] }
+          },
+          {
+            "name": "package",
+            "in": "query",
+            "description": "Filter by reform package ID (1–5)",
+            "schema": { "type": "integer", "minimum": 1, "maximum": 5 }
+          },
+          {
+            "name": "timeHorizon",
+            "in": "query",
+            "description": "Filter by implementation horizon",
+            "schema": { "type": "string", "enum": ["quick_win", "medium_term", "long_term"] }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of policy ideas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": { "type": "string", "example": "1" },
+                    "data": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/PolicyIdea" }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "count": { "type": "integer" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/packages": {
+      "get": {
+        "summary": "List reform packages",
+        "description": "Returns the 5 reform packages with summary statistics and time horizon breakdowns.",
+        "operationId": "getPackages",
+        "responses": {
+          "200": {
+            "description": "Array of reform packages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": { "type": "string", "example": "1" },
+                    "data": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/ReformPackage" }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "count": { "type": "integer" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "totalIdeas": { "type": "integer", "example": 177 },
+          "meetingsAnalyzed": { "type": "integer", "example": 842 },
+          "constraintsCovered": { "type": "integer", "example": 18 },
+          "dormantIdeas": { "type": "integer", "example": 23 }
+        }
+      },
+      "BindingConstraint": {
+        "type": "string",
+        "enum": [
+          "energy", "transport_logistics", "skills_education", "regulatory_burden",
+          "crime_safety", "labour_market", "land_housing", "digital_infrastructure",
+          "government_capacity", "corruption_governance", "health_systems", "fiscal_space",
+          "financial_access", "innovation_capacity", "trade_openness", "climate_environment",
+          "water", "other"
+        ]
+      },
+      "PolicyStatus": {
+        "type": "string",
+        "enum": ["proposed", "debated", "drafted", "stalled", "implemented", "abandoned", "under_review", "partially_implemented"]
+      },
+      "PolicyIdea": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "binding_constraint": { "$ref": "#/components/schemas/BindingConstraint" },
+          "current_status": { "$ref": "#/components/schemas/PolicyStatus" },
+          "feasibility_rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "growth_impact_rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "times_raised": { "type": "integer" },
+          "reform_package": { "type": "integer", "nullable": true },
+          "time_horizon": { "type": "string", "nullable": true, "enum": ["quick_win", "medium_term", "long_term", null] },
+          "source_committee": { "type": "string", "nullable": true },
+          "slug": { "type": "string" },
+          "first_raised": { "type": "string", "format": "date", "nullable": true },
+          "last_discussed": { "type": "string", "format": "date", "nullable": true },
+          "dormant": { "type": "integer", "enum": [0, 1] }
+        }
+      },
+      "ReformPackage": {
+        "type": "object",
+        "properties": {
+          "package_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "tagline": { "type": "string" },
+          "theory_of_change": { "type": "string" },
+          "idea_count": { "type": "integer" },
+          "avg_feasibility": { "type": "number" },
+          "avg_growth_impact": { "type": "number" },
+          "stalled_or_proposed_count": { "type": "integer" },
+          "implemented_or_partial_count": { "type": "integer" },
+          "idea_ids": {
+            "type": "array",
+            "items": { "type": "integer" }
+          },
+          "horizon_counts": {
+            "type": "object",
+            "properties": {
+              "quick_win": { "type": "integer" },
+              "medium_term": { "type": "integer" },
+              "long_term": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "InternalError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "version": { "type": "string" },
+                "error": { "type": "string", "example": "Internal error" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

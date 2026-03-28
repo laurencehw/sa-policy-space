@@ -1,6 +1,7 @@
 export const revalidate = 3600;
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -451,11 +452,13 @@ export default async function HomePage() {
               Total gap between parliamentary committee recommendations and current budget allocations
               across all 5 reform packages.
             </p>
-            <BudgetGapChart packages={reformIndex.package_sub_indices.map((pkg) => ({
-              name: pkg.name,
-              score: pkg.score,
-              package_id: pkg.package_id,
-            }))} />
+            <Suspense fallback={<div className="h-48 bg-gray-50 rounded-lg animate-pulse" />}>
+              <BudgetGapChart packages={reformIndex.package_sub_indices.map((pkg) => ({
+                name: pkg.name,
+                score: pkg.score,
+                package_id: pkg.package_id,
+              }))} />
+            </Suspense>
           </div>
 
         </div>

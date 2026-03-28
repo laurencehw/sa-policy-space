@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import IndicatorsClient from "./IndicatorsClient";
 import indicatorsFull from "@/data/indicators_full.json";
 
@@ -9,5 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function IndicatorsPage() {
-  return <IndicatorsClient indicators={indicatorsFull} />;
+  return (
+    <Suspense fallback={<div className="space-y-4"><div className="h-10 bg-gray-100 rounded animate-pulse" /><div className="h-64 bg-gray-50 rounded-lg animate-pulse" /></div>}>
+      <IndicatorsClient indicators={indicatorsFull} />
+    </Suspense>
+  );
 }

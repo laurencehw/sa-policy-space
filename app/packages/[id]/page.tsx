@@ -516,9 +516,9 @@ function HorizonSection({
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const packageId = Number(params.id);
+  const packageId = Number((await params).id);
   const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
   let pkg: any = null;
   if (isLocal) {
@@ -552,11 +552,11 @@ export async function generateMetadata({
 export default async function PackageDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const isLocal = !process.env.NEXT_PUBLIC_SUPABASE_URL;
 
-  const packageId = Number(params.id);
+  const packageId = Number((await params).id);
   if (isNaN(packageId)) notFound();
 
   let pkg: PackageDetail | null;
