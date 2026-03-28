@@ -9,6 +9,7 @@ import { createClient } from "@supabase/supabase-js";
 import reformPackagesData from "@/data/reform_packages.json";
 import dependencyGraphData from "@/data/dependency_graph.json";
 import { slugify } from "@/lib/utils";
+import type { IdeaRow, PackageSummary, PackageDetail, ComparisonRow } from "@/lib/local-api";
 
 // Re-export interfaces so API routes have a stable import path
 export type {
@@ -28,6 +29,61 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+// ── Supabase query result shapes ──────────────────────────────────────────
+// Lightweight interfaces matching the .select() projections used below.
+
+interface MeetingDateJoin {
+  date: string | null;
+}
+
+interface IdeaMeetingRow {
+  idea_id: number;
+  meeting_id: number;
+  meetings: MeetingDateJoin | null;
+}
+
+interface IdeaListRow {
+  id: number;
+  title: string;
+  description: string;
+  binding_constraint: string;
+  current_status: string;
+  time_horizon: string | null;
+  growth_impact_rating: number;
+  feasibility_rating: number;
+  times_raised: number;
+  reform_package: number | null;
+  source_committee: string | null;
+}
+
+interface MeetingRow {
+  id: number;
+  date: string;
+  committee_name: string;
+  title: string;
+  pmg_url: string;
+}
+
+interface IdeaJoin {
+  id: number;
+  title: string;
+  binding_constraint: string;
+  reform_package: number | null;
+  current_status: string;
+}
+
+interface GraphNode {
+  id: number;
+  title: string;
+  [key: string]: unknown;
+}
+
+interface GraphLink {
+  source: number;
+  target: number;
+  label: string;
+}
+
 // ── Stats ──────────────────────────────────────────────────────────────────
 
 export async function getStats() {
@@ -44,7 +100,7 @@ export async function getStats() {
   ]);
 
   const constraintsCovered = new Set(
-    (constraintRows || []).map((r: any) => r.binding_constraint).filter(Boolean)
+    (constraintRows || []).map((r) => (r as { binding_constraint: string }).binding_constraint).filter(Boolean)
   ).size;
 
   // Dormant = ideas whose last meeting was > 12 months ago
@@ -53,8 +109,8 @@ export async function getStats() {
   const cutoffStr = cutoff.toISOString().split("T")[0];
 
   const lastByIdea = new Map<number, string>();
-  for (const row of ideaMeetingDates || []) {
-    const date = (row.meetings as any)?.date;
+  for (const row of (ideaMeetingDates || []) as unknown as IdeaMeetingRow[]) {
+    const date = row.meetings?.date;
     if (!date) continue;
     const prev = lastByIdea.get(row.idea_id);
     if (!prev || date > prev) lastByIdea.set(row.idea_id, date);
@@ -80,13 +136,8 @@ export async function getIdeas(opts?: {
   sort?: string;
   packageId?: number;
   timeHorizon?: string;
-}) {
-  // Fetch matching ideas — select only columns needed for list/filter views
-  // Note: slug is NOT a DB column — it is computed locally via slugify(title)
-  let query = supabase.from("policy_ideas").select(
-    "id, title, description, binding_constraint, current_status, time_horizon, " +
-    "growth_impact_rating, feasibility_rating, times_raised, reform_package, source_committee"
-  );
+}): Promise<IdeaRow[]> {
+  let query = supabase.from("policy_ideas").select("*");
 
   if (opts?.constraint) query = query.eq("binding_constraint", opts.constraint);
   if (opts?.status) query = query.eq("current_status", opts.status);
@@ -114,7 +165,8 @@ export async function getIdeas(opts?: {
   if (!ideas?.length) return [];
 
   // Fetch meeting dates for these ideas in one query
-  const ideaIds = ideas.map((i: any) => i.id);
+  const typedIdeas = ideas as unknown as Array<Record<string, unknown> & IdeaListRow>;
+  const ideaIds = typedIdeas.map((i) => i.id);
   const { data: linkRows } = await supabase
     .from("idea_meetings")
     .select("idea_id, meetings(date)")
@@ -122,8 +174,8 @@ export async function getIdeas(opts?: {
 
   // Group dates by idea_id
   const datesByIdea = new Map<number, string[]>();
-  for (const row of linkRows || []) {
-    const date = (row.meetings as any)?.date;
+  for (const row of (linkRows || []) as unknown as IdeaMeetingRow[]) {
+    const date = row.meetings?.date;
     if (!date) continue;
     const arr = datesByIdea.get(row.idea_id) ?? [];
     arr.push(date);
@@ -134,13 +186,13 @@ export async function getIdeas(opts?: {
     .toISOString()
     .split("T")[0];
 
-  return ideas.map((idea: any) => {
+  return typedIdeas.map((idea) => {
     const dates = (datesByIdea.get(idea.id) ?? []).sort();
     const first_raised = dates[0] ?? null;
     const last_discussed = dates[dates.length - 1] ?? null;
     const dormant =
       last_discussed && last_discussed < cutoffStr ? 1 : 0;
-    return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) };
+    return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) } as IdeaRow;
   });
 }
 
@@ -153,9 +205,9 @@ export async function getIdeaById(id: number) {
   if (ideaError) console.error("[supabase] getIdeaById error:", ideaError);
   if (!idea) return null;
 
-  const dates = (linkRows || [])
-    .map((r: any) => r.meetings?.date)
-    .filter(Boolean)
+  const dates = ((linkRows || []) as unknown as Array<{ meetings: MeetingDateJoin | null }>)
+    .map((r) => r.meetings?.date)
+    .filter((d): d is string => !!d)
     .sort();
 
   const first_raised = dates[0] ?? null;
@@ -187,24 +239,24 @@ export async function getIdeaBySlug(slug: string) {
     .select("id, title");
   if (slugError) console.error("[supabase] getIdeaBySlug error:", slugError);
   if (!rows?.length) return null;
-  const match = rows.find((r: any) => slugify(r.title) === slug);
+  const match = rows.find((r) => slugify(r.title) === slug);
   if (!match) return null;
   return await getIdeaById(match.id);
 }
 
 // ── Related ideas (same reform package) ───────────────────────────────────
 
-export async function getRelatedIdeas(packageId: number, currentId: number) {
+export async function getRelatedIdeas(packageId: number, currentId: number): Promise<IdeaRow[]> {
   const { data } = await supabase
     .from("policy_ideas")
-    .select("id, title, current_status, time_horizon, growth_impact_rating")
+    .select("*")
     .eq("reform_package", packageId)
     .neq("id", currentId)
     .order("growth_impact_rating", { ascending: false })
     .limit(6);
 
   if (!data?.length) return [];
-  return (data as any[]).map((r) => ({ ...r, slug: slugify(r.title) }));
+  return data.map((r) => ({ ...r, slug: slugify(r.title) }) as IdeaRow);
 }
 
 // ── Committees ─────────────────────────────────────────────────────────────
@@ -299,11 +351,11 @@ export async function getIdeaMeetings(ideaId: number) {
   if (!data?.length) return [];
 
   // Unwrap nested meetings and sort by date desc
-  return (data as any[])
-    .map((r) => r.meetings)
-    .filter(Boolean)
-    .sort((a: any, b: any) => (b.date > a.date ? 1 : -1))
-    .map((m: any) => ({
+  return data
+    .map((r) => (r as unknown as { meetings: MeetingRow | null }).meetings)
+    .filter((m): m is MeetingRow => !!m)
+    .sort((a, b) => (b.date > a.date ? 1 : -1))
+    .map((m) => ({
       ...m,
       pmg_url: m.pmg_url?.replace(/https?:\/\/api\.pmg\.org\.za\//g, "https://pmg.org.za/"),
     }));
@@ -311,8 +363,8 @@ export async function getIdeaMeetings(ideaId: number) {
 
 // ── Reform packages (bundled JSON, no DB needed) ──────────────────────────
 
-export function getPackageSummaries() {
-  return Object.values(reformPackagesData) as any[];
+export function getPackageSummaries(): PackageSummary[] {
+  return Object.values(reformPackagesData) as PackageSummary[];
 }
 
 export async function getPackageTimeHorizonCounts() {
@@ -338,31 +390,29 @@ export async function getPackageTimeHorizonCounts() {
   return result;
 }
 
-export async function getPackageDetail(packageId: number) {
+export async function getPackageDetail(packageId: number): Promise<PackageDetail | null> {
   const summaries = getPackageSummaries();
-  const summary = summaries.find((s: any) => s.package_id === packageId);
+  const summary = summaries.find((s) => s.package_id === packageId);
   if (!summary) return null;
 
   const ideas = await getIdeas({ packageId });
 
-  const ideas_by_horizon = {
-    quick_win: ideas.filter((i: any) => i.time_horizon === "quick_win"),
-    medium_term: ideas.filter((i: any) => i.time_horizon === "medium_term"),
-    long_term: ideas.filter((i: any) => i.time_horizon === "long_term"),
-    unassigned: ideas.filter((i: any) => !i.time_horizon),
+  const ideas_by_horizon: PackageDetail["ideas_by_horizon"] = {
+    quick_win: ideas.filter((i) => i.time_horizon === "quick_win"),
+    medium_term: ideas.filter((i) => i.time_horizon === "medium_term"),
+    long_term: ideas.filter((i) => i.time_horizon === "long_term"),
+    unassigned: ideas.filter((i) => !i.time_horizon),
   };
 
   // Read dependency graph (bundled at build time)
-  let dependencies: any[] = [];
+  let dependencies: PackageDetail["dependencies"] = [];
   try {
-    const graph = dependencyGraphData as any;
+    const graph = dependencyGraphData as { nodes: GraphNode[]; links: GraphLink[] };
     const ideaIdSet = new Set(summary.idea_ids);
     const nodeMap = new Map<number, string>(
-      graph.nodes.map((n: any) => [n.id, n.title])
+      graph.nodes.map((n) => [n.id, n.title])
     );
-    dependencies = (
-      graph.links as Array<{ source: number; target: number; label: string }>
-    )
+    dependencies = graph.links
       .filter((l) => ideaIdSet.has(l.source) && ideaIdSet.has(l.target))
       .map((l) => ({
         source: l.source,
@@ -380,7 +430,25 @@ export async function getPackageDetail(packageId: number) {
 
 // ── International comparisons ─────────────────────────────────────────────
 
-export async function getComparisons(opts?: { country?: string; constraint?: string }) {
+interface ComparisonJoinRow {
+  id: number;
+  idea_id: number;
+  country: string;
+  iso3: string | null;
+  reform_year: number | null;
+  outcome_summary: string;
+  approach: string | null;
+  gdp_impact: string | null;
+  timeline: string | null;
+  lessons_for_sa: string | null;
+  sources: string[] | null;
+  source_url: string | null;
+  source_label: string | null;
+  created_at: string;
+  policy_ideas: { id: number; title: string; binding_constraint: string } | null;
+}
+
+export async function getComparisons(opts?: { country?: string; constraint?: string }): Promise<ComparisonRow[]> {
   let query = supabase
     .from("international_comparisons")
     .select("*, policy_ideas(id, title, binding_constraint)")
@@ -395,19 +463,19 @@ export async function getComparisons(opts?: { country?: string; constraint?: str
   }
   if (!data?.length) return [];
 
-  return (data as any[])
+  return (data as unknown as ComparisonJoinRow[])
     .map((r) => ({
       ...r,
       idea_id: r.policy_ideas?.id ?? r.idea_id,
-      idea_title: r.policy_ideas?.title ?? null,
+      idea_title: r.policy_ideas?.title ?? "",
       idea_slug: slugify(r.policy_ideas?.title ?? ""),
-      binding_constraint: r.policy_ideas?.binding_constraint ?? null,
+      binding_constraint: r.policy_ideas?.binding_constraint ?? "",
       policy_ideas: undefined,
     }))
     .filter((r) => !opts?.constraint || r.binding_constraint === opts.constraint);
 }
 
-export async function getIdeaComparisons(ideaId: number) {
+export async function getIdeaComparisons(ideaId: number): Promise<ComparisonRow[]> {
   const { data, error } = await supabase
     .from("international_comparisons")
     .select("*, policy_ideas(id, title, binding_constraint)")
@@ -420,11 +488,11 @@ export async function getIdeaComparisons(ideaId: number) {
   }
   if (!data?.length) return [];
 
-  return (data as any[]).map((r) => ({
+  return (data as unknown as ComparisonJoinRow[]).map((r) => ({
     ...r,
-    idea_title: r.policy_ideas?.title ?? null,
+    idea_title: r.policy_ideas?.title ?? "",
     idea_slug: slugify(r.policy_ideas?.title ?? ""),
-    binding_constraint: r.policy_ideas?.binding_constraint ?? null,
+    binding_constraint: r.policy_ideas?.binding_constraint ?? "",
     policy_ideas: undefined,
   }));
 }
@@ -446,8 +514,8 @@ export async function getTimelineData() {
     id: number; title: string; slug: string;
     reform_package: number | null; current_status: string;
   }>>();
-  for (const row of linkRows || []) {
-    const idea = (row as any).policy_ideas;
+  for (const row of (linkRows || []) as unknown as Array<{ meeting_id: number; policy_ideas: IdeaJoin | null }>) {
+    const idea = row.policy_ideas;
     if (!idea) continue;
     const arr = ideasByMeeting.get(row.meeting_id) ?? [];
     arr.push({
@@ -460,9 +528,9 @@ export async function getTimelineData() {
     ideasByMeeting.set(row.meeting_id, arr);
   }
 
-  return (allMeetings || [])
-    .filter((m: any) => ideasByMeeting.has(m.id))
-    .map((m: any) => ({
+  return ((allMeetings || []) as unknown as MeetingRow[])
+    .filter((m) => ideasByMeeting.has(m.id))
+    .map((m) => ({
       id: m.id,
       date: m.date,
       committee_name: m.committee_name,
