@@ -13,7 +13,7 @@ export const DependencyGraph = dynamic(
           style={{ borderColor: "#007A4D40", borderTopColor: "#007A4D" }}
         />
         <p className="text-gray-400 text-sm">
-          Rendering 123-node dependency graph...
+          Rendering dependency graph...
         </p>
         <p className="text-gray-300 text-xs">
           Hover nodes to see connections, click for details, drag to rearrange
