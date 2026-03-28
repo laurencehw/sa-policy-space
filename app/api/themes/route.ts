@@ -6,7 +6,8 @@ export const revalidate = 3600;
 export async function GET() {
   try {
     return NextResponse.json(await getConstraintSummaries());
-  } catch {
-    return NextResponse.json([]);
+  } catch (err) {
+    console.error("themes route error:", err);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

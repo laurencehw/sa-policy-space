@@ -15,7 +15,8 @@ export async function GET(request: Request) {
 
   try {
     return NextResponse.json(await getIdeas({ search, constraint, status, sort, packageId, timeHorizon }));
-  } catch {
-    return NextResponse.json([]);
+  } catch (err) {
+    console.error("ideas route error:", err);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

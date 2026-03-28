@@ -225,8 +225,7 @@ export function computeMomentumScores(ideas: IdeaRow[]): MomentumScore[] {
   if (ideas.length === 0) return [];
 
   const maxRaised = Math.max(...ideas.map((i) => i.times_raised ?? 0), 1);
-  // Reference date — use a fixed recent date so scores are reproducible
-  const now = new Date("2026-03-23");
+  const now = new Date();
 
   return ideas
     .map((idea) => {

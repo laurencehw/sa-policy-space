@@ -6,6 +6,14 @@ export const dynamic = "force-dynamic";
 // ── Rate limiter (5 requests per IP per hour) ────────────────────────────────
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
+// Purge expired entries every 10 minutes to prevent unbounded growth.
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of rateLimitMap) {
+    if (now > entry.resetAt) rateLimitMap.delete(ip);
+  }
+}, 10 * 60 * 1000).unref();
+
 function checkRateLimit(ip: string): { allowed: boolean; retryAfter: number } {
   const now = Date.now();
   const windowMs = 60 * 60 * 1000; // 1 hour

@@ -23,6 +23,12 @@ function getDb(): InstanceType<typeof DatabaseSync> {
   return new DatabaseSync(DB_PATH);
 }
 
+// SQL fragment for derived date fields on policy_ideas — used across multiple queries.
+const IDEA_DATE_FIELDS = `
+    (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
+    (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
+    CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant`;
+
 // ── Stats ──────────────────────────────────────────────────────────────────
 
 export interface StatsResult {
@@ -126,9 +132,7 @@ export function getIdeas(opts?: {
 
     const stmt = db.prepare(`
       SELECT p.*,
-        (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
-        (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
-        CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
+        ${IDEA_DATE_FIELDS}
       FROM policy_ideas p ${where} ${order}
     `);
     const rows = (params.length ? stmt.all(...params) : stmt.all()) as IdeaRow[];
@@ -143,9 +147,7 @@ export function getIdeaById(id: number): IdeaRow | null {
   try {
     const row = (db.prepare(`
       SELECT p.*,
-        (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
-        (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
-        CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
+        ${IDEA_DATE_FIELDS}
       FROM policy_ideas p WHERE p.id = ?
     `).get(id) as IdeaRow) ?? null;
     return row ? { ...row, slug: slugify(row.title) } : null;
@@ -157,11 +159,18 @@ export function getIdeaById(id: number): IdeaRow | null {
 export function getIdeaBySlug(slug: string): IdeaRow | null {
   const db = getDb();
   try {
+    // Fast path: direct indexed lookup on slug column
+    const row = db.prepare(`
+      SELECT p.*,
+        ${IDEA_DATE_FIELDS}
+      FROM policy_ideas p WHERE p.slug = ?
+    `).get(slug) as IdeaRow | undefined;
+    if (row) return { ...row, slug };
+
+    // Fallback: compute slug from title (handles rows where slug column doesn't match)
     const rows = db.prepare(`
       SELECT p.*,
-        (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
-        (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
-        CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
+        ${IDEA_DATE_FIELDS}
       FROM policy_ideas p
     `).all() as IdeaRow[];
     const match = rows.find((r) => slugify(r.title) === slug);
@@ -178,9 +187,7 @@ export function getRelatedIdeas(packageId: number, currentId: number): IdeaRow[]
   try {
     const rows = db.prepare(`
       SELECT p.*,
-        (SELECT MIN(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS first_raised,
-        (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) AS last_discussed,
-        CASE WHEN (SELECT MAX(m.date) FROM idea_meetings im JOIN meetings m ON m.id = im.meeting_id WHERE im.idea_id = p.id) < date('now', '-12 months') THEN 1 ELSE 0 END AS dormant
+        ${IDEA_DATE_FIELDS}
       FROM policy_ideas p
       WHERE p.reform_package = ? AND p.id != ?
       ORDER BY p.growth_impact_rating DESC, p.id

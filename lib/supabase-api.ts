@@ -93,7 +93,8 @@ export async function getIdeas(opts?: {
   if (opts?.packageId) query = query.eq("reform_package", opts.packageId);
   if (opts?.timeHorizon) query = query.eq("time_horizon", opts.timeHorizon);
   if (opts?.search) {
-    const term = opts.search.toLowerCase();
+    // Escape PostgREST special characters to prevent filter injection.
+    const term = opts.search.toLowerCase().replace(/[%_\\(),.*]/g, (c) => `\\${c}`);
     query = query.or(`title.ilike.%${term}%,description.ilike.%${term}%`);
   }
 

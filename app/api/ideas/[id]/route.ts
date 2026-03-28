@@ -15,7 +15,8 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
       getIdeaMeetings(id),
     ]);
     return NextResponse.json({ idea, plan, meetings });
-  } catch {
-    return NextResponse.json(null, { status: 500 });
+  } catch (err) {
+    console.error("idea detail route error:", err);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

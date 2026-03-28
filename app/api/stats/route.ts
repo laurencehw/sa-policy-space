@@ -6,7 +6,8 @@ export const revalidate = 3600;
 export async function GET() {
   try {
     return NextResponse.json(await getStats());
-  } catch {
-    return NextResponse.json({ totalIdeas: 0, meetingsAnalyzed: 0, constraintsCovered: 0, dormantIdeas: 0 });
+  } catch (err) {
+    console.error("stats route error:", err);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

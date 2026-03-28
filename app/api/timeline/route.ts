@@ -8,6 +8,6 @@ export async function GET() {
     return NextResponse.json(await getTimelineData());
   } catch (err) {
     console.error("Timeline API error:", err);
-    return NextResponse.json([]);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

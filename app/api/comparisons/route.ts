@@ -24,7 +24,8 @@ export async function GET(request: Request) {
     if (country) fallback = fallback.filter((c: any) => c.country === country);
     if (constraint) fallback = fallback.filter((c: any) => c.binding_constraint === constraint);
     return NextResponse.json(fallback);
-  } catch {
-    return NextResponse.json([]);
+  } catch (err) {
+    console.error("comparisons route error:", err);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

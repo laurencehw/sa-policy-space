@@ -25,7 +25,8 @@ export async function GET(request: Request) {
   try {
     const data = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon });
     return NextResponse.json({ version: "1", data, meta: { count: data.length } }, { headers: CORS_HEADERS });
-  } catch {
-    return NextResponse.json({ version: "1", data: [], meta: { count: 0 } }, { headers: CORS_HEADERS });
+  } catch (err) {
+    console.error("v1 ideas route error:", err);
+    return NextResponse.json({ version: "1", error: "Internal error" }, { status: 500, headers: CORS_HEADERS });
   }
 }

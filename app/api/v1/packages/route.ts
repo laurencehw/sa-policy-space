@@ -23,7 +23,8 @@ export async function GET() {
       horizon_counts: horizonCounts[s.package_id] ?? { quick_win: 0, medium_term: 0, long_term: 0 },
     }));
     return NextResponse.json({ version: "1", data, meta: { count: data.length } }, { headers: CORS_HEADERS });
-  } catch {
-    return NextResponse.json({ version: "1", data: [], meta: { count: 0 } }, { headers: CORS_HEADERS });
+  } catch (err) {
+    console.error("v1 packages route error:", err);
+    return NextResponse.json({ version: "1", error: "Internal error" }, { status: 500, headers: CORS_HEADERS });
   }
 }
