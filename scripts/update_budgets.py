@@ -1,13 +1,12 @@
-"""
-SA Policy Space — Vulekamali Budget Data Updater
-==================================================
-Fetches national department budget data from the Vulekamali CKAN API
-and upserts into the Supabase department_budgets table.
+﻿"""
+SA Policy Space - Vulekamali Budget Data Updater
+Fetches national department budget data by scraping CSV download links
+from vulekamali.gov.za and upserts into the Supabase department_budgets table.
 
 Usage:
-    python update_budgets.py                       # fetch latest available year
+    python update_budgets.py                       # fetch 2026-27 (latest)
     python update_budgets.py --year 2025-26        # fetch a specific financial year
-    python update_budgets.py --all-years           # fetch all years (initial load)
+    python update_budgets.py --all-years           # fetch all available years
     python update_budgets.py --dry-run             # show what would be fetched
 
 Environment variables required:
@@ -15,384 +14,142 @@ Environment variables required:
     SUPABASE_KEY      - Your Supabase service_role key
 """
 
-import os
-import sys
-import logging
-import argparse
-import requests
+import os, sys, re, csv, io, logging, argparse, requests
 from supabase import create_client
 
-# ---------------------------------------------------------------------------
-# Config
-# ---------------------------------------------------------------------------
-
-CKAN_BASE = "https://data.vulekamali.gov.za/api/3"
-
-# Departments that map to your tracked committees / policy ideas
-# Maps Vulekamali department names → your policy_ideas.responsible_department values
+VULEKAMALI_BASE = "https://vulekamali.gov.za"
+AVAILABLE_YEARS = ["2020-21","2022-23","2023-24","2024-25","2025-26","2026-27"]
 TRACKED_DEPARTMENTS = [
-    "Basic Education",
-    "Health",
-    "Higher Education and Training",
-    "Human Settlements",
-    "Mineral Resources and Energy",
-    "Public Enterprises",
-    "Public Works and Infrastructure",
-    "Science, Technology and Innovation",
-    "Small Business Development",
-    "Trade, Industry and Competition",
-    "Transport",
-    "National Treasury",
-    "Water and Sanitation",
+    "Basic Education","Health","Higher Education and Training",
+    "Higher Education, Science and Innovation","Human Settlements",
+    "Mineral Resources and Energy","Mineral Resources","Public Enterprises",
+    "Public Works and Infrastructure","Science, Technology and Innovation",
+    "Science and Technology","Small Business Development",
+    "Trade, Industry and Competition","Trade and Industry","Transport",
+    "National Treasury","Water and Sanitation",
     "Agriculture, Land Reform and Rural Development",
-    "Employment and Labour",
+    "Agriculture, Forestry and Fisheries","Employment and Labour","Labour","Energy",
 ]
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# CKAN API helpers
-# ---------------------------------------------------------------------------
+def find_csv_url(financial_year):
+    page_url = f"{VULEKAMALI_BASE}/datasets/estimates-of-national-expenditure/estimates-of-national-expenditure-{financial_year}"
+    log.info(f"  Fetching dataset page: {page_url}")
+    resp = requests.get(page_url, timeout=60); resp.raise_for_status()
+    csv_matches = re.findall(r'href="(resources/[^"]+\.csv)"', resp.text, re.IGNORECASE)
+    if not csv_matches:
+        csv_matches = re.findall(r'href="(https?://[^"]+\.csv)"', resp.text, re.IGNORECASE)
+    if csv_matches:
+        p = csv_matches[0]
+        return p if p.startswith("http") else f"{page_url}/{p}"
+    return None
 
-def ckan_search_datasets(query: str) -> list[dict]:
-    """Search for datasets on Vulekamali CKAN."""
-    url = f"{CKAN_BASE}/action/package_search"
-    resp = requests.get(url, params={"q": query, "rows": 50}, timeout=60)
-    resp.raise_for_status()
-    data = resp.json()
-    if data.get("success"):
-        return data["result"]["results"]
-    return []
-
-
-def ckan_get_datastore(resource_id: str, limit: int = 32000, offset: int = 0) -> dict:
-    """Fetch records from a CKAN datastore resource."""
-    url = f"{CKAN_BASE}/action/datastore_search"
-    resp = requests.get(url, params={
-        "resource_id": resource_id,
-        "limit": limit,
-        "offset": offset,
-    }, timeout=120)
-    resp.raise_for_status()
-    data = resp.json()
-    if data.get("success"):
-        return data["result"]
-    return {"records": [], "total": 0}
-
-
-def find_ene_datasets(financial_year: str | None = None) -> list[dict]:
-    """
-    Find Estimates of National Expenditure datasets.
-    These contain the department-level budget breakdowns.
-    """
-    query = "Estimates of National Expenditure"
-    if financial_year:
-        query += f" {financial_year}"
-
-    datasets = ckan_search_datasets(query)
-
-    # Filter to actual ENE datasets (not adjusted, not provincial)
-    ene_datasets = []
-    for ds in datasets:
-        title = ds.get("title", "").lower()
-        if "estimates of national expenditure" in title:
-            ene_datasets.append(ds)
-
-    return ene_datasets
-
-
-def find_csv_resources(dataset: dict) -> list[dict]:
-    """Find CSV resources within a CKAN dataset."""
-    resources = dataset.get("resources", [])
-    csv_resources = [
-        r for r in resources
-        if r.get("format", "").upper() == "CSV"
-        or r.get("url", "").lower().endswith(".csv")
-    ]
-    return csv_resources
-
-
-def download_csv_resource(url: str) -> list[dict]:
-    """Download and parse a CSV resource."""
-    import csv
-    import io
-
-    resp = requests.get(url, timeout=120)
-    resp.raise_for_status()
-
-    text = resp.text
+def download_csv(url):
+    log.info(f"  Downloading CSV: {url}")
+    resp = requests.get(url, timeout=120); resp.raise_for_status()
+    text = resp.content.decode("utf-8-sig")
     reader = csv.DictReader(io.StringIO(text))
-    return list(reader)
-
-# ---------------------------------------------------------------------------
-# Data processing
-# ---------------------------------------------------------------------------
-
-def process_budget_records(records: list[dict], financial_year: str, source_url: str) -> list[dict]:
-    """
-    Process raw budget records into rows for our department_budgets table.
-    Vulekamali CSV fields vary but typically include:
-    - Department / Vote
-    - Programme
-    - Sub-programme
-    - Econ1, Econ2 (economic classifications)
-    - Budget Phase
-    - Financial Year
-    - Value / Amount
-    """
-    rows = []
-
-    for record in records:
-        # Try to extract department name from various possible field names
-        dept = (
-            record.get("Department") or
-            record.get("department") or
-            record.get("Vote") or
-            record.get("vote") or
-            ""
-        ).strip()
-
-        if not dept:
-            continue
-
-        # Check if this is a department we track
-        dept_match = None
-        for tracked in TRACKED_DEPARTMENTS:
-            if tracked.lower() in dept.lower() or dept.lower() in tracked.lower():
-                dept_match = tracked
-                break
-
-        if not dept_match:
-            continue
-
-        programme = (
-            record.get("Programme") or
-            record.get("programme") or
-            ""
-        ).strip() or None
-
-        sub_programme = (
-            record.get("Sub-programme") or
-            record.get("Subprogramme") or
-            record.get("sub_programme") or
-            ""
-        ).strip() or None
-
-        econ1 = (
-            record.get("Econ1") or
-            record.get("Economic Classification 1") or
-            record.get("economic_classification_1") or
-            ""
-        ).strip() or None
-
-        econ2 = (
-            record.get("Econ2") or
-            record.get("Economic Classification 2") or
-            record.get("economic_classification_2") or
-            ""
-        ).strip() or None
-
-        budget_phase = (
-            record.get("Budget Phase") or
-            record.get("budget_phase") or
-            record.get("BudgetPhase") or
-            "Main Appropriation"
-        ).strip()
-
-        fy = (
-            record.get("Financial Year") or
-            record.get("financial_year") or
-            record.get("FinancialYear") or
-            financial_year
-        ).strip()
-
-        # Parse amount — might be in 'Value', 'Amount', or a year column
-        amount_raw = (
-            record.get("Value") or
-            record.get("value") or
-            record.get("Amount") or
-            record.get("amount") or
-            "0"
-        )
-
-        try:
-            # Vulekamali amounts are sometimes in thousands
-            amount = int(float(str(amount_raw).replace(",", "").replace(" ", "")))
-        except (ValueError, TypeError):
-            amount = None
-
-        vote_raw = (
-            record.get("Vote Number") or
-            record.get("vote_number") or
-            record.get("VoteNumber") or
-            ""
-        )
-        try:
-            vote_number = int(vote_raw)
-        except (ValueError, TypeError):
-            vote_number = None
-
-        rows.append({
-            "department_name": dept_match,
-            "programme": programme,
-            "sub_programme": sub_programme,
-            "economic_classification_1": econ1,
-            "economic_classification_2": econ2,
-            "financial_year": fy,
-            "budget_phase": budget_phase,
-            "amount_rands": amount,
-            "vote_number": vote_number,
-            "sphere": "national",
-            "province": None,
-            "source_url": source_url,
-        })
-
+    rows = list(reader)
+    log.info(f"  Downloaded {len(rows)} rows, columns: {reader.fieldnames[:8] if reader.fieldnames else 'none'}")
     return rows
 
-# ---------------------------------------------------------------------------
-# Supabase helpers
-# ---------------------------------------------------------------------------
+def match_department(raw_name):
+    if not raw_name: return None
+    raw_lower = raw_name.strip().lower()
+    for tracked in TRACKED_DEPARTMENTS:
+        if tracked.lower() == raw_lower or tracked.lower() in raw_lower or raw_lower in tracked.lower():
+            return tracked
+    return None
+
+def process_budget_rows(records, financial_year, source_url):
+    rows = []
+    if not records: return rows
+    sample_keys = list(records[0].keys())
+    log.info(f"  CSV columns: {sample_keys}")
+    col_map = {}
+    for key in sample_keys:
+        kl = key.strip().lower()
+        if kl in ("department","vote","dept"): col_map["dept"] = key
+        elif kl in ("programme","program"): col_map["programme"] = key
+        elif kl in ("subprogramme","sub-programme","sub_programme","subprogram"): col_map["sub_programme"] = key
+        elif "econ" in kl and "1" in kl: col_map["econ1"] = key
+        elif "econ" in kl and "2" in kl: col_map["econ2"] = key
+        elif kl in ("budget phase","budget_phase","budgetphase","type"): col_map["budget_phase"] = key
+        elif kl in ("financial year","financial_year","financialyear","fy"): col_map["fy"] = key
+        elif kl in ("value","amount","r thousand","r thousands","r'000"): col_map["amount"] = key
+        elif kl in ("vote number","vote_number","votenumber"): col_map["vote_number"] = key
+    log.info(f"  Column mapping: {col_map}")
+    if "dept" not in col_map:
+        for key in sample_keys:
+            sample_vals = set(str(records[i].get(key,"")).strip() for i in range(min(50,len(records))))
+            if any(match_department(v) for v in sample_vals):
+                col_map["dept"] = key; log.info(f"  Found department column by content: '{key}'"); break
+    if "dept" not in col_map:
+        log.error("  Cannot identify department column - skipping"); return rows
+    for record in records:
+        dept = match_department(str(record.get(col_map.get("dept",""),"")).strip())
+        if not dept: continue
+        programme = str(record.get(col_map.get("programme",""),"")).strip() or None
+        sub_programme = str(record.get(col_map.get("sub_programme",""),"")).strip() or None
+        econ1 = str(record.get(col_map.get("econ1",""),"")).strip() or None
+        econ2 = str(record.get(col_map.get("econ2",""),"")).strip() or None
+        budget_phase = str(record.get(col_map.get("budget_phase",""),"")).strip() or "Main Appropriation"
+        fy = str(record.get(col_map.get("fy",""),"")).strip() or financial_year
+        amount_raw = str(record.get(col_map.get("amount",""),"0")).strip()
+        try: amount = int(float(amount_raw.replace(",","").replace(" ","")))
+        except: amount = None
+        vote_raw = str(record.get(col_map.get("vote_number",""),"")).strip()
+        try: vote_number = int(vote_raw)
+        except: vote_number = None
+        rows.append({"department_name":dept,"programme":programme,"sub_programme":sub_programme,"economic_classification_1":econ1,"economic_classification_2":econ2,"financial_year":fy,"budget_phase":budget_phase,"amount_rands":amount,"vote_number":vote_number,"sphere":"national","province":None,"source_url":source_url})
+    return rows
 
 def get_supabase_client():
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_KEY")
-    if not url or not key:
-        log.error("Missing SUPABASE_URL or SUPABASE_KEY environment variables")
-        sys.exit(1)
+    url = os.environ.get("SUPABASE_URL"); key = os.environ.get("SUPABASE_KEY")
+    if not url or not key: log.error("Missing SUPABASE_URL or SUPABASE_KEY"); sys.exit(1)
     return create_client(url, key)
 
-
-def upsert_budget_rows(supabase, rows: list[dict]):
-    """Upsert budget rows in batches."""
-    BATCH_SIZE = 500
-    total = 0
-
+def upsert_budget_rows(supabase, rows):
+    BATCH_SIZE = 500; total = 0
     for i in range(0, len(rows), BATCH_SIZE):
-        batch = rows[i:i + BATCH_SIZE]
+        batch = rows[i:i+BATCH_SIZE]
         try:
-            supabase.table("department_budgets").upsert(
-                batch,
-                on_conflict="department_name,programme,financial_year,budget_phase,economic_classification_1,sphere,province",
-            ).execute()
-            total += len(batch)
-            log.info(f"  Upserted batch {i//BATCH_SIZE + 1}: {len(batch)} rows (total: {total})")
-        except Exception as e:
-            log.error(f"  Error upserting batch: {e}")
-
+            supabase.table("department_budgets").upsert(batch, on_conflict="department_name,programme,financial_year,budget_phase,economic_classification_1,sphere,province").execute()
+            total += len(batch); log.info(f"  Upserted batch {i//BATCH_SIZE+1}: {len(batch)} rows (total: {total})")
+        except Exception as e: log.error(f"  Error upserting batch: {e}")
     return total
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(description="Update SA Policy Space with Vulekamali budget data")
-    parser.add_argument("--year", type=str, default=None, help="Financial year to fetch (e.g. '2025-26')")
-    parser.add_argument("--all-years", action="store_true", help="Fetch all available years")
-    parser.add_argument("--dry-run", action="store_true", help="Show what would be fetched without writing to DB")
+    parser.add_argument("--year", type=str, default=None)
+    parser.add_argument("--all-years", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-
-    log.info("Searching for Estimates of National Expenditure datasets on Vulekamali...")
-
-    datasets = find_ene_datasets(args.year)
-    log.info(f"Found {len(datasets)} ENE datasets")
-
-    if not datasets:
-        # Fallback: try a broader search
-        log.info("Trying broader search...")
-        datasets = ckan_search_datasets("national expenditure budget")
-        log.info(f"Found {len(datasets)} datasets with broader search")
-
+    if args.all_years: years = AVAILABLE_YEARS
+    elif args.year: years = [args.year]
+    else: years = [AVAILABLE_YEARS[-1]]
+    log.info(f"Will fetch ENE data for: {years}")
+    if not args.dry_run: supabase = get_supabase_client()
     total_rows = 0
+    for fy in years:
+        log.info(f"\n{'='*60}\nProcessing ENE {fy}")
+        try: csv_url = find_csv_url(fy)
+        except Exception as e: log.error(f"  Failed to load dataset page: {e}"); continue
+        if not csv_url: log.warning(f"  No CSV found for {fy}, skipping"); continue
+        try: records = download_csv(csv_url)
+        except Exception as e: log.error(f"  Failed to download CSV: {e}"); continue
+        budget_rows = process_budget_rows(records, fy, csv_url)
+        log.info(f"  Extracted {len(budget_rows)} rows for tracked departments")
+        if args.dry_run:
+            depts_found = set(r["department_name"] for r in budget_rows)
+            log.info(f"  [DRY RUN] Departments: {depts_found}")
+            for dept in sorted(depts_found):
+                log.info(f"    {dept}: {len([r for r in budget_rows if r['department_name']==dept])} rows")
+            total_rows += len(budget_rows); continue
+        if budget_rows: total_rows += upsert_budget_rows(supabase, budget_rows)
+    log.info(f"\n{'='*60}\nDone! Processed {total_rows} budget rows across {len(years)} year(s).")
+    if args.dry_run: log.info("(This was a dry run)")
 
-    if not args.dry_run:
-        supabase = get_supabase_client()
-
-    for ds in datasets:
-        title = ds.get("title", "Unknown")
-        log.info(f"\n--- Dataset: {title} ---")
-
-        # Try datastore API first (structured), fall back to CSV download
-        csv_resources = find_csv_resources(ds)
-
-        if not csv_resources:
-            log.info("  No CSV resources found, skipping")
-            continue
-
-        for resource in csv_resources:
-            res_name = resource.get("name", resource.get("description", "unnamed"))
-            res_url = resource.get("url", "")
-            res_id = resource.get("id", "")
-
-            log.info(f"  Resource: {res_name}")
-
-            records = []
-
-            # Try datastore first
-            if res_id:
-                try:
-                    result = ckan_get_datastore(res_id)
-                    records = result.get("records", [])
-                    total_available = result.get("total", 0)
-                    log.info(f"    Datastore: {len(records)} of {total_available} records")
-
-                    # Fetch remaining pages if needed
-                    while len(records) < total_available:
-                        result = ckan_get_datastore(res_id, offset=len(records))
-                        page_records = result.get("records", [])
-                        if not page_records:
-                            break
-                        records.extend(page_records)
-                        log.info(f"    Fetched page: {len(records)} of {total_available}")
-
-                except Exception as e:
-                    log.warning(f"    Datastore failed ({e}), trying CSV download...")
-
-            # Fall back to CSV download
-            if not records and res_url:
-                try:
-                    records = download_csv_resource(res_url)
-                    log.info(f"    CSV download: {len(records)} records")
-                except Exception as e:
-                    log.error(f"    CSV download failed: {e}")
-                    continue
-
-            if not records:
-                continue
-
-            # Log sample fields for debugging
-            if records:
-                sample = records[0]
-                log.info(f"    Sample fields: {list(sample.keys())[:10]}")
-
-            # Process records
-            fy = args.year or "unknown"
-            budget_rows = process_budget_records(records, fy, res_url)
-            log.info(f"    Processed {len(budget_rows)} rows for tracked departments")
-
-            if args.dry_run:
-                # Show sample
-                depts_found = set(r["department_name"] for r in budget_rows)
-                log.info(f"    [DRY RUN] Departments found: {depts_found}")
-                for dept in depts_found:
-                    dept_rows = [r for r in budget_rows if r["department_name"] == dept]
-                    log.info(f"      {dept}: {len(dept_rows)} rows")
-                total_rows += len(budget_rows)
-                continue
-
-            if budget_rows:
-                inserted = upsert_budget_rows(supabase, budget_rows)
-                total_rows += inserted
-
-    log.info(f"\n{'='*60}")
-    log.info(f"Done! Processed {total_rows} budget rows.")
-    if args.dry_run:
-        log.info("(This was a dry run — nothing was written to the database)")
-
-
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
