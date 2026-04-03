@@ -88,12 +88,21 @@ def find_csv_url(financial_year: str) -> str | None:
 
 
 def download_csv(url: str) -> list[dict]:
-    """Download and parse a CSV file."""
+    """Download and parse a CSV file, auto-detecting delimiter."""
     log.info(f"  Downloading CSV: {url}")
     resp = requests.get(url, timeout=120)
     resp.raise_for_status()
     text = resp.content.decode("utf-8-sig")
-    reader = csv.DictReader(io.StringIO(text))
+
+    # Auto-detect delimiter from first line
+    first_line = text.split("\n", 1)[0]
+    if first_line.count(";") > first_line.count(","):
+        delimiter = ";"
+        log.info(f"  Detected semicolon delimiter")
+    else:
+        delimiter = ","
+
+    reader = csv.DictReader(io.StringIO(text), delimiter=delimiter)
     rows = list(reader)
     log.info(f"  Downloaded {len(rows)} rows, columns: {reader.fieldnames[:8] if reader.fieldnames else 'none'}")
     return rows
@@ -122,26 +131,30 @@ def process_budget_rows(records: list[dict], financial_year: str, source_url: st
     log.info(f"  CSV columns: {sample_keys}")
 
     # Build flexible column mapping
+    # Vulekamali CSV headers vary by year, e.g.:
+    #   Department, Programme, Subprogramme, EconomicClassification1,
+    #   EconomicClassification2, FinancialYear (or FinYear), BudgetPhase,
+    #   Value, Vote No. (or VoteNumber)
     col_map = {}
     for key in sample_keys:
-        kl = key.strip().lower()
-        if kl in ("department", "vote", "dept"):
+        kl = key.strip().lower().replace(" ", "").replace("_", "")
+        if kl in ("department", "dept"):
             col_map["dept"] = key
         elif kl in ("programme", "program"):
             col_map["programme"] = key
-        elif kl in ("subprogramme", "sub-programme", "sub_programme", "subprogram"):
+        elif kl in ("subprogramme", "sub-programme", "subprogram"):
             col_map["sub_programme"] = key
-        elif "econ" in kl and "1" in kl:
+        elif kl == "economicclassification1":
             col_map["econ1"] = key
-        elif "econ" in kl and "2" in kl:
+        elif kl == "economicclassification2":
             col_map["econ2"] = key
-        elif kl in ("budget phase", "budget_phase", "budgetphase", "type"):
+        elif kl in ("budgetphase",):
             col_map["budget_phase"] = key
-        elif kl in ("financial year", "financial_year", "financialyear", "fy"):
+        elif kl in ("financialyear", "finyear"):
             col_map["fy"] = key
-        elif kl in ("value", "amount", "r thousand", "r thousands", "r'000"):
+        elif kl in ("value", "amount", "rthousand", "rthousands", "r'000"):
             col_map["amount"] = key
-        elif kl in ("vote number", "vote_number", "votenumber"):
+        elif kl in ("voteno.", "votenumber", "voteno"):
             col_map["vote_number"] = key
 
     log.info(f"  Column mapping: {col_map}")
@@ -170,7 +183,15 @@ def process_budget_rows(records: list[dict], financial_year: str, source_url: st
         econ1 = str(record.get(col_map.get("econ1", ""), "")).strip() or None
         econ2 = str(record.get(col_map.get("econ2", ""), "")).strip() or None
         budget_phase = str(record.get(col_map.get("budget_phase", ""), "")).strip() or "Main Appropriation"
-        fy = str(record.get(col_map.get("fy", ""), "")).strip() or financial_year
+        fy_raw = str(record.get(col_map.get("fy", ""), "")).strip()
+        # Convert bare year (e.g. "2026") to financial year format ("2026-27")
+        if fy_raw and fy_raw.isdigit() and len(fy_raw) == 4:
+            y = int(fy_raw)
+            fy = f"{y}-{str(y + 1)[-2:]}"
+        elif fy_raw:
+            fy = fy_raw
+        else:
+            fy = financial_year
 
         amount_raw = str(record.get(col_map.get("amount", ""), "0")).strip()
         try:
