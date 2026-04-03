@@ -40,12 +40,9 @@ def find_csv_url(financial_year):
     log.info(f"  Fetching dataset page: {page_url}")
     resp = requests.get(page_url, timeout=60)
     resp.raise_for_status()
-    # Look for relative CSV links first
     csv_matches = re.findall(r'href="(resources/[^"]+\.csv)"', resp.text, re.IGNORECASE)
     if csv_matches:
-        # Use urljoin to correctly resolve relative URLs against the page URL
         return urljoin(page_url, csv_matches[0])
-    # Then try absolute CSV links
     csv_matches = re.findall(r'href="(https?://[^"]+\.csv)"', resp.text, re.IGNORECASE)
     if csv_matches:
         return csv_matches[0]
@@ -56,7 +53,11 @@ def download_csv(url):
     resp = requests.get(url, timeout=120)
     resp.raise_for_status()
     text = resp.content.decode("utf-8-sig")
-    reader = csv.DictReader(io.StringIO(text))
+    # Auto-detect delimiter: semicolon or comma
+    first_line = text.split("\n")[0]
+    delimiter = ";" if ";" in first_line else ","
+    log.info(f"  Detected delimiter: '{delimiter}'")
+    reader = csv.DictReader(io.StringIO(text), delimiter=delimiter)
     rows = list(reader)
     log.info(f"  Downloaded {len(rows)} rows, columns: {reader.fieldnames[:8] if reader.fieldnames else 'none'}")
     return rows
@@ -80,9 +81,9 @@ def process_budget_rows(records, financial_year, source_url):
         if kl in ("department","vote","dept"): col_map["dept"] = key
         elif kl in ("programme","program"): col_map["programme"] = key
         elif kl in ("subprogramme","sub-programme","sub_programme","subprogram"): col_map["sub_programme"] = key
-        elif "econ" in kl and "1" in kl: col_map["econ1"] = key
-        elif "econ" in kl and "2" in kl: col_map["econ2"] = key
-        elif kl in ("budget phase","budget_phase","budgetphase","type"): col_map["budget_phase"] = key
+        elif kl in ("economicclassification1",) or (kl.startswith("econ") and "1" in kl and "2" not in kl and "3" not in kl and "4" not in kl and "5" not in kl): col_map["econ1"] = key
+        elif kl in ("economicclassification2",) or (kl.startswith("econ") and "2" in kl and "1" not in kl): col_map["econ2"] = key
+        elif kl in ("budget phase","budget_phase","budgetphase"): col_map["budget_phase"] = key
         elif kl in ("financial year","financial_year","financialyear","fy"): col_map["fy"] = key
         elif kl in ("value","amount","r thousand","r thousands","r'000"): col_map["amount"] = key
         elif kl in ("vote number","vote_number","votenumber"): col_map["vote_number"] = key
@@ -91,15 +92,17 @@ def process_budget_rows(records, financial_year, source_url):
         for key in sample_keys:
             sample_vals = set(str(records[i].get(key,"")).strip() for i in range(min(50,len(records))))
             if any(match_department(v) for v in sample_vals):
-                col_map["dept"] = key; log.info(f"  Found department column by content: '{key}'"); break
+                col_map["dept"] = key
+                log.info(f"  Found department column by content: '{key}'")
+                break
     if "dept" not in col_map:
         log.error("  Cannot identify department column - skipping"); return rows
     for record in records:
         dept = match_department(str(record.get(col_map.get("dept",""),"")).strip())
         if not dept: continue
-        programme = str(record.get(col_map.get("programme",""),"")).strip() or None
+        programme = str(record.get(col_map.get("programme",""),"")).strip() or ""
         sub_programme = str(record.get(col_map.get("sub_programme",""),"")).strip() or None
-        econ1 = str(record.get(col_map.get("econ1",""),"")).strip() or None
+        econ1 = str(record.get(col_map.get("econ1",""),"")).strip() or ""
         econ2 = str(record.get(col_map.get("econ2",""),"")).strip() or None
         budget_phase = str(record.get(col_map.get("budget_phase",""),"")).strip() or "Main Appropriation"
         fy = str(record.get(col_map.get("fy",""),"")).strip() or financial_year
@@ -109,7 +112,7 @@ def process_budget_rows(records, financial_year, source_url):
         vote_raw = str(record.get(col_map.get("vote_number",""),"")).strip()
         try: vote_number = int(vote_raw)
         except: vote_number = None
-        rows.append({"department_name":dept,"programme":programme,"sub_programme":sub_programme,"economic_classification_1":econ1,"economic_classification_2":econ2,"financial_year":fy,"budget_phase":budget_phase,"amount_rands":amount,"vote_number":vote_number,"sphere":"national","province":None,"source_url":source_url})
+        rows.append({"department_name":dept,"programme":programme,"sub_programme":sub_programme,"economic_classification_1":econ1,"economic_classification_2":econ2,"financial_year":fy,"budget_phase":budget_phase,"amount_rands":amount,"vote_number":vote_number,"sphere":"national","province":"","source_url":source_url})
     return rows
 
 def get_supabase_client():
