@@ -44,7 +44,7 @@ def find_csv_url(financial_year):
     csv_matches = re.findall(r'href="(resources/[^"]+\.csv)"', resp.text, re.IGNORECASE)
     if csv_matches:
         # Use urljoin to correctly resolve relative URLs against the page URL
-        return urljoin(page_url + "/", csv_matches[0])
+        return urljoin(page_url, csv_matches[0])
     # Then try absolute CSV links
     csv_matches = re.findall(r'href="(https?://[^"]+\.csv)"', resp.text, re.IGNORECASE)
     if csv_matches:
