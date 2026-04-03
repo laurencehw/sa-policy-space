@@ -1,0 +1,55 @@
+# .github/workflows/update_pmg_data.yml
+#
+# Runs the PMG data updater weekly (every Monday at 6am UTC)
+# and allows manual triggering from the GitHub Actions tab.
+
+name: Update PMG Meeting Data
+
+on:
+  schedule:
+    # Every Monday at 06:00 UTC
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Number of days to look back"
+        required: false
+        default: "30"
+      dry_run:
+        description: "Dry run (no DB writes)"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests supabase
+
+      - name: Run PMG updater
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: |
+          DAYS="${{ github.event.inputs.days || '30' }}"
+          DRY_RUN="${{ github.event.inputs.dry_run }}"
+
+          CMD="python scripts/update_meetings.py --days $DAYS"
+          if [ "$DRY_RUN" = "true" ]; then
+            CMD="$CMD --dry-run"
+          fi
+
+          echo "Running: $CMD"
+          $CMD
