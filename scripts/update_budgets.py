@@ -22,6 +22,7 @@ import csv
 import io
 import logging
 import argparse
+from urllib.parse import urljoin
 import requests
 from supabase import create_client
 
@@ -77,7 +78,12 @@ def find_csv_url(financial_year: str) -> str | None:
         if csv_path.startswith("http"):
             return csv_path
         else:
-            return f"{page_url}/{csv_path}"
+            # urljoin resolves relative to the parent path segment, e.g.
+            # urljoin(".../estimates-of-national-expenditure-2026-27", "resources/file.csv")
+            # → ".../estimates-of-national-expenditure/resources/file.csv"
+            resolved = urljoin(page_url, csv_path)
+            log.info(f"  Resolved CSV URL: {resolved}")
+            return resolved
     return None
 
 
