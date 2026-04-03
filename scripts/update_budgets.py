@@ -15,6 +15,7 @@ Environment variables required:
 """
 
 import os, sys, re, csv, io, logging, argparse, requests
+from urllib.parse import urljoin
 from supabase import create_client
 
 VULEKAMALI_BASE = "https://vulekamali.gov.za"
@@ -37,18 +38,23 @@ log = logging.getLogger(__name__)
 def find_csv_url(financial_year):
     page_url = f"{VULEKAMALI_BASE}/datasets/estimates-of-national-expenditure/estimates-of-national-expenditure-{financial_year}"
     log.info(f"  Fetching dataset page: {page_url}")
-    resp = requests.get(page_url, timeout=60); resp.raise_for_status()
+    resp = requests.get(page_url, timeout=60)
+    resp.raise_for_status()
+    # Look for relative CSV links first
     csv_matches = re.findall(r'href="(resources/[^"]+\.csv)"', resp.text, re.IGNORECASE)
-    if not csv_matches:
-        csv_matches = re.findall(r'href="(https?://[^"]+\.csv)"', resp.text, re.IGNORECASE)
     if csv_matches:
-        p = csv_matches[0]
-        return p if p.startswith("http") else f"{page_url}/{p}"
+        # Use urljoin to correctly resolve relative URLs against the page URL
+        return urljoin(page_url + "/", csv_matches[0])
+    # Then try absolute CSV links
+    csv_matches = re.findall(r'href="(https?://[^"]+\.csv)"', resp.text, re.IGNORECASE)
+    if csv_matches:
+        return csv_matches[0]
     return None
 
 def download_csv(url):
     log.info(f"  Downloading CSV: {url}")
-    resp = requests.get(url, timeout=120); resp.raise_for_status()
+    resp = requests.get(url, timeout=120)
+    resp.raise_for_status()
     text = resp.content.decode("utf-8-sig")
     reader = csv.DictReader(io.StringIO(text))
     rows = list(reader)
@@ -153,5 +159,3 @@ def main():
     if args.dry_run: log.info("(This was a dry run)")
 
 if __name__ == "__main__": main()
-
-
