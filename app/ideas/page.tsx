@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default async function IdeasPage() {
   let ideas: PolicyIdea[] = [];
   try {
-    ideas = await getIdeas() as unknown as PolicyIdea[];
+    ideas = (await getIdeas()).rows as unknown as PolicyIdea[];
   } catch {
     // Fallback to empty — IdeasClient handles the empty state
   }

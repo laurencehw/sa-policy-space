@@ -12,6 +12,7 @@
 import type {
   StatsResult,
   IdeaRow,
+  IdeasResult,
   ConstraintSummaryRow,
   PackageSummary,
   PackageDetail,
@@ -22,6 +23,7 @@ import type {
 export type {
   StatsResult,
   IdeaRow,
+  IdeasResult,
   ConstraintSummaryRow,
   PackageSummary,
   PackageDetail,
@@ -51,7 +53,9 @@ export async function getIdeas(opts?: {
   sort?: string;
   packageId?: number;
   timeHorizon?: string;
-}): Promise<IdeaRow[]> {
+  limit?: number;
+  offset?: number;
+}): Promise<IdeasResult> {
   return (await backend()).getIdeas(opts);
 }
 

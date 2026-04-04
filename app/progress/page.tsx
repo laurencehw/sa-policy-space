@@ -29,7 +29,7 @@ async function getProgressData(): Promise<ProgressStats> {
 
   try {
     const { getIdeas } = await import("@/lib/api");
-    ideas = (await getIdeas()) as IdeaRow[];
+    ideas = (await getIdeas()).rows as IdeaRow[];
   } catch (e) {
     console.error("[progress] getIdeas failed:", e);
   }

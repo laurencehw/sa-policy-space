@@ -26,10 +26,9 @@ export async function GET(request: Request) {
   const offset = Math.max(0, Number(searchParams.get("offset")) || 0);
 
   try {
-    const all = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon });
-    const paginated = all.slice(offset, offset + limit);
+    const { rows, total } = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon, limit, offset });
     return NextResponse.json(
-      { version: "1", data: paginated, meta: { total: all.length, count: paginated.length, limit, offset } },
+      { version: "1", data: rows, meta: { total, count: rows.length, limit, offset } },
       { headers: CORS_HEADERS }
     );
   } catch (err) {

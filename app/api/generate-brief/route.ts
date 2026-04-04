@@ -173,8 +173,8 @@ export async function POST(request: NextRequest) {
       context = await getPackageDetail(packageId);
     } else {
       const searchTerm = reformLabel.replace(/^Idea:\s*/i, "");
-      const ideas = await getIdeas({ search: searchTerm });
-      context = ideas.slice(0, 5);
+      const { rows } = await getIdeas({ search: searchTerm, limit: 5 });
+      context = rows;
     }
   } catch (err) {
     console.error("[generate-brief] Failed to fetch context:", err);

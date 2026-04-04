@@ -9,12 +9,13 @@ import { createClient } from "@supabase/supabase-js";
 import reformPackagesData from "@/data/reform_packages.json";
 import dependencyGraphData from "@/data/dependency_graph.json";
 import { slugify } from "@/lib/utils";
-import type { IdeaRow, PackageSummary, PackageDetail, ComparisonRow } from "@/lib/local-api";
+import type { IdeaRow, IdeasResult, PackageSummary, PackageDetail, ComparisonRow } from "@/lib/local-api";
 
 // Re-export interfaces so API routes have a stable import path
 export type {
   StatsResult,
   IdeaRow,
+  IdeasResult,
   ConstraintSummaryRow,
   PackageSummary,
   PackageDetail,
@@ -23,28 +24,12 @@ export type {
   ComparisonRow,
 } from "@/lib/local-api";
 
-// Supabase client — lazy singleton to fail gracefully if env vars are missing
-let _supabase: ReturnType<typeof createClient> | null = null;
-function getSupabase() {
-  if (!_supabase) {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!url || !key) {
-      throw new Error(
-        "Supabase env vars (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are required for supabase-api"
-      );
-    }
-    _supabase = createClient(url, key);
-  }
-  return _supabase;
-}
-
-// Alias for backward compat within this module
-const supabase = new Proxy({} as ReturnType<typeof createClient>, {
-  get(_target, prop) {
-    return (getSupabase() as Record<string | symbol, unknown>)[prop];
-  },
-});
+// Supabase client — this module is only imported when NEXT_PUBLIC_SUPABASE_URL is set
+// (guarded by the api.ts dispatcher), so env vars are guaranteed present.
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL ?? (() => { throw new Error("NEXT_PUBLIC_SUPABASE_URL is required"); })(),
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? (() => { throw new Error("NEXT_PUBLIC_SUPABASE_ANON_KEY is required"); })()
+);
 
 // ── Supabase query result shapes ──────────────────────────────────────────
 // Lightweight interfaces matching the .select() projections used below.
@@ -153,18 +138,29 @@ export async function getIdeas(opts?: {
   sort?: string;
   packageId?: number;
   timeHorizon?: string;
-}): Promise<IdeaRow[]> {
-  let query = supabase.from("policy_ideas").select("*");
-
-  if (opts?.constraint) query = query.eq("binding_constraint", opts.constraint);
-  if (opts?.status) query = query.eq("current_status", opts.status);
-  if (opts?.packageId) query = query.eq("reform_package", opts.packageId);
-  if (opts?.timeHorizon) query = query.eq("time_horizon", opts.timeHorizon);
-  if (opts?.search) {
-    // Escape PostgREST special characters to prevent filter injection.
-    const term = opts.search.toLowerCase().replace(/[%_\\(),.*]/g, (c) => `\\${c}`);
-    query = query.or(`title.ilike.%${term}%,description.ilike.%${term}%`);
+  limit?: number;
+  offset?: number;
+}): Promise<IdeasResult> {
+  // Build a base query builder (applied to both count + data queries)
+  function applyFilters(q: ReturnType<ReturnType<typeof supabase.from>["select"]>) {
+    if (opts?.constraint) q = q.eq("binding_constraint", opts.constraint);
+    if (opts?.status) q = q.eq("current_status", opts.status);
+    if (opts?.packageId) q = q.eq("reform_package", opts.packageId);
+    if (opts?.timeHorizon) q = q.eq("time_horizon", opts.timeHorizon);
+    if (opts?.search) {
+      const term = opts.search.toLowerCase().replace(/[%_\\(),.*]/g, (c) => `\\${c}`);
+      q = q.or(`title.ilike.%${term}%,description.ilike.%${term}%`);
+    }
+    return q;
   }
+
+  // Count query (head-only, no data transfer)
+  const { count: total } = await applyFilters(
+    supabase.from("policy_ideas").select("*", { count: "exact", head: true })
+  );
+
+  // Data query with pagination
+  let query = applyFilters(supabase.from("policy_ideas").select("*"));
 
   if (opts?.sort === "impact") {
     query = query
@@ -174,12 +170,19 @@ export async function getIdeas(opts?: {
     query = query.order("id", { ascending: false });
   }
 
+  // Apply DB-level pagination via Supabase range()
+  if (opts?.limit != null || opts?.offset != null) {
+    const start = opts?.offset ?? 0;
+    const end = start + (opts?.limit ?? 200) - 1;
+    query = query.range(start, end);
+  }
+
   const { data: ideas, error: ideasError } = await query;
   if (ideasError) {
     console.error("[supabase] getIdeas error:", ideasError);
-    return [];
+    return { rows: [], total: 0 };
   }
-  if (!ideas?.length) return [];
+  if (!ideas?.length) return { rows: [], total: total ?? 0 };
 
   // Fetch meeting dates for these ideas in one query
   const typedIdeas = ideas as unknown as Array<Record<string, unknown> & IdeaListRow>;
@@ -199,11 +202,11 @@ export async function getIdeas(opts?: {
     datesByIdea.set(row.idea_id, arr);
   }
 
-  const cutoffStr = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .split("T")[0];
+  const cutoff = new Date();
+  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  const cutoffStr = cutoff.toISOString().split("T")[0];
 
-  return typedIdeas.map((idea) => {
+  const rows = typedIdeas.map((idea) => {
     const dates = (datesByIdea.get(idea.id) ?? []).sort();
     const first_raised = dates[0] ?? null;
     const last_discussed = dates[dates.length - 1] ?? null;
@@ -211,6 +214,8 @@ export async function getIdeas(opts?: {
       last_discussed && last_discussed < cutoffStr ? 1 : 0;
     return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) } as IdeaRow;
   });
+
+  return { rows, total: total ?? rows.length };
 }
 
 export async function getIdeaById(id: number) {
@@ -229,9 +234,9 @@ export async function getIdeaById(id: number) {
 
   const first_raised = dates[0] ?? null;
   const last_discussed = dates[dates.length - 1] ?? null;
-  const cutoffStr = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .split("T")[0];
+  const cutoff = new Date();
+  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  const cutoffStr = cutoff.toISOString().split("T")[0];
   const dormant = last_discussed && last_discussed < cutoffStr ? 1 : 0;
 
   return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) };
@@ -276,10 +281,11 @@ export async function getRelatedIdeas(packageId: number, currentId: number): Pro
 
   // Fetch meeting dates so derived fields match the full getIdeas() contract
   const ideaIds = data.map((r) => (r as { id: number }).id);
-  const { data: linkRows } = await supabase
+  const { data: linkRows, error: linkError } = await supabase
     .from("idea_meetings")
     .select("idea_id, meetings(date)")
     .in("idea_id", ideaIds);
+  if (linkError) console.error("[supabase] getRelatedIdeas idea_meetings error:", linkError);
 
   const datesByIdea = new Map<number, string[]>();
   for (const row of (linkRows || []) as unknown as IdeaMeetingRow[]) {
@@ -290,9 +296,9 @@ export async function getRelatedIdeas(packageId: number, currentId: number): Pro
     datesByIdea.set(row.idea_id, arr);
   }
 
-  const cutoffStr = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .split("T")[0];
+  const cutoff = new Date();
+  cutoff.setFullYear(cutoff.getFullYear() - 1);
+  const cutoffStr = cutoff.toISOString().split("T")[0];
 
   return data.map((r) => {
     const idea = r as unknown as Record<string, unknown> & IdeaListRow;
@@ -440,7 +446,7 @@ export async function getPackageDetail(packageId: number): Promise<PackageDetail
   const summary = summaries.find((s) => s.package_id === packageId);
   if (!summary) return null;
 
-  const ideas = await getIdeas({ packageId });
+  const { rows: ideas } = await getIdeas({ packageId });
 
   const ideas_by_horizon: PackageDetail["ideas_by_horizon"] = {
     quick_win: ideas.filter((i) => i.time_horizon === "quick_win"),

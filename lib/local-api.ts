@@ -10,7 +10,7 @@ import fs from "fs";
 import { slugify } from "@/lib/utils";
 
 // SQLITE_DB_PATH env var (set in .env.local) overrides the default relative path.
-// Default assumes cwd() is the frontend/ dir when running next dev.
+// Default resolves data/dev.sqlite3 from process.cwd(), typically the project root when running Next.
 const DB_PATH =
   process.env.SQLITE_DB_PATH ||
   path.resolve(process.cwd(), "data/dev.sqlite3");
@@ -88,6 +88,11 @@ export interface IdeaRow {
   dormant: number; // 1 if last_discussed > 12 months ago, else 0
 }
 
+export interface IdeasResult {
+  rows: IdeaRow[];
+  total: number;
+}
+
 export function getIdeas(opts?: {
   search?: string;
   constraint?: string;
@@ -95,48 +100,61 @@ export function getIdeas(opts?: {
   sort?: string;
   packageId?: number;
   timeHorizon?: string;
-}): IdeaRow[] {
+  limit?: number;
+  offset?: number;
+}): IdeasResult {
   const db = getDb();
   // node:sqlite uses positional ? params; build array
   const conditions: string[] = [];
-    const params: unknown[] = [];
+  const params: unknown[] = [];
 
-    if (opts?.constraint) {
-      conditions.push("binding_constraint = ?");
-      params.push(opts.constraint);
-    }
-    if (opts?.status) {
-      conditions.push("current_status = ?");
-      params.push(opts.status);
-    }
-    if (opts?.packageId) {
-      conditions.push("reform_package = ?");
-      params.push(opts.packageId);
-    }
-    if (opts?.timeHorizon) {
-      conditions.push("time_horizon = ?");
-      params.push(opts.timeHorizon);
-    }
-    if (opts?.search) {
-      conditions.push("(LOWER(title) LIKE ? ESCAPE '\\' OR LOWER(description) LIKE ? ESCAPE '\\')");
-      // Escape LIKE meta-characters to prevent wildcard injection
-      const escaped = opts.search.toLowerCase().replace(/[%_\\]/g, (c) => `\\${c}`);
-      const like = `%${escaped}%`;
-      params.push(like, like);
-    }
+  if (opts?.constraint) {
+    conditions.push("binding_constraint = ?");
+    params.push(opts.constraint);
+  }
+  if (opts?.status) {
+    conditions.push("current_status = ?");
+    params.push(opts.status);
+  }
+  if (opts?.packageId) {
+    conditions.push("reform_package = ?");
+    params.push(opts.packageId);
+  }
+  if (opts?.timeHorizon) {
+    conditions.push("time_horizon = ?");
+    params.push(opts.timeHorizon);
+  }
+  if (opts?.search) {
+    conditions.push("(LOWER(title) LIKE ? ESCAPE '\\' OR LOWER(description) LIKE ? ESCAPE '\\')");
+    // Escape LIKE meta-characters to prevent wildcard injection
+    const escaped = opts.search.toLowerCase().replace(/[%_\\]/g, (c) => `\\${c}`);
+    const like = `%${escaped}%`;
+    params.push(like, like);
+  }
 
-    const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-    const order = opts?.sort === "impact"
-      ? "ORDER BY growth_impact_rating DESC, times_raised DESC"
-      : "ORDER BY id DESC";
+  const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
+  const order = opts?.sort === "impact"
+    ? "ORDER BY growth_impact_rating DESC, times_raised DESC"
+    : "ORDER BY id DESC";
 
-    const stmt = db.prepare<IdeaRow>(`
-      SELECT p.*,
-        ${IDEA_DATE_FIELDS}
-      FROM policy_ideas p ${where} ${order}
-    `);
-    const rows = params.length ? stmt.all(...params) : stmt.all();
-  return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
+  // Get total count for pagination metadata
+  const countStmt = db.prepare<{ n: number }>(`SELECT COUNT(*) as n FROM policy_ideas p ${where}`);
+  const total = (params.length ? countStmt.get(...params) : countStmt.get())!.n;
+
+  // Build paginated query
+  const limitClause = opts?.limit != null ? ` LIMIT ?` : "";
+  const offsetClause = opts?.offset != null ? ` OFFSET ?` : "";
+  const paginationParams = [...params];
+  if (opts?.limit != null) paginationParams.push(opts.limit);
+  if (opts?.offset != null) paginationParams.push(opts.offset);
+
+  const stmt = db.prepare<IdeaRow>(`
+    SELECT p.*,
+      ${IDEA_DATE_FIELDS}
+    FROM policy_ideas p ${where} ${order}${limitClause}${offsetClause}
+  `);
+  const rows = paginationParams.length ? stmt.all(...paginationParams) : stmt.all();
+  return { rows: rows.map((r) => ({ ...r, slug: slugify(r.title) })), total };
 }
 
 export function getIdeaById(id: number): IdeaRow | null {
@@ -359,7 +377,7 @@ export function getPackageDetail(packageId: number): PackageDetail | null {
   const summary = summaries.find((s) => s.package_id === packageId);
   if (!summary) return null;
 
-  const ideas = getIdeas({ packageId });
+  const { rows: ideas } = getIdeas({ packageId });
 
   const ideas_by_horizon = {
     quick_win: ideas.filter((i) => i.time_horizon === "quick_win"),

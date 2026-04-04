@@ -333,7 +333,12 @@ export default function DependencyGraph() {
     return () => {
       simulation.stop()
       // Remove D3 event listeners to prevent leaks on remount
-      nodeElems.on('mouseover', null).on('mousemove', null).on('mouseout', null).on('click', null)
+      nodeElems
+        .on('mouseover', null)
+        .on('mousemove', null)
+        .on('mouseout', null)
+        .on('click', null)
+        .on('.drag', null)
       svg.on('.zoom', null)
     }
   }, [graphData]) // eslint-disable-line react-hooks/exhaustive-deps

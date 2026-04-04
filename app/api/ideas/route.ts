@@ -16,11 +16,10 @@ export async function GET(request: Request) {
   const offset = Math.max(0, Number(searchParams.get("offset")) || 0);
 
   try {
-    const all = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon });
-    const paginated = all.slice(offset, offset + limit);
+    const { rows, total } = await getIdeas({ search, constraint, status, sort, packageId, timeHorizon, limit, offset });
     return NextResponse.json({
-      data: paginated,
-      meta: { total: all.length, limit, offset },
+      data: rows,
+      meta: { total, limit, offset },
     });
   } catch (err) {
     console.error("ideas route error:", err);

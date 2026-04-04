@@ -32,10 +32,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let ideas: { slug?: string | null; title: string }[];
     if (isLocal) {
       const { getIdeas } = await import("@/lib/local-api");
-      ideas = getIdeas() as { slug?: string | null; title: string }[];
+      ideas = getIdeas().rows as { slug?: string | null; title: string }[];
     } else {
       const { getIdeas } = await import("@/lib/supabase-api");
-      ideas = await getIdeas();
+      ideas = (await getIdeas()).rows;
     }
     ideaPages = ideas.map((idea) => ({
       url: `${BASE_URL}/ideas/${idea.slug || slugify(idea.title)}`,

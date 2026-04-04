@@ -82,16 +82,16 @@ async function getHomepageData() {
   let mostDebated: { id: number; title: string; slug: string; times_raised: number }[] = [];
   try {
     const api = await import("@/lib/api");
-    const [qwIdeas, topIdeas] = await Promise.all([
+    const [qwResult, topResult] = await Promise.all([
       api.getIdeas({ timeHorizon: "quick_win" }),
       api.getIdeas({ sort: "impact" }),
     ]);
-    quickWins = qwIdeas
+    quickWins = qwResult.rows
       .filter((i) => i.feasibility_rating >= 4)
       .sort((a, b) => (b.growth_impact_rating + b.feasibility_rating) - (a.growth_impact_rating + a.feasibility_rating))
       .slice(0, 5)
       .map((i) => ({ id: i.id, title: i.title, slug: i.slug, feasibility_rating: i.feasibility_rating }));
-    mostDebated = topIdeas
+    mostDebated = topResult.rows
       .sort((a, b) => (b.times_raised ?? 0) - (a.times_raised ?? 0))
       .slice(0, 5)
       .map((i) => ({ id: i.id, title: i.title, slug: i.slug, times_raised: i.times_raised ?? 0 }));
@@ -175,6 +175,9 @@ const AUDIENCE_PATHWAYS = [
 
 export default async function HomePage() {
   const { stats, reformIndex, keystones, totalGap, packageCount, stakeholderCount, quickWins, mostDebated } = await getHomepageData();
+
+  const now = new Date();
+  const currentQuarter = `Q${Math.ceil((now.getMonth() + 1) / 3)} ${now.getFullYear()}`;
 
   const trendArrow =
     reformIndex.trend === "up" ? "↑" : reformIndex.trend === "down" ? "↓" : "→";
@@ -350,7 +353,7 @@ export default async function HomePage() {
       <section className="py-12 border-b border-gray-100">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Latest Insights</h2>
-          <p className="text-gray-500 text-sm mt-0.5">Live data from the database — Q{Math.ceil((new Date().getMonth() + 1) / 3)} {new Date().getFullYear()}</p>
+          <p className="text-gray-500 text-sm mt-0.5">Live data from the database — {currentQuarter}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-5">

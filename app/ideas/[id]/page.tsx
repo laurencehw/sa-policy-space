@@ -196,12 +196,15 @@ export default async function IdeaDetailPage({
   }
   if (!idea) notFound();
 
-  const [plan, meetings, relatedIdeas, comparisons] = await Promise.all([
+  const [rawPlan, meetings, relatedIdeas, comparisons] = await Promise.all([
     getImplementationPlan(idea.id),
     getSourceMeetings(idea.id),
     idea.reform_package ? fetchRelatedIdeas(idea.reform_package, idea.id) : Promise.resolve([]),
     fetchIdeaComparisons(idea.id),
   ]);
+
+  // Cast plan fields to string for safe rendering (getImplementationPlan returns Record<string, unknown>)
+  const plan = rawPlan as ImplementationPlan | null;
 
   // Parse enriched array fields (may arrive as JSON strings from SQLite)
   const keyQuotes = parseArrayField(idea.key_quotes);
