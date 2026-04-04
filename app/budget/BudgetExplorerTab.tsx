@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
@@ -8,14 +8,11 @@ import {
 } from "recharts";
 import type { PieLabelRenderProps, PieLabel } from "recharts";
 import { formatRands } from "@/lib/utils";
+import { createClient } from "@supabase/supabase-js";
 
 const fmtTooltip = (value: unknown) => formatRands(Number(value));
-import type { DepartmentBudget, PolicyIdea } from "@/lib/supabase";
+import type { BudgetSummary, BudgetByDepartment, BudgetByProgramme, PolicyIdea } from "@/lib/supabase";
 import {
-  aggregateByDepartment,
-  aggregateByProgramme,
-  aggregateByClassification,
-  aggregateBySubProgramme,
   matchDepartmentToIdeas,
   getDepartmentColor,
 } from "@/lib/budget-utils";
@@ -23,61 +20,89 @@ import {
 const PIE_COLORS = ["#007A4D", "#FFB612", "#2563eb", "#dc2626", "#7c3aed", "#64748b"];
 
 interface Props {
-  budgetRows: DepartmentBudget[];
+  budgetSummary: BudgetSummary | null;
+  departments: BudgetByDepartment[];
+  programmes: BudgetByProgramme[];
   policyIdeas: Pick<PolicyIdea, "id" | "title" | "slug" | "responsible_department" | "current_status" | "feasibility_rating" | "growth_impact_rating">[];
 }
 
-export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
+export default function BudgetExplorerTab({ budgetSummary, departments, programmes, policyIdeas }: Props) {
   const [selectedDept, setSelectedDept] = useState("");
   const [expandedProgramme, setExpandedProgramme] = useState<string | null>(null);
+  const [subProgrammes, setSubProgrammes] = useState<{ subProgramme: string; total: number }[]>([]);
+  const [loadingSubs, setLoadingSubs] = useState(false);
 
-  // ── Aggregations ────────────────────────────────────────────────────────
+  // ── Derived data ────────────────────────────────────────────────────────
 
-  const deptTotals = useMemo(() => aggregateByDepartment(budgetRows), [budgetRows]);
-
-  const totalBudget = useMemo(
-    () => deptTotals.reduce((s, d) => s + d.total, 0),
-    [deptTotals]
+  const deptChartData = useMemo(
+    () => departments.map((d, i) => ({
+      department: d.department_name,
+      total: d.total_amount,
+      fill: getDepartmentColor(i),
+    })),
+    [departments]
   );
 
-  const distinctProgrammes = useMemo(
-    () => new Set(budgetRows.map((r) => r.programme).filter(Boolean)).size,
-    [budgetRows]
+  const selectedDeptData = useMemo(
+    () => departments.find((d) => d.department_name === selectedDept),
+    [departments, selectedDept]
   );
 
-  const financialYears = useMemo(
-    () => [...new Set(budgetRows.map((r) => r.financial_year))],
-    [budgetRows]
+  const deptProgrammes = useMemo(
+    () => programmes.filter((p) => p.department_name === selectedDept),
+    [programmes, selectedDept]
   );
 
-  const programmeTotals = useMemo(
-    () => (selectedDept ? aggregateByProgramme(budgetRows, selectedDept) : []),
-    [budgetRows, selectedDept]
-  );
-
-  const classificationTotals = useMemo(
-    () => (selectedDept ? aggregateByClassification(budgetRows, selectedDept) : []),
-    [budgetRows, selectedDept]
-  );
-
-  const selectedDeptTotal = useMemo(
-    () => deptTotals.find((d) => d.department === selectedDept)?.total ?? 0,
-    [deptTotals, selectedDept]
-  );
+  const classificationData = useMemo(() => {
+    if (!selectedDeptData) return [];
+    const items: { classification: string; total: number }[] = [];
+    if (selectedDeptData.current_expenditure > 0) items.push({ classification: "Current", total: selectedDeptData.current_expenditure });
+    if (selectedDeptData.capital_expenditure > 0) items.push({ classification: "Capital", total: selectedDeptData.capital_expenditure });
+    return items;
+  }, [selectedDeptData]);
 
   const relatedIdeas = useMemo(
     () => (selectedDept ? matchDepartmentToIdeas(selectedDept, policyIdeas) : []),
     [selectedDept, policyIdeas]
   );
 
-  // ── Chart data ──────────────────────────────────────────────────────────
+  // ── Sub-programme drill-down (on-demand fetch) ──────────────────────────
 
-  const deptChartData = useMemo(
-    () => deptTotals.map((d, i) => ({ ...d, fill: getDepartmentColor(i) })),
-    [deptTotals]
-  );
+  useEffect(() => {
+    if (!expandedProgramme || !selectedDept) {
+      setSubProgrammes([]);
+      return;
+    }
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) return;
 
-  if (budgetRows.length === 0) {
+    setLoadingSubs(true);
+    const client = createClient(url, key);
+    client
+      .from("department_budgets")
+      .select("sub_programme, amount_rands")
+      .eq("department_name", selectedDept)
+      .eq("programme", expandedProgramme)
+      .eq("financial_year", "2026-27")
+      .then(({ data }) => {
+        if (!data) { setSubProgrammes([]); setLoadingSubs(false); return; }
+        const map = new Map<string, number>();
+        for (const r of data) {
+          const sub = r.sub_programme ?? "Unspecified";
+          map.set(sub, (map.get(sub) ?? 0) + (r.amount_rands ?? 0));
+        }
+        setSubProgrammes(
+          Array.from(map, ([subProgramme, total]) => ({ subProgramme, total }))
+            .sort((a, b) => b.total - a.total)
+        );
+        setLoadingSubs(false);
+      });
+  }, [expandedProgramme, selectedDept]);
+
+  // ── Render ──────────────────────────────────────────────────────────────
+
+  if (departments.length === 0) {
     return (
       <div className="text-center py-16 text-gray-500">
         <p className="text-lg font-medium">No budget data available</p>
@@ -91,19 +116,19 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
       {/* Summary Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="card text-center">
-          <div className="text-2xl font-bold text-sa-green">{formatRands(totalBudget)}</div>
+          <div className="text-2xl font-bold text-sa-green">{formatRands(budgetSummary?.total_budget ?? 0)}</div>
           <div className="text-xs text-gray-500 mt-1">Total Budget</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-gray-700">{deptTotals.length}</div>
+          <div className="text-2xl font-bold text-gray-700">{budgetSummary?.num_departments ?? departments.length}</div>
           <div className="text-xs text-gray-500 mt-1">Departments</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-gray-700">{distinctProgrammes}</div>
+          <div className="text-2xl font-bold text-gray-700">{budgetSummary?.num_programmes ?? 0}</div>
           <div className="text-xs text-gray-500 mt-1">Programmes</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-gray-700">{financialYears.join(", ")}</div>
+          <div className="text-2xl font-bold text-gray-700">{budgetSummary?.financial_year ?? "2026-27"}</div>
           <div className="text-xs text-gray-500 mt-1">Financial Year</div>
         </div>
       </div>
@@ -113,7 +138,7 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
         <h2 className="text-base font-semibold text-gray-900 mb-4">
           Department Budget Rankings
         </h2>
-        <div style={{ width: "100%", height: Math.max(deptTotals.length * 40, 200) }}>
+        <div style={{ width: "100%", height: Math.max(departments.length * 40, 200) }}>
           <ResponsiveContainer>
             <BarChart data={deptChartData} layout="vertical" margin={{ left: 10, right: 30 }}>
               <XAxis type="number" tickFormatter={(v) => formatRands(v)} tick={{ fontSize: 11 }} />
@@ -150,22 +175,22 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
           className="w-full sm:w-96 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sa-green focus:border-sa-green"
         >
           <option value="">-- Choose a department --</option>
-          {deptTotals.map((d) => (
-            <option key={d.department} value={d.department}>
-              {d.department} ({formatRands(d.total)})
+          {departments.map((d) => (
+            <option key={d.department_name} value={d.department_name}>
+              {d.department_name} ({formatRands(d.total_amount)})
             </option>
           ))}
         </select>
       </div>
 
       {/* Department Detail */}
-      {selectedDept && (
+      {selectedDept && selectedDeptData && (
         <div className="space-y-6">
           <div className="card p-5 border-t-4 border-sa-green">
             <h2 className="text-lg font-semibold text-gray-900">{selectedDept}</h2>
-            <p className="text-2xl font-bold text-sa-green mt-1">{formatRands(selectedDeptTotal)}</p>
+            <p className="text-2xl font-bold text-sa-green mt-1">{formatRands(selectedDeptData.total_amount)}</p>
             <p className="text-xs text-gray-500 mt-1">
-              {programmeTotals.length} programme{programmeTotals.length !== 1 ? "s" : ""} &middot; {financialYears.join(", ")} Main Appropriation
+              {selectedDeptData.num_programmes} programme{selectedDeptData.num_programmes !== 1 ? "s" : ""} &middot; {selectedDeptData.financial_year} Main Appropriation
             </p>
           </div>
 
@@ -174,10 +199,14 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
             {/* Programme Bar Chart */}
             <div className="card p-5">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Budget by Programme</h3>
-              {programmeTotals.length > 0 ? (
-                <div style={{ width: "100%", height: Math.max(programmeTotals.length * 36, 150) }}>
+              {deptProgrammes.length > 0 ? (
+                <div style={{ width: "100%", height: Math.max(deptProgrammes.length * 36, 150) }}>
                   <ResponsiveContainer>
-                    <BarChart data={programmeTotals} layout="vertical" margin={{ left: 10, right: 20 }}>
+                    <BarChart
+                      data={deptProgrammes.map((p) => ({ programme: p.programme, total: p.total_amount }))}
+                      layout="vertical"
+                      margin={{ left: 10, right: 20 }}
+                    >
                       <XAxis type="number" tickFormatter={(v) => formatRands(v)} tick={{ fontSize: 10 }} />
                       <YAxis
                         type="category"
@@ -196,15 +225,15 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
               )}
             </div>
 
-            {/* Economic Classification Pie */}
+            {/* Current vs Capital Pie */}
             <div className="card p-5">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Current vs Capital Split</h3>
-              {classificationTotals.length > 0 ? (
+              {classificationData.length > 0 ? (
                 <div style={{ width: "100%", height: 250 }}>
                   <ResponsiveContainer>
                     <PieChart>
                       <Pie
-                        data={classificationTotals}
+                        data={classificationData}
                         dataKey="total"
                         nameKey="classification"
                         cx="50%"
@@ -215,7 +244,7 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
                         }
                         labelLine={true}
                       >
-                        {classificationTotals.map((_, i) => (
+                        {classificationData.map((_, i) => (
                           <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                         ))}
                       </Pie>
@@ -246,12 +275,9 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {programmeTotals.map((prog) => {
-                    const pct = selectedDeptTotal > 0 ? (prog.total / selectedDeptTotal) * 100 : 0;
+                  {deptProgrammes.map((prog) => {
+                    const pct = selectedDeptData.total_amount > 0 ? (prog.total_amount / selectedDeptData.total_amount) * 100 : 0;
                     const isExpanded = expandedProgramme === prog.programme;
-                    const subProgrammes = isExpanded
-                      ? aggregateBySubProgramme(budgetRows, selectedDept, prog.programme)
-                      : [];
                     return (
                       <tr key={prog.programme} className="group">
                         <td colSpan={4} className="p-0">
@@ -260,7 +286,7 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
                               <span className="font-medium text-gray-900">{prog.programme}</span>
                             </div>
                             <div className="px-4 py-3 text-right font-mono text-gray-700 whitespace-nowrap">
-                              {formatRands(prog.total)}
+                              {formatRands(prog.total_amount)}
                             </div>
                             <div className="px-4 py-3 text-right text-gray-500 whitespace-nowrap">
                               {pct.toFixed(1)}%
@@ -274,21 +300,27 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
                               </button>
                             </div>
                           </div>
-                          {isExpanded && subProgrammes.length > 0 && (
+                          {isExpanded && (
                             <div className="bg-gray-50 border-t border-gray-100 px-8 py-2">
-                              <table className="w-full text-xs">
-                                <tbody>
-                                  {subProgrammes.map((sub) => (
-                                    <tr key={sub.subProgramme} className="border-b border-gray-100 last:border-0">
-                                      <td className="py-1.5 text-gray-600">{sub.subProgramme}</td>
-                                      <td className="py-1.5 text-right font-mono text-gray-700">{formatRands(sub.total)}</td>
-                                      <td className="py-1.5 text-right text-gray-500 w-20">
-                                        {prog.total > 0 ? ((sub.total / prog.total) * 100).toFixed(1) : 0}%
-                                      </td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
+                              {loadingSubs ? (
+                                <p className="text-xs text-gray-500 py-2">Loading sub-programmes...</p>
+                              ) : subProgrammes.length > 0 ? (
+                                <table className="w-full text-xs">
+                                  <tbody>
+                                    {subProgrammes.map((sub) => (
+                                      <tr key={sub.subProgramme} className="border-b border-gray-100 last:border-0">
+                                        <td className="py-1.5 text-gray-600">{sub.subProgramme}</td>
+                                        <td className="py-1.5 text-right font-mono text-gray-700">{formatRands(sub.total)}</td>
+                                        <td className="py-1.5 text-right text-gray-500 w-20">
+                                          {prog.total_amount > 0 ? ((sub.total / prog.total_amount) * 100).toFixed(1) : 0}%
+                                        </td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              ) : (
+                                <p className="text-xs text-gray-500 py-2">No sub-programme data available.</p>
+                              )}
                             </div>
                           )}
                         </td>
@@ -299,7 +331,7 @@ export default function BudgetExplorerTab({ budgetRows, policyIdeas }: Props) {
                 <tfoot>
                   <tr className="bg-gray-50 border-t border-gray-200">
                     <td className="px-4 py-2 font-semibold text-gray-700">Department Total</td>
-                    <td className="px-4 py-2 text-right font-mono font-semibold text-sa-green">{formatRands(selectedDeptTotal)}</td>
+                    <td className="px-4 py-2 text-right font-mono font-semibold text-sa-green">{formatRands(selectedDeptData.total_amount)}</td>
                     <td className="px-4 py-2 text-right text-gray-500">100%</td>
                     <td />
                   </tr>

@@ -120,6 +120,40 @@ export interface DepartmentBudget {
   vote_number: number | null;
 }
 
+// ── Budget view types ─────────────────────────────────────────────────────────
+
+export interface BudgetSummary {
+  financial_year: string;
+  budget_phase: string;
+  total_budget: number;
+  num_departments: number;
+  num_programmes: number;
+  total_current: number;
+  total_capital: number;
+}
+
+export interface BudgetByDepartment {
+  department_name: string;
+  financial_year: string;
+  budget_phase: string;
+  total_amount: number;
+  line_items: number;
+  num_programmes: number;
+  current_expenditure: number;
+  capital_expenditure: number;
+}
+
+export interface BudgetByProgramme {
+  department_name: string;
+  programme: string;
+  financial_year: string;
+  budget_phase: string;
+  total_amount: number;
+  line_items: number;
+  current_expenditure: number;
+  capital_expenditure: number;
+}
+
 export interface MunicipalFinance {
   municipality_code: string;
   municipality_name: string;

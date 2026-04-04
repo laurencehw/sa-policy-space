@@ -1,68 +1,9 @@
 /**
- * Pure aggregation & matching utilities for the budget explorer.
+ * Pure matching & colour utilities for the budget explorer.
  * Safe to import in both server and client components.
  */
 
-import type { DepartmentBudget, PolicyIdea } from "@/lib/supabase";
-
-// ── Aggregation ───────────────────────────────────────────────────────────
-
-export function aggregateByDepartment(
-  rows: DepartmentBudget[]
-): { department: string; total: number }[] {
-  const map = new Map<string, number>();
-  for (const r of rows) {
-    const amt = r.amount_rands ?? 0;
-    map.set(r.department_name, (map.get(r.department_name) ?? 0) + amt);
-  }
-  return Array.from(map, ([department, total]) => ({ department, total }))
-    .sort((a, b) => b.total - a.total);
-}
-
-export function aggregateByProgramme(
-  rows: DepartmentBudget[],
-  department: string
-): { programme: string; total: number }[] {
-  const map = new Map<string, number>();
-  for (const r of rows) {
-    if (r.department_name !== department || !r.programme) continue;
-    const amt = r.amount_rands ?? 0;
-    map.set(r.programme, (map.get(r.programme) ?? 0) + amt);
-  }
-  return Array.from(map, ([programme, total]) => ({ programme, total }))
-    .sort((a, b) => b.total - a.total);
-}
-
-export function aggregateByClassification(
-  rows: DepartmentBudget[],
-  department: string
-): { classification: string; total: number }[] {
-  const map = new Map<string, number>();
-  for (const r of rows) {
-    if (r.department_name !== department) continue;
-    const cls = r.economic_classification_1 ?? "Unclassified";
-    const amt = r.amount_rands ?? 0;
-    map.set(cls, (map.get(cls) ?? 0) + amt);
-  }
-  return Array.from(map, ([classification, total]) => ({ classification, total }))
-    .sort((a, b) => b.total - a.total);
-}
-
-export function aggregateBySubProgramme(
-  rows: DepartmentBudget[],
-  department: string,
-  programme: string
-): { subProgramme: string; total: number }[] {
-  const map = new Map<string, number>();
-  for (const r of rows) {
-    if (r.department_name !== department || r.programme !== programme) continue;
-    const sub = r.sub_programme ?? "Unspecified";
-    const amt = r.amount_rands ?? 0;
-    map.set(sub, (map.get(sub) ?? 0) + amt);
-  }
-  return Array.from(map, ([subProgramme, total]) => ({ subProgramme, total }))
-    .sort((a, b) => b.total - a.total);
-}
+import type { PolicyIdea } from "@/lib/supabase";
 
 // ── Department → Policy idea matching ─────────────────────────────────────
 

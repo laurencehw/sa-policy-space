@@ -3,7 +3,7 @@
 import { useState } from "react";
 import BudgetReformTab from "./BudgetReformTab";
 import BudgetExplorerTab from "./BudgetExplorerTab";
-import type { DepartmentBudget, PolicyIdea } from "@/lib/supabase";
+import type { BudgetSummary, BudgetByDepartment, BudgetByProgramme, PolicyIdea } from "@/lib/supabase";
 
 type TabId = "reform" | "explorer";
 
@@ -34,7 +34,9 @@ interface Props {
       }>;
     }>;
   };
-  budgetRows: DepartmentBudget[];
+  budgetSummary: BudgetSummary | null;
+  departments: BudgetByDepartment[];
+  programmes: BudgetByProgramme[];
   policyIdeas: Pick<PolicyIdea, "id" | "title" | "slug" | "responsible_department" | "current_status" | "feasibility_rating" | "growth_impact_rating">[];
 }
 
@@ -43,7 +45,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "explorer", label: "National Budget Data" },
 ];
 
-export default function BudgetPageTabs({ reformData, budgetRows, policyIdeas }: Props) {
+export default function BudgetPageTabs({ reformData, budgetSummary, departments, programmes, policyIdeas }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("reform");
 
   return (
@@ -81,7 +83,12 @@ export default function BudgetPageTabs({ reformData, budgetRows, policyIdeas }: 
       {/* Tab Content */}
       {activeTab === "reform" && <BudgetReformTab reformData={reformData} />}
       {activeTab === "explorer" && (
-        <BudgetExplorerTab budgetRows={budgetRows} policyIdeas={policyIdeas} />
+        <BudgetExplorerTab
+          budgetSummary={budgetSummary}
+          departments={departments}
+          programmes={programmes}
+          policyIdeas={policyIdeas}
+        />
       )}
     </div>
   );
