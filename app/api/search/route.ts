@@ -42,8 +42,8 @@ export async function GET(req: NextRequest) {
   }> = [];
   try {
     const { getIdeas } = await import("@/lib/api");
-    const rows = await getIdeas({ search: q });
-    ideas = rows.slice(0, 6).map((r) => ({
+    const { rows } = await getIdeas({ search: q, limit: 6 });
+    ideas = rows.map((r) => ({
       id: r.id,
       title: r.title,
       description: r.description,

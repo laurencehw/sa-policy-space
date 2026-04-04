@@ -52,16 +52,21 @@ dbDescribe("API Route Smoke Tests", () => {
   });
 
   describe("GET /api/ideas", () => {
-    it("returns an array of ideas", async () => {
+    it("returns paginated ideas with meta", async () => {
       const { response, json } = await callGET("ideas");
       expect(response.status).toBe(200);
-      expect(Array.isArray(json)).toBe(true);
-      expect(json.length).toBeGreaterThan(0);
+      expect(json).toHaveProperty("data");
+      expect(json).toHaveProperty("meta");
+      expect(Array.isArray(json.data)).toBe(true);
+      expect(json.data.length).toBeGreaterThan(0);
+      expect(json.meta).toHaveProperty("total");
+      expect(json.meta).toHaveProperty("limit");
+      expect(json.meta).toHaveProperty("offset");
     });
 
     it("each idea has required fields", async () => {
       const { json } = await callGET("ideas");
-      const idea = json[0];
+      const idea = json.data[0];
       expect(idea).toHaveProperty("id");
       expect(idea).toHaveProperty("title");
       expect(idea).toHaveProperty("binding_constraint");
@@ -72,16 +77,16 @@ dbDescribe("API Route Smoke Tests", () => {
 
     it("supports search filter", async () => {
       const { json } = await callGET("ideas", "search=energy");
-      expect(Array.isArray(json)).toBe(true);
+      expect(Array.isArray(json.data)).toBe(true);
       // Search should return fewer results than full list
       const { json: all } = await callGET("ideas");
-      expect(json.length).toBeLessThanOrEqual(all.length);
+      expect(json.data.length).toBeLessThanOrEqual(all.meta.total);
     });
 
     it("supports constraint filter", async () => {
       const { json } = await callGET("ideas", "constraint=energy");
-      expect(Array.isArray(json)).toBe(true);
-      for (const idea of json) {
+      expect(Array.isArray(json.data)).toBe(true);
+      for (const idea of json.data) {
         expect(idea.binding_constraint).toBe("energy");
       }
     });

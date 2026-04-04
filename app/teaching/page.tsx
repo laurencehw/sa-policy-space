@@ -86,7 +86,8 @@ export default function TeachingPage() {
   useEffect(() => {
     fetch("/api/ideas")
       .then((r) => r.json())
-      .then((data) => {
+      .then((res) => {
+        const data = res.data ?? res;
         setIdeas(Array.isArray(data) ? data : []);
         setLoading(false);
       })

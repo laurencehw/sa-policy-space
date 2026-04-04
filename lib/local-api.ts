@@ -10,10 +10,10 @@ import fs from "fs";
 import { slugify } from "@/lib/utils";
 
 // SQLITE_DB_PATH env var (set in .env.local) overrides the default relative path.
-// Default assumes cwd() is the frontend/ dir when running next dev.
+// Default resolves data/dev.sqlite3 from process.cwd(), typically the project root when running Next.
 const DB_PATH =
   process.env.SQLITE_DB_PATH ||
-  path.resolve(process.cwd(), "../data/dev.sqlite3");
+  path.resolve(process.cwd(), "data/dev.sqlite3");
 
 // Data directory (parent of dev.sqlite3) — used to locate processed JSON files.
 const DATA_DIR = path.dirname(DB_PATH);
@@ -88,6 +88,11 @@ export interface IdeaRow {
   dormant: number; // 1 if last_discussed > 12 months ago, else 0
 }
 
+export interface IdeasResult {
+  rows: IdeaRow[];
+  total: number;
+}
+
 export function getIdeas(opts?: {
   search?: string;
   constraint?: string;
@@ -95,46 +100,63 @@ export function getIdeas(opts?: {
   sort?: string;
   packageId?: number;
   timeHorizon?: string;
-}): IdeaRow[] {
+  limit?: number;
+  offset?: number;
+}): IdeasResult {
   const db = getDb();
   // node:sqlite uses positional ? params; build array
   const conditions: string[] = [];
-    const params: unknown[] = [];
+  const params: unknown[] = [];
 
-    if (opts?.constraint) {
-      conditions.push("binding_constraint = ?");
-      params.push(opts.constraint);
-    }
-    if (opts?.status) {
-      conditions.push("current_status = ?");
-      params.push(opts.status);
-    }
-    if (opts?.packageId) {
-      conditions.push("reform_package = ?");
-      params.push(opts.packageId);
-    }
-    if (opts?.timeHorizon) {
-      conditions.push("time_horizon = ?");
-      params.push(opts.timeHorizon);
-    }
-    if (opts?.search) {
-      conditions.push("(LOWER(title) LIKE ? OR LOWER(description) LIKE ?)");
-      const like = `%${opts.search.toLowerCase()}%`;
-      params.push(like, like);
-    }
+  if (opts?.constraint) {
+    conditions.push("binding_constraint = ?");
+    params.push(opts.constraint);
+  }
+  if (opts?.status) {
+    conditions.push("current_status = ?");
+    params.push(opts.status);
+  }
+  if (opts?.packageId) {
+    conditions.push("reform_package = ?");
+    params.push(opts.packageId);
+  }
+  if (opts?.timeHorizon) {
+    conditions.push("time_horizon = ?");
+    params.push(opts.timeHorizon);
+  }
+  if (opts?.search) {
+    conditions.push("(LOWER(title) LIKE ? ESCAPE '\\' OR LOWER(description) LIKE ? ESCAPE '\\')");
+    // Escape LIKE meta-characters to prevent wildcard injection
+    const escaped = opts.search.toLowerCase().replace(/[%_\\]/g, (c) => `\\${c}`);
+    const like = `%${escaped}%`;
+    params.push(like, like);
+  }
 
-    const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-    const order = opts?.sort === "impact"
-      ? "ORDER BY growth_impact_rating DESC, times_raised DESC"
-      : "ORDER BY id DESC";
+  const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
+  const order = opts?.sort === "impact"
+    ? "ORDER BY growth_impact_rating DESC, times_raised DESC"
+    : "ORDER BY id DESC";
 
-    const stmt = db.prepare<IdeaRow>(`
-      SELECT p.*,
-        ${IDEA_DATE_FIELDS}
-      FROM policy_ideas p ${where} ${order}
-    `);
-    const rows = params.length ? stmt.all(...params) : stmt.all();
-  return rows.map((r) => ({ ...r, slug: slugify(r.title) }));
+  // Get total count for pagination metadata
+  const countStmt = db.prepare<{ n: number }>(`SELECT COUNT(*) as n FROM policy_ideas p ${where}`);
+  const total = (params.length ? countStmt.get(...params) : countStmt.get())!.n;
+
+  // Build paginated query — SQLite requires LIMIT before OFFSET
+  const hasLimit = opts?.limit != null;
+  const hasOffset = opts?.offset != null;
+  const limitClause = hasLimit || hasOffset ? ` LIMIT ?` : "";
+  const offsetClause = hasOffset ? ` OFFSET ?` : "";
+  const paginationParams = [...params];
+  if (hasLimit || hasOffset) paginationParams.push(opts?.limit ?? -1); // -1 = no limit in SQLite
+  if (hasOffset) paginationParams.push(opts!.offset!);
+
+  const stmt = db.prepare<IdeaRow>(`
+    SELECT p.*,
+      ${IDEA_DATE_FIELDS}
+    FROM policy_ideas p ${where} ${order}${limitClause}${offsetClause}
+  `);
+  const rows = paginationParams.length ? stmt.all(...paginationParams) : stmt.all();
+  return { rows: rows.map((r) => ({ ...r, slug: slugify(r.title) })), total };
 }
 
 export function getIdeaById(id: number): IdeaRow | null {
@@ -147,6 +169,20 @@ export function getIdeaById(id: number): IdeaRow | null {
   return row ? { ...row, slug: slugify(row.title) } : null;
 }
 
+// Slug → ID cache to avoid full-table scans on slug lookups
+let _slugCache: Map<string, number> | null = null;
+
+function getSlugCache(): Map<string, number> {
+  if (!_slugCache) {
+    const db = getDb();
+    const rows = db.prepare<{ id: number; title: string }>(
+      "SELECT id, title FROM policy_ideas"
+    ).all();
+    _slugCache = new Map(rows.map((r) => [slugify(r.title), r.id]));
+  }
+  return _slugCache;
+}
+
 export function getIdeaBySlug(slug: string): IdeaRow | null {
   const db = getDb();
   // Fast path: direct indexed lookup on slug column
@@ -157,14 +193,11 @@ export function getIdeaBySlug(slug: string): IdeaRow | null {
   `).get(slug);
   if (row) return { ...row, slug };
 
-  // Fallback: compute slug from title (handles rows where slug column doesn't match)
-  const rows = db.prepare<IdeaRow>(`
-    SELECT p.*,
-      ${IDEA_DATE_FIELDS}
-    FROM policy_ideas p
-  `).all();
-  const match = rows.find((r) => slugify(r.title) === slug);
-  return match ? { ...match, slug: slugify(match.title) } : null;
+  // Fallback: use cached slug→ID map instead of loading all rows
+  const cache = getSlugCache();
+  const id = cache.get(slug);
+  if (!id) return null;
+  return getIdeaById(id);
 }
 
 // ── Related ideas (same reform package) ───────────────────────────────────
@@ -232,7 +265,9 @@ export function getImplementationPlan(ideaId: number): Record<string, unknown> |
   if (typeof row.implementation_steps === "string") {
     try {
       row.implementation_steps = JSON.parse(row.implementation_steps);
-    } catch {}
+    } catch (e) {
+      console.error("[local-api] Failed to parse implementation_steps for idea", ideaId, e);
+    }
   }
   return row;
 }
@@ -344,7 +379,7 @@ export function getPackageDetail(packageId: number): PackageDetail | null {
   const summary = summaries.find((s) => s.package_id === packageId);
   if (!summary) return null;
 
-  const ideas = getIdeas({ packageId });
+  const { rows: ideas } = getIdeas({ packageId });
 
   const ideas_by_horizon = {
     quick_win: ideas.filter((i) => i.time_horizon === "quick_win"),

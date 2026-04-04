@@ -45,7 +45,7 @@ interface FiscalEstimate {
 async function getAnalyticsData() {
   try {
     const { getIdeas } = await import("@/lib/api");
-    const ideas = await getIdeas() as IdeaRow[];
+    const { rows: ideas } = await getIdeas() as { rows: IdeaRow[]; total: number };
     const centralityRankings = computeNetworkCentrality(dependencyGraphData as DependencyGraph);
     const momentumScores = computeMomentumScores(ideas);
     const fiscalEstimates = Object.values(fiscalEstimatesRaw) as FiscalEstimate[];

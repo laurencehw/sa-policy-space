@@ -1,13 +1,18 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import * as d3 from 'd3'
+import { select } from 'd3-selection'
+import { forceSimulation, forceLink, forceManyBody, forceCenter, forceCollide } from 'd3-force'
+import { zoom as d3Zoom, zoomIdentity } from 'd3-zoom'
+import { drag as d3Drag } from 'd3-drag'
+import 'd3-transition' // side-effect import: adds .transition() to selections
+import type { SimulationNodeDatum, SimulationLinkDatum, ZoomBehavior } from 'd3'
 import Link from 'next/link'
 import { slugify } from '@/lib/utils'
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
-interface GraphNode extends d3.SimulationNodeDatum {
+interface GraphNode extends SimulationNodeDatum {
   id: number
   title: string
   source_committee: string
@@ -21,7 +26,7 @@ interface GraphNode extends d3.SimulationNodeDatum {
   time_horizon: string
 }
 
-interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
+interface GraphLink extends SimulationLinkDatum<GraphNode> {
   label: string
 }
 
@@ -88,7 +93,7 @@ function nodeRadius(d: GraphNode): number {
 export default function DependencyGraph() {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef       = useRef<SVGSVGElement>(null)
-  const zoomRef      = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
+  const zoomRef      = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null)
   const tooltipRef   = useRef<HTMLDivElement>(null)
 
   const [graphData,      setGraphData]      = useState<GraphData | null>(null)
@@ -126,7 +131,7 @@ export default function DependencyGraph() {
     const width  = container.clientWidth  || 900
     const height = 600
 
-    const svg = d3.select(svgRef.current)
+    const svg = select(svgRef.current)
     svg.attr('width', width).attr('height', height)
     svg.selectAll('*').remove()
 
@@ -170,17 +175,17 @@ export default function DependencyGraph() {
     }
 
     // ── Force simulation ─────────────────────────────────────────────────────
-    const simulation = d3.forceSimulation<GraphNode, GraphLink>(nodes)
+    const simulation = forceSimulation<GraphNode, GraphLink>(nodes)
       .force(
         'link',
-        d3.forceLink<GraphNode, GraphLink>(links)
+        forceLink<GraphNode, GraphLink>(links)
           .id(d => d.id)
           .distance(80)
           .strength(0.3),
       )
-      .force('charge',  d3.forceManyBody<GraphNode>().strength(-120))
-      .force('center',  d3.forceCenter(cx, cy))
-      .force('collide', d3.forceCollide<GraphNode>().radius(d => nodeRadius(d) + 6))
+      .force('charge',  forceManyBody<GraphNode>().strength(-120))
+      .force('center',  forceCenter(cx, cy))
+      .force('collide', forceCollide<GraphNode>().radius(d => nodeRadius(d) + 6))
       .force('cluster', (alpha: number) => {
         for (const node of nodes) {
           const centre = pkgCenters[node.reform_package]
@@ -281,7 +286,7 @@ export default function DependencyGraph() {
 
     // ── Drag ─────────────────────────────────────────────────────────────────
     nodeElems.call(
-      d3.drag<SVGGElement, GraphNode>()
+      d3Drag<SVGGElement, GraphNode>()
         .on('start', (event, d) => {
           if (!event.active) simulation.alphaTarget(0.3).restart()
           d.fx = d.x
@@ -299,7 +304,7 @@ export default function DependencyGraph() {
     )
 
     // ── Zoom / pan ───────────────────────────────────────────────────────────
-    const zoom = d3.zoom<SVGSVGElement, unknown>()
+    const zoom = d3Zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.15, 6])
       .on('zoom', event => g.attr('transform', event.transform))
 
@@ -325,7 +330,17 @@ export default function DependencyGraph() {
       nodeElems.attr('transform', (d: GraphNode) => `translate(${d.x ?? 0},${d.y ?? 0})`)
     })
 
-    return () => { simulation.stop() }
+    return () => {
+      simulation.stop()
+      // Remove D3 event listeners to prevent leaks on remount
+      nodeElems
+        .on('mouseover', null)
+        .on('mousemove', null)
+        .on('mouseout', null)
+        .on('click', null)
+        .on('.drag', null)
+      svg.on('.zoom', null)
+    }
   }, [graphData]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Filter / search visibility ────────────────────────────────────────────
@@ -333,14 +348,14 @@ export default function DependencyGraph() {
     if (!svgRef.current || !graphData) return
     const q = searchQuery.toLowerCase().trim()
 
-    d3.select(svgRef.current)
+    select(svgRef.current)
       .selectAll<SVGGElement, GraphNode>('.node-g')
       .each(function (d) {
         const visible =
           (!q || d.title.toLowerCase().includes(q)) &&
           activePackages.has(d.reform_package) &&
           activeStatuses.has(d.current_status)
-        d3.select(this)
+        select(this)
           .transition()
           .duration(200)
           .style('opacity',        visible ? 1 : 0.04)
@@ -351,10 +366,10 @@ export default function DependencyGraph() {
   // ── Callbacks ────────────────────────────────────────────────────────────
   const resetView = useCallback(() => {
     if (svgRef.current && zoomRef.current) {
-      d3.select(svgRef.current)
+      select(svgRef.current)
         .transition()
         .duration(750)
-        .call(zoomRef.current.transform, d3.zoomIdentity)
+        .call(zoomRef.current.transform, zoomIdentity)
     }
   }, [])
 

@@ -6,15 +6,18 @@ export const dynamic = "force-dynamic";
 // ── Rate limiter (5 requests per IP per hour) ────────────────────────────────
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
-// Purge expired entries every 10 minutes to prevent unbounded growth.
-setInterval(() => {
+// Purge expired entries lazily on each request to avoid setInterval in serverless.
+function purgeExpiredEntries() {
   const now = Date.now();
   for (const [ip, entry] of rateLimitMap) {
     if (now > entry.resetAt) rateLimitMap.delete(ip);
   }
-}, 10 * 60 * 1000).unref();
+}
 
 function checkRateLimit(ip: string): { allowed: boolean; retryAfter: number } {
+  // Purge stale entries to prevent unbounded map growth
+  if (rateLimitMap.size > 100) purgeExpiredEntries();
+
   const now = Date.now();
   const windowMs = 60 * 60 * 1000; // 1 hour
   const maxRequests = 5;
@@ -114,7 +117,7 @@ export async function POST(request: NextRequest) {
       ? ["http://localhost:3000", "http://localhost:3001"]
       : []),
   ];
-  if (!origin || !allowedOrigins.some((o) => origin.startsWith(o))) {
+  if (!origin || !allowedOrigins.includes(origin)) {
     return Response.json(
       { error: "Forbidden" },
       { status: 403 }
@@ -123,7 +126,9 @@ export async function POST(request: NextRequest) {
 
   // ── Rate limiting ──────────────────────────────────────────────────────────
   // Note: in-memory map resets on cold start; this is a best-effort guard.
+  // Prefer Vercel's trusted header (not spoofable), then fall back to standard headers.
   const ip =
+    request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() ??
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     request.headers.get("x-real-ip") ??
     "unknown";
@@ -168,8 +173,8 @@ export async function POST(request: NextRequest) {
       context = await getPackageDetail(packageId);
     } else {
       const searchTerm = reformLabel.replace(/^Idea:\s*/i, "");
-      const ideas = await getIdeas({ search: searchTerm });
-      context = ideas.slice(0, 5);
+      const { rows } = await getIdeas({ search: searchTerm, limit: 5 });
+      context = rows;
     }
   } catch (err) {
     console.error("[generate-brief] Failed to fetch context:", err);
