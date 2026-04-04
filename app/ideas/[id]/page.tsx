@@ -203,7 +203,8 @@ export default async function IdeaDetailPage({
     fetchIdeaComparisons(idea.id),
   ]);
 
-  // Cast plan fields to string for safe rendering (getImplementationPlan returns Record<string, unknown>)
+  // Treat the fetched plan as an ImplementationPlan based on the upstream API contract.
+  // This is a TypeScript assertion only and does not perform runtime validation/coercion.
   const plan = rawPlan as ImplementationPlan | null;
 
   // Parse enriched array fields (may arrive as JSON strings from SQLite)

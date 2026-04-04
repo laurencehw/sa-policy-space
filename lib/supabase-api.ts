@@ -154,35 +154,43 @@ export async function getIdeas(opts?: {
     return q;
   }
 
-  // Count query (head-only, no data transfer)
-  const { count: total } = await applyFilters(
-    supabase.from("policy_ideas").select("*", { count: "exact", head: true })
-  );
-
-  // Data query with pagination
-  let query = applyFilters(supabase.from("policy_ideas").select("*"));
+  // Build data query with sorting and pagination
+  let dataQuery = applyFilters(supabase.from("policy_ideas").select("*"));
 
   if (opts?.sort === "impact") {
-    query = query
+    dataQuery = dataQuery
       .order("growth_impact_rating", { ascending: false })
       .order("times_raised", { ascending: false });
   } else {
-    query = query.order("id", { ascending: false });
+    dataQuery = dataQuery.order("id", { ascending: false });
   }
 
   // Apply DB-level pagination via Supabase range()
   if (opts?.limit != null || opts?.offset != null) {
     const start = opts?.offset ?? 0;
     const end = start + (opts?.limit ?? 200) - 1;
-    query = query.range(start, end);
+    dataQuery = dataQuery.range(start, end);
   }
 
-  const { data: ideas, error: ideasError } = await query;
+  // Run count + data queries in parallel to minimize latency
+  const [countResult, dataResult] = await Promise.all([
+    applyFilters(
+      supabase.from("policy_ideas").select("*", { count: "exact", head: true })
+    ),
+    dataQuery,
+  ]);
+
+  if (countResult.error) {
+    console.error("[supabase] getIdeas count error:", countResult.error);
+  }
+  const total = countResult.count ?? 0;
+
+  const { data: ideas, error: ideasError } = dataResult;
   if (ideasError) {
     console.error("[supabase] getIdeas error:", ideasError);
     return { rows: [], total: 0 };
   }
-  if (!ideas?.length) return { rows: [], total: total ?? 0 };
+  if (!ideas?.length) return { rows: [], total };
 
   // Fetch meeting dates for these ideas in one query
   const typedIdeas = ideas as unknown as Array<Record<string, unknown> & IdeaListRow>;

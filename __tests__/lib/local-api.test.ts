@@ -51,14 +51,16 @@ dbDescribe("local-api — SQLite data integrity", () => {
   // ── Ideas list ─────────────────────────────────────────────────────────────
 
   describe("getIdeas()", () => {
-    it("returns a non-empty array", () => {
-      const ideas = getIdeas();
-      expect(Array.isArray(ideas)).toBe(true);
-      expect(ideas.length).toBeGreaterThan(0);
+    it("returns a non-empty result with rows and total", () => {
+      const result = getIdeas();
+      expect(Array.isArray(result.rows)).toBe(true);
+      expect(result.rows.length).toBeGreaterThan(0);
+      expect(typeof result.total).toBe("number");
+      expect(result.total).toBeGreaterThanOrEqual(result.rows.length);
     });
 
     it("every idea has required fields", () => {
-      const ideas = getIdeas();
+      const { rows: ideas } = getIdeas();
       for (const idea of ideas) {
         expect(typeof idea.id).toBe("number");
         expect(typeof idea.title).toBe("string");
@@ -73,7 +75,7 @@ dbDescribe("local-api — SQLite data integrity", () => {
     });
 
     it("filters by constraint without crashing", () => {
-      const ideas = getIdeas({ constraint: "energy" });
+      const { rows: ideas } = getIdeas({ constraint: "energy" });
       expect(Array.isArray(ideas)).toBe(true);
       for (const idea of ideas) {
         expect(idea.binding_constraint).toBe("energy");
@@ -81,12 +83,12 @@ dbDescribe("local-api — SQLite data integrity", () => {
     });
 
     it("filters by status without crashing", () => {
-      const ideas = getIdeas({ status: "proposed" });
+      const { rows: ideas } = getIdeas({ status: "proposed" });
       expect(Array.isArray(ideas)).toBe(true);
     });
 
     it("search filter returns matching results", () => {
-      const ideas = getIdeas({ search: "energy" });
+      const { rows: ideas } = getIdeas({ search: "energy" });
       expect(Array.isArray(ideas)).toBe(true);
     });
   });
@@ -128,7 +130,7 @@ dbDescribe("local-api — SQLite data integrity", () => {
 
   describe("package references", () => {
     it("reform_package on each idea is null or 1-5", () => {
-      const ideas = getIdeas();
+      const { rows: ideas } = getIdeas();
       const validPackageIds = new Set([null, 1, 2, 3, 4, 5]);
       for (const idea of ideas) {
         expect(validPackageIds.has(idea.reform_package)).toBe(true);
@@ -136,7 +138,7 @@ dbDescribe("local-api — SQLite data integrity", () => {
     });
 
     it("no idea references a non-existent package", () => {
-      const ideas = getIdeas();
+      const { rows: ideas } = getIdeas();
       const summaries = getPackageSummaries();
       const packageIds = new Set(summaries.map((s) => s.package_id));
       for (const idea of ideas) {
@@ -203,7 +205,7 @@ dbDescribe("local-api — SQLite data integrity", () => {
 
     it("implementation_steps parses as an array where present", () => {
       // Find an idea that has an implementation plan
-      const ideas = getIdeas().slice(0, 30);
+      const ideas = getIdeas({ limit: 30 }).rows;
       for (const idea of ideas) {
         const plan = getImplementationPlan(idea.id);
         if (!plan) continue;

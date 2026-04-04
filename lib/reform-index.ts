@@ -240,6 +240,6 @@ export function computeReformIndex(): ReformIndex {
     quarterly_snapshots: snapshots,
     package_sub_indices: subIndices,
     scenarios,
-    last_updated: new Date().toISOString().split("T")[0],
+    last_updated: fs.statSync(dataPath).mtime.toISOString().split("T")[0],
   };
 }
