@@ -143,11 +143,17 @@ export default function RootLayout({
                 <Link href="/budget" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Budget Alignment
                 </Link>
+                <Link href="/municipal" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Municipal Finance
+                </Link>
                 <Link href="/comparisons" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   International Comparisons
                 </Link>
                 <Link href="/accountability" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Accountability
+                </Link>
+                <Link href="/research" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                  Research & Evidence
                 </Link>
                 <div className="my-1 border-t border-gray-100" />
                 <p className="px-4 pt-2 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Reference</p>

@@ -106,6 +106,43 @@ export interface ImplementationPlan {
   international_precedents: string;
 }
 
+// ── New table types (department_budgets, municipal_finance, research_papers) ──
+
+export interface DepartmentBudget {
+  department_name: string;
+  programme: string | null;
+  sub_programme: string | null;
+  economic_classification_1: string | null;
+  economic_classification_2: string | null;
+  financial_year: string;
+  budget_phase: string;
+  amount_rands: number | null;
+  vote_number: number | null;
+}
+
+export interface MunicipalFinance {
+  municipality_code: string;
+  municipality_name: string;
+  municipality_type: string;
+  province: string;
+  indicator: string;
+  financial_year: string;
+  amount_rands: number | null;
+}
+
+export interface ResearchPaper {
+  id: number;
+  title: string;
+  authors: string | null;
+  publication_date: string | null;
+  source_org: string;
+  paper_type: string;
+  url: string;
+  pdf_url?: string | null;
+  abstract: string | null;
+  themes: string[];
+}
+
 // ── Constraint display metadata ────────────────────────────────────────────
 
 export const CONSTRAINT_LABELS: Record<BindingConstraint, string> = {

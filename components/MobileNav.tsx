@@ -93,8 +93,10 @@ export default function MobileNav() {
             <p className="px-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">Resources</p>
             <Link href="/documents" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Legislation Generator</Link>
             <Link href="/budget" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Budget Alignment</Link>
+            <Link href="/municipal" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Municipal Finance</Link>
             <Link href="/comparisons" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">International Comparisons</Link>
             <Link href="/accountability" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Accountability Dashboard</Link>
+            <Link href="/research" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Research & Evidence</Link>
             <Link href="/briefs" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Brief Generator</Link>
             <Link href="/teaching" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">Teaching</Link>
             <Link href="/api-docs" onClick={close} className="px-5 py-2 rounded-md hover:bg-gray-50 active:bg-gray-100">API Docs</Link>
