@@ -27,8 +27,8 @@ MUNI_API_BASE = "https://municipaldata.treasury.gov.za/api"
 
 INDICATORS = [
     {"cube": "bsheet", "name": "cash_and_equivalents", "label": "Cash and Cash Equivalents", "item_code": "1800", "aggregate": "amount.sum"},
-    {"cube": "incexp", "name": "total_revenue", "label": "Total Revenue", "item_code": "0200", "aggregate": "amount.sum"},
-    {"cube": "incexp", "name": "total_expenditure", "label": "Total Expenditure", "item_code": "0400", "aggregate": "amount.sum"},
+    {"cube": "incexp", "name": "total_revenue", "label": "Total Operating Revenue", "item_code": "2800", "aggregate": "amount.sum"},
+    {"cube": "incexp", "name": "total_expenditure", "label": "Total Operating Expenditure", "item_code": "5200", "aggregate": "amount.sum"},
     {"cube": "capital", "name": "total_capital_expenditure", "label": "Total Capital Expenditure", "item_code": "4100", "aggregate": "total_assets.sum"},
     {"cube": "cflow", "name": "net_cash_from_operations", "label": "Net Cash from Operating Activities", "item_code": "4200", "aggregate": "amount.sum"},
 ]
@@ -49,31 +49,40 @@ log = logging.getLogger(__name__)
 
 
 def fetch_indicator_aggregate(cube: str, item_code: str, muni_code: str, aggregate: str = "amount.sum") -> list[dict]:
-    """Use aggregate endpoint for yearly summaries."""
+    """Use aggregate endpoint for yearly summaries.
+
+    The Municipal Money API does not support compound cuts (e.g.
+    demarcation.code:X|item.code:Y returns 500). Instead we drilldown
+    by item.code and filter the results client-side.
+    """
     url = f"{MUNI_API_BASE}/cubes/{cube}/aggregate"
     params = {
-        "cut": f"demarcation.code:{muni_code}|item.code:{item_code}",
-        "drilldown": "financial_year_end.year",
+        "cut": f"demarcation.code:{muni_code}",
+        "drilldown": "financial_year_end.year|item.code",
         "aggregates": aggregate,
-        "pagesize": 50,
+        "pagesize": 500,
     }
     resp = requests.get(url, params=params, timeout=60)
     resp.raise_for_status()
     data = resp.json()
-    log.debug(f"    API response keys: {list(data.keys())}, cells count: {len(data.get('cells', []))}")
-    return data.get("cells", [])
+    cells = data.get("cells", [])
+    # Filter to the requested item code
+    filtered = [c for c in cells if str(c.get("item.code", "")) == item_code]
+    log.debug(f"    API returned {len(cells)} cells, {len(filtered)} match item {item_code}")
+    return filtered
 
 
 def fetch_indicator_facts(cube: str, item_code: str, muni_code: str) -> list[dict]:
-    """Fallback: use facts endpoint."""
+    """Fallback: use facts endpoint with client-side item filtering."""
     url = f"{MUNI_API_BASE}/cubes/{cube}/facts"
     params = {
-        "cut": f"demarcation.code:{muni_code}|item.code:{item_code}",
-        "pagesize": 100,
+        "cut": f"demarcation.code:{muni_code}",
+        "pagesize": 10000,
     }
     resp = requests.get(url, params=params, timeout=60)
     resp.raise_for_status()
-    return resp.json().get("data", [])
+    facts = resp.json().get("data", [])
+    return [f for f in facts if str(f.get("item.code", "")) == item_code]
 
 
 def process_facts(facts, indicator_name, muni_code, muni_name, muni_type, province, aggregate_key: str = "amount.sum"):
