@@ -12,18 +12,18 @@ v1 cubes: incexp, bsheet, capital, cflow — data through ~2015-2020
 v2 cubes: incexp_v2, financial_position_v2, capital_v2, cflow_v2 — data from 2019+
 
 For v2 cubes:
-  - incexp_v2 has no total rows — revenue items (0200-1700) and
-    expenditure items (2000-3000) must be summed
-  - capital_v2 has no total — all items must be summed
+  - The API crashes (500) when item.code is used in the cut filter
+  - Instead we drilldown by item.code and sum relevant items client-side
+  - incexp_v2: revenue items (0200-1700), expenditure items (2000-3000)
+  - capital_v2: sum all items
   - cflow_v2 item 0230 = Net Cash from Operating Activities
   - financial_position_v2 items 0120+0130 = Cash and Cash Equivalents
-  - Must filter by amount_type.code and period_length.length
 
 Usage:
-    python update_municipal_v2.py                     # fetch all years for metros
-    python update_municipal_v2.py --all-munis         # all municipalities (not just metros)
-    python update_municipal_v2.py --dry-run           # show what would be fetched
-    python update_municipal_v2.py --v2-only           # only fetch v2 cube data
+    python update_municipal.py                     # fetch all years for metros
+    python update_municipal.py --all-munis         # all municipalities (not just metros)
+    python update_municipal.py --dry-run           # show what would be fetched
+    python update_municipal.py --v2-only           # only fetch v2 cube data
 
 Environment variables required:
     SUPABASE_URL      - Your Supabase project URL
@@ -80,15 +80,8 @@ V1_INDICATORS = [
 ]
 
 # ── v2 indicators (mSCOA data, 2019+) ────────────────────────────────
-# v2 cubes differ from v1:
-#   - incexp_v2 has granular items, no "total revenue" or "total expenditure" rows
-#   - capital_v2 has granular asset items, no total row
-#   - cflow_v2 item 0230 = Net Cash from Operating Activities
-#   - financial_position_v2 items 0120 (Cash) + 0130 (Call deposits) ≈ Cash & equivalents
-#
-# For incexp_v2 and capital_v2 we query WITHOUT a single item filter;
-# instead we pass multiple item codes. The aggregate endpoint sums across
-# the item dimension when we drilldown only by financial_year_end.year.
+# IMPORTANT: v2 cubes crash (500 error) when item.code is in the cut filter.
+# Instead we drilldown by item.code and filter/sum client-side.
 
 V2_INDICATORS = [
     {
@@ -96,7 +89,6 @@ V2_INDICATORS = [
         "name": "cash_and_equivalents",
         "label": "Cash and Cash Equivalents (v2)",
         "item_codes": ["0120", "0130"],  # Cash + Call deposits & investments
-        "sum_items": True,
     },
     {
         "cube": "incexp_v2",
@@ -107,7 +99,6 @@ V2_INDICATORS = [
             "0200", "0300", "0400", "0500", "0600", "0800", "0900",
             "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700",
         ],
-        "sum_items": True,
     },
     {
         "cube": "incexp_v2",
@@ -118,21 +109,18 @@ V2_INDICATORS = [
             "2000", "2100", "2200", "2300", "2400", "2500", "2600",
             "2700", "2800", "2900", "3000",
         ],
-        "sum_items": True,
     },
     {
         "cube": "capital_v2",
         "name": "total_capital_expenditure",
         "label": "Total Capital Expenditure (v2)",
         "item_codes": None,  # sum ALL items
-        "sum_items": True,
     },
     {
         "cube": "cflow_v2",
         "name": "net_cash_from_operations",
         "label": "Net Cash from Operating Activities (v2)",
         "item_codes": ["0230"],  # NET CASH FROM/(USED) OPERATING ACTIVITIES
-        "sum_items": False,
     },
 ]
 
@@ -240,64 +228,77 @@ def fetch_v1_indicator(indicator, muni_code, muni_name, muni_type, province):
 #  v2 cube fetching (mSCOA 2019+)
 # ═══════════════════════════════════════════════════════════════════════
 
-def fetch_v2_aggregate(cube: str, muni_code: str, item_codes: list[str] | None = None,
-                       amount_type: str = "AUDA") -> list[dict]:
+def fetch_v2_aggregate(cube: str, muni_code: str, amount_type: str = "AUDA") -> list[dict]:
     """
     Fetch v2 cube data using the aggregate endpoint.
 
-    For v2 cubes we:
-      - Filter by amount_type (AUDA preferred = audited actuals)
-      - Filter by period_length = 'year' for annual data
-      - Optionally filter by item codes (semicolon-separated for OR)
-      - Drilldown by financial_year_end.year only (not item) so the API
-        sums across all matching items
+    IMPORTANT: v2 cubes crash (500 error) when item.code is used in the
+    cut filter. Instead we drilldown by item.code and filter/sum client-side.
+
+    We:
+      - Filter by demarcation.code and amount_type (AUDA preferred)
+      - Drilldown by financial_year_end.year AND item.code
+      - Return all cells for client-side item filtering
     """
     url = f"{MUNI_API_BASE}/cubes/{cube}/aggregate"
 
-    # Build the cut filter
     cut_parts = [
         f"demarcation.code:{muni_code}",
         f"amount_type.code:{amount_type}",
-        "period_length.length:year",
     ]
-    if item_codes:
-        item_filter = ";".join(item_codes)
-        cut_parts.append(f"item.code:{item_filter}")
-
     cut = "|".join(cut_parts)
 
     params = {
         "cut": cut,
-        "drilldown": "financial_year_end.year",
+        "drilldown": "financial_year_end.year|item.code",
         "aggregates": "amount.sum",
-        "pagesize": 200,
+        "pagesize": 10000,
     }
     log.debug(f"    v2 query: {url}?cut={cut}")
-    resp = requests.get(url, params=params, timeout=60)
+    resp = requests.get(url, params=params, timeout=90)
     resp.raise_for_status()
     data = resp.json()
     return data.get("cells", [])
 
 
-def process_v2_cells(cells, indicator_name, muni_code, muni_name, muni_type, province):
-    """Process v2 API aggregate data into rows for municipal_finance table."""
-    rows = []
-    for cell in cells:
+def process_v2_cells(cells, indicator_name, item_codes, muni_code, muni_name, muni_type, province):
+    """
+    Process v2 API aggregate data into rows for municipal_finance table.
+
+    Since v2 cubes return per-item rows (drilldown by item.code), we:
+      1. Filter cells to only the relevant item codes (or keep all if item_codes is None)
+      2. Sum amounts across items for each financial year
+    """
+    # Filter cells to relevant items
+    if item_codes:
+        item_set = set(item_codes)
+        filtered = [c for c in cells if c.get("item.code") in item_set]
+    else:
+        filtered = cells
+
+    # Group by financial year and sum
+    year_totals = {}
+    for cell in filtered:
         fy_raw = cell.get("financial_year_end.year")
         if not fy_raw:
             continue
         try:
             year = int(str(fy_raw)[:4])
-            fy = f"{year}-{str(year + 1)[-2:]}"
         except (ValueError, TypeError):
-            fy = str(fy_raw)
+            continue
 
         amount_raw = cell.get("amount.sum")
         try:
-            amount = int(float(str(amount_raw)))
+            amount = float(str(amount_raw))
         except (ValueError, TypeError):
-            amount = None
+            continue
 
+        year_totals[year] = year_totals.get(year, 0.0) + amount
+
+    # Convert to rows
+    rows = []
+    for year in sorted(year_totals):
+        fy = f"{year}-{str(year + 1)[-2:]}"
         rows.append({
             "municipality_code": muni_code,
             "municipality_name": muni_name,
@@ -306,7 +307,7 @@ def process_v2_cells(cells, indicator_name, muni_code, muni_name, muni_type, pro
             "indicator": indicator_name,
             "financial_year": fy,
             "period": "annual",
-            "amount_rands": amount,
+            "amount_rands": int(year_totals[year]),
             "source_url": f"https://municipalmoney.gov.za/profiles/municipality-{muni_code}/",
         })
     return rows
@@ -317,9 +318,8 @@ def fetch_v2_indicator(indicator, muni_code, muni_name, muni_type, province):
     Fetch a single v2 indicator for a municipality.
 
     Tries preferred amount types in order (AUDA → ACT → PAUD).
-    For indicators with sum_items=True and multiple item_codes, the API
-    aggregate endpoint already sums across the item dimension when we
-    drilldown only by financial_year_end.year.
+    Drills down by item.code and sums relevant items client-side,
+    because v2 cubes crash when item.code is used in the cut filter.
     """
     item_codes = indicator.get("item_codes")
 
@@ -327,14 +327,13 @@ def fetch_v2_indicator(indicator, muni_code, muni_name, muni_type, province):
         try:
             cells = fetch_v2_aggregate(
                 indicator["cube"], muni_code,
-                item_codes=item_codes,
                 amount_type=amt_type,
             )
             time.sleep(0.3)
 
             if cells:
-                log.info(f"    Got {len(cells)} cells with amount_type={amt_type}")
-                return process_v2_cells(cells, indicator["name"], muni_code, muni_name, muni_type, province)
+                log.info(f"    Got {len(cells)} raw cells with amount_type={amt_type}")
+                return process_v2_cells(cells, indicator["name"], item_codes, muni_code, muni_name, muni_type, province)
             else:
                 log.debug(f"    No data for amount_type={amt_type}, trying next...")
         except Exception as e:
