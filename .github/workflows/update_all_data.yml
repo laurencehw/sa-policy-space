@@ -10,7 +10,7 @@ on:
         description: "Which sources to run"
         required: true
         type: choice
-        options: [all, pmg, budgets, municipal, research]
+        options: [all, pmg, budgets, consolidated, municipal, research]
         default: "all"
       dry_run:
         description: "Dry run (no DB writes)"
@@ -57,6 +57,21 @@ jobs:
           YEAR="${{ github.event.inputs.budget_year }}"
           CMD="python scripts/update_budgets.py"
           if [ -n "$YEAR" ]; then CMD="$CMD --year $YEAR"; fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then CMD="$CMD --dry-run"; fi
+          echo "Running: $CMD" && $CMD
+  update-consolidated:
+    if: >-
+      github.event_name == 'workflow_dispatch' && (github.event.inputs.sources == 'all' || github.event.inputs.sources == 'consolidated') || (github.event_name == 'schedule' && github.event.schedule == '0 8 1 3,10 *')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -r requirements-scripts.txt
+      - name: Update consolidated expenditure data
+        env: { SUPABASE_URL: "${{ secrets.SUPABASE_URL }}", SUPABASE_KEY: "${{ secrets.SUPABASE_KEY }}" }
+        run: |
+          CMD="python scripts/update_consolidated.py"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then CMD="$CMD --dry-run"; fi
           echo "Running: $CMD" && $CMD
   update-municipal:

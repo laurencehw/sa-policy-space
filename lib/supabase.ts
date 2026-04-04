@@ -154,6 +154,16 @@ export interface BudgetByProgramme {
   capital_expenditure: number;
 }
 
+export interface ConsolidatedByFunction {
+  function_group: string;
+  financial_year: string;
+  budget_year: string;
+  total_rthousands: number;
+  total_rands: number;
+  current_rthousands: number;
+  capital_transfers_rthousands: number;
+}
+
 export interface MunicipalFinance {
   municipality_code: string;
   municipality_name: string;

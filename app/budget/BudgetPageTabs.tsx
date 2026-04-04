@@ -3,9 +3,10 @@
 import { useState } from "react";
 import BudgetReformTab from "./BudgetReformTab";
 import BudgetExplorerTab from "./BudgetExplorerTab";
-import type { BudgetSummary, BudgetByDepartment, BudgetByProgramme, PolicyIdea } from "@/lib/supabase";
+import ConsolidatedTab from "./ConsolidatedTab";
+import type { BudgetSummary, BudgetByDepartment, BudgetByProgramme, ConsolidatedByFunction, PolicyIdea } from "@/lib/supabase";
 
-type TabId = "reform" | "explorer";
+type TabId = "reform" | "consolidated" | "explorer";
 
 interface Props {
   reformData: {
@@ -37,15 +38,17 @@ interface Props {
   budgetSummary: BudgetSummary | null;
   departments: BudgetByDepartment[];
   programmes: BudgetByProgramme[];
+  consolidated: ConsolidatedByFunction[];
   policyIdeas: Pick<PolicyIdea, "id" | "title" | "slug" | "responsible_department" | "current_status" | "feasibility_rating" | "growth_impact_rating">[];
 }
 
 const TABS: { id: TabId; label: string }[] = [
   { id: "reform", label: "Reform Analysis" },
-  { id: "explorer", label: "National Budget Data" },
+  { id: "consolidated", label: "Consolidated Spending" },
+  { id: "explorer", label: "National Dept. Votes" },
 ];
 
-export default function BudgetPageTabs({ reformData, budgetSummary, departments, programmes, policyIdeas }: Props) {
+export default function BudgetPageTabs({ reformData, budgetSummary, departments, programmes, consolidated, policyIdeas }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("reform");
 
   return (
@@ -55,7 +58,7 @@ export default function BudgetPageTabs({ reformData, budgetSummary, departments,
         <h1 className="text-2xl font-bold text-gray-900">Budget Alignment Analysis</h1>
         <p className="text-sm text-gray-500 mt-1 max-w-2xl">
           Cross-referencing reform package recommendations against actual National Budget allocations,
-          with detailed department-level budget data from Vulekamali ENE estimates.
+          with consolidated government spending by function and department-level detail.
         </p>
       </div>
 
@@ -82,6 +85,7 @@ export default function BudgetPageTabs({ reformData, budgetSummary, departments,
 
       {/* Tab Content */}
       {activeTab === "reform" && <BudgetReformTab reformData={reformData} />}
+      {activeTab === "consolidated" && <ConsolidatedTab data={consolidated} />}
       {activeTab === "explorer" && (
         <BudgetExplorerTab
           budgetSummary={budgetSummary}

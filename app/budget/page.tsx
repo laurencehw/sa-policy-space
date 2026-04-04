@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
-import type { BudgetSummary, BudgetByDepartment, BudgetByProgramme, PolicyIdea } from "@/lib/supabase";
+import type { BudgetSummary, BudgetByDepartment, BudgetByProgramme, ConsolidatedByFunction, PolicyIdea } from "@/lib/supabase";
 import budgetData from "@/data/budget_alignment.json";
 import BudgetPageTabs from "./BudgetPageTabs";
 
@@ -16,11 +16,12 @@ export default async function BudgetPage() {
   let budgetSummary: BudgetSummary | null = null;
   let departments: BudgetByDepartment[] = [];
   let programmes: BudgetByProgramme[] = [];
+  let consolidated: ConsolidatedByFunction[] = [];
   let policyIdeas: Pick<PolicyIdea, "id" | "title" | "slug" | "responsible_department" | "current_status" | "feasibility_rating" | "growth_impact_rating">[] = [];
 
   if (supabase) {
     try {
-      const [summaryResult, deptResult, progResult, ideasResult] = await Promise.all([
+      const [summaryResult, deptResult, progResult, consolidatedResult, ideasResult] = await Promise.all([
         supabase
           .from("budget_summary")
           .select("*")
@@ -37,12 +38,17 @@ export default async function BudgetPage() {
           .eq("financial_year", "2026-27")
           .order("total_amount", { ascending: false }),
         supabase
+          .from("consolidated_by_function")
+          .select("*")
+          .order("total_rthousands", { ascending: false }),
+        supabase
           .from("policy_ideas")
           .select("id, title, slug, responsible_department, current_status, feasibility_rating, growth_impact_rating"),
       ]);
       budgetSummary = (summaryResult.data ?? null) as BudgetSummary | null;
       departments = (deptResult.data ?? []) as BudgetByDepartment[];
       programmes = (progResult.data ?? []) as BudgetByProgramme[];
+      consolidated = (consolidatedResult.data ?? []) as ConsolidatedByFunction[];
       policyIdeas = (ideasResult.data ?? []) as typeof policyIdeas;
     } catch (e) {
       console.error("[budget] data fetch failed:", e);
@@ -55,6 +61,7 @@ export default async function BudgetPage() {
       budgetSummary={budgetSummary}
       departments={departments}
       programmes={programmes}
+      consolidated={consolidated}
       policyIdeas={policyIdeas}
     />
   );

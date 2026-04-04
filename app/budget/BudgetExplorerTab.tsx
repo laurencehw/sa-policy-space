@@ -149,8 +149,8 @@ export default function BudgetExplorerTab({ budgetSummary, departments, programm
         <p className="text-xs text-amber-800">
           <span className="font-semibold">Note:</span> These are national department votes only (Estimates of National Expenditure).
           The bulk of provincial spending on health, education, and social services is funded through the
-          Provincial Equitable Share and conditional grants, which are not reflected in individual department
-          totals here. Total public spending in these sectors is substantially higher than the national vote figures shown.
+          Provincial Equitable Share and conditional grants, which are not reflected here.
+          See the <span className="font-semibold">Consolidated Spending</span> tab for the full picture across all spheres of government.
         </p>
       </div>
 
