@@ -141,12 +141,14 @@ export function getIdeas(opts?: {
   const countStmt = db.prepare<{ n: number }>(`SELECT COUNT(*) as n FROM policy_ideas p ${where}`);
   const total = (params.length ? countStmt.get(...params) : countStmt.get())!.n;
 
-  // Build paginated query
-  const limitClause = opts?.limit != null ? ` LIMIT ?` : "";
-  const offsetClause = opts?.offset != null ? ` OFFSET ?` : "";
+  // Build paginated query — SQLite requires LIMIT before OFFSET
+  const hasLimit = opts?.limit != null;
+  const hasOffset = opts?.offset != null;
+  const limitClause = hasLimit || hasOffset ? ` LIMIT ?` : "";
+  const offsetClause = hasOffset ? ` OFFSET ?` : "";
   const paginationParams = [...params];
-  if (opts?.limit != null) paginationParams.push(opts.limit);
-  if (opts?.offset != null) paginationParams.push(opts.offset);
+  if (hasLimit || hasOffset) paginationParams.push(opts?.limit ?? -1); // -1 = no limit in SQLite
+  if (hasOffset) paginationParams.push(opts!.offset!);
 
   const stmt = db.prepare<IdeaRow>(`
     SELECT p.*,
