@@ -132,7 +132,7 @@ export default function MatrixPage() {
   useEffect(() => {
     fetch("/api/ideas")
       .then((r) => r.json())
-      .then((data) => { setAllIdeas(data as PolicyIdea[]); setLoading(false); })
+      .then((res) => { setAllIdeas((res.data ?? res) as PolicyIdea[]); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 

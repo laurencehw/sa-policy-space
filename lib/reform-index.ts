@@ -125,11 +125,12 @@ function weightedOverall(pkgScores: Record<number, number>): number {
   return Math.round(w);
 }
 
-// Generate N quarterly labels ending at Q1 2026 (current)
+// Generate N quarterly labels ending at the current quarter
 function quarterLabels(n: number): string[] {
+  const now = new Date();
   const labels: string[] = [];
-  let yr = 2026;
-  let q = 1;
+  let yr = now.getFullYear();
+  let q = Math.ceil((now.getMonth() + 1) / 3);
   for (let i = 0; i < n; i++) {
     labels.unshift(`Q${q} ${yr}`);
     q -= 1;
@@ -239,6 +240,6 @@ export function computeReformIndex(): ReformIndex {
     quarterly_snapshots: snapshots,
     package_sub_indices: subIndices,
     scenarios,
-    last_updated: "2026-03-23",
+    last_updated: new Date().toISOString().split("T")[0],
   };
 }

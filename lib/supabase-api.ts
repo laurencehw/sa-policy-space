@@ -23,11 +23,28 @@ export type {
   ComparisonRow,
 } from "@/lib/local-api";
 
-// Supabase client — env vars are guaranteed present when this module is used
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Supabase client — lazy singleton to fail gracefully if env vars are missing
+let _supabase: ReturnType<typeof createClient> | null = null;
+function getSupabase() {
+  if (!_supabase) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) {
+      throw new Error(
+        "Supabase env vars (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) are required for supabase-api"
+      );
+    }
+    _supabase = createClient(url, key);
+  }
+  return _supabase;
+}
+
+// Alias for backward compat within this module
+const supabase = new Proxy({} as ReturnType<typeof createClient>, {
+  get(_target, prop) {
+    return (getSupabase() as Record<string | symbol, unknown>)[prop];
+  },
+});
 
 // ── Supabase query result shapes ──────────────────────────────────────────
 // Lightweight interfaces matching the .select() projections used below.
@@ -256,7 +273,35 @@ export async function getRelatedIdeas(packageId: number, currentId: number): Pro
     .limit(6);
 
   if (!data?.length) return [];
-  return data.map((r) => ({ ...r, slug: slugify(r.title) }) as IdeaRow);
+
+  // Fetch meeting dates so derived fields match the full getIdeas() contract
+  const ideaIds = data.map((r) => (r as { id: number }).id);
+  const { data: linkRows } = await supabase
+    .from("idea_meetings")
+    .select("idea_id, meetings(date)")
+    .in("idea_id", ideaIds);
+
+  const datesByIdea = new Map<number, string[]>();
+  for (const row of (linkRows || []) as unknown as IdeaMeetingRow[]) {
+    const date = row.meetings?.date;
+    if (!date) continue;
+    const arr = datesByIdea.get(row.idea_id) ?? [];
+    arr.push(date);
+    datesByIdea.set(row.idea_id, arr);
+  }
+
+  const cutoffStr = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
+
+  return data.map((r) => {
+    const idea = r as unknown as Record<string, unknown> & IdeaListRow;
+    const dates = (datesByIdea.get(idea.id) ?? []).sort();
+    const first_raised = dates[0] ?? null;
+    const last_discussed = dates[dates.length - 1] ?? null;
+    const dormant = last_discussed && last_discussed < cutoffStr ? 1 : 0;
+    return { ...idea, first_raised, last_discussed, dormant, slug: slugify(idea.title) } as IdeaRow;
+  });
 }
 
 // ── Committees ─────────────────────────────────────────────────────────────

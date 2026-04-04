@@ -97,8 +97,8 @@ export default function DocumentsPage() {
   useEffect(() => {
     fetch("/api/ideas")
       .then((r) => r.json())
-      .then((data) => {
-        setIdeas(data);
+      .then((res) => {
+        setIdeas(res.data ?? res);
         setLoading(false);
       })
       .catch(() => setLoading(false));

@@ -235,11 +235,15 @@ export function computeMomentumScores(ideas: IdeaRow[]): MomentumScore[] {
       let recencyWeight = 0.5; // fallback when no meeting date
       if (idea.last_discussed) {
         const last = new Date(idea.last_discussed);
-        months_since = Math.max(
-          0,
-          (now.getTime() - last.getTime()) / (1000 * 60 * 60 * 24 * 30.44)
-        );
-        recencyWeight = Math.exp(-0.08 * months_since);
+        const lastTime = last.getTime();
+        // Guard against invalid date strings producing NaN
+        if (!isNaN(lastTime)) {
+          months_since = Math.max(
+            0,
+            (now.getTime() - lastTime) / (1000 * 60 * 60 * 24 * 30.44)
+          );
+          recencyWeight = Math.exp(-0.08 * months_since);
+        }
       }
 
       const statusWeight = STATUS_MOMENTUM[idea.current_status] ?? 0.5;

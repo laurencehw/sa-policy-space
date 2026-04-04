@@ -13,7 +13,7 @@ import { slugify } from "@/lib/utils";
 // Default assumes cwd() is the frontend/ dir when running next dev.
 const DB_PATH =
   process.env.SQLITE_DB_PATH ||
-  path.resolve(process.cwd(), "../data/dev.sqlite3");
+  path.resolve(process.cwd(), "data/dev.sqlite3");
 
 // Data directory (parent of dev.sqlite3) — used to locate processed JSON files.
 const DATA_DIR = path.dirname(DB_PATH);
@@ -118,8 +118,10 @@ export function getIdeas(opts?: {
       params.push(opts.timeHorizon);
     }
     if (opts?.search) {
-      conditions.push("(LOWER(title) LIKE ? OR LOWER(description) LIKE ?)");
-      const like = `%${opts.search.toLowerCase()}%`;
+      conditions.push("(LOWER(title) LIKE ? ESCAPE '\\' OR LOWER(description) LIKE ? ESCAPE '\\')");
+      // Escape LIKE meta-characters to prevent wildcard injection
+      const escaped = opts.search.toLowerCase().replace(/[%_\\]/g, (c) => `\\${c}`);
+      const like = `%${escaped}%`;
       params.push(like, like);
     }
 
@@ -147,6 +149,20 @@ export function getIdeaById(id: number): IdeaRow | null {
   return row ? { ...row, slug: slugify(row.title) } : null;
 }
 
+// Slug → ID cache to avoid full-table scans on slug lookups
+let _slugCache: Map<string, number> | null = null;
+
+function getSlugCache(): Map<string, number> {
+  if (!_slugCache) {
+    const db = getDb();
+    const rows = db.prepare<{ id: number; title: string }>(
+      "SELECT id, title FROM policy_ideas"
+    ).all();
+    _slugCache = new Map(rows.map((r) => [slugify(r.title), r.id]));
+  }
+  return _slugCache;
+}
+
 export function getIdeaBySlug(slug: string): IdeaRow | null {
   const db = getDb();
   // Fast path: direct indexed lookup on slug column
@@ -157,14 +173,11 @@ export function getIdeaBySlug(slug: string): IdeaRow | null {
   `).get(slug);
   if (row) return { ...row, slug };
 
-  // Fallback: compute slug from title (handles rows where slug column doesn't match)
-  const rows = db.prepare<IdeaRow>(`
-    SELECT p.*,
-      ${IDEA_DATE_FIELDS}
-    FROM policy_ideas p
-  `).all();
-  const match = rows.find((r) => slugify(r.title) === slug);
-  return match ? { ...match, slug: slugify(match.title) } : null;
+  // Fallback: use cached slug→ID map instead of loading all rows
+  const cache = getSlugCache();
+  const id = cache.get(slug);
+  if (!id) return null;
+  return getIdeaById(id);
 }
 
 // ── Related ideas (same reform package) ───────────────────────────────────
@@ -232,7 +245,9 @@ export function getImplementationPlan(ideaId: number): Record<string, unknown> |
   if (typeof row.implementation_steps === "string") {
     try {
       row.implementation_steps = JSON.parse(row.implementation_steps);
-    } catch {}
+    } catch (e) {
+      console.error("[local-api] Failed to parse implementation_steps for idea", ideaId, e);
+    }
   }
   return row;
 }

@@ -66,8 +66,8 @@ export default function ComparePage() {
   useEffect(() => {
     fetch("/api/ideas")
       .then((r) => r.json())
-      .then((data) => {
-        setAllIdeas(data as PolicyIdea[]);
+      .then((res) => {
+        setAllIdeas((res.data ?? res) as PolicyIdea[]);
         setLoading(false);
       })
       .catch(() => setLoading(false));

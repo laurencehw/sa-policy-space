@@ -350,7 +350,7 @@ export default async function HomePage() {
       <section className="py-12 border-b border-gray-100">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Latest Insights</h2>
-          <p className="text-gray-500 text-sm mt-0.5">Live data from the database — Q1 2026</p>
+          <p className="text-gray-500 text-sm mt-0.5">Live data from the database — Q{Math.ceil((new Date().getMonth() + 1) / 3)} {new Date().getFullYear()}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-5">
