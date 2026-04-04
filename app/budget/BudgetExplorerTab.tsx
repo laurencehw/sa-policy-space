@@ -34,13 +34,24 @@ export default function BudgetExplorerTab({ budgetSummary, departments, programm
 
   // ── Derived data ────────────────────────────────────────────────────────
 
+  // National Treasury includes debt service + equitable share (pass-through),
+  // which dwarfs line-function departments and makes the chart unreadable.
+  const lineDepartments = useMemo(
+    () => departments.filter((d) => d.department_name !== "National Treasury"),
+    [departments]
+  );
+  const nationalTreasury = useMemo(
+    () => departments.find((d) => d.department_name === "National Treasury"),
+    [departments]
+  );
+
   const deptChartData = useMemo(
-    () => departments.map((d, i) => ({
+    () => lineDepartments.map((d, i) => ({
       department: d.department_name,
       total: d.total_amount,
       fill: getDepartmentColor(i),
     })),
-    [departments]
+    [lineDepartments]
   );
 
   const selectedDeptData = useMemo(
@@ -138,7 +149,18 @@ export default function BudgetExplorerTab({ budgetSummary, departments, programm
         <h2 className="text-base font-semibold text-gray-900 mb-4">
           Department Budget Rankings
         </h2>
-        <div style={{ width: "100%", height: Math.max(departments.length * 40, 200) }}>
+        {nationalTreasury && (
+          <p className="text-xs text-gray-500 mb-3">
+            National Treasury ({formatRands(nationalTreasury.total_amount)}, incl. debt service &amp; equitable share) excluded for scale.
+            <button
+              onClick={() => setSelectedDept("National Treasury")}
+              className="ml-1 text-sa-green hover:underline"
+            >
+              View details →
+            </button>
+          </p>
+        )}
+        <div style={{ width: "100%", height: Math.max(lineDepartments.length * 40, 200) }}>
           <ResponsiveContainer>
             <BarChart data={deptChartData} layout="vertical" margin={{ left: 10, right: 30 }}>
               <XAxis type="number" tickFormatter={(v) => formatRands(v)} tick={{ fontSize: 11 }} />
