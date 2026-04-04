@@ -144,6 +144,16 @@ export default function BudgetExplorerTab({ budgetSummary, departments, programm
         </div>
       </div>
 
+      {/* Scope note */}
+      <div className="card p-4 bg-amber-50 border-amber-200">
+        <p className="text-xs text-amber-800">
+          <span className="font-semibold">Note:</span> These are national department votes only (Estimates of National Expenditure).
+          The bulk of provincial spending on health, education, and social services is funded through the
+          Provincial Equitable Share and conditional grants, which are not reflected in individual department
+          totals here. Total public spending in these sectors is substantially higher than the national vote figures shown.
+        </p>
+      </div>
+
       {/* Cross-Department Comparison */}
       <div className="card p-5">
         <h2 className="text-base font-semibold text-gray-900 mb-4">
